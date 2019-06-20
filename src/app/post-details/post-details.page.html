@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Article</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-card> -->
+  <img *ngIf="post?.embedded?.featuredmedia[0]?.title?.rendered" [src]="post.embedded.featuredmedia[0].source_url"
+    [alt]="post.embedded.featuredmedia[0].title.rendered">
+  <ion-card-header>
+    <ion-card-subtitle>{{post.type}}</ion-card-subtitle>
+    <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content [innerHTML]="post.content.rendered">
+  </ion-card-content>
+  <!-- </ion-card> -->
+
+</ion-content>

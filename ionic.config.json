@@ -1,5 +1,7 @@
 {
   "name": "bifrost",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

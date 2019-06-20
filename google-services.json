@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "438237428005",
+    "firebase_url": "https://api-bifrost.firebaseio.com",
+    "project_id": "api-bifrost",
+    "storage_bucket": "api-bifrost.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438237428005:android:acc0d9e4814167b9",
+        "android_client_info": {
+          "package_name": "com.bifrost"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438237428005-0er4a0q9ud031uj9r12mbu3uq24d6c1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-k23JN0MKXoQbxYYu_kb-eQ6Ayke_UOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438237428005-0er4a0q9ud031uj9r12mbu3uq24d6c1n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

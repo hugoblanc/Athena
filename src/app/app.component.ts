@@ -9,6 +9,31 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
+
+
+  appPages = [
+    {
+      title: 'Le vent se lève',
+      url: '/media/0',
+      host: 'https://lvsl.fr/',
+      icon: 'calendar'
+    },
+    {
+      title: 'Mr Mondialisation',
+      url: '/media/1',
+      host: 'https://mrmondialisation.org/',
+      icon: 'contacts'
+    },
+    {
+      title: 'Le 4 ème singe',
+      url: '/media/2',
+      host: 'https://www.4emesinge.com/',
+      icon: 'contacts'
+    }
+  ];
+
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,

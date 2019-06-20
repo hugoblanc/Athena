@@ -1,11 +1,47 @@
 // http://ionicframework.com/docs/theming/
-@import '~@ionic/angular/css/core.css';
-@import '~@ionic/angular/css/normalize.css';
-@import '~@ionic/angular/css/structure.css';
-@import '~@ionic/angular/css/typography.css';
-@import '~@ionic/angular/css/display.css';
-@import '~@ionic/angular/css/padding.css';
-@import '~@ionic/angular/css/float-elements.css';
-@import '~@ionic/angular/css/text-alignment.css';
-@import '~@ionic/angular/css/text-transformation.css';
-@import '~@ionic/angular/css/flex-utils.css';
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+body {
+  --primaryColor: #000000;
+  --primaryLightColor: #cfe8fa;
+  --primaryDarkColor: #0b4872;
+  --primaryTextColor: #ffffff;
+  --primaryLightTextColor: #000000;
+  --primaryDarkTextColor: #ffffff;
+
+  --accentColor: #647985;
+  --accentLightColor: #f3f5f6;
+  --accentDarkColor: #7f939e;
+  --accentTextColor: #ffffff;
+  --accentLightTextColor: #000000;
+  --accentDarkTextColor: #ffffff;
+
+  --warnColor: #b00020;
+  --warnTextColor: #ffffff;
+}
+
+.ion-color-primary {
+  background-color: var(--primaryColor) !important;
+  .toolbar-background {
+    background-color: var(--primaryColor) !important;
+  }
+}
+
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 900;
+  font-style: normal;
+  src: url('./assets/fonts/roboto/Roboto-Black.ttf');
+  }
+
+  $font-family-md-base: "Roboto";
