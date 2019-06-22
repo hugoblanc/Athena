@@ -55,6 +55,8 @@ export class MediaPage implements OnInit {
       .subscribe((posts: Post[]) => {
         // Affectation des données serveur dans notre variable local
         this.posts = posts;
+      }, (error) => {
+        console.error(error);
       });
   }
 
