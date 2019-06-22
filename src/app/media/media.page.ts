@@ -13,9 +13,9 @@ import { MetaMedia } from '../models/meta-media';
 export class MediaPage implements OnInit {
 
   medias: MetaMedia[] = [
-    { url: 'https://lvsl.fr/', title: 'Le vent se lève', color: 'tertiary' },
-    { url: 'https://mrmondialisation.org/', title: 'Mr Mondialisation', color: 'secondary' },
-    { url: 'https://www.4emesinge.com/', title: 'Mr Mondialisation', color: 'primary' },
+    { url: 'https://lvsl.fr/', title: 'Le vent se lève', color: 'tertiary', donation:'https://lvsl.fr/faire-un-don/' },
+    { url: 'https://mrmondialisation.org/', title: 'Mr Mondialisation', color: 'secondary', donation:'https://mrmondialisation.org/donation/' },
+    { url: 'https://www.4emesinge.com/', title: 'Le 4eme Singe', color: 'primary', donation:'https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr' },
   ];
 
 
