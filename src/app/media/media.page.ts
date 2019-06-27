@@ -12,14 +12,10 @@ import { MetaMedia } from '../models/meta-media';
 })
 export class MediaPage implements OnInit {
 
-  medias: MetaMedia[] = [
-    { url: 'https://lvsl.fr/', title: 'Le vent se lève', color: 'tertiary', donation:'https://lvsl.fr/faire-un-don/' },
-    { url: 'https://mrmondialisation.org/', title: 'Mr Mondialisation', color: 'secondary', donation:'https://mrmondialisation.org/donation/' },
-    { url: 'https://www.4emesinge.com/', title: 'Le 4eme Singe', color: 'primary', donation:'https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr' },
-  ];
 
 
-  id: number;
+
+  idMedia: number;
   posts: Post[];
 
   currentMedia: MetaMedia;
@@ -35,10 +31,10 @@ export class MediaPage implements OnInit {
   ionViewWillEnter() {
     // Initialisation de l'id courant
     const id = this.route.snapshot.paramMap.get('id');
-    this.id = parseInt(id, 10);
+    this.idMedia = parseInt(id, 10);
 
     // récupération des information du média associé
-    this.currentMedia = this.medias[this.id];
+    this.currentMedia = MediasService.MEDIAS[this.idMedia];
 
     // Config de la couleur principale du media
     this.styleService.setPrimaryColor(this.currentMedia.color);

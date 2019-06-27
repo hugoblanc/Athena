@@ -1,9 +1,14 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar [color]="currentMedia?.color">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
     </ion-buttons>
-    <ion-title>Article</ion-title>
+    <ion-title>{{currentMedia?.title}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="openExternalPage('https://lvsl.fr/faire-un-don/')">
+        <ion-icon slot="icon-only" name="logo-euro"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
