@@ -1,9 +1,10 @@
-  import { Component, OnInit } from '@angular/core';
+  import { Component, OnInit, ViewChild } from '@angular/core';
   import { ActivatedRoute } from '@angular/router';
   import { MediasService } from '../medias.service';
   import { Post } from '../models/post';
   import { StyleService } from '../provider/style.service';
   import { MetaMedia } from '../models/meta-media';
+import { IonInfiniteScroll } from '@ionic/angular';
 
   @Component({
     selector: 'app-media',
@@ -12,7 +13,7 @@
   })
   export class MediaPage implements OnInit {
 
-
+    @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
 
     idMedia: number;
@@ -49,7 +50,7 @@
     initData(url: string) {
       // Appel de la méhode du service
       this.loading = true; 
-      this.mediasService.getDataByUrl(url)
+      this.mediasService.getPostByUrl(url)
         .subscribe((posts: Post[]) => {
           // Affectation des données serveur dans notre variable local
           this.posts = posts;
@@ -60,6 +61,16 @@
         });
     }
 
+    loadMore(event){
+      this.mediasService.loadMorePosts(this.currentMedia.url)
+          .subscribe((posts: Post[]) => {
+            this.posts = posts;
+            event.target.complete();
+          }, (error) => {
+            event.target.complete();
+          })
+
+    }
 
     openExternalPage(url: string) {
       window.open(url, '_system’');
