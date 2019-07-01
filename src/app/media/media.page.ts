@@ -1,64 +1,79 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { MediasService } from '../medias.service';
-import { Post } from '../models/post';
-import { StyleService } from '../provider/style.service';
-import { MetaMedia } from '../models/meta-media';
+  import { Component, OnInit, ViewChild } from '@angular/core';
+  import { ActivatedRoute } from '@angular/router';
+  import { MediasService } from '../medias.service';
+  import { Post } from '../models/post';
+  import { StyleService } from '../provider/style.service';
+  import { MetaMedia } from '../models/meta-media';
+import { IonInfiniteScroll } from '@ionic/angular';
 
-@Component({
-  selector: 'app-media',
-  templateUrl: './media.page.html',
-  styleUrls: ['./media.page.scss'],
-})
-export class MediaPage implements OnInit {
+  @Component({
+    selector: 'app-media',
+    templateUrl: './media.page.html',
+    styleUrls: ['./media.page.scss'],
+  })
+  export class MediaPage implements OnInit {
+
+    @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
 
+    idMedia: number;
+    posts: Post[];
+    loading= false;
+
+    currentMedia: MetaMedia;
+
+    constructor(private route: ActivatedRoute,
+                public mediasService: MediasService,
+                public styleService: StyleService) { }
+
+    ngOnInit() {
+    }
 
 
-  idMedia: number;
-  posts: Post[];
+    ionViewWillEnter() {
+      // Initialisation de l'id courant
+      const id = this.route.snapshot.paramMap.get('id');
+      this.idMedia = parseInt(id, 10);
 
-  currentMedia: MetaMedia;
+      // récupération des information du média associé
+      this.currentMedia = MediasService.MEDIAS[this.idMedia];
 
-  constructor(private route: ActivatedRoute,
-              public mediasService: MediasService,
-              public styleService: StyleService) { }
+      // Config de la couleur principale du media
+      this.styleService.setPrimaryColor(this.currentMedia.color);
 
-  ngOnInit() {
+
+      // Initiailisation Récupération des données sur wordpress
+      this.initData(this.currentMedia.url);
+    }
+
+
+    initData(url: string) {
+      // Appel de la méhode du service
+      this.loading = true; 
+      this.mediasService.getPostByUrl(url)
+        .subscribe((posts: Post[]) => {
+          // Affectation des données serveur dans notre variable local
+          this.posts = posts;
+          this.loading = false;
+        }, (error) => {
+          console.error(error);
+          this.loading = false;
+        });
+    }
+
+    loadMore(event){
+      this.mediasService.loadMorePosts(this.currentMedia.url)
+          .subscribe((posts: Post[]) => {
+            this.posts = posts;
+            event.target.complete();
+          }, (error) => {
+            event.target.complete();
+          })
+
+    }
+
+    openExternalPage(url: string) {
+      window.open(url, '_system’');
+    }
+
   }
-
-
-  ionViewWillEnter() {
-    // Initialisation de l'id courant
-    const id = this.route.snapshot.paramMap.get('id');
-    this.idMedia = parseInt(id, 10);
-
-    // récupération des information du média associé
-    this.currentMedia = MediasService.MEDIAS[this.idMedia];
-
-    // Config de la couleur principale du media
-    this.styleService.setPrimaryColor(this.currentMedia.color);
-
-
-    // Initiailisation Récupération des données sur wordpress
-    this.initData(this.currentMedia.url);
-  }
-
-
-  initData(url: string) {
-    // Appel de la méhode du service
-    this.mediasService.getDataByUrl(url)
-      .subscribe((posts: Post[]) => {
-        // Affectation des données serveur dans notre variable local
-        this.posts = posts;
-      }, (error) => {
-        console.error(error);
-      });
-  }
-
-
-  openExternalPage(url: string) {
-    window.open(url, '_system’');
-  }
-
-}

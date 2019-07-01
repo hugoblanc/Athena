@@ -3,4 +3,5 @@ export class MetaMedia {
   public title: string;
   public color: string;
   public donation: string;
+  public logo: string;
 }

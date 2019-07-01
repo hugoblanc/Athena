@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'bf-loader',
@@ -7,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BfLoaderComponent implements OnInit {
 
+  @Input() loading: boolean;
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
 }

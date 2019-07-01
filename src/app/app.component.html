@@ -9,9 +9,9 @@
             Presse écrite
           </ion-list-header>
           <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item [routerLink]="p.url" routerLinkActive="active" routerDirection="root">
+            <ion-item [routerLink]="'/media/'+i" routerLinkActive="active" routerDirection="root">
               <ion-avatar slot="start" class="border-solid" >
-                <img [src]="'https://www.google.com/s2/favicons?domain='+p.host">
+                <img [src]="p.logo">
               </ion-avatar>
               <ion-label>
                 {{p.title}}

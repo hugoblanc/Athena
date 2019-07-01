@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>{{currentMedia?.title}}</ion-title>
     <ion-buttons slot="primary">
-      <ion-button (click)="openExternalPage('https://lvsl.fr/faire-un-don/')">
+      <ion-button (click)="openExternalPage(currentMedia.donation)">
         <ion-icon slot="icon-only" name="logo-euro"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -17,11 +17,19 @@
 
 
 <ion-content>
+
+
+    <!-- <ion-avatar *ngIf="currentMedia" >
+        <img [src]="currentMedia.logo">
+      </ion-avatar> -->
+
+  <bf-loader [loading]="loading"></bf-loader>
   <ion-list>
     <ion-card *ngFor="let post of posts" routerLink="/media/{{idMedia}}/details/{{post.id}}">
       <img *ngIf="post?.embedded?.featuredmedia[0]?.title?.rendered" [src]="post.embedded.featuredmedia[0].source_url"
         [alt]="post.embedded.featuredmedia[0].title.rendered">
-      <ion-card-header>
+      
+        <ion-card-header>
         <ion-card-subtitle>{{post.type}}</ion-card-subtitle>
         <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
       </ion-card-header>
@@ -31,5 +39,10 @@
     </ion-card>
 
   </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingText="Chargement ...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>
