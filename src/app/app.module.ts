@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentsModule } from './components/components.module';
+import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,12 +19,13 @@ import { ComponentsModule } from './components/components.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    ComponentsModule ],
+    ComponentsModule],
   providers: [
     StatusBar,
     SplashScreen,
+    FirebaseLib,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

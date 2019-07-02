@@ -4,8 +4,15 @@
   import { Post } from '../models/post';
   import { StyleService } from '../provider/style.service';
   import { MetaMedia } from '../models/meta-media';
-import { IonInfiniteScroll } from '@ionic/angular';
+  import { IonInfiniteScroll } from '@ionic/angular';
 
+    /**
+     * *~~~~~~~~~~~~~~~~~~~
+     * Author: HugoBlanc |
+     * *~~~~~~~~~~~~~~~~~~~
+     * Cette page permet d'afficher la liste des articles
+     * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     */
   @Component({
     selector: 'app-media',
     templateUrl: './media.page.html',
@@ -18,7 +25,7 @@ import { IonInfiniteScroll } from '@ionic/angular';
 
     idMedia: number;
     posts: Post[];
-    loading= false;
+    loading = false;
 
     currentMedia: MetaMedia;
 
@@ -36,7 +43,7 @@ import { IonInfiniteScroll } from '@ionic/angular';
       this.idMedia = parseInt(id, 10);
 
       // récupération des information du média associé
-      this.currentMedia = MediasService.MEDIAS[this.idMedia];
+      this.currentMedia = this.mediasService.medias[this.idMedia];
 
       // Config de la couleur principale du media
       this.styleService.setPrimaryColor(this.currentMedia.color);
@@ -49,7 +56,7 @@ import { IonInfiniteScroll } from '@ionic/angular';
 
     initData(url: string) {
       // Appel de la méhode du service
-      this.loading = true; 
+      this.loading = true;
       this.mediasService.getPostByUrl(url)
         .subscribe((posts: Post[]) => {
           // Affectation des données serveur dans notre variable local
@@ -61,14 +68,14 @@ import { IonInfiniteScroll } from '@ionic/angular';
         });
     }
 
-    loadMore(event){
+    loadMore(event) {
       this.mediasService.loadMorePosts(this.currentMedia.url)
           .subscribe((posts: Post[]) => {
             this.posts = posts;
             event.target.complete();
           }, (error) => {
             event.target.complete();
-          })
+          });
 
     }
 
