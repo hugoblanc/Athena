@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { MediasService } from './medias.service';
 import { MetaMedia } from './models/meta-media';
+import { Router } from '@angular/router';
 
 
 /**
@@ -24,17 +25,20 @@ import { MetaMedia } from './models/meta-media';
 })
 export class AppComponent implements OnInit {
 
-  // La liste des différent médias que l'on veut afficher dans le menu
-  appPages: MetaMedia[];
-
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private firebaseLib: FirebaseLib,
-    private mediasService: MediasService
+    private mediasService: MediasService,
+    private router: Router
   ) { }
+
+  // La liste des différent médias que l'on veut afficher dans le menu
+  appPages: MetaMedia[];
+
+  ionDid;
 
   /**
    * La methode qui est automatiquement appelé au démarrage du composant
@@ -45,22 +49,20 @@ export class AppComponent implements OnInit {
   }
 
 
+
   initializeApp() {
 
     // Ici on gères les accès au fonciontnalité native du téléphone
     this.platform.ready().then(() => {
       // La couleur de la bar de status
       this.statusBar.styleDefault();
-
       // La fin de l'affichage du splash screen
       this.splashScreen.hide();
 
-      // Le subscribe au topic 'all' pour les notification
-      this.firebaseLib.subscribe('all')
-        .then((data) => {
-          console.log(data);
-        });
     });
+
+
+    // this.router.navigateByUrl(`/media/0/details/24947`);
 
 
     // Ici on récupère les media stocké en local dans le media service

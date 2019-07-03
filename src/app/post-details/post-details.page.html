@@ -17,11 +17,11 @@
   <img *ngIf="post?.embedded?.featuredmedia[0]?.title?.rendered" [src]="post.embedded.featuredmedia[0].source_url"
     [alt]="post.embedded.featuredmedia[0].title.rendered">
   <ion-card-header>
-    <ion-card-subtitle>{{post.type}}</ion-card-subtitle>
-    <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
+    <ion-card-subtitle>{{post?.type}}</ion-card-subtitle>
+    <ion-card-title [innerHTML]="post?.title.rendered"></ion-card-title>
   </ion-card-header>
 
-  <ion-card-content class="article-content" [innerHTML]="post.content.rendered">
+  <ion-card-content class="article-content" [innerHTML]="post?.content.rendered">
   </ion-card-content>
   <!-- </ion-card> -->
 

@@ -60,10 +60,10 @@ export class MediasService {
   posts: Post[];
   url: string;
   pageNumber = 1;
-  numberByPage = 5;
+  numberByPage = 8;
 
   public getMediaList(): Observable<MetaMedia[]> {
-    return this.http.get('http://localhost:3000/media')
+    return this.http.get('http://192.168.1.20:3000/media')
       .pipe(map((data: MetaMedia[]) => data),
         tap((data) => {
           if (data && data.length > 3) {
@@ -111,16 +111,27 @@ export class MediasService {
     );
   }
 
-  getPostByID(id: number): Observable<Post> {
+  getPostByID(metaMedia: MetaMedia, id: number): Observable<Post> {
     return this.http
-      .get(this.url + MediasService.WORDPRESS_API + MediasService.POST_ONLY).pipe(map((data: Post) => {
+      .get(metaMedia.url + MediasService.WORDPRESS_API + MediasService.POST_ONLY + id + '?_embed').pipe(map((data: Post) => {
         return new Post(data);
       }));
   }
 
 
   findLocalPostById(id: number): Post {
+    if (!this.posts) {
+      return null;
+    }
     return this.posts.find((post) => (post.id === id));
+  }
+
+  findMediaIdByKey(key: string): number {
+    return this.medias.indexOf(this.findMediaByKey(key));
+  }
+
+  findMediaByKey(key: string): MetaMedia {
+    return this.medias.find((metaMedia) => (metaMedia.key === key));
   }
 
 

@@ -30,6 +30,13 @@ export class PostDetailsPage implements OnInit {
     this.idPost = parseInt(idPost, 10);
     this.post = this.mediasService.findLocalPostById(this.idPost);
     this.currentMedia = this.mediasService.medias[parseInt(idMedia, 10)];
+
+    if (!this.post) {
+      this.mediasService.getPostByID(this.currentMedia, this.idPost)
+        .subscribe((post) => {
+          this.post = post;
+        });
+    }
   }
 
   ngOnInit() {
