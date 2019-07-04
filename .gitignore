@@ -11,6 +11,8 @@ log.txt
 *.sublime-workspace
 .vscode/
 npm-debug.log*
+build.json
+bifrost.keystore
 
 .idea/
 .ionic/

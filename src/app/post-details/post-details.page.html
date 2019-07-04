@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar [color]="currentMedia?.color">
     <ion-buttons slot="start">
-      <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
+      <ion-back-button [defaultHref]="undefined"></ion-back-button>
     </ion-buttons>
     <ion-title>{{currentMedia?.title}}</ion-title>
     <ion-buttons slot="primary">
-      <ion-button (click)="openExternalPage('https://lvsl.fr/faire-un-don/')">
+      <ion-button (click)="openExternalPage(currentMedia.donation)">
         <ion-icon slot="icon-only" name="logo-euro"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -14,14 +14,14 @@
 
 <ion-content>
   <!-- <ion-card> -->
-  <img *ngIf="post?.embedded?.featuredmedia[0]?.title?.rendered" [src]="post.embedded.featuredmedia[0].source_url"
+  <img *ngIf="post?.embedded?.featuredmedia[0]?.title?.rendered" [src]="post.mediaUrl"
     [alt]="post.embedded.featuredmedia[0].title.rendered">
   <ion-card-header>
-    <ion-card-subtitle>{{post.type}}</ion-card-subtitle>
-    <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
+    <ion-card-subtitle>{{post?.type}}</ion-card-subtitle>
+    <ion-card-title [innerHTML]="post?.title.rendered"></ion-card-title>
   </ion-card-header>
 
-  <ion-card-content class="article-content" [innerHTML]="post.content.rendered">
+  <ion-card-content class="article-content" [innerHTML]="post?.content.rendered">
   </ion-card-content>
   <!-- </ion-card> -->
 

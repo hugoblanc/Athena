@@ -5,14 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MediaPage } from './media.page';
-import { ComponentsModule } from '../components/components.module';
+import { InformationsPage } from './informations.page';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 const routes: Routes = [
   {
     path: '',
-    component: MediaPage
+    component: InformationsPage
   }
 ];
 
@@ -21,10 +20,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    ComponentsModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [MediaPage],
+  declarations: [InformationsPage],
   providers: [StatusBar]
 })
-export class MediaPageModule {}
+export class InformationsPageModule {}

@@ -8,7 +8,9 @@ export class Embedded {
 
   constructor(input: any) {
     Object.assign(this, input);
-    this.featuredmedia = input['wp:featuredmedia'];
     this.term = input['wp:term'];
+    if (input['wp:featuredmedia']) {
+      this.featuredmedia = input['wp:featuredmedia'].map((media) => new Media(media));
+    }
   }
 }
