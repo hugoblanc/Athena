@@ -10,12 +10,23 @@
           </ion-list-header>
           <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
             <ion-item [routerLink]="'/media/'+i" routerLinkActive="active" routerDirection="root">
-              <ion-avatar slot="start" class="border-solid" >
+              <ion-avatar slot="start" class="border-solid">
                 <img [src]="p.logo">
               </ion-avatar>
               <ion-label>
                 {{p.title}}
               </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-list-header>
+            A propos
+          </ion-list-header>
+          <ion-menu-toggle autoHide="false">
+            <ion-item [routerLink]="'/informations'" routerLinkActive="active" routerDirection="root">
+              <ion-label>
+                Informations
+              </ion-label>
+              <ion-icon name="information-circle-outline" slot="start"></ion-icon>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

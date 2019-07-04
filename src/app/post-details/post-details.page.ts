@@ -42,4 +42,8 @@ export class PostDetailsPage implements OnInit {
   ngOnInit() {
   }
 
+  openExternalPage(url: string) {
+    window.open(url, '_system’');
+  }
+
 }

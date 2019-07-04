@@ -26,9 +26,9 @@
   <bf-loader [loading]="loading"></bf-loader>
   <ion-list>
     <ion-card *ngFor="let post of posts" routerLink="/media/{{idMedia}}/details/{{post.id}}">
-      <img *ngIf="post?.embedded?.featuredmedia[0]?.title?.rendered" [src]="post.embedded.featuredmedia[0].source_url"
+      <img *ngIf="post?.mediaUrl" [src]="post.mediaUrl"
         [alt]="post.embedded.featuredmedia[0].title.rendered">
-      
+
         <ion-card-header>
         <ion-card-subtitle>{{post.type}}</ion-card-subtitle>
         <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>

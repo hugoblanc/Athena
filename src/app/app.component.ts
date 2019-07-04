@@ -3,10 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { MediasService } from './medias.service';
 import { MetaMedia } from './models/meta-media';
-import { Router } from '@angular/router';
 
 
 /**
@@ -30,9 +28,7 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private firebaseLib: FirebaseLib,
-    private mediasService: MediasService,
-    private router: Router
+    private mediasService: MediasService
   ) { }
 
   // La liste des différent médias que l'on veut afficher dans le menu
@@ -56,6 +52,7 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       // La couleur de la bar de status
       this.statusBar.styleDefault();
+      this.statusBar.backgroundColorByHexString('#ffffff');
       // La fin de l'affichage du splash screen
       this.splashScreen.hide();
 
