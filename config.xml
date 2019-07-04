@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.bifrost" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.open.bifrost" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Bifrost</name>
     <description>Le Bifröst brûle constamment d’un feu ardent pour empêcher les géants de l’emprunter.</description>
     <author email="hugoblanc.blend@gmail.com" href="https://github.com/hugoblanc">Hugo Blanc</author>

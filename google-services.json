@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:438237428005:android:acc0d9e4814167b9",
+        "mobilesdk_app_id": "1:438237428005:android:c8aff606995f092b",
         "android_client_info": {
-          "package_name": "com.bifrost"
+          "package_name": "comp.open.bifrost"
         }
       },
       "oauth_client": [
