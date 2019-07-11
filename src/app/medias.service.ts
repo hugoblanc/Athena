@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 import { Post } from './models/post';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { MetaMedia } from './models/meta-media';
+import { HTTP, HTTPResponse } from '@ionic-native/http/ngx';
 
 
 /**
@@ -26,7 +26,7 @@ export class MediasService {
 
 
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HTTP) { }
 
 
   public medias: MetaMedia[] = [
@@ -63,8 +63,8 @@ export class MediasService {
   numberByPage = 8;
 
   public getMediaList(): Observable<MetaMedia[]> {
-    return this.http.get('http://192.168.1.20:3000/media')
-      .pipe(map((data: MetaMedia[]) => data),
+    return from(this.http.get('http://192.168.1.20:3000/media', {}, {}))
+      .pipe(map((data) => JSON.parse(data.data)),
         tap((data) => {
           if (data && data.length > 3) {
             this.medias = data;
@@ -83,8 +83,8 @@ export class MediasService {
     // Ici on reinit le numéro de page a 1 car si on utilise getPostByUrl c'est pour init
     this.pageNumber = 1;
     return this.getDataByUrl(url)
-      .pipe(map((data: Post[]) => {
-        this.posts = data.map((post) => new Post(post));
+      .pipe(map((data: HTTPResponse) => {
+        this.posts = JSON.parse(data.data).map((post) => new Post(post));
         return this.posts;
       }));
   }
@@ -92,29 +92,29 @@ export class MediasService {
   public loadMorePosts(url: string): Observable<Post[]> {
     this.pageNumber++;
     return this.getDataByUrl(url)
-      .pipe(map((data: Post[]) => {
-        this.posts = [...this.posts, ...data.map((post) => new Post(post))];
+      .pipe(map((data: HTTPResponse) => {
+        this.posts = [...this.posts, ...JSON.parse(data.data).map((post) => new Post(post))];
         return this.posts;
       }));
   }
 
 
-  private getDataByUrl(url: string): Observable<any> {
+  private getDataByUrl(url: string): Observable<HTTPResponse> {
     this.url = url;
-    return this.http.get(
+    return from(this.http.get(
       this.url +
       MediasService.WORDPRESS_API +
       MediasService.POSTS +
       MediasService.SIZE_NUMBER + this.numberByPage +
       MediasService.PAGE_NUMBER + this.pageNumber +
       MediasService.EMBEDDED_CONTENT
-    );
+      , {}, {}));
   }
 
   getPostByID(metaMedia: MetaMedia, id: number): Observable<Post> {
-    return this.http
-      .get(metaMedia.url + MediasService.WORDPRESS_API + MediasService.POST_ONLY + id + '?_embed').pipe(map((data: Post) => {
-        return new Post(data);
+    return from(this.http.get(metaMedia.url + MediasService.WORDPRESS_API + MediasService.POST_ONLY + id + '?_embed', {}, {}))
+      .pipe(map((data: HTTPResponse) => {
+        return new Post(JSON.parse(data.data));
       }));
   }
 
