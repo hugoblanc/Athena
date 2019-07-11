@@ -13,7 +13,7 @@ export class AthHeaderComponent implements OnInit, AfterViewInit {
   @Input() callOption?: Function;
   @Input() scrollArea?: any;
   // tslint:disable-next-line: variable-name
-  private _pureHeader: boolean; // Seulement les boutton ou pas
+  _pureHeader: boolean; // Seulement les boutton ou pas
 
 
   @Input()
