@@ -35,7 +35,7 @@ export class MediasService {
       url: 'https://lvsl.fr/',
       title: 'Le Vent Se Lève',
       color: 'tertiary',
-      donation: 'https://lvsl.fr/faire-un-don/',
+      // donation: 'https://lvsl.fr/faire-un-don/',
       logo: 'assets/lvsl_logo.png'
     },
     {
@@ -50,7 +50,7 @@ export class MediasService {
       url: 'https://www.4emesinge.com/',
       title: 'Le 4eme Singe',
       color: 'success',
-      donation: 'https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr',
+      // donation: 'https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr',
       logo: 'assets/4emesinge_logo.jpg'
     },
   ];
