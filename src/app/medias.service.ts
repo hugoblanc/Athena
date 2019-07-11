@@ -43,7 +43,6 @@ export class MediasService {
       url: 'https://mrmondialisation.org/',
       title: 'Mr Mondialisation',
       color: 'secondary',
-      donation: 'https://mrmondialisation.org/donation/',
       logo: 'assets/mrmondialisation_logo.png'
     },
     {
