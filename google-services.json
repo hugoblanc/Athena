@@ -1,42 +1,35 @@
 {
   "project_info": {
-    "project_number": "438237428005",
-    "firebase_url": "https://api-bifrost.firebaseio.com",
-    "project_id": "api-bifrost",
-    "storage_bucket": "api-bifrost.appspot.com"
+    "project_number": "468962553465",
+    "firebase_url": "https://open-athena.firebaseio.com",
+    "project_id": "open-athena",
+    "storage_bucket": "open-athena.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:438237428005:android:8bfbdfac878a39dd",
+        "mobilesdk_app_id": "1:468962553465:android:69a94b6252158c21",
         "android_client_info": {
-          "package_name": "com.open.bifrost"
+          "package_name": "com.open.athena"
         }
       },
       "oauth_client": [
         {
-          "client_id": "438237428005-0er4a0q9ud031uj9r12mbu3uq24d6c1n.apps.googleusercontent.com",
+          "client_id": "468962553465-11ubko5h3umsvsf6dme4sa7nbsali9hv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB-k23JN0MKXoQbxYYu_kb-eQ6Ayke_UOk"
+          "current_key": "AIzaSyD6lIIrhBD-5100qlgnmjuUHCZfPnnub_0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "438237428005-0er4a0q9ud031uj9r12mbu3uq24d6c1n.apps.googleusercontent.com",
+              "client_id": "468962553465-11ubko5h3umsvsf6dme4sa7nbsali9hv.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "438237428005-mfagath4ir75g1ohfhvsabbgr2b7cb2i.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.open.bifrost"
-              }
             }
           ]
         }
