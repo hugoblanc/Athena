@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BfLoaderComponent } from './bf-loader/bf-loader.component';
+import { AthLoaderComponent } from './ath-loader/ath-loader.component';
 import { IonicModule } from '@ionic/angular';
 
 @NgModule({
-  declarations: [BfLoaderComponent],
-  exports: [BfLoaderComponent],
+  declarations: [AthLoaderComponent],
+  exports: [AthLoaderComponent],
   imports: [
     CommonModule,
     IonicModule.forRoot(),
