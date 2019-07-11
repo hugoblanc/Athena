@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:438237428005:android:c8aff606995f092b",
+        "mobilesdk_app_id": "1:438237428005:android:8bfbdfac878a39dd",
         "android_client_info": {
-          "package_name": "comp.open.bifrost"
+          "package_name": "com.open.bifrost"
         }
       },
       "oauth_client": [
@@ -30,6 +30,13 @@
             {
               "client_id": "438237428005-0er4a0q9ud031uj9r12mbu3uq24d6c1n.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "438237428005-mfagath4ir75g1ohfhvsabbgr2b7cb2i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.open.bifrost"
+              }
             }
           ]
         }
