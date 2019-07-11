@@ -36,24 +36,53 @@ body {
   }
 }
 
-
 @font-face {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: 900;
   font-style: normal;
-  src: url('./assets/fonts/roboto/Roboto-Black.ttf');
-  }
+  src: url("./assets/fonts/roboto/Roboto-Black.ttf");
+}
 
-  $font-family-md-base: "Roboto";
+$font-family-md-base: "Roboto";
 
-
-
-.article-content{
-
+.article-content {
   text-align: justify;
   img {
-      width: 100% ;
-      height: auto;
+    width: 100%;
+    height: auto;
   }
+}
 
+#ath-header {
+  ion-toolbar {
+    padding-top: 0;
+  }
+  .title-ios {
+    padding: 0 5rem !important;
+    .toolbar-title-ios {
+      text-align: left;
+    }
+  }
+  ion-title {
+    color: inherit;
+    font-size: 3.5rem;
+    color: inherit;
+    font-weight: 800;
+  }
+  @media (max-width: 330px) {
+    ion-title {
+      font-size: 3rem;
+    }
+  }
+  // button {
+  //   .button-inner {
+  //     color: inherit;
+  //   }
+  //   color: inherit;
+  //   margin: 0; // margin-top: -2.5rem !important;
+  //   ion-icon::before {
+  //     color: inherit;
+  //     font-size: 3.5rem;
+  //   }
+  // }
 }

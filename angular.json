@@ -8,7 +8,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "bf",
+      "prefix": "ath",
       "schematics": {},
       "architect": {
         "build": {

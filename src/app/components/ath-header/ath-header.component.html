@@ -1,0 +1,19 @@
+<ion-header id="ath-header" class="header-global">
+  <ion-toolbar id="std-nav-header" class="darkPrimaryColor" [ngClass]="classOverride">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-wrap ion-text-left ion-no-padding " *ngIf="!_pureHeader">{{title}}</ion-title>
+
+    <ion-buttons id="header-new-task" *ngIf="help?.length > 0 || callOption != null" slot='end'>
+      <ng-content></ng-content>
+      <!-- <button *ngIf="callOption != null" ion-button icon-only class="text-on-bottom" class="darkPrimaryColor"
+        (click)="callOption()">
+        <ion-icon id="ath-header-help" name="more"></ion-icon>
+      </button> -->
+    </ion-buttons>
+  </ion-toolbar>
+
+  <div id="shad"></div>
+
+</ion-header>

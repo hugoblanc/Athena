@@ -12,7 +12,7 @@ log.txt
 .vscode/
 npm-debug.log*
 build.json
-bifrost.keystore
+athena.keystore
 
 .idea/
 .ionic/
