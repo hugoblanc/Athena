@@ -3,7 +3,7 @@ import { map, tap } from 'rxjs/operators';
 import { Post } from './models/post';
 import { Observable, from } from 'rxjs';
 import { MetaMedia } from './models/meta-media';
-import { HTTP, HTTPResponse } from '@ionic-native/http/ngx';
+import { HttpService } from './provider/http.service';
 
 
 /**
@@ -26,7 +26,7 @@ export class MediasService {
 
 
 
-  constructor(public http: HTTP) { }
+  constructor(private http: HttpService) { }
 
 
   public medias: MetaMedia[] = [
@@ -62,13 +62,12 @@ export class MediasService {
   numberByPage = 8;
 
   public getMediaList(): Observable<MetaMedia[]> {
-    return from(this.http.get('http://192.168.1.20:3000/media', {}, {}))
-      .pipe(map((data) => JSON.parse(data.data)),
-        tap((data) => {
-          if (data && data.length > 3) {
-            this.medias = data;
-          }
-        }));
+    return this.http.get('http://192.168.1.20:3000/media')
+      .pipe(tap((data: MetaMedia[]) => {
+        if (data && data.length > 3) {
+          this.medias = data;
+        }
+      }));
   }
 
 
@@ -82,8 +81,8 @@ export class MediasService {
     // Ici on reinit le numéro de page a 1 car si on utilise getPostByUrl c'est pour init
     this.pageNumber = 1;
     return this.getDataByUrl(url)
-      .pipe(map((data: HTTPResponse) => {
-        this.posts = JSON.parse(data.data).map((post) => new Post(post));
+      .pipe(map((data: Post[]) => {
+        this.posts = data.map((post) => new Post(post));
         return this.posts;
       }));
   }
@@ -91,29 +90,35 @@ export class MediasService {
   public loadMorePosts(url: string): Observable<Post[]> {
     this.pageNumber++;
     return this.getDataByUrl(url)
-      .pipe(map((data: HTTPResponse) => {
-        this.posts = [...this.posts, ...JSON.parse(data.data).map((post) => new Post(post))];
+      .pipe(map((data: Post[]) => {
+        try {
+          const freshPost = data.map((post) => {
+            return new Post(post);
+          });
+          this.posts = [...this.posts, ...freshPost];
+        } catch (error) {
+          throw error;
+        }
         return this.posts;
       }));
   }
 
 
-  private getDataByUrl(url: string): Observable<HTTPResponse> {
+  private getDataByUrl(url: string): Observable<any> {
     this.url = url;
-    return from(this.http.get(
+    return this.http.get(
       this.url +
       MediasService.WORDPRESS_API +
       MediasService.POSTS +
       MediasService.SIZE_NUMBER + this.numberByPage +
       MediasService.PAGE_NUMBER + this.pageNumber +
-      MediasService.EMBEDDED_CONTENT
-      , {}, {}));
+      MediasService.EMBEDDED_CONTENT);
   }
 
   getPostByID(metaMedia: MetaMedia, id: number): Observable<Post> {
-    return from(this.http.get(metaMedia.url + MediasService.WORDPRESS_API + MediasService.POST_ONLY + id + '?_embed', {}, {}))
-      .pipe(map((data: HTTPResponse) => {
-        return new Post(JSON.parse(data.data));
+    return this.http.get(metaMedia.url + MediasService.WORDPRESS_API + MediasService.POST_ONLY + id + '?_embed')
+      .pipe(map((data: Post) => {
+        return new Post(data);
       }));
   }
 

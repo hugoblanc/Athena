@@ -12,9 +12,11 @@ import { Router } from '@angular/router';
 export class HomePage implements OnInit {
 
   constructor(public platform: Platform,
-    public firebaseLib: FirebaseLib,
-    public mediasService: MediasService,
-    public router: Router) { }
+              public firebaseLib: FirebaseLib,
+              public mediasService: MediasService,
+              public router: Router) {
+
+     }
 
 
   ngOnInit(): void {
@@ -22,7 +24,7 @@ export class HomePage implements OnInit {
 
 
       // Le subscribe au topic 'all' pour les notification
-      this.firebaseLib.subscribe('all')
+      this.firebaseLib.subscribe('all1')
         .then((data) => {
           console.log(data);
         });
