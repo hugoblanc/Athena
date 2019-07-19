@@ -10,6 +10,17 @@
 
 <ion-content>
   <div class="ion-padding">
-    Athéna est la déesse de la raison, de la prudence, de la stratégie militaire et de la sagesse. Elle est aussi la gardienne d'Athènes, berceau de la démocratie
+
+    <ion-grid>
+      <ion-row flex-wrap="wrap-reverse" >
+        <ion-col align-self="baseline" *ngFor="let media of medias">
+          <ion-card class="card-media" button (click)="cardClick()">
+            <img [src]="media.logo" alt="media.">
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    Athéna est la déesse de la raison, de la prudence, de la stratégie militaire et de la sagesse. Elle est aussi la
+    gardienne d'Athènes, berceau de la démocratie
   </div>
 </ion-content>

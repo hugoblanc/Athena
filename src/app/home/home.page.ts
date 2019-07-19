@@ -3,6 +3,7 @@ import { Platform } from '@ionic/angular';
 import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { MediasService } from '../medias.service';
 import { Router } from '@angular/router';
+import { MetaMedia } from '../models/meta-media';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+
+  medias: MetaMedia[];
 
   constructor(public platform: Platform,
               public firebaseLib: FirebaseLib,
@@ -20,6 +23,7 @@ export class HomePage implements OnInit {
 
 
   ngOnInit(): void {
+    this.medias = this.mediasService.medias;
     this.platform.ready().then(() => {
 
 
