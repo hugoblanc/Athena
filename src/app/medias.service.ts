@@ -36,7 +36,7 @@ export class MediasService {
       title: 'Le Vent Se Lève',
       color: 'tertiary',
       // donation: 'https://lvsl.fr/faire-un-don/',
-      logo: 'assets/lvsl_logo.png'
+      logo: 'assets/lvsl_logo.jpg'
     },
     {
       key: 'mrmondialisation',
