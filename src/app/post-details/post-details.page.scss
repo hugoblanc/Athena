@@ -1,5 +1,9 @@
 :host {
   --color: white;
+  .back-button{
+    display: inline-flex;
+    position: fixed;
+  }
   #full-article {
     margin: 1rem;
     font-family: RobotoBlack;

@@ -1,7 +1,5 @@
-
-
 <ion-content>
-    <ion-back-button [defaultHref]="undefined"></ion-back-button>
+    <ion-back-button class="back-button" [defaultHref]="undefined"></ion-back-button>
   <img *ngIf="post?.embedded?.featuredmedia[0]?.title?.rendered" [src]="post.mediaUrl"
     [alt]="post.embedded.featuredmedia[0].title.rendered">
   <div id="full-article">
