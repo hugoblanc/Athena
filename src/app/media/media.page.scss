@@ -10,6 +10,7 @@
     }
     .masonry-item {
       width: 43%;
+      margin: 10px;
       --ion-item-background: white;
 
       .card-img {
@@ -18,6 +19,7 @@
 
       ion-card-title {
         font-size: 0.9rem;
+        color: black;
         font-family: RobotoBlack;
       }
     }
