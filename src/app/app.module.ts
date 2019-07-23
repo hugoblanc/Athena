@@ -9,7 +9,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ComponentsModule } from './components/components.module';
 import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
 
@@ -19,8 +18,7 @@ import { HTTP } from '@ionic-native/http/ngx';
   imports: [BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule,
-    ComponentsModule],
+    HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,

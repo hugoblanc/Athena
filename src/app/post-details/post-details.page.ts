@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MediasService } from '../medias.service';
 import { Post } from '../models/post';
@@ -22,7 +22,9 @@ export class PostDetailsPage implements OnInit {
   post: Post;
   currentMedia: MetaMedia;
 
-  constructor(private route: ActivatedRoute, public mediasService: MediasService) { }
+  constructor(private route: ActivatedRoute,
+              public mediasService: MediasService,
+              private zone: NgZone) { }
 
   ionViewWillEnter() {
     const idPost = this.route.snapshot.paramMap.get('id');
@@ -32,10 +34,14 @@ export class PostDetailsPage implements OnInit {
     this.currentMedia = this.mediasService.medias[parseInt(idMedia, 10)];
 
     if (!this.post) {
-      this.mediasService.getPostByID(this.currentMedia, this.idPost)
-        .subscribe((post) => {
-          this.post = post;
-        });
+      // Comme on utilise un plugin pour les call en natif sur mobile il faut forcer la zone angular
+      // Si on fait pas ça bug a l'affichage
+      this.zone.run(() => {
+        this.mediasService.getPostByID(this.currentMedia, this.idPost)
+          .subscribe((post) => {
+            this.post = post;
+          });
+    ;  })
     }
   }
 

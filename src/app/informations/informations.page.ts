@@ -11,7 +11,7 @@ export class InformationsPage implements OnInit {
   constructor(public statusBar: StatusBar) { }
 
   ngOnInit() {
-    this.statusBar.backgroundColorByHexString('#4285f4');
+
   }
 
 }

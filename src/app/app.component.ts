@@ -51,8 +51,10 @@ export class AppComponent implements OnInit {
     // Ici on gères les accès au fonciontnalité native du téléphone
     this.platform.ready().then(() => {
       // La couleur de la bar de status
-      this.statusBar.styleDefault();
-      this.statusBar.backgroundColorByHexString('#ffffff');
+      setTimeout(() => {
+        this.statusBar.overlaysWebView(true);
+      }, 500);
+
       // La fin de l'affichage du splash screen
       this.splashScreen.hide();
 
@@ -66,7 +68,7 @@ export class AppComponent implements OnInit {
     this.appPages = this.mediasService.medias;
 
     // Et on vérifie aussi qu'il n'y a pas des nouveau media sur le serveur
-    // TODO: Décommenter ce truc quand ready 
+    // TODO: Décommenter ce truc quand ready
     // this.mediasService.getMediaList()
     //   .subscribe((metaMedias) => {
     //     // S'il y avait des nouveau média il sont maintenant stocké dans les ".medias;" locaux du service

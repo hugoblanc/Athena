@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { MediaPage } from './media.page';
 import { ComponentsModule } from '../components/components.module';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { NgxMasonryModule } from 'ngx-masonry';
 
 const routes: Routes = [
   {
@@ -22,7 +23,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
+    NgxMasonryModule
   ],
   declarations: [MediaPage],
   providers: [StatusBar]

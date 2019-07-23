@@ -1,28 +1,13 @@
-<ion-header>
-  <ion-toolbar [color]="currentMedia?.color">
-    <ion-buttons slot="start">
-      <ion-back-button [defaultHref]="undefined"></ion-back-button>
-    </ion-buttons>
-    <ion-title>{{currentMedia?.title}}</ion-title>
-    <ion-buttons *ngIf="currentMedia?.donation" slot="primary">
-      <ion-button (click)="openExternalPage(currentMedia.donation)">
-        <ion-icon slot="icon-only" name="logo-euro"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
-  <!-- <ion-card> -->
+    <ion-back-button [defaultHref]="undefined"></ion-back-button>
   <img *ngIf="post?.embedded?.featuredmedia[0]?.title?.rendered" [src]="post.mediaUrl"
     [alt]="post.embedded.featuredmedia[0].title.rendered">
-  <ion-card-header>
-    <ion-card-subtitle>{{post?.type}}</ion-card-subtitle>
-    <ion-card-title [innerHTML]="post?.title.rendered"></ion-card-title>
-  </ion-card-header>
-
-  <ion-card-content class="article-content" [innerHTML]="post?.content.rendered">
-  </ion-card-content>
-  <!-- </ion-card> -->
+  <div id="full-article">
+    <h2 [innerHTML]="post?.title.rendered"></h2>
+    <div class="article-content" [innerHTML]="post?.content.rendered">
+    </div>
+  </div>
 
 </ion-content>

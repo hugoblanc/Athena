@@ -10,6 +10,15 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+html {
+  color: white;
+  --color: white;
+}
+
+:root {
+  --ion-text-color: #ffffff;
+}
+
 body {
   --primaryColor: #000000;
   --primaryLightColor: #cfe8fa;
@@ -24,9 +33,9 @@ body {
   --accentTextColor: #ffffff;
   --accentLightTextColor: #000000;
   --accentDarkTextColor: #ffffff;
-
   --warnColor: #b00020;
   --warnTextColor: #ffffff;
+  --color: white !important;
 }
 
 .ion-color-primary {
@@ -37,18 +46,36 @@ body {
 }
 
 @font-face {
-  font-family: "Roboto";
+  font-family: "RobotoBlack";
   font-weight: 900;
   font-style: normal;
   src: url("./assets/fonts/roboto/Roboto-Black.ttf");
 }
 
-$font-family-md-base: "Roboto";
+@font-face {
+  font-family: "RobotoRegular";
+  font-weight: 900;
+  font-style: normal;
+  src: url("./assets/fonts/roboto/Roboto-Regular.ttf");
+}
+
+h2 {
+  font-family: "RobotoBlack";
+}
+.roboto-black {
+  font-family: "RobotoBlack";
+}
+
+.roboto-regular {
+  font-family: "RobotoRegular";
+}
 
 .article-content {
   text-align: justify;
   img {
-    width: 100%;
+    margin-left: -1rem;
+    max-width: none;
+    width: 107%;
     height: auto;
   }
 }

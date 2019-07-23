@@ -3,6 +3,7 @@ import { Platform } from '@ionic/angular';
 import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { MediasService } from '../medias.service';
 import { Router } from '@angular/router';
+import { MetaMedia } from '../models/meta-media';
 
 @Component({
   selector: 'app-home',
@@ -11,18 +12,23 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
 
+  medias: MetaMedia[];
+
   constructor(public platform: Platform,
-    public firebaseLib: FirebaseLib,
-    public mediasService: MediasService,
-    public router: Router) { }
+              public firebaseLib: FirebaseLib,
+              public mediasService: MediasService,
+              public router: Router) {
+
+     }
 
 
   ngOnInit(): void {
+    this.medias = this.mediasService.medias;
     this.platform.ready().then(() => {
 
 
       // Le subscribe au topic 'all' pour les notification
-      this.firebaseLib.subscribe('all')
+      this.firebaseLib.subscribe('all1')
         .then((data) => {
           console.log(data);
         });

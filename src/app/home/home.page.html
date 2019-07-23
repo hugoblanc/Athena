@@ -1,15 +1,29 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Accueil</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 
 <ion-content>
-  <div class="ion-padding">
-    Athéna est la déesse de la raison, de la prudence, de la stratégie militaire et de la sagesse. Elle est aussi la gardienne d'Athènes, berceau de la démocratie
+  <div >
+
+    <h2 class="section">
+      Presse écrite
+    </h2>
+
+    <ion-grid>
+      <ion-row flex-wrap="wrap-reverse">
+        <ion-col align-self="baseline" *ngFor="let media of medias; let i=index">
+          <ion-card class="card-media" [routerLink]="'/media/'+i" routerLinkActive="active" routerDirection="root" button>
+            <!-- FILTRE OPAQUE -->
+            <div class="grad"></div>
+            <!-- PHOTO MEDIA -->
+            <img [src]="media.logo" alt="media.title">
+            <div class="media-name">{{media.title}}</div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+
+
+
+
   </div>
 </ion-content>

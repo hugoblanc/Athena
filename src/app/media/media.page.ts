@@ -29,7 +29,7 @@ export class MediaPage implements OnInit {
   loading = false;
 
   currentMedia: MetaMedia;
-
+  ratio = screen.width * 0.43;
   constructor(private route: ActivatedRoute,
               public mediasService: MediasService,
               public styleService: StyleService,
@@ -40,6 +40,7 @@ export class MediaPage implements OnInit {
 
 
   ionViewWillEnter() {
+
     // Initialisation de l'id courant
     const id = this.route.snapshot.paramMap.get('id');
     this.idMedia = parseInt(id, 10);
@@ -51,7 +52,6 @@ export class MediaPage implements OnInit {
     this.styleService.setPrimaryColor(this.currentMedia.color);
 
     const colors = ['#64205d', '#a0c754', '#e6665a'];
-    this.statusBar.backgroundColorByHexString(colors[this.idMedia] || '#ffffff');
 
 
     // Initiailisation Récupération des données sur wordpress
