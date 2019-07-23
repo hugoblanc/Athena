@@ -27,6 +27,8 @@ export class Post {
   type: string;
   embedded: Embedded;
   mediaUrl: string;
+  mediaHeight: number;
+  mediaWidth: number;
 
 
 
@@ -55,6 +57,8 @@ export class Post {
         this.embedded.featuredmedia[0].mediaDetails.file) {
         const url = this.guid.rendered.split('?');
         this.mediaUrl = url[0] + 'wp-content/uploads/' + this.embedded.featuredmedia[0].mediaDetails.file;
+        this.mediaHeight = this.embedded.featuredmedia[0].mediaDetails.height;
+        this.mediaWidth = this.embedded.featuredmedia[0].mediaDetails.width;
       }
 
     } catch (error) {

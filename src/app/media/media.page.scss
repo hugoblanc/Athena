@@ -1,0 +1,25 @@
+:host {
+  ion-menu-button {
+    display: none;
+  }
+  ion-content {
+    --padding-top: 50px;
+    --color: white;
+    h2 {
+      margin-left: 0.5rem;
+    }
+    .masonry-item {
+      width: 43%;
+      --ion-item-background: white;
+
+      .card-img {
+        min-height: 5rem;
+      }
+
+      ion-card-title {
+        font-size: 0.9rem;
+        font-family: RobotoBlack;
+      }
+    }
+  }
+}
