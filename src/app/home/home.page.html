@@ -1,6 +1,5 @@
-
 <ion-content>
-  <div >
+  <div>
 
     <h2 class="section">
       Presse écrite
@@ -9,7 +8,8 @@
     <ion-grid>
       <ion-row flex-wrap="wrap-reverse">
         <ion-col align-self="baseline" *ngFor="let media of medias; let i=index">
-          <ion-card class="card-media" [routerLink]="'/media/'+i" routerLinkActive="active" routerDirection="root" button>
+          <ion-card class="card-media" [routerLink]="'/media/'+i" routerLinkActive="active" routerDirection="root"
+            button>
             <!-- FILTRE OPAQUE -->
             <div class="grad"></div>
             <!-- PHOTO MEDIA -->
@@ -21,6 +21,7 @@
 
     </ion-grid>
 
+    <img id="fleche" src="assets/tirer.png" alt="tirer">
 
 
 
