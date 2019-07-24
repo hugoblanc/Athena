@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { MediasService } from './medias.service';
 import { MetaMedia } from './models/meta-media';
+import { NotificationService } from './provider/notification.service';
 
 
 /**
@@ -28,7 +29,8 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private mediasService: MediasService
+    private mediasService: MediasService,
+    private notificationService: NotificationService
   ) { }
 
   // La liste des différent médias que l'on veut afficher dans le menu
@@ -75,5 +77,11 @@ export class AppComponent implements OnInit {
     //     // Voir getMedia pour plus d'informations
     //     this.appPages = this.mediasService.medias;
     //   });
+
+    this.notificationService.init()
+      .subscribe((datas) => {
+        console.log(datas);
+      });
+
   }
 }

@@ -5,8 +5,11 @@
   ion-content {
     --padding-top: 50px;
     --color: white;
-    h2 {
-      margin-left: 0.5rem;
+
+    #title{
+      --inner-padding-start: 0;
+      --padding-start: 0;
+      --padding-end: 0.5rem;
     }
     .masonry-item {
       width: 43%;
