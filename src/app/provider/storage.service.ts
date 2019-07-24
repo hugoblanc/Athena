@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,20 @@ import { map } from 'rxjs/operators';
 export class StorageService {
 
   constructor(private storage: Storage) { }
+
+
+  public addToArray(key: string, value: any): Observable<any> {
+    return this.get<any[]>(key).pipe(tap((array: any[]) => {
+      if (array == null) {
+        array = [];
+      }
+      if (!Array.isArray(array)) {
+        throw new Error('l\'objet n\'est pas un tableau ');
+      }
+      array.push(value);
+      this.set(key, array);
+    }));
+  }
 
 
   /**
@@ -19,7 +34,7 @@ export class StorageService {
     if (!(typeof value === 'string')) {
       value = JSON.stringify(value);
     }
-    this.storage.setItem(key, value);
+    this.storage.set(key, value);
   }
 
   /**
@@ -27,7 +42,7 @@ export class StorageService {
    * @param key La clé a récupérer dans le localstorage
    */
   public get<T>(key: string): Observable<T> {
-    return from(this.storage.getItem(key))
+    return from(this.storage.get(key))
       .pipe(map((data: string) => {
         return JSON.parse(data);
       }));

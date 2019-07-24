@@ -37,6 +37,7 @@
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
     "cordova-plugin-whitelist": "1.3.3",
+    "cordova-sqlite-storage": "^3.2.1",
     "core-js": "^2.5.4",
     "ngx-masonry": "^1.1.4",
     "rxjs": "~6.5.1",
@@ -87,7 +88,8 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-firebase-lib": {},
-      "cordova-plugin-advanced-http": {}
+      "cordova-plugin-advanced-http": {},
+      "cordova-sqlite-storage": {}
     },
     "platforms": [
       "android",

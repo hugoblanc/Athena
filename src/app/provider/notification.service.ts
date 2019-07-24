@@ -48,21 +48,14 @@ export class NotificationService {
   private getLocal(): Observable<any> {
     // Ici on prépare 2 observable pour récupérer les données en local storage
     const unsub$ = this.ss.get<string[]>(NotificationService.UNSUBSCRIBED_NOTIFICATION)
-      .pipe(tap((storageTopics) => this.tapInit(storageTopics, this.unsubscribedTopics)));
+      .pipe(tap((storageTopics) => this.unsubscribedTopics = storageTopics || []));
     const sub$ = this.ss.get<string[]>(NotificationService.SUBSCRIBED_NOTIFICATION)
-      .pipe(tap((storageTopics) => this.tapInit(storageTopics, this.unsubscribedTopics)));
+      .pipe(tap((storageTopics) => this.subscribedTopics = storageTopics || []));
 
     // Finalement on execute les deux a la suite
     return concat(sub$, unsub$);
   }
-  /**
-   * Cette methode se charge d'assigner la valeur retourné par le storage service dans le bon tableaus
-   * @param storageTopics les topics stocker en locastorage
-   * @param serviceTopics Le tableau de topics a initialiser
-   */
-  private tapInit(storageTopics: string[], serviceTopics: string[]) {
-    serviceTopics = storageTopics;
-  }
+
 
   /**
    * La methode qui fait la différence entre les data local et les média du media service
@@ -71,7 +64,7 @@ export class NotificationService {
     // Ici on cherche a voir si des medias sont présent mais pas géré en terme de notification
     // En d'autre terme, si un nouveau media est créé on doit ajouter le topic pour le user
     const diff = this.mediaService.medias.filter((metaMedia: MetaMedia) => {
-      return (this.subscribedTopics.includes(metaMedia.key) || this.unsubscribedTopics.includes(metaMedia.key));
+      return !(this.subscribedTopics.includes(metaMedia.key) || this.unsubscribedTopics.includes(metaMedia.key));
     });
 
     return diff;
@@ -88,18 +81,19 @@ export class NotificationService {
     const subAll$ = topics.map((topic) => this.subscribe(topic));
     return concat(...subAll$);
   }
-
   private unsubscribeAll(topics: string[]): Observable<any[]> {
     const unsubAll$ = topics.map((topic) => this.unsubscribe(topic));
     return concat(...unsubAll$);
   }
 
-  private subscribe(topic: string): Observable<any> {
-    return from(this.firebaseLib.subscribe(topic));
-  }
 
+  private subscribe(topic: string): Observable<any> {
+    return from(this.firebaseLib.subscribe(topic))
+      .pipe(flatMap(() => this.ss.addToArray(NotificationService.SUBSCRIBED_NOTIFICATION, topic)));
+  }
   private unsubscribe(topic: string): Observable<any> {
-    return from(this.firebaseLib.unsubscribe(topic));
+    return from(this.firebaseLib.unsubscribe(topic))
+      .pipe(flatMap(() => this.ss.addToArray(NotificationService.UNSUBSCRIBED_NOTIFICATION, topic)));
   }
 
 
