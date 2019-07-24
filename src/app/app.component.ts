@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
       this.splashScreen.hide();
 
       this.notificationService.initOpenNotification();
-      this.notificationService.init()
+      this.notificationService.initData()
         .subscribe((datas) => {
           console.log(datas);
         });

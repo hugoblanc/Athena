@@ -6,6 +6,7 @@ import { StyleService } from '../provider/style.service';
 import { MetaMedia } from '../models/meta-media';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { NotificationService } from '../provider/notification.service';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -31,9 +32,10 @@ export class MediaPage implements OnInit {
   currentMedia: MetaMedia;
   ratio = screen.width * 0.43;
   constructor(private route: ActivatedRoute,
-              public mediasService: MediasService,
-              public styleService: StyleService,
-              public statusBar: StatusBar) { }
+    public mediasService: MediasService,
+    public styleService: StyleService,
+    public statusBar: StatusBar,
+    public notificationService: NotificationService) { }
 
   ngOnInit() {
   }
@@ -81,11 +83,24 @@ export class MediaPage implements OnInit {
       }, (error) => {
         event.target.complete();
       });
+  }
 
+
+  /**
+   * Cette methode se charge de set un nouvel état pour les notification du media courant
+   */
+  setNotifSetting() {
+    // On envoi l'état opposé à l'état actuel
+    this.notificationService.switchNotifSetting(this.currentMedia.key, !this.currentMedia.notification)
+      .subscribe((result) => {
+        // On s'en balec 
+      });
   }
 
   openExternalPage(url: string) {
     window.open(url, '_system’');
   }
+
+
 
 }

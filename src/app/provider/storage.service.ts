@@ -11,6 +11,21 @@ export class StorageService {
   constructor(private storage: Storage) { }
 
 
+  public editObject(key: string, objectKey: string, value: any): Observable<any> {
+    return this.get<any>(key).pipe(tap((object: any) => {
+      if (object == null) {
+        object = {};
+      }
+      object[objectKey] = value;
+      this.set(key, object);
+    }));
+  }
+
+  /**
+   * Cette methode ajoute un element dans un tableau contenu dans le storage
+   * @param key la clé qui définie le tableau dans le localstorage
+   * @param value la valeur a inserrer au tableau
+   */
   public addToArray(key: string, value: any): Observable<any> {
     return this.get<any[]>(key).pipe(tap((array: any[]) => {
       if (array == null) {

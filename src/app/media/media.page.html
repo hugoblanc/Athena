@@ -24,8 +24,9 @@
     <ion-list>
       <ion-item id="title">
         <h2>{{currentMedia?.title}}</h2>
-        <ion-button slot="end" fill="outline" color="light">
-          <ion-icon slot="icon-only" name="switch"></ion-icon>
+        <ion-button slot="end" fill="clear" color="{{currentMedia?.notification ? 'light' : 'medium'}}"
+          (click)="setNotifSetting()">
+          <ion-icon slot="icon-only" name="notifications"></ion-icon>
         </ion-button>
       </ion-item>
       <ath-loader [loading]="loading"></ath-loader>

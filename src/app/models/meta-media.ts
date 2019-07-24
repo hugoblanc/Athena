@@ -4,6 +4,7 @@ export class MetaMedia {
   public title: string;
   public color: string;
   public donation?: string;
+  public notification?: boolean;
   public logo: string;
 }
 // En cas d'edition, penser a ajouter aussi coté api
