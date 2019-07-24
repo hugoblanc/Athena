@@ -5,6 +5,7 @@ import { concat, Observable, from } from 'rxjs';
 import { MediasService } from '../medias.service';
 import { MetaMedia } from '../models/meta-media';
 import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,23 @@ export class NotificationService {
 
   constructor(
     private ss: StorageService,
-    private mediaService: MediasService,
-    private firebaseLib: FirebaseLib) {
+    private mediasService: MediasService,
+    private firebaseLib: FirebaseLib,
+    private router: Router) {
+
+  }
+
+  public initOpenNotification(): void {
+    this.firebaseLib.onNotificationOpen()
+    .subscribe((notification) => {
+      console.log(notification);
+      if (notification.tap) {
+        const idMedia = this.mediasService.findMediaIdByKey(notification.key);
+        this.router.navigateByUrl(`/media/${idMedia}/details/${notification.id}`);
+      }
+    }, (error) => {
+      console.error(error);
+    });
 
   }
 
@@ -63,7 +79,7 @@ export class NotificationService {
   private makeDiffWithMedia(): MetaMedia[] {
     // Ici on cherche a voir si des medias sont présent mais pas géré en terme de notification
     // En d'autre terme, si un nouveau media est créé on doit ajouter le topic pour le user
-    const diff = this.mediaService.medias.filter((metaMedia: MetaMedia) => {
+    const diff = this.mediasService.medias.filter((metaMedia: MetaMedia) => {
       return !(this.subscribedTopics.includes(metaMedia.key) || this.unsubscribedTopics.includes(metaMedia.key));
     });
 
