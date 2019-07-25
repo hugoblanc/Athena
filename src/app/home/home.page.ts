@@ -4,6 +4,7 @@ import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { MediasService } from '../medias.service';
 import { Router } from '@angular/router';
 import { MetaMedia } from '../models/meta-media';
+import { YoutubeService } from '../provider/youtube.service';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +15,13 @@ export class HomePage implements OnInit {
 
   medias: MetaMedia[];
 
+
+  videos: any[] = [];
   constructor(public platform: Platform,
               public firebaseLib: FirebaseLib,
               public mediasService: MediasService,
-              public router: Router) {
+              public router: Router,
+              public youtubeService:YoutubeService) {
 
      }
 
@@ -45,6 +49,12 @@ export class HomePage implements OnInit {
           console.error(error);
         });
 
+
+      this.youtubeService.getVideosByPlaylistId('')
+          .subscribe((videos) => {
+            console.log(videos);
+            this.videos = videos.items;
+          })
 
     });
   }
