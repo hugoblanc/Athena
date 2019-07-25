@@ -22,10 +22,16 @@
 
   <div>
     <ion-list>
-      <h2>{{currentMedia?.title}}</h2>
+      <ion-item id="title">
+        <h2>{{currentMedia?.title}}</h2>
+        <ion-button slot="end" fill="clear" color="{{currentMedia?.notification ? 'light' : 'medium'}}"
+          (click)="setNotifSetting()">
+          <ion-icon slot="icon-only" name="notifications"></ion-icon>
+        </ion-button>
+      </ion-item>
       <ath-loader [loading]="loading"></ath-loader>
       <ngx-masonry>
-        <ion-card ngxMasonryItem class="masonry-item" *ngFor="let post of posts"
+        <ion-card ngxMasonryItem *ngFor="let post of posts" class="masonry-item"
           routerLink="/media/{{idMedia}}/details/{{post.id}}">
           <img class="card-img" [ngStyle]="{'min-height': (ratio / post.mediaWidth)*post.mediaHeight+'px' }"
             *ngIf="post?.mediaUrl" [src]="post.mediaUrl" [alt]="post.embedded.featuredmedia[0].title.rendered">
@@ -34,7 +40,6 @@
             <!-- <ion-card-subtitle>{{post.type}}</ion-card-subtitle> -->
             <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
           </ion-card-header>
-
         </ion-card>
       </ngx-masonry>
     </ion-list>
