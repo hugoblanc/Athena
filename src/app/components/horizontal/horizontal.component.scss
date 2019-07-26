@@ -1,15 +1,22 @@
-    :host{
-        display: inline-block;
-        .section {
-            margin: 0;
-            margin-left: 0.5rem;
-            margin-top: 1rem;
-        }
+:host {
+  display: inline-block;
+  height: 7rem;
+  .section {
+    margin: 0;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+  }
 
-        #scroll-container{
-            overflow-x: scroll;
-            overflow-y: hidden;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
+  #container {
+    width: 360px;
+    overflow: hidden;
+    white-space: nowrap;
+    ::-webkit-scrollbar {
+      display: none;
     }
+
+    #scroll {
+      overflow: auto;
+    }
+  }
+}

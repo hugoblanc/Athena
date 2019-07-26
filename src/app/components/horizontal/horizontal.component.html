@@ -1,8 +1,11 @@
 <h2 *ngIf="title" class="section">
   {{title}}
 </h2>
-<div id="scroll-container">
-  <ng-content>
-  </ng-content>
+<div id="full-container" >
+  <div id="container" scrollY="true">
+    <div id="scroll">
+      <ng-content>
+      </ng-content>
+    </div>
+  </div>
 </div>
-  
