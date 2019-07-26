@@ -1,3 +1,6 @@
-<p>
-  article-card works!
-</p>
+<ion-card ngxMasonryItem class="masonry-item" routerLink="/media/{{mediaId}}/details/{{article.id}}">
+  <ath-img [img]="article"></ath-img>
+  <ion-card-header>
+    <ion-card-title [innerHTML]="article.title.rendered"></ion-card-title>
+  </ion-card-header>
+</ion-card>

@@ -9,6 +9,7 @@ import { NgxMasonryModule } from 'ngx-masonry';
 import { ImgComponent } from './img/img.component';
 import { ContentListComponent } from './content-list/content-list.component';
 import { RouterModule } from '@angular/router';
+import { ArticleCardComponent } from './article-card/article-card.component';
 
 @NgModule({
   declarations: [AthLoaderComponent,
@@ -16,14 +17,16 @@ import { RouterModule } from '@angular/router';
     CardComponent,
     MediaNotifToggleComponent,
     ContentListComponent,
-    ImgComponent
+    ImgComponent,
+    ArticleCardComponent
   ],
   exports: [AthLoaderComponent,
     HorizontalComponent,
     CardComponent,
     MediaNotifToggleComponent,
     ContentListComponent,
-    ImgComponent
+    ImgComponent,
+    ArticleCardComponent
   ],
   imports: [
     CommonModule,

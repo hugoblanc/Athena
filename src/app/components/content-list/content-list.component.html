@@ -1,12 +1,5 @@
 <ngx-masonry>
   <ion-list>
-
-    <ion-card ngxMasonryItem *ngFor="let content of contents" class="masonry-item"
-      routerLink="/media/{{mediaId}}/details/{{content.id}}">
-      <ath-img [img]="content"></ath-img>
-      <ion-card-header>
-        <ion-card-title [innerHTML]="content.title.rendered"></ion-card-title>
-      </ion-card-header>
-    </ion-card>
+    <ath-article-card *ngFor="let content of contents" [mediaId]="mediaId" [article]="content"></ath-article-card>
   </ion-list>
 </ngx-masonry>

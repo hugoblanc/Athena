@@ -1,16 +1,3 @@
 ion-list{
   display: inline;
-
-  .masonry-item {
-    width: 43%;
-    margin: 10px;
-    --ion-item-background: white;
-
-    ion-card-title {
-      font-size: 0.9rem;
-      color: black;
-      font-family: RobotoBlack;
-    }
-  }
-
 }
