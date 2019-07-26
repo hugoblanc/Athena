@@ -1,8 +1,11 @@
 import { Content } from './content';
 import { Embedded } from './embedded';
-import { IimagedMedia } from '../iimaged-media';
+import { IimagedMedia } from '../iimaged-content';
+import { ItypedContent } from '../ityped-content';
+import { ContentType } from '../content-type.enum';
 
-export class Post implements IimagedMedia {
+export class Post implements IimagedMedia, ItypedContent {
+  contentType: ContentType;
   author: number;
   categories: number[];
   commentStatus: string;
@@ -59,6 +62,8 @@ export class Post implements IimagedMedia {
         this.mediaHeight = this.embedded.featuredmedia[0].mediaDetails.height;
         this.mediaWidth = this.embedded.featuredmedia[0].mediaDetails.width;
       }
+
+      this.contentType = ContentType.ARTICLE;
 
     } catch (error) {
       throw error;

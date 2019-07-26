@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IimagedMedia } from '../../models/content/iimaged-media';
+import { IimagedMedia } from '../../models/content/iimaged-content';
 
 @Component({
   selector: 'ath-img',
