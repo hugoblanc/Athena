@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MediasService } from '../medias.service';
+import { MediasService } from '../provider/medias.service';
 import { Post } from '../models/content/wordpress/post';
 import { MetaMedia } from '../models/meta-media';
 
@@ -28,10 +28,9 @@ export class PostDetailsPage implements OnInit {
 
   ionViewWillEnter() {
     const idPost = this.route.snapshot.paramMap.get('id');
-    const idMedia = this.route.snapshot.paramMap.get('idMedia');
     this.idPost = parseInt(idPost, 10);
     this.post = this.mediasService.findLocalPostById(this.idPost);
-    this.currentMedia = this.mediasService.medias[parseInt(idMedia, 10)];
+    this.currentMedia = this.mediasService.currentMetaMedia;
 
     if (!this.post) {
       // Comme on utilise un plugin pour les call en natif sur mobile il faut forcer la zone angular
@@ -41,7 +40,7 @@ export class PostDetailsPage implements OnInit {
           .subscribe((post) => {
             this.post = post;
           });
-    ;  })
+      });
     }
   }
 

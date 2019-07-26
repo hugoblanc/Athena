@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
-import { Post } from './models/content/wordpress/post';
+import { Post } from '../models/content/wordpress/post';
 import { Observable, from } from 'rxjs';
-import { MetaMedia } from './models/meta-media';
-import { HttpService } from './provider/http.service';
+import { MetaMedia } from '../models/meta-media';
+import { HttpService } from './http.service';
+import { ListMetaMedias } from '../models/list-meta-medias';
 
 
 /**
@@ -29,53 +30,72 @@ export class MediasService {
   constructor(private http: HttpService) { }
 
 
-  public medias: MetaMedia[] = [
-    {
-      key: 'lvsl',
-      url: 'https://lvsl.fr/',
-      title: 'Le Vent Se Lève',
-      color: 'tertiary',
-      // donation: 'https://lvsl.fr/faire-un-don/',
-      logo: 'assets/lvsl_logo.jpg'
-    },
-    {
-      key: 'mrmondialisation',
-      url: 'https://mrmondialisation.org/',
-      title: 'Mr Mondialisation',
-      color: 'secondary',
-      logo: 'assets/mrmondialisation_logo.png'
-    },
-    {
-      key: 'emesinge',
-      url: 'https://www.4emesinge.com/',
-      title: 'Le 4eme Singe',
-      color: 'success',
-      // donation: 'https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr',
-      logo: 'assets/4emesinge_logo.jpg'
-    },
-    {
-      key: 'lemondemoderne',
-      url: 'https://www.lemondemoderne.media/',
-      title: 'Le Monde Moderne',
-      color: 'success',
-      // donation: 'https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr',
-      logo: 'assets/lemondemoderne.jpg'
-    },
-  ];
+  public listMetaMedia: ListMetaMedias[] = [{
+    title: 'Presse écrite', metaMedias: [
+      {
+        key: 'lvsl',
+        url: 'https://lvsl.fr/',
+        title: 'Le Vent Se Lève',
+        color: 'tertiary',
+        // donation: 'https://lvsl.fr/faire-un-don/',
+        logo: 'assets/lvsl_logo.jpg'
+      },
+      {
+        key: 'mrmondialisation',
+        url: 'https://mrmondialisation.org/',
+        title: 'Mr Mondialisation',
+        color: 'secondary',
+        logo: 'assets/mrmondialisation_logo.png'
+      },
+      {
+        key: 'emesinge',
+        url: 'https://www.4emesinge.com/',
+        title: 'Le 4eme Singe',
+        color: 'success',
+        // donation: 'https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr',
+        logo: 'assets/4emesinge_logo.jpg'
+      },
+      {
+        key: 'lemondemoderne',
+        url: 'https://www.lemondemoderne.media/',
+        title: 'Le Monde Moderne',
+        color: 'success',
+        // donation: 'https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr',
+        logo: 'assets/lemondemoderne.jpg'
+      }
+    ]
+  }, {
+    title: 'Vidéos', metaMedias: [
+      {
+        key: 'osonscauser',
+        url: 'https://lvsl.fr/',
+        title: 'Osons causer',
+        color: 'tertiary',
+        // donation: 'https://lvsl.fr/faire-un-don/',
+        logo: 'https://yt3.ggpht.com/a/AGF-l79-QM7NkYV3TVJZK8Jssrj0odFlAOnxsHsD=s288-mo-c-c0xffffffff-rj-k-no'
+      }
+    ]
+  }];
 
-
+  currentMetaMedia: MetaMedia;
   posts: Post[];
   url: string;
   pageNumber = 1;
   numberByPage = 8;
 
-  public getMediaList(): Observable<MetaMedia[]> {
+  public getMediaList(): Observable<ListMetaMedias[]> {
     return this.http.get('http://192.168.1.20:3000/media')
-      .pipe(tap((data: MetaMedia[]) => {
+      .pipe(tap((data: ListMetaMedias[]) => {
         if (data && data.length > 3) {
-          this.medias = data;
+          this.listMetaMedia = data;
         }
       }));
+  }
+
+  public setAndGetCurrentMediaKey(key: string) {
+    this.currentMetaMedia = null;
+    this.currentMetaMedia = this.findMediaByKey(key);
+    return this.currentMetaMedia;
   }
 
 
@@ -138,12 +158,13 @@ export class MediasService {
     return this.posts.find((post) => (post.id === id));
   }
 
-  findMediaIdByKey(key: string): number {
-    return this.medias.indexOf(this.findMediaByKey(key));
-  }
-
   findMediaByKey(key: string): MetaMedia {
-    return this.medias.find((metaMedia) => (metaMedia.key === key));
+    for (const lstMetaMedia of this.listMetaMedia) {
+      const currentMetaMedia = lstMetaMedia.metaMedias.find((metaMedia) => metaMedia.key === key);
+      if (currentMetaMedia != null) {
+        return currentMetaMedia;
+      }
+    }
   }
 
 

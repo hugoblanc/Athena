@@ -8,7 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ContentListComponent implements OnInit {
 
   @Input() contents: any[];
-  @Input() mediaId: number;
 
   constructor() { }
 

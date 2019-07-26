@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MediasService } from '../medias.service';
+import { MediasService } from '../provider/medias.service';
 import { Post } from '../models/content/wordpress/post';
 import { StyleService } from '../provider/style.service';
 import { MetaMedia } from '../models/meta-media';
@@ -40,12 +40,11 @@ export class MediaPage implements OnInit {
 
   ionViewWillEnter() {
 
-    // Initialisation de l'id courant
-    const id = this.route.snapshot.paramMap.get('id');
-    this.idMedia = parseInt(id, 10);
+    // Récupération de la key du metamedia cible
+    const key = this.route.snapshot.paramMap.get('key');
 
     // récupération des information du média associé
-    this.currentMedia = this.mediasService.medias[this.idMedia];
+    this.currentMedia = this.mediasService.setAndGetCurrentMediaKey(key);
 
     // Config de la couleur principale du media
     this.styleService.setPrimaryColor(this.currentMedia.color);

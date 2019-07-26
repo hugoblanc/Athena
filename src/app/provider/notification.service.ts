@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 import { tap, flatMap, map, filter } from 'rxjs/operators';
 import { concat, Observable, from } from 'rxjs';
-import { MediasService } from '../medias.service';
+import { MediasService } from './medias.service';
 import { MetaMedia } from '../models/meta-media';
 import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { Router } from '@angular/router';
@@ -41,8 +41,8 @@ export class NotificationService {
       .subscribe((notification) => {
         console.log(notification);
         if (notification.tap) {
-          const idMedia = this.mediasService.findMediaIdByKey(notification.key);
-          this.router.navigateByUrl(`/media/${idMedia}/details/${notification.id}`);
+          this.mediasService.setAndGetCurrentMediaKey(notification.key);
+          this.router.navigateByUrl(`/media/details/${notification.id}`);
         }
       }, (error) => {
         console.error(error);
@@ -102,15 +102,20 @@ export class NotificationService {
    * La methode qui fait la différence entre les data local et les média du media service
    */
   private makeDiffWithMedia(): MetaMedia[] {
+    const result = [];
     // Ici on cherche a voir si des medias sont présent mais pas géré en terme de notification
     // En d'autre terme, si un nouveau media est créé on doit ajouter le topic pour le user
-    const diff = this.mediasService.medias.filter((metaMedia: MetaMedia) => {
-      // Si c'est null ça veut dire qu'on a pas de trace de ce meta media dans le locastroage
-      // On doit donc l'ajouter
-      return this.notificationTopics[metaMedia.key] == null;
-    });
+    for (const listMedia of this.mediasService.listMetaMedia) {
 
-    return diff;
+      const diff = listMedia.metaMedias.filter((metaMedia: MetaMedia) => {
+        // Si c'est null ça veut dire qu'on a pas de trace de ce meta media dans le locastroage
+        // On doit donc l'ajouter
+        return this.notificationTopics[metaMedia.key] == null;
+      });
+      result.concat(diff);
+    }
+
+    return result;
   }
 
   private convertMetaMediaToTopics(metaMedias: MetaMedia[]): string[] {
@@ -127,8 +132,7 @@ export class NotificationService {
   }
 
   private genericMetaMediaIndSetter(status: boolean, topic: string) {
-    const metaMedias = this.mediasService.medias;
-    const metaMedia = metaMedias.find((mmedia) => mmedia.key === topic);
+    const metaMedia = this.mediasService.findMediaByKey(topic);
     metaMedia.notification = status;
   }
 

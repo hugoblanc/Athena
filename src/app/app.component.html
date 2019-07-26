@@ -5,19 +5,23 @@
       <ion-content>
         <img id="image-menu" src="assets/menu.png" alt="image_menu">
         <ion-list>
-          <ion-list-header class="roboto" >
-            Presse écrite
-          </ion-list-header>
-          <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item [routerLink]="'/media/'+i" routerLinkActive="active" routerDirection="root">
-              <ion-avatar slot="start" class="border-solid">
-                <img [src]="p.logo">
-              </ion-avatar>
-              <ion-label>
-                {{p.title}}
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+          <ng-container *ngFor="let lstMetaMedia of appPages; let i = index">
+              <ion-list-header class="roboto">
+                  {{lstMetaMedia.title}}
+                </ion-list-header>
+                <ion-menu-toggle autoHide="false" *ngFor="let metaMedia of lstMetaMedia.metaMedias" >
+                  <ion-item [routerLink]="'/media/'+metaMedia.key" routerLinkActive="active" routerDirection="root">
+                    <ion-avatar slot="start" class="border-solid">
+                      <img [src]="metaMedia.logo">
+                    </ion-avatar>
+                    <ion-label>
+                      {{metaMedia.title}}
+                    </ion-label>
+                  </ion-item>
+                </ion-menu-toggle>
+          </ng-container>
+
+
           <ion-list-header class="roboto">
             A propos
           </ion-list-header>

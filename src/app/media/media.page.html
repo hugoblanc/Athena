@@ -4,24 +4,11 @@
 
   <div>
     <ion-list>
+
       <ath-media-notif-toggle [media]="currentMedia"></ath-media-notif-toggle>
       <ath-loader [loading]="loading"></ath-loader>
-      <!-- <ngx-masonry>
-        <ion-list>
+      <ath-content-list [contents]="posts"></ath-content-list>
 
-          <ion-card ngxMasonryItem *ngFor="let post of posts" class="masonry-item"
-            routerLink="/media/{{idMedia}}/details/{{post.id}}">
-            <img class="card-img" [ngStyle]="{'min-height': (ratio / post.mediaWidth)*post.mediaHeight+'px' }"
-              *ngIf="post?.mediaUrl" [src]="post.mediaUrl" [alt]="post.embedded.featuredmedia[0].title.rendered">
-
-            <ion-card-header>
-              <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </ion-list>
-      </ngx-masonry> -->
-
-      <ath-content-list [mediaId]="idMedia" [contents]="posts"></ath-content-list>
     </ion-list>
   </div>
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
