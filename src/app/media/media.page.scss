@@ -5,26 +5,5 @@
   ion-content {
     --padding-top: 50px;
     --color: white;
-
-    #title{
-      --inner-padding-start: 0;
-      --padding-start: 0;
-      --padding-end: 0.5rem;
-    }
-    .masonry-item {
-      width: 43%;
-      margin: 10px;
-      --ion-item-background: white;
-
-      .card-img {
-        min-height: 5rem;
-      }
-
-      ion-card-title {
-        font-size: 0.9rem;
-        color: black;
-        font-family: RobotoBlack;
-      }
-    }
   }
 }

@@ -1,0 +1,7 @@
+<ion-item id="title">
+  <h2>{{media?.title}}</h2>
+  <ion-button slot="end" fill="clear" color="{{media?.notification ? 'light' : 'medium'}}"
+    (click)="setNotifSetting()">
+    <ion-icon slot="icon-only" name="notifications"></ion-icon>
+  </ion-button>
+</ion-item>

@@ -6,7 +6,6 @@ import { StyleService } from '../provider/style.service';
 import { MetaMedia } from '../models/meta-media';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { NotificationService } from '../provider/notification.service';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -30,12 +29,10 @@ export class MediaPage implements OnInit {
   loading = false;
 
   currentMedia: MetaMedia;
-  ratio = screen.width * 0.43;
   constructor(private route: ActivatedRoute,
-    public mediasService: MediasService,
-    public styleService: StyleService,
-    public statusBar: StatusBar,
-    public notificationService: NotificationService) { }
+              public mediasService: MediasService,
+              public styleService: StyleService,
+              public statusBar: StatusBar) { }
 
   ngOnInit() {
   }
@@ -52,9 +49,6 @@ export class MediaPage implements OnInit {
 
     // Config de la couleur principale du media
     this.styleService.setPrimaryColor(this.currentMedia.color);
-
-    const colors = ['#64205d', '#a0c754', '#e6665a'];
-
 
     // Initiailisation Récupération des données sur wordpress
     this.initData(this.currentMedia.url);
@@ -85,17 +79,6 @@ export class MediaPage implements OnInit {
       });
   }
 
-
-  /**
-   * Cette methode se charge de set un nouvel état pour les notification du media courant
-   */
-  setNotifSetting() {
-    // On envoi l'état opposé à l'état actuel
-    this.notificationService.switchNotifSetting(this.currentMedia.key, !this.currentMedia.notification)
-      .subscribe((result) => {
-        // On s'en balec 
-      });
-  }
 
   openExternalPage(url: string) {
     window.open(url, '_system’');

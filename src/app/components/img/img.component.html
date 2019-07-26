@@ -1,0 +1,2 @@
+<img [ngStyle]="{'min-height': (ratio / img.mediaWidth)*img.mediaHeight+'px' }"
+        *ngIf="img?.mediaUrl" [src]="img.mediaUrl" [alt]="img.embedded.featuredmedia[0].title.rendered">
