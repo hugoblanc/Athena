@@ -1,7 +1,8 @@
 import { Content } from './content';
 import { Embedded } from './embedded';
+import { IimagedMedia } from '../iimaged-media';
 
-export class Post {
+export class Post implements IimagedMedia {
   author: number;
   categories: number[];
   commentStatus: string;
@@ -34,8 +35,6 @@ export class Post {
 
   constructor(input: any) {
     try {
-
-
       Object.assign(this, input);
       this.content = new Content(input.content);
       this.date = new Date(input.date);

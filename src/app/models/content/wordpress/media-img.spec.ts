@@ -1,6 +1,6 @@
-import { Media } from './media';
+import { MediaImg } from './media-img';
 
-const media = {
+const mediaImg = {
   id: 25208,
   date: '2019-06-12T16:40:11',
   slug: 'aoc-5',
@@ -375,8 +375,8 @@ const media = {
 };
 
 
-describe('Media', () => {
+describe('MediaImg', () => {
   it('should create an instance', () => {
-    expect(new Media(media)).toBeTruthy();
+    expect(new MediaImg(mediaImg)).toBeTruthy();
   });
 });

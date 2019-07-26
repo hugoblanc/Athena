@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
-import { Post } from './models/post';
+import { Post } from './models/content/wordpress/post';
 import { Observable, from } from 'rxjs';
 import { MetaMedia } from './models/meta-media';
 import { HttpService } from './provider/http.service';

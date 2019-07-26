@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { IimagedMedia } from '../../models/content/iimaged-media';
 
 @Component({
   selector: 'ath-img',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ImgComponent implements OnInit {
 
-  @Input() img: any;
+  @Input() img: IimagedMedia;
 
   ratio = screen.width * 0.43;
   constructor() { }

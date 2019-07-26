@@ -1,6 +1,6 @@
 import { Content } from './content';
 
-export class Media {
+export class MediaImg {
   altText: string;
   author: number;
   caption: Content;

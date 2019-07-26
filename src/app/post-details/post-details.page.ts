@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MediasService } from '../medias.service';
-import { Post } from '../models/post';
+import { Post } from '../models/content/wordpress/post';
 import { MetaMedia } from '../models/meta-media';
 
 /**
