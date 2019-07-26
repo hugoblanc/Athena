@@ -53,6 +53,14 @@ export class MediasService {
       // donation: 'https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr',
       logo: 'assets/4emesinge_logo.jpg'
     },
+    {
+      key: 'lemondemoderne',
+      url: 'https://www.lemondemoderne.media/',
+      title: 'Le Monde Moderne',
+      color: 'success',
+      // donation: 'https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr',
+      logo: 'assets/lemondemoderne.jpg'
+    },
   ];
 
 

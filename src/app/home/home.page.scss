@@ -1,9 +1,13 @@
 :host {
   ion-content {
     --padding-top: 50px;
+
     .card-media {
       margin: 0;
       border-radius: 10px;
+      display: inline-block;
+      width: 33vw;
+      margin: 0.5rem;
 
       .grad {
         position: absolute;

@@ -1,0 +1,15 @@
+    :host{
+        display: inline-block;
+        .section {
+            margin: 0;
+            margin-left: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        #scroll-container{
+            overflow-x: scroll;
+            overflow-y: hidden;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+    }

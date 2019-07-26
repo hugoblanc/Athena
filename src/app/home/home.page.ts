@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { MediasService } from '../medias.service';
-import { Router } from '@angular/router';
 import { MetaMedia } from '../models/meta-media';
+import { YoutubeService } from '../provider/youtube.service';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +11,18 @@ import { MetaMedia } from '../models/meta-media';
 export class HomePage implements OnInit {
 
   medias: MetaMedia[];
-
-  constructor(public mediasService: MediasService) { }
+  videos: [];
+  constructor(public mediasService: MediasService,
+    public youtubeService:YoutubeService) { }
 
 
   ngOnInit(): void {
     this.medias = this.mediasService.medias;
-  }
+    this.youtubeService.getVideosByPlaylistId('')
+    .subscribe((videos) => {
+      console.log(videos);
+      this.videos = videos.items;
+    });
+
+    }
 }

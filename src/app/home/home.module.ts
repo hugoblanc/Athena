@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
         path: '',
         component: HomePage
       }
-    ])
+    ]),
+    ComponentsModule
   ],
   declarations: [HomePage],
   providers: [FirebaseLib]
