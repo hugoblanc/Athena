@@ -70,13 +70,13 @@ export class MediasService extends ContentService<Post> {
 
 
   private getDataByUrl(): Observable<any> {
-    return this.http.get(
-      this.currentMetaMedia.url +
-      MediasService.WORDPRESS_API +
-      MediasService.POSTS +
-      MediasService.SIZE_NUMBER + this.numberByPage +
-      MediasService.PAGE_NUMBER + this.pageNumber +
-      MediasService.EMBEDDED_CONTENT);
+    const url = this.currentMetaMedia.url +
+    MediasService.WORDPRESS_API +
+    MediasService.POSTS +
+    MediasService.SIZE_NUMBER + this.numberByPage +
+    MediasService.PAGE_NUMBER + this.pageNumber +
+    MediasService.EMBEDDED_CONTENT;
+    return this.http.get(url);
   }
 
   getContentById(id: number): Observable<Post> {

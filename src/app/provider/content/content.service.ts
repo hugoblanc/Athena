@@ -21,18 +21,18 @@ export abstract class ContentService<T extends IContent> {
     return this.currentMetaMedia;
   }
 
-  abstract getContentById(id: number): Observable<IContent>;
+  abstract getContentById(id: number): Observable<T>;
 
   /**
    * Cette methode permet d'initialiser la première récupération de contenu
    * Elle devrait aussi stocker les informations nécessaire pour ensuite effetuer des
    * loarMore sans problème
    */
-  abstract  getContents(): Observable<IContent[]>;
+  abstract  getContents(): Observable<T[]>;
 
   /**
    * Cette methode permet de charger plus de contenu (dans les infinite scroll notament)
    * Load more ne peut être appelé qu'après getContentByUrl donc si c'est pas le cas ça pete
    */
-  abstract loadMore(): Observable<IContent[]>;
+  abstract loadMore(): Observable<T[]>;
 }

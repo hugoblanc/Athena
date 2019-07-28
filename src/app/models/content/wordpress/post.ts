@@ -48,7 +48,7 @@ export class Post implements IContent {
       this.modified = new Date(input.modified);
       this.modifiedGmt = new Date(input.modified_gmt);
       this.pingStatus = input.ping_status;
-      this.title = new Content(input.title);
+      this.title = input.title.rendered;
       this.embedded = new Embedded(input._embedded);
       if (this.guid &&
         this.guid.rendered &&

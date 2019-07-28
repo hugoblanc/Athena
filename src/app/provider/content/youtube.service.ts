@@ -25,7 +25,7 @@ export class YoutubeService extends ContentService<Video> {
   getContents(): Observable<Video[]> {
     return this.http.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=UUVeMw72tepFl1Zt5fvf9QKQ&key='
       + YoutubeService.YOUTUBE_KEY)
-      .pipe(map((videos: Video[]) => videos.map((video: Video) => video)));
+      .pipe(map((data: any) => data.items.map((video: Video) => video)));
   }
 
   loadMore(): Observable<Video[]> {

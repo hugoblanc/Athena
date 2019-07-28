@@ -2,9 +2,10 @@ import { MetaMediaService } from '../meta-media/meta-media.service';
 import { HttpService } from '../helper/http.service';
 import { MediasService } from './medias.service';
 import { YoutubeService } from './youtube.service';
+import { ContentService } from './content.service';
 
 const contentServiceFactory = (http: HttpService, metaMediaService: MetaMediaService) => {
-  if  (true) {
+  if  (false) {
     return new MediasService(http, metaMediaService);
   } else {
     return new YoutubeService(http, metaMediaService);
@@ -12,7 +13,7 @@ const contentServiceFactory = (http: HttpService, metaMediaService: MetaMediaSer
 };
 
 export let contentServiceProvider = {
-  provide: MediasService || YoutubeService,
+  provide: ContentService,
   useFactory: contentServiceFactory,
   deps: [HttpService, MetaMediaService]
 };
