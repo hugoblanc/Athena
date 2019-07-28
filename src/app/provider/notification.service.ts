@@ -42,8 +42,7 @@ export class NotificationService {
       .subscribe((notification) => {
         console.log(notification);
         if (notification.tap) {
-          this.metaMediaService.findAndSetMediaByKey(notification.key);
-          this.router.navigateByUrl(`/media/details/${notification.id}`);
+          this.router.navigateByUrl(`/media/${notification.key}/details/${notification.id}`);
         }
       }, (error) => {
         console.error(error);

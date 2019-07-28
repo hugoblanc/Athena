@@ -3,9 +3,10 @@ import { HttpService } from '../helper/http.service';
 import { MediasService } from './medias.service';
 import { YoutubeService } from './youtube.service';
 import { ContentService } from './content.service';
+import { MetaMediaType } from '../../models/meta-media/meta-media-type.enum';
 
 const contentServiceFactory = (http: HttpService, metaMediaService: MetaMediaService) => {
-  if  (false) {
+  if (metaMediaService.currentMetaMedia.type === MetaMediaType.WORDPRESS) {
     return new MediasService(http, metaMediaService);
   } else {
     return new YoutubeService(http, metaMediaService);

@@ -26,6 +26,7 @@ export class MetaMediaService {
   }
 
   public findAndSetMediaByKey(key: string): MetaMedia {
+    // TODO: verifier cett emerde
     for (const lstMetaMedia of this.listMetaMedia) {
       this.currentMetaMedia = lstMetaMedia.metaMedias.find((metaMedia) => metaMedia.key === key);
       return this.currentMetaMedia;

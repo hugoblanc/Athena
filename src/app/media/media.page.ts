@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { contentServiceProvider } from '../provider/content/content.service.provider';
 import { ContentService } from '../provider/content/content.service';
 import { IContent } from '../models/content/icontent';
+import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -35,8 +36,11 @@ export class MediaPage implements OnInit {
   currentMedia: MetaMedia;
   constructor(private route: ActivatedRoute,
               public mediasService: ContentService<IContent>,
+              public metaMediaService: MetaMediaService,
               public styleService: StyleService,
-              public statusBar: StatusBar) { }
+              public statusBar: StatusBar) {
+
+              }
 
   ngOnInit() {
   }
@@ -48,7 +52,7 @@ export class MediaPage implements OnInit {
     const key = this.route.snapshot.paramMap.get('key');
 
     // récupération des information du média associé
-    this.currentMedia = this.mediasService.setAndGetCurrentMediaKey(key);
+    this.currentMedia = this.metaMediaService.currentMetaMedia;
 
     // Config de la couleur principale du media
     // TODO: Voir si ça vaut le coup de faire un gradient en fonctoin de la couleur du media

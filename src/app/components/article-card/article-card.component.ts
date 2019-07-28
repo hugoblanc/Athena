@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ArticleCardComponent implements OnInit {
 
   @Input() article: any;
-  @Input() mediaId: number;
+  @Input() metaMediaKey: string;
 
   constructor() { }
 
