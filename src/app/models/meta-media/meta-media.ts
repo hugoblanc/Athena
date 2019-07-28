@@ -4,7 +4,7 @@ export class MetaMedia {
   public key: string;
   public url: string;
   public title: string;
-  public type: MetaMediaType;
+  public type: MetaMediaType | string;
   public donation?: string;
   public notification?: boolean;
   public logo: string;

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { StorageService } from './storage.service';
+import { StorageService } from './helper/storage.service';
 import { tap, flatMap, map, filter } from 'rxjs/operators';
 import { concat, Observable, from } from 'rxjs';
-import { MediasService } from './medias.service';
+import { MediasService } from './content/medias.service';
 import { MetaMedia } from '../models/meta-media/meta-media';
 import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { Router } from '@angular/router';
+import { MetaMediaService } from './meta-media/meta-media.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class NotificationService {
   constructor(
     private ss: StorageService,
     private mediasService: MediasService,
+    private metaMediaService: MetaMediaService,
     private firebaseLib: FirebaseLib,
     private router: Router) {
 
@@ -105,7 +107,7 @@ export class NotificationService {
     const result = [];
     // Ici on cherche a voir si des medias sont présent mais pas géré en terme de notification
     // En d'autre terme, si un nouveau media est créé on doit ajouter le topic pour le user
-    for (const listMedia of this.mediasService.listMetaMedia) {
+    for (const listMedia of this.metaMediaService.listMetaMedia) {
 
       const diff = listMedia.metaMedias.filter((metaMedia: MetaMedia) => {
         // Si c'est null ça veut dire qu'on a pas de trace de ce meta media dans le locastroage
@@ -132,7 +134,7 @@ export class NotificationService {
   }
 
   private genericMetaMediaIndSetter(status: boolean, topic: string) {
-    const metaMedia = this.mediasService.findMediaByKey(topic);
+    const metaMedia = this.metaMediaService.findMediaByKey(topic);
     metaMedia.notification = status;
   }
 
@@ -187,10 +189,6 @@ export class NotificationService {
     if (object == null) {
       throw new Error('L\'objet est null');
     }
-
-    // if (Array.isArray(object) && object.length === 0) {
-    //   throw new Error('Le tableau est vide');
-    // }
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MediasService } from '../provider/medias.service';
+import { MediasService } from '../provider/content/medias.service';
 import { Post } from '../models/content/wordpress/post';
 import { StyleService } from '../provider/style.service';
 import { MetaMedia } from '../models/meta-media/meta-media';
@@ -11,7 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
  * *~~~~~~~~~~~~~~~~~~~
  * Author: HugoBlanc |
  * *~~~~~~~~~~~~~~~~~~~
- * Cette page permet d'afficher la liste des articles
+ * Cette page permet d'afficher la liste content d'un meta media donné
  * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 @Component({
@@ -47,7 +47,8 @@ export class MediaPage implements OnInit {
     this.currentMedia = this.mediasService.setAndGetCurrentMediaKey(key);
 
     // Config de la couleur principale du media
-    this.styleService.setPrimaryColor(this.currentMedia.color);
+    // TODO: Voir si ça vaut le coup de faire un gradient en fonctoin de la couleur du media
+    // this.styleService.setPrimaryColor();
 
     // Initiailisation Récupération des données sur wordpress
     this.initData(this.currentMedia.url);

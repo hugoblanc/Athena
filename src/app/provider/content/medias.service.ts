@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
-import { Post } from '../models/content/wordpress/post';
-import { Observable, from } from 'rxjs';
-import { MetaMedia } from '../models/meta-media/meta-media';
-import { HttpService } from './http.service';
-import { ListMetaMedias } from '../models/meta-media/list-meta-medias';
-import listMetaMediaData from '../../assets/data/listMetaMediaData.json';
+import { Post } from '../../models/content/wordpress/post';
+import { Observable } from 'rxjs';
+import { MetaMedia } from '../../models/meta-media/meta-media';
+import { HttpService } from '../helper/http.service';
+import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
+import listMetaMediaData from '../../../assets/data/listMetaMediaData.json';
+import { ContentService } from './content.service';
+import { MetaMediaService } from '../meta-media/meta-media.service';
 
 
 /**
@@ -18,7 +20,7 @@ import listMetaMediaData from '../../assets/data/listMetaMediaData.json';
 @Injectable({
   providedIn: 'root'
 })
-export class MediasService {
+export class MediasService extends ContentService {
   private static WORDPRESS_API = 'wp-json/wp/v2/';
   private static POSTS = 'posts';
   private static SIZE_NUMBER = '?per_page=';
@@ -28,52 +30,36 @@ export class MediasService {
 
 
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private metaMediaService: MetaMediaService) {
+    super(metaMediaService);
+   }
 
 
   public listMetaMedia: ListMetaMedias[] = listMetaMediaData;
 
-  currentMetaMedia: MetaMedia;
   posts: Post[];
-  url: string;
   pageNumber = 1;
   numberByPage = 8;
-
-  public getMediaList(): Observable<ListMetaMedias[]> {
-    return this.http.get('http://192.168.1.20:3000/media')
-      .pipe(tap((data: ListMetaMedias[]) => {
-        if (data && data.length > 3) {
-          this.listMetaMedia = data;
-        }
-      }));
-  }
-
-  public setAndGetCurrentMediaKey(key: string) {
-    this.currentMetaMedia = null;
-    this.currentMetaMedia = this.findMediaByKey(key);
-    return this.currentMetaMedia;
-  }
 
 
   /**
    * Cette methode permet d'intialiser les controlleur abvec
    * le premier chargement
    * Elle reinitialise aussi le numéro de page, appeler uniquement en cas d'init de données
-   * @param url  L''url de lressources a récupérer
    */
-  public getPostByUrl(url: string): Observable<Post[]> {
+  public getContents(): Observable<Post[]> {
     // Ici on reinit le numéro de page a 1 car si on utilise getPostByUrl c'est pour init
     this.pageNumber = 1;
-    return this.getDataByUrl(url)
+    return this.getDataByUrl()
       .pipe(map((data: Post[]) => {
         this.posts = data.map((post) => new Post(post));
         return this.posts;
       }));
   }
 
-  public loadMorePosts(url: string): Observable<Post[]> {
+  public loadMore(): Observable<Post[]> {
     this.pageNumber++;
-    return this.getDataByUrl(url)
+    return this.getDataByUrl()
       .pipe(map((data: Post[]) => {
         try {
           const freshPost = data.map((post) => {
@@ -88,10 +74,9 @@ export class MediasService {
   }
 
 
-  private getDataByUrl(url: string): Observable<any> {
-    this.url = url;
+  private getDataByUrl(): Observable<any> {
     return this.http.get(
-      this.url +
+      this.currentMetaMedia.url +
       MediasService.WORDPRESS_API +
       MediasService.POSTS +
       MediasService.SIZE_NUMBER + this.numberByPage +
@@ -113,16 +98,6 @@ export class MediasService {
     }
     return this.posts.find((post) => (post.id === id));
   }
-
-  findMediaByKey(key: string): MetaMedia {
-    for (const lstMetaMedia of this.listMetaMedia) {
-      const currentMetaMedia = lstMetaMedia.metaMedias.find((metaMedia) => metaMedia.key === key);
-      if (currentMetaMedia != null) {
-        return currentMetaMedia;
-      }
-    }
-  }
-
 
 
 

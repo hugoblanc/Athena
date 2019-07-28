@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { MediasService } from './provider/medias.service';
+import { MediasService } from './provider/content/medias.service';
 import { NotificationService } from './provider/notification.service';
 import { ListMetaMedias } from './models/meta-media/list-meta-medias';
 

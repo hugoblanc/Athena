@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MediasService } from '../provider/medias.service';
-import { MetaMedia } from '../models/meta-media/meta-media';
-import { YoutubeService } from '../provider/youtube.service';
+import { MediasService } from '../provider/content/medias.service';
+import { YoutubeService } from '../provider/content/youtube.service';
 import { ListMetaMedias } from '../models/meta-media/list-meta-medias';
 
 @Component({
