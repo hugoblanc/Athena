@@ -21,7 +21,6 @@ export class NotificationService {
 
   constructor(
     private ss: StorageService,
-    private mediasService: MediasService,
     private metaMediaService: MetaMediaService,
     private firebaseLib: FirebaseLib,
     private router: Router) {
@@ -43,7 +42,7 @@ export class NotificationService {
       .subscribe((notification) => {
         console.log(notification);
         if (notification.tap) {
-          this.mediasService.setAndGetCurrentMediaKey(notification.key);
+          this.metaMediaService.findAndSetMediaByKey(notification.key);
           this.router.navigateByUrl(`/media/details/${notification.id}`);
         }
       }, (error) => {
@@ -134,7 +133,7 @@ export class NotificationService {
   }
 
   private genericMetaMediaIndSetter(status: boolean, topic: string) {
-    const metaMedia = this.metaMediaService.findMediaByKey(topic);
+    const metaMedia = this.metaMediaService.findAndSetMediaByKey(topic);
     metaMedia.notification = status;
   }
 

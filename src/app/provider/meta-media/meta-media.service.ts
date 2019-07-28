@@ -12,6 +12,7 @@ import { HttpService } from '../helper/http.service';
 export class MetaMediaService {
 
   public listMetaMedia: ListMetaMedias[] = listMetaMediaData;
+  currentMetaMedia: MetaMedia;
 
   constructor(private http: HttpService) { }
 
@@ -24,12 +25,10 @@ export class MetaMediaService {
       }));
   }
 
-  public findMediaByKey(key: string): MetaMedia {
+  public findAndSetMediaByKey(key: string): MetaMedia {
     for (const lstMetaMedia of this.listMetaMedia) {
-      const currentMetaMedia = lstMetaMedia.metaMedias.find((metaMedia) => metaMedia.key === key);
-      if (currentMetaMedia != null) {
-        return currentMetaMedia;
-      }
+      this.currentMetaMedia = lstMetaMedia.metaMedias.find((metaMedia) => metaMedia.key === key);
+      return this.currentMetaMedia;
     }
   }
 

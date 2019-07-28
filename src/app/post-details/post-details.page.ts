@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MediasService } from '../provider/content/medias.service';
 import { Post } from '../models/content/wordpress/post';
 import { MetaMedia } from '../models/meta-media/meta-media';
+import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -24,13 +25,14 @@ export class PostDetailsPage implements OnInit {
 
   constructor(private route: ActivatedRoute,
               public mediasService: MediasService,
+              public metaMediaService: MetaMediaService,
               private zone: NgZone) { }
 
   ionViewWillEnter() {
     const idPost = this.route.snapshot.paramMap.get('id');
     this.idPost = parseInt(idPost, 10);
     this.post = this.mediasService.findLocalPostById(this.idPost);
-    this.currentMedia = this.mediasService.currentMetaMedia;
+    this.currentMedia = this.metaMediaService.currentMetaMedia;
 
     if (!this.post) {
       // Comme on utilise un plugin pour les call en natif sur mobile il faut forcer la zone angular

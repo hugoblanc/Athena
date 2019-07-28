@@ -9,16 +9,8 @@ import { IContent } from '../../models/content/icontent';
 })
 export abstract class ContentService<T extends IContent> {
 
-  public currentMetaMedia: MetaMedia;
+  constructor(protected metaMediaService: MetaMediaService) {
 
-  constructor(private metaMediaService: MetaMediaService) {
-
-  }
-
-  public setAndGetCurrentMediaKey(key: string) {
-    this.currentMetaMedia = null;
-    this.currentMetaMedia = this.metaMediaService.findMediaByKey(key);
-    return this.currentMetaMedia;
   }
 
   abstract getContentById(id: number): Observable<T>;

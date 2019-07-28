@@ -29,7 +29,7 @@ export class MediasService extends ContentService<Post> {
 
   constructor(private http: HttpService, metaMediaService: MetaMediaService) {
     super(metaMediaService);
-   }
+  }
 
 
   posts: Post[];
@@ -70,17 +70,23 @@ export class MediasService extends ContentService<Post> {
 
 
   private getDataByUrl(): Observable<any> {
-    const url = this.currentMetaMedia.url +
-    MediasService.WORDPRESS_API +
-    MediasService.POSTS +
-    MediasService.SIZE_NUMBER + this.numberByPage +
-    MediasService.PAGE_NUMBER + this.pageNumber +
-    MediasService.EMBEDDED_CONTENT;
+    const url = this.metaMediaService.currentMetaMedia.url +
+      MediasService.WORDPRESS_API +
+      MediasService.POSTS +
+      MediasService.SIZE_NUMBER + this.numberByPage +
+      MediasService.PAGE_NUMBER + this.pageNumber +
+      MediasService.EMBEDDED_CONTENT;
     return this.http.get(url);
   }
 
   getContentById(id: number): Observable<Post> {
-    return this.http.get(this.currentMetaMedia.url + MediasService.WORDPRESS_API + MediasService.POST_ONLY + id + '?_embed')
+    const url = this.metaMediaService.currentMetaMedia.url
+      + MediasService.WORDPRESS_API
+      + MediasService.POST_ONLY
+      + id
+      + '?_embed';
+
+    return this.http.get(url)
       .pipe(map((data: Post) => {
         return new Post(data);
       }));
