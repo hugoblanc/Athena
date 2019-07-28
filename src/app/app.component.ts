@@ -4,9 +4,8 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { MediasService } from './provider/medias.service';
-import { MetaMedia } from './models/meta-media';
 import { NotificationService } from './provider/notification.service';
-import { ListMetaMedias } from './models/list-meta-medias';
+import { ListMetaMedias } from './models/meta-media/list-meta-medias';
 
 
 /**

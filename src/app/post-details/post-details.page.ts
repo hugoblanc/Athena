@@ -2,7 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MediasService } from '../provider/medias.service';
 import { Post } from '../models/content/wordpress/post';
-import { MetaMedia } from '../models/meta-media';
+import { MetaMedia } from '../models/meta-media/meta-media';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~

@@ -3,7 +3,7 @@ import { StorageService } from './storage.service';
 import { tap, flatMap, map, filter } from 'rxjs/operators';
 import { concat, Observable, from } from 'rxjs';
 import { MediasService } from './medias.service';
-import { MetaMedia } from '../models/meta-media';
+import { MetaMedia } from '../models/meta-media/meta-media';
 import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { Router } from '@angular/router';
 

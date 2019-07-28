@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MediasService } from '../provider/medias.service';
-import { MetaMedia } from '../models/meta-media';
+import { MetaMedia } from '../models/meta-media/meta-media';
 import { YoutubeService } from '../provider/youtube.service';
-import { ListMetaMedias } from '../models/list-meta-medias';
+import { ListMetaMedias } from '../models/meta-media/list-meta-medias';
 
 @Component({
   selector: 'app-home',

@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
 import { Post } from '../models/content/wordpress/post';
 import { Observable, from } from 'rxjs';
-import { MetaMedia } from '../models/meta-media';
+import { MetaMedia } from '../models/meta-media/meta-media';
 import { HttpService } from './http.service';
-import { ListMetaMedias } from '../models/list-meta-medias';
+import { ListMetaMedias } from '../models/meta-media/list-meta-medias';
+import listMetaMediaData from '../../assets/data/listMetaMediaData.json';
 
 
 /**
@@ -30,52 +31,7 @@ export class MediasService {
   constructor(private http: HttpService) { }
 
 
-  public listMetaMedia: ListMetaMedias[] = [{
-    title: 'Presse écrite', metaMedias: [
-      {
-        key: 'lvsl',
-        url: 'https://lvsl.fr/',
-        title: 'Le Vent Se Lève',
-        color: 'tertiary',
-        // donation: 'https://lvsl.fr/faire-un-don/',
-        logo: 'assets/lvsl_logo.jpg'
-      },
-      {
-        key: 'mrmondialisation',
-        url: 'https://mrmondialisation.org/',
-        title: 'Mr Mondialisation',
-        color: 'secondary',
-        logo: 'assets/mrmondialisation_logo.png'
-      },
-      {
-        key: 'emesinge',
-        url: 'https://www.4emesinge.com/',
-        title: 'Le 4eme Singe',
-        color: 'success',
-        // donation: 'https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr',
-        logo: 'assets/4emesinge_logo.jpg'
-      },
-      {
-        key: 'lemondemoderne',
-        url: 'https://www.lemondemoderne.media/',
-        title: 'Le Monde Moderne',
-        color: 'success',
-        // donation: 'https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr',
-        logo: 'assets/lemondemoderne.jpg'
-      }
-    ]
-  }, {
-    title: 'Vidéos', metaMedias: [
-      {
-        key: 'osonscauser',
-        url: 'https://lvsl.fr/',
-        title: 'Osons causer',
-        color: 'tertiary',
-        // donation: 'https://lvsl.fr/faire-un-don/',
-        logo: 'https://yt3.ggpht.com/a/AGF-l79-QM7NkYV3TVJZK8Jssrj0odFlAOnxsHsD=s288-mo-c-c0xffffffff-rj-k-no'
-      }
-    ]
-  }];
+  public listMetaMedia: ListMetaMedias[] = listMetaMediaData;
 
   currentMetaMedia: MetaMedia;
   posts: Post[];

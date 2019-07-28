@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MediasService } from '../provider/medias.service';
 import { Post } from '../models/content/wordpress/post';
 import { StyleService } from '../provider/style.service';
-import { MetaMedia } from '../models/meta-media';
+import { MetaMedia } from '../models/meta-media/meta-media';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 

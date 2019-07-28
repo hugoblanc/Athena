@@ -1,0 +1,51 @@
+[
+  {
+    "title": "Presse écrite",
+    "metaMedias": [
+      {
+        "key": "lvsl",
+        "url": "https: //lvsl.fr/",
+        "title": "Le Vent Se Lève",
+        "donation": "https://lvsl.fr/faire-un-don/",
+        "logo": "assets/lvsl_logo.jpg",
+        "type":"WORDPRESS"
+      },
+      {
+        "key": "mrmondialisation",
+        "url": "https: //mrmondialisation.org/",
+        "title": "Mr Mondialisation",
+        "logo": "assets/mrmondialisation_logo.png",
+        "type":"WORDPRESS"
+      },
+      {
+        "key": "emesinge",
+        "url": "https: //www.4emesinge.com/",
+        "title": "Le 4eme Singe",
+        "donation": "https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr",
+        "logo": "assets/4emesinge_logo.jpg",
+        "type":"WORDPRESS"
+      },
+      {
+        "key": "lemondemoderne",
+        "url": "https: //www.lemondemoderne.media/",
+        "title": "Le Monde Moderne",
+        "donation": "https://www.helloasso.com/associations/le-4eme-singe/formulaires/1/fr",
+        "logo": "assets/lemondemoderne.jpg",
+        "type":"WORDPRESS"
+      }
+    ]
+  },
+  {
+    "title": "Vidéos",
+    "metaMedias": [
+      {
+        "key": "osonscauser",
+        "url": "https: //lvsl.fr/",
+        "title": "Osons causer",
+        "donation": "https://lvsl.fr/faire-un-don/",
+        "logo": "https: //yt3.ggpht.com/a/AGF-l79-QM7NkYV3TVJZK8Jssrj0odFlAOnxsHsD=s288-mo-c-c0xffffffff-rj-k-no",
+        "type":"YOUTUBE"
+      }
+    ]
+  }
+]
