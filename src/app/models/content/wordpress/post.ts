@@ -1,10 +1,9 @@
 import { Content } from './content';
 import { Embedded } from './embedded';
-import { IimagedMedia } from '../iimaged-content';
-import { ItypedContent } from '../ityped-content';
 import { ContentType } from '../content-type.enum';
+import { IContent } from '../icontent';
 
-export class Post implements IimagedMedia, ItypedContent {
+export class Post implements IContent {
   contentType: ContentType;
   author: number;
   categories: number[];

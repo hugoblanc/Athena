@@ -6,6 +6,9 @@ import { StyleService } from '../provider/style.service';
 import { MetaMedia } from '../models/meta-media/meta-media';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { contentServiceProvider } from '../provider/content/content.service.provider';
+import { ContentService } from '../provider/content/content.service';
+import { IContent } from '../models/content/icontent';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -18,6 +21,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   selector: 'app-media',
   templateUrl: './media.page.html',
   styleUrls: ['./media.page.scss'],
+  providers: [contentServiceProvider]
 })
 export class MediaPage implements OnInit {
 
@@ -30,7 +34,7 @@ export class MediaPage implements OnInit {
 
   currentMedia: MetaMedia;
   constructor(private route: ActivatedRoute,
-              public mediasService: MediasService,
+              public mediasService: ContentService<IContent>,
               public styleService: StyleService,
               public statusBar: StatusBar) { }
 
@@ -51,14 +55,14 @@ export class MediaPage implements OnInit {
     // this.styleService.setPrimaryColor();
 
     // Initiailisation Récupération des données sur wordpress
-    this.initData(this.currentMedia.url);
+    this.initData();
   }
 
 
-  initData(url: string) {
+  initData() {
     // Appel de la méhode du service
     this.loading = true;
-    this.mediasService.getPostByUrl(url)
+    this.mediasService.getContents()
       .subscribe((posts: Post[]) => {
         // Affectation des données serveur dans notre variable local
         this.posts = posts;
@@ -70,7 +74,7 @@ export class MediaPage implements OnInit {
   }
 
   loadMore(event) {
-    this.mediasService.loadMorePosts(this.currentMedia.url)
+    this.mediasService.loadMore()
       .subscribe((posts: Post[]) => {
         this.posts = posts;
         event.target.complete();

@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { MediasService } from './provider/content/medias.service';
 import { NotificationService } from './provider/notification.service';
 import { ListMetaMedias } from './models/meta-media/list-meta-medias';
+import { MetaMediaService } from './provider/meta-media/meta-media.service';
 
 
 /**
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private mediasService: MediasService,
+    private metaMediaService: MetaMediaService,
     private notificationService: NotificationService
   ) { }
 
@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
     });
 
     // Ici on récupère les media stocké en local dans le media service
-    this.appPages = this.mediasService.listMetaMedia;
+    this.appPages = this.metaMediaService.listMetaMedia;
 
     // Et on vérifie aussi qu'il n'y a pas des nouveau media sur le serveur
     // TODO: Décommenter ce truc quand ready

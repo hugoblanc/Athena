@@ -36,7 +36,7 @@ export class PostDetailsPage implements OnInit {
       // Comme on utilise un plugin pour les call en natif sur mobile il faut forcer la zone angular
       // Si on fait pas ça bug a l'affichage
       this.zone.run(() => {
-        this.mediasService.getPostByID(this.currentMedia, this.idPost)
+        this.mediasService.getContentById(this.idPost)
           .subscribe((post) => {
             this.post = post;
           });

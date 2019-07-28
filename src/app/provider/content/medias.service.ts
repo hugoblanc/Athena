@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Post } from '../../models/content/wordpress/post';
 import { Observable } from 'rxjs';
-import { MetaMedia } from '../../models/meta-media/meta-media';
 import { HttpService } from '../helper/http.service';
-import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
-import listMetaMediaData from '../../../assets/data/listMetaMediaData.json';
 import { ContentService } from './content.service';
 import { MetaMediaService } from '../meta-media/meta-media.service';
 
@@ -20,7 +17,7 @@ import { MetaMediaService } from '../meta-media/meta-media.service';
 @Injectable({
   providedIn: 'root'
 })
-export class MediasService extends ContentService {
+export class MediasService extends ContentService<Post> {
   private static WORDPRESS_API = 'wp-json/wp/v2/';
   private static POSTS = 'posts';
   private static SIZE_NUMBER = '?per_page=';
@@ -30,12 +27,10 @@ export class MediasService extends ContentService {
 
 
 
-  constructor(private http: HttpService, private metaMediaService: MetaMediaService) {
+  constructor(private http: HttpService, metaMediaService: MetaMediaService) {
     super(metaMediaService);
    }
 
-
-  public listMetaMedia: ListMetaMedias[] = listMetaMediaData;
 
   posts: Post[];
   pageNumber = 1;
@@ -84,8 +79,8 @@ export class MediasService extends ContentService {
       MediasService.EMBEDDED_CONTENT);
   }
 
-  getPostByID(metaMedia: MetaMedia, id: number): Observable<Post> {
-    return this.http.get(metaMedia.url + MediasService.WORDPRESS_API + MediasService.POST_ONLY + id + '?_embed')
+  getContentById(id: number): Observable<Post> {
+    return this.http.get(this.currentMetaMedia.url + MediasService.WORDPRESS_API + MediasService.POST_ONLY + id + '?_embed')
       .pipe(map((data: Post) => {
         return new Post(data);
       }));

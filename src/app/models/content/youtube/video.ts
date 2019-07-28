@@ -1,8 +1,7 @@
-import { IimagedMedia } from '../iimaged-content';
-import { ItypedContent } from '../ityped-content';
 import { ContentType } from '../content-type.enum';
+import { IContent } from '../icontent';
 
-export class Video implements IimagedMedia, ItypedContent {
+export class Video implements IContent {
 
   mediaUrl: string;
   mediaHeight: number;
