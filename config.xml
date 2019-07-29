@@ -5,6 +5,7 @@
     <author email="hugoblanc.blend@gmail.com" href="https://github.com/hugoblanc">Hugo Blanc</author>
     <content src="index.html" />
     <access origin="*" />
+    <allow-navigation href="https://*youtube.com/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
