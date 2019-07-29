@@ -1,6 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MediasService } from '../provider/content/medias.service';
 import { MetaMedia } from '../models/meta-media/meta-media';
 import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 import { IContent } from '../models/content/icontent';
@@ -17,7 +16,8 @@ import { ContentService } from '../provider/content/content.service';
 @Component({
   selector: 'app-post-details',
   templateUrl: './content-details.page.html',
-  styleUrls: ['./content-details.page.scss']
+  styleUrls: ['./content-details.page.scss'],
+  providers: [contentServiceProvider]
 })
 export class ContentDetailsPage implements OnInit {
 
