@@ -9,7 +9,7 @@ import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 export class CurrentMetaMediaGuard implements CanActivate {
 
 
-  constructor(private metaMediaServic: MetaMediaService) {
+  constructor(private metaMediaService: MetaMediaService) {
 
   }
 
@@ -17,6 +17,6 @@ export class CurrentMetaMediaGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
     const key = next.paramMap.get('key');
-    return (this.metaMediaServic.findAndSetMediaByKey(key) != null);
+    return (this.metaMediaService.findAndSetMediaByKey(key) != null);
   }
 }
