@@ -18,6 +18,7 @@ import { MetaMediaService } from '../meta-media/meta-media.service';
   providedIn: 'root'
 })
 export class MediasService extends ContentService<Post> {
+
   private static WORDPRESS_API = 'wp-json/wp/v2/';
   private static POSTS = 'posts';
   private static SIZE_NUMBER = '?per_page=';
@@ -82,18 +83,19 @@ export class MediasService extends ContentService<Post> {
   public getContentById(id: number): Observable<Post> {
 
     // On cherche d'abord en local
-    const post = this.findLocalPostById(id);
+    const post = this.findLocalContentById(id);
     if (post != null) {
       return of(post);
     }
 
     // Si pas trouvé en local on cherche coté serveur
-    return this.findServerPostById(id);
+    return this.findServerContentById(id);
 
   }
 
 
-  private findServerPostById(id: number): Observable<Post> {
+
+  findServerContentById(id: number): Observable<Post> {
     const url = this.metaMediaService.currentMetaMedia.url
       + MediasService.WORDPRESS_API
       + MediasService.POST_ONLY
@@ -105,15 +107,5 @@ export class MediasService extends ContentService<Post> {
         return new Post(data);
       }));
   }
-
-  private findLocalPostById(id: number): Post {
-    if (!this.posts) {
-      return null;
-    }
-    return this.posts.find((post) => (post.id === id));
-  }
-
-
-
 
 }
