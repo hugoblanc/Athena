@@ -7,10 +7,13 @@
 
       <ath-media-notif-toggle [media]="currentMedia"></ath-media-notif-toggle>
       <ath-loader [loading]="loading"></ath-loader>
-      <ath-content-list [contents]="posts"></ath-content-list>
+      <ath-content-list [contents]="contents"></ath-content-list>
 
     </ion-list>
   </div>
+
+
+
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content loadingText="Chargement ...">
     </ion-infinite-scroll-content>

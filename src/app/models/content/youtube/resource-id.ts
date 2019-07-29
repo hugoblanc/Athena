@@ -3,7 +3,7 @@ export class ResourceId {
   videoId: string;
   constructor(input: ResourceId) {
     if (input != null) {
-      Object.assign(input, this);
+      Object.assign(this, input);
     }
   }
 }

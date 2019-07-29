@@ -38,6 +38,12 @@ body {
   --color: white !important;
 }
 
+.masonry-item {
+  width: 43%;
+  margin: 10px;
+  --ion-item-background: white;
+}
+
 .ion-color-primary {
   background-color: var(--primaryColor) !important;
   .toolbar-background {

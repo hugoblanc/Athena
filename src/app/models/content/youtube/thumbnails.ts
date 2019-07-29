@@ -9,7 +9,7 @@ export class Thumbnails {
 
   constructor(input: Thumbnails) {
     if (input != null) {
-      Object.assign(input, this);
+      Object.assign(this, input);
       this.default = new Default(input.default);
       this.medium = new Default(input.medium);
       this.high = new Default(input.high);

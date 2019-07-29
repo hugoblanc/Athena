@@ -10,6 +10,7 @@ import { ImgComponent } from './img/img.component';
 import { ContentListComponent } from './content-list/content-list.component';
 import { RouterModule } from '@angular/router';
 import { ArticleCardComponent } from './article-card/article-card.component';
+import { VideoCardComponent } from './video-card/video-card.component';
 
 @NgModule({
   declarations: [AthLoaderComponent,
@@ -18,7 +19,8 @@ import { ArticleCardComponent } from './article-card/article-card.component';
     MediaNotifToggleComponent,
     ContentListComponent,
     ImgComponent,
-    ArticleCardComponent
+    ArticleCardComponent,
+    VideoCardComponent
   ],
   exports: [AthLoaderComponent,
     HorizontalComponent,
@@ -26,7 +28,8 @@ import { ArticleCardComponent } from './article-card/article-card.component';
     MediaNotifToggleComponent,
     ContentListComponent,
     ImgComponent,
-    ArticleCardComponent
+    ArticleCardComponent,
+    VideoCardComponent
   ],
   imports: [
     CommonModule,

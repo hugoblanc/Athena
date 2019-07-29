@@ -4,6 +4,7 @@ import { ContentType } from '../content-type.enum';
 import { IContent } from '../icontent';
 
 export class Post implements IContent {
+  publishedAt: Date;
   contentType: ContentType;
   author: number;
   categories: number[];
@@ -26,7 +27,7 @@ export class Post implements IContent {
   sticky: boolean;
   tags: number[];
   template: string;
-  title: Content;
+  title: string;
   type: string;
   embedded: Embedded;
   mediaUrl: string;
@@ -63,6 +64,7 @@ export class Post implements IContent {
       }
 
       this.contentType = ContentType.ARTICLE;
+      this.publishedAt = this.date;
 
     } catch (error) {
       throw error;

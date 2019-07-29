@@ -5,7 +5,7 @@ export class Default {
 
   constructor(input: Default) {
     if (input != null) {
-      Object.assign(input, this);
+      Object.assign(this, input);
     }
   }
 }

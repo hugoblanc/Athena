@@ -30,7 +30,7 @@ export class MediaPage implements OnInit {
 
 
   idMedia: number;
-  posts: Post[];
+  contents: IContent[];
   loading = false;
 
   currentMedia: MetaMedia;
@@ -40,7 +40,7 @@ export class MediaPage implements OnInit {
               public styleService: StyleService,
               public statusBar: StatusBar) {
 
-              }
+  }
 
   ngOnInit() {
   }
@@ -67,9 +67,9 @@ export class MediaPage implements OnInit {
     // Appel de la méhode du service
     this.loading = true;
     this.mediasService.getContents()
-      .subscribe((posts: Post[]) => {
+      .subscribe((contents: IContent[]) => {
         // Affectation des données serveur dans notre variable local
-        this.posts = posts;
+        this.contents = contents;
         this.loading = false;
       }, (error) => {
         console.error(error);
@@ -79,8 +79,8 @@ export class MediaPage implements OnInit {
 
   loadMore(event) {
     this.mediasService.loadMore()
-      .subscribe((posts: Post[]) => {
-        this.posts = posts;
+      .subscribe((contents: IContent[]) => {
+        this.contents = contents;
         event.target.complete();
       }, (error) => {
         event.target.complete();

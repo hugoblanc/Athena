@@ -14,7 +14,7 @@ export class Snippet {
 
   constructor(input: Snippet) {
     if (input != null) {
-      Object.assign(input, this);
+      Object.assign(this, input);
       this.thumbnails = new Thumbnails(input.thumbnails);
       this.resourceId = new ResourceId(input.resourceId);
     }
