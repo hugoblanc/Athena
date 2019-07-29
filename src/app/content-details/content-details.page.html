@@ -6,7 +6,7 @@
       <ath-article-details [post]="content"></ath-article-details>
     </p>
     <p *ngSwitchCase="'VIDEO'">
-      <ath-video-details [video]="content"></ath-video-details>
+      <ath-video-details [videoId]="content.id"></ath-video-details>
     </p>
     <p *ngSwitchDefault>
       <ath-article-details [post]="content"></ath-article-details>

@@ -29,6 +29,7 @@ export class ItemVideo implements IContent {
       this.contentType = ContentType.VIDEO;
       this.title = this.snippet.title;
       this.publishedAt = new Date(this.snippet.publishedAt);
+      this.id = this.snippet.resourceId.videoId;
     }
   }
 }

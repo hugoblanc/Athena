@@ -5,6 +5,7 @@ import { MetaMedia } from '../models/meta-media/meta-media';
 import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 import { IContent } from '../models/content/icontent';
 import { contentServiceProvider } from '../provider/content/content.service.provider';
+import { ContentService } from '../provider/content/content.service';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -16,8 +17,7 @@ import { contentServiceProvider } from '../provider/content/content.service.prov
 @Component({
   selector: 'app-post-details',
   templateUrl: './content-details.page.html',
-  styleUrls: ['./content-details.page.scss'],
-  providers: [contentServiceProvider]
+  styleUrls: ['./content-details.page.scss']
 })
 export class ContentDetailsPage implements OnInit {
 
@@ -26,7 +26,7 @@ export class ContentDetailsPage implements OnInit {
   currentMedia: MetaMedia;
 
   constructor(private route: ActivatedRoute,
-              public mediasService: MediasService,
+              public contentService: ContentService<IContent>,
               public metaMediaService: MetaMediaService,
               private zone: NgZone) { }
 
@@ -39,7 +39,7 @@ export class ContentDetailsPage implements OnInit {
     // Si on fait pas ça bug a l'affichage
     this.zone.run(() => {
       // On cherche en locql puis si rien en locq on cherche coté serveur
-      this.mediasService.getContentById(this.idContent)
+      this.contentService.getContentById(this.idContent)
         .subscribe((content) => {
           this.content = content;
         });
