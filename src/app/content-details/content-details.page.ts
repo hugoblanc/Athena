@@ -1,9 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MediasService } from '../provider/content/medias.service';
-import { Post } from '../models/content/wordpress/post';
 import { MetaMedia } from '../models/meta-media/meta-media';
 import { MetaMediaService } from '../provider/meta-media/meta-media.service';
+import { IContent } from '../models/content/icontent';
+import { contentServiceProvider } from '../provider/content/content.service.provider';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -14,13 +15,14 @@ import { MetaMediaService } from '../provider/meta-media/meta-media.service';
  */
 @Component({
   selector: 'app-post-details',
-  templateUrl: './post-details.page.html',
-  styleUrls: ['./post-details.page.scss'],
+  templateUrl: './content-details.page.html',
+  styleUrls: ['./content-details.page.scss'],
+  providers: [contentServiceProvider]
 })
-export class PostDetailsPage implements OnInit {
+export class ContentDetailsPage implements OnInit {
 
-  idPost: number;
-  post: Post;
+  idContent: number;
+  content: IContent;
   currentMedia: MetaMedia;
 
   constructor(private route: ActivatedRoute,
@@ -30,20 +32,18 @@ export class PostDetailsPage implements OnInit {
 
   ionViewWillEnter() {
     const idPost = this.route.snapshot.paramMap.get('id');
-    this.idPost = parseInt(idPost, 10);
-    this.post = this.mediasService.findLocalPostById(this.idPost);
+    this.idContent = parseInt(idPost, 10);
     this.currentMedia = this.metaMediaService.currentMetaMedia;
 
-    if (!this.post) {
-      // Comme on utilise un plugin pour les call en natif sur mobile il faut forcer la zone angular
-      // Si on fait pas ça bug a l'affichage
-      this.zone.run(() => {
-        this.mediasService.getContentById(this.idPost)
-          .subscribe((post) => {
-            this.post = post;
-          });
-      });
-    }
+    // Comme on utilise un plugin pour les call en natif sur mobile il faut forcer la zone angular
+    // Si on fait pas ça bug a l'affichage
+    this.zone.run(() => {
+      // On cherche en locql puis si rien en locq on cherche coté serveur
+      this.mediasService.getContentById(this.idContent)
+        .subscribe((content) => {
+          this.content = content;
+        });
+    });
   }
 
   ngOnInit() {

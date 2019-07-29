@@ -1,0 +1,7 @@
+<img *ngIf="post?.embedded?.featuredmedia[0]?.title?.rendered" [src]="post.mediaUrl"
+  [alt]="post.embedded.featuredmedia[0].title">
+<div id="full-article">
+  <h2 [innerHTML]="post?.title"></h2>
+  <div class="article-content" [innerHTML]="post?.content.rendered">
+  </div>
+</div>

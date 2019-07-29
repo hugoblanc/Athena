@@ -1,7 +1,7 @@
-<div ngxMasonryItem class="masonry-item" routerLink="/media/{{metaMediaKey}}/details/{{video.id}}">
-  <iframe width="100%" [src]="link" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-  <div>
-    <h3 class="title">{{video.snippet.title}}</h3>
-    <h5> Publiée le {{video.publishedAt | date:'dd/mm/y'}} </h5>
-  </div>
-</div>
+<ion-card ngxMasonryItem class="masonry-item" routerLink="/media/{{metaMediaKey}}/details/{{video.id}}">
+  <ath-img [img]="video" [icon]="'logo-youtube'"></ath-img>
+  <ion-card-header>
+    <ion-card-title [innerHTML]="video.title"></ion-card-title>
+    <ion-card-subtitle>Publiée le {{video.publishedAt | date:'dd/mm/y'}} </ion-card-subtitle>
+  </ion-card-header>
+</ion-card>

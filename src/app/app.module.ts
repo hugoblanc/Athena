@@ -12,10 +12,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
-import { DatePipe } from './pipe/date.pipe';
 
 @NgModule({
-  declarations: [AppComponent, DatePipe],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule,
     IonicModule.forRoot(),

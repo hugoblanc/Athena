@@ -15,6 +15,7 @@ const contentServiceFactory = (http: HttpService, metaMediaService: MetaMediaSer
 
 export let contentServiceProvider = {
   provide: ContentService,
+  multi: false,
   useFactory: contentServiceFactory,
   deps: [HttpService, MetaMediaService]
 };

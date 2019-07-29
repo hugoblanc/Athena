@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Post } from '../../models/content/wordpress/post';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpService } from '../helper/http.service';
 import { ContentService } from './content.service';
 import { MetaMediaService } from '../meta-media/meta-media.service';
@@ -79,7 +79,21 @@ export class MediasService extends ContentService<Post> {
     return this.http.get(url);
   }
 
-  getContentById(id: number): Observable<Post> {
+  public getContentById(id: number): Observable<Post> {
+
+    // On cherche d'abord en local
+    const post = this.findLocalPostById(id);
+    if (post != null) {
+      return of(post);
+    }
+
+    // Si pas trouvé en local on cherche coté serveur
+    return this.findServerPostById(id);
+
+  }
+
+
+  private findServerPostById(id: number): Observable<Post> {
     const url = this.metaMediaService.currentMetaMedia.url
       + MediasService.WORDPRESS_API
       + MediasService.POST_ONLY
@@ -92,8 +106,7 @@ export class MediasService extends ContentService<Post> {
       }));
   }
 
-
-  findLocalPostById(id: number): Post {
+  private findLocalPostById(id: number): Post {
     if (!this.posts) {
       return null;
     }
