@@ -1,5 +1,11 @@
 #title {
-  --inner-padding-start: 0;
+  --inner-padding-start: 1rem;
   --padding-start: 0;
   --padding-end: 0.5rem;
+  margin-left: 0px;
+}
+
+.inline-back-button{
+  display: block;
+  margin-right: 0px;
 }

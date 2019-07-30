@@ -11,6 +11,7 @@ import { ContentListComponent } from './content-list/content-list.component';
 import { RouterModule } from '@angular/router';
 import { ArticleCardComponent } from './article-card/article-card.component';
 import { VideoCardComponent } from './video-card/video-card.component';
+import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.component';
 
 @NgModule({
   declarations: [AthLoaderComponent,
@@ -20,7 +21,8 @@ import { VideoCardComponent } from './video-card/video-card.component';
     ContentListComponent,
     ImgComponent,
     ArticleCardComponent,
-    VideoCardComponent
+    VideoCardComponent,
+    YoutubeIframeComponent
   ],
   exports: [AthLoaderComponent,
     HorizontalComponent,
@@ -29,7 +31,8 @@ import { VideoCardComponent } from './video-card/video-card.component';
     ContentListComponent,
     ImgComponent,
     ArticleCardComponent,
-    VideoCardComponent
+    VideoCardComponent,
+    YoutubeIframeComponent
   ],
   imports: [
     CommonModule,

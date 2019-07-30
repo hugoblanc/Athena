@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-back-button class="back-button" [defaultHref]="undefined"></ion-back-button>
+  <ion-back-button class="back-button" [text]="''" [defaultHref]="undefined"></ion-back-button>
 
   <span *ngIf="content?.contentType" [ngSwitch]="content?.contentType">
     <p *ngSwitchCase="'ARTICLE'">

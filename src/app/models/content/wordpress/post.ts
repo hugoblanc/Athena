@@ -33,6 +33,7 @@ export class Post implements IContent {
   mediaUrl: string;
   mediaHeight: number;
   mediaWidth: number;
+  videoID?: string;
 
 
 
@@ -65,6 +66,14 @@ export class Post implements IContent {
 
       this.contentType = ContentType.ARTICLE;
       this.publishedAt = this.date;
+
+      const startPattern = 'https://www.youtube.com/embed/';
+      const endPattern = '?feature=oembed';
+      const indexStart = this.content.rendered.indexOf(startPattern);
+      if (indexStart !== -1) {
+        const endIndex = this.content.rendered.indexOf(endPattern);
+        this.videoID = this.content.rendered.substring(indexStart + startPattern.length, endIndex);
+      }
 
     } catch (error) {
       throw error;

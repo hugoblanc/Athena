@@ -2,6 +2,11 @@
   display: inline-block;
   position: relative;
 
+  img {
+    max-width: 101%;
+    width: 101%;
+  }
+
   .icon-container {
     position: absolute;
     top: 0px;

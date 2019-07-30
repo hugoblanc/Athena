@@ -9,8 +9,11 @@ export class HorizontalComponent implements OnInit {
 
   @Input() title: string;
 
+  width: number;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.width = screen.width;
+  }
 
 }

@@ -41,11 +41,6 @@ export class MediaPage implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-
-  ionViewWillEnter() {
-
     // Récupération de la key du metamedia cible
     const key = this.route.snapshot.paramMap.get('key');
 
@@ -58,6 +53,12 @@ export class MediaPage implements OnInit {
 
     // Initiailisation Récupération des données sur wordpress
     this.initData();
+  }
+
+
+  ionViewWillEnter() {
+
+
   }
 
 

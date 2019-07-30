@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { ContentDetailsPage } from './content-details.page';
 import { ArticleDetailsComponent } from './components/article-details/article-details.component';
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
+import { ComponentsModule } from '../components/components.module';
 
 const routes: Routes = [
   {
@@ -21,9 +22,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ComponentsModule
   ],
   declarations: [ContentDetailsPage, ArticleDetailsComponent, VideoDetailsComponent],
   exports: [ArticleDetailsComponent, VideoDetailsComponent]
 })
-export class ContentDetailsPageModule {}
+export class ContentDetailsPageModule { }
