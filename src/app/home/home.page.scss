@@ -2,7 +2,7 @@
   ion-content {
     --padding-top: 50px;
 
-    #fleche{
+    #fleche {
       width: 80%;
       height: auto;
       margin-top: 10rem;
@@ -12,10 +12,12 @@
     ath-card {
       display: inline;
     }
+
+    ion-button {
+      --padding-end: 0px;
+      --padding-start: 0px;
+      --background: rgba(0, 0, 0, 0);
+      margin-left: 0.5rem;
+    }
   }
-
-
-  animation: opac 1s  1s 10 direction fill-mode;
-
-
 }

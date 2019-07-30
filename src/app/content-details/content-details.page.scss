@@ -1,4 +1,26 @@
 :host {
   --color: white;
 
+  .right-fixed, .back-button{
+    display: inline-flex;
+    position: fixed;
+    top: 4rem;
+    filter: drop-shadow(5px 0px 2px rgba(0, 0, 0, 0.4)) drop-shadow(-2px 0px 2px rgba(0, 0, 0, 0.4))
+    drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.3)) drop-shadow(0px -2px 2px rgba(0, 0, 0, 0.3));
+  }
+
+  .back-button {
+    color: white;
+    z-index: 55;
+  }
+
+  .right-fixed{
+    right: 0px;
+  }
+
+  span {
+    p {
+      margin-top: 0px;
+    }
+  }
 }

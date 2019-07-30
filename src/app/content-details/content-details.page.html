@@ -1,6 +1,10 @@
 <ion-content>
   <ion-back-button class="back-button" [text]="''" [defaultHref]="undefined"></ion-back-button>
 
+  <ion-button class="right-fixed" fill="clear" color="{{!styleService.isLight ? 'light' : 'medium'}}" (click)="switchNightMode()">
+    <ion-icon slot="icon-only" name="moon"></ion-icon>
+  </ion-button>
+
   <span *ngIf="content?.contentType" [ngSwitch]="content?.contentType">
     <p *ngSwitchCase="'ARTICLE'">
       <ath-article-details [post]="content"></ath-article-details>

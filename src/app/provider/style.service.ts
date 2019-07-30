@@ -5,11 +5,55 @@ import { Injectable } from '@angular/core';
 })
 export class StyleService {
 
-  constructor() { }
+  ionBackgroundColor: string;
+  ionTextColor: string;
 
-  // ** Pas utilisé pour l'instant
-  setPrimaryColor() {
+  public isLight = false;
+  constructor() {
     const themeWrapper = document.querySelector('body');
-    themeWrapper.style.setProperty('--primaryColor', '#000000');
+    this.ionBackgroundColor = themeWrapper.style.getPropertyValue('--ion-background-color');
+    this.ionTextColor = themeWrapper.style.getPropertyValue('--ion-text-color');
   }
+
+
+  public initPage() {
+    if (!this.isLight) {
+      this.setDark();
+    } else {
+      this.setLight();
+    }
+  }
+
+  public leavePage() {
+    this.setDark();
+  }
+
+  public switchNightMode() {
+    if (this.isLight) {
+      this.setDarkAndChangeInd();
+    } else {
+      this.setLightAndChangeInd();
+    }
+  }
+
+  private setDarkAndChangeInd() {
+    this.isLight = false;
+    this.setDark();
+  }
+  private setLightAndChangeInd() {
+    this.isLight = true;
+    this.setLight();
+  }
+
+  private setDark() {
+    const themeWrapper = document.querySelector('body');
+    themeWrapper.style.setProperty('--ion-background-color', this.ionBackgroundColor);
+    themeWrapper.style.setProperty('--ion-text-color', this.ionTextColor);
+  }
+  private setLight() {
+    const themeWrapper = document.querySelector('body');
+    themeWrapper.style.setProperty('--ion-background-color', '#FFFFFF');
+    themeWrapper.style.setProperty('--ion-text-color', '#000000');
+  }
+
 }

@@ -1,10 +1,11 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MetaMedia } from '../models/meta-media/meta-media';
 import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 import { IContent } from '../models/content/icontent';
 import { contentServiceProvider } from '../provider/content/content.service.provider';
 import { ContentService } from '../provider/content/content.service';
+import { StyleService } from '../provider/style.service';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -19,7 +20,7 @@ import { ContentService } from '../provider/content/content.service';
   styleUrls: ['./content-details.page.scss'],
   providers: [contentServiceProvider]
 })
-export class ContentDetailsPage implements OnInit {
+export class ContentDetailsPage implements OnInit, OnDestroy {
 
   idContent: number;
   content: IContent;
@@ -28,6 +29,7 @@ export class ContentDetailsPage implements OnInit {
   constructor(private route: ActivatedRoute,
               public contentService: ContentService<IContent>,
               public metaMediaService: MetaMediaService,
+              private styleService: StyleService,
               private zone: NgZone) { }
 
   ionViewWillEnter() {
@@ -46,7 +48,17 @@ export class ContentDetailsPage implements OnInit {
     });
   }
 
+  switchNightMode() {
+    this.styleService.switchNightMode();
+  }
+
+
   ngOnInit() {
+    this.styleService.initPage();
+  }
+
+  ngOnDestroy(): void {
+    this.styleService.leavePage();
   }
 
   openExternalPage(url: string) {
