@@ -10,14 +10,17 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-
 * {
   outline: none;
 }
 
 body {
   --background: #000000;
-  --ion-background-color: linear-gradient(to right, #485563, #29323c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  --ion-background-color: linear-gradient(
+    to right,
+    #485563,
+    #29323c
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   --ion-text-color: white;
 
   --primaryColor: #000000;
@@ -39,7 +42,7 @@ body {
 }
 
 .masonry-item {
-  width: 43%;
+  width: 44%;
   margin: 10px;
   --ion-item-background: white;
 }
@@ -51,6 +54,15 @@ body {
   }
 }
 
+ion-back-button {
+  button {
+    span {
+      ion-icon {
+        color: white !important;
+      }
+    }
+  }
+}
 
 @font-face {
   font-family: "RobotoBlack";
