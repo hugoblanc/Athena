@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MediasService } from '../medias.service';
-import { MetaMedia } from '../models/meta-media';
-import { YoutubeService } from '../provider/youtube.service';
+import { ListMetaMedias } from '../models/meta-media/list-meta-medias';
+import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 
 @Component({
   selector: 'app-home',
@@ -10,19 +9,12 @@ import { YoutubeService } from '../provider/youtube.service';
 })
 export class HomePage implements OnInit {
 
-  medias: MetaMedia[];
+  listMetaMedia: ListMetaMedias[];
   videos: [];
-  constructor(public mediasService: MediasService,
-    public youtubeService:YoutubeService) { }
+  constructor(public metaMediaService: MetaMediaService) { }
 
 
   ngOnInit(): void {
-    this.medias = this.mediasService.medias;
-    this.youtubeService.getVideosByPlaylistId('')
-    .subscribe((videos) => {
-      console.log(videos);
-      this.videos = videos.items;
-    });
-
+    this.listMetaMedia = this.metaMediaService.listMetaMedia;
     }
 }

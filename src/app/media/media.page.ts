@@ -1,24 +1,26 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MediasService } from '../medias.service';
-import { Post } from '../models/post';
 import { StyleService } from '../provider/style.service';
-import { MetaMedia } from '../models/meta-media';
+import { MetaMedia } from '../models/meta-media/meta-media';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { NotificationService } from '../provider/notification.service';
+import { ContentService } from '../provider/content/content.service';
+import { IContent } from '../models/content/icontent';
+import { MetaMediaService } from '../provider/meta-media/meta-media.service';
+import { contentServiceProvider } from '../provider/content/content.service.provider';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
  * Author: HugoBlanc |
  * *~~~~~~~~~~~~~~~~~~~
- * Cette page permet d'afficher la liste des articles
+ * Cette page permet d'afficher la liste content d'un meta media donné
  * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 @Component({
   selector: 'app-media',
   templateUrl: './media.page.html',
   styleUrls: ['./media.page.scss'],
+  providers: [contentServiceProvider]
 })
 export class MediaPage implements OnInit {
 
@@ -26,48 +28,47 @@ export class MediaPage implements OnInit {
 
 
   idMedia: number;
-  posts: Post[];
+  contents: IContent[];
   loading = false;
 
   currentMedia: MetaMedia;
-  ratio = screen.width * 0.43;
   constructor(private route: ActivatedRoute,
-    public mediasService: MediasService,
-    public styleService: StyleService,
-    public statusBar: StatusBar,
-    public notificationService: NotificationService) { }
+              public mediasService: ContentService<IContent>,
+              public metaMediaService: MetaMediaService,
+              public styleService: StyleService,
+              public statusBar: StatusBar) {
+
+  }
 
   ngOnInit() {
+    // Récupération de la key du metamedia cible
+    const key = this.route.snapshot.paramMap.get('key');
+
+    // récupération des information du média associé
+    this.currentMedia = this.metaMediaService.currentMetaMedia;
+
+    // Config de la couleur principale du media
+    // TODO: Voir si ça vaut le coup de faire un gradient en fonctoin de la couleur du media
+    // this.styleService.setPrimaryColor();
+
+    // Initiailisation Récupération des données sur wordpress
+    this.initData();
   }
 
 
   ionViewWillEnter() {
 
-    // Initialisation de l'id courant
-    const id = this.route.snapshot.paramMap.get('id');
-    this.idMedia = parseInt(id, 10);
 
-    // récupération des information du média associé
-    this.currentMedia = this.mediasService.medias[this.idMedia];
-
-    // Config de la couleur principale du media
-    this.styleService.setPrimaryColor(this.currentMedia.color);
-
-    const colors = ['#64205d', '#a0c754', '#e6665a'];
-
-
-    // Initiailisation Récupération des données sur wordpress
-    this.initData(this.currentMedia.url);
   }
 
 
-  initData(url: string) {
+  initData() {
     // Appel de la méhode du service
     this.loading = true;
-    this.mediasService.getPostByUrl(url)
-      .subscribe((posts: Post[]) => {
+    this.mediasService.getContents()
+      .subscribe((contents: IContent[]) => {
         // Affectation des données serveur dans notre variable local
-        this.posts = posts;
+        this.contents = contents;
         this.loading = false;
       }, (error) => {
         console.error(error);
@@ -76,26 +77,15 @@ export class MediaPage implements OnInit {
   }
 
   loadMore(event) {
-    this.mediasService.loadMorePosts(this.currentMedia.url)
-      .subscribe((posts: Post[]) => {
-        this.posts = posts;
+    this.mediasService.loadMore()
+      .subscribe((contents: IContent[]) => {
+        this.contents = contents;
         event.target.complete();
       }, (error) => {
         event.target.complete();
       });
   }
 
-
-  /**
-   * Cette methode se charge de set un nouvel état pour les notification du media courant
-   */
-  setNotifSetting() {
-    // On envoi l'état opposé à l'état actuel
-    this.notificationService.switchNotifSetting(this.currentMedia.key, !this.currentMedia.notification)
-      .subscribe((result) => {
-        // On s'en balec 
-      });
-  }
 
   openExternalPage(url: string) {
     window.open(url, '_system’');

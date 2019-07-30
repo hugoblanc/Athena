@@ -1,0 +1,7 @@
+<ion-card ngxMasonryItem class="masonry-item" routerLink="/media/{{metaMediaKey}}/details/{{video.id}}">
+  <ath-img [img]="video" [icon]="'logo-youtube'"></ath-img>
+  <ion-card-header>
+    <ion-card-title [innerHTML]="video.title"></ion-card-title>
+    <ion-card-subtitle>Publiée le {{video.publishedAt | date:'dd/mm/y'}} </ion-card-subtitle>
+  </ion-card-header>
+</ion-card>

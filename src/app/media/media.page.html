@@ -1,49 +1,17 @@
-<!-- <ion-header>
-  <ion-toolbar [color]="currentMedia?.color">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>{{currentMedia?.title}}</ion-title>
-    <ion-buttons *ngIf="currentMedia?.donation" slot="primary">
-      <ion-button (click)="openExternalPage(currentMedia.donation)">
-        <ion-icon slot="icon-only" name="logo-euro"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
- -->
-
-
-
 <ion-content>
-
-  <ion-menu-button></ion-menu-button>
 
   <div>
     <ion-list>
-      <ion-item id="title">
-        <h2>{{currentMedia?.title}}</h2>
-        <ion-button slot="end" fill="clear" color="{{currentMedia?.notification ? 'light' : 'medium'}}"
-          (click)="setNotifSetting()">
-          <ion-icon slot="icon-only" name="notifications"></ion-icon>
-        </ion-button>
-      </ion-item>
-      <ath-loader [loading]="loading"></ath-loader>
-      <ngx-masonry>
-        <ion-card ngxMasonryItem *ngFor="let post of posts" class="masonry-item"
-          routerLink="/media/{{idMedia}}/details/{{post.id}}">
-          <img class="card-img" [ngStyle]="{'min-height': (ratio / post.mediaWidth)*post.mediaHeight+'px' }"
-            *ngIf="post?.mediaUrl" [src]="post.mediaUrl" [alt]="post.embedded.featuredmedia[0].title.rendered">
 
-          <ion-card-header>
-            <!-- <ion-card-subtitle>{{post.type}}</ion-card-subtitle> -->
-            <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ngx-masonry>
+      <ath-media-notif-toggle [media]="currentMedia"></ath-media-notif-toggle>
+      <ath-loader [loading]="loading"></ath-loader>
+      <ath-content-list [contents]="contents"></ath-content-list>
+
     </ion-list>
   </div>
+
+
+
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content loadingText="Chargement ...">
     </ion-infinite-scroll-content>

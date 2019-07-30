@@ -7,7 +7,8 @@ export class StyleService {
 
   constructor() { }
 
-  setPrimaryColor(hexCode: string) {
+  // ** Pas utilisé pour l'instant
+  setPrimaryColor() {
     const themeWrapper = document.querySelector('body');
     themeWrapper.style.setProperty('--primaryColor', '#000000');
   }

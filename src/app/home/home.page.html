@@ -1,34 +1,12 @@
 <ion-content>
   <div>
 
-
-    <ath-horizontal [title]="'Presse écrite'" >
-      <ion-card *ngFor="let media of medias; let i=index" class="card-media" [routerLink]="'/media/'+i" routerLinkActive="active" routerDirection="root"
-      button>
-      <!-- FILTRE OPAQUE -->
-      <div class="grad"></div>
-      <!-- PHOTO MEDIA -->
-      <img [src]="media.logo" alt="media.title">
-      <div class="media-name">{{media.title}}</div>
-    </ion-card>
+    <ath-horizontal *ngFor="let lstMetaMedia of listMetaMedia" [title]="lstMetaMedia.title">
+      <ath-card *ngFor="let metaMedia of lstMetaMedia.metaMedias" [routerLink]="'/media/'+metaMedia.key" button [media]="metaMedia">
+      </ath-card>
     </ath-horizontal>
 
-
-    <ath-horizontal [title]="'Vidéos'" >
-        <ion-card class="card-media" [routerLink]="'/media/'+i" routerLinkActive="active" routerDirection="root"
-        button>
-        <!-- FILTRE OPAQUE -->
-        <div class="grad"></div>
-        <!-- PHOTO MEDIA -->
-        <img [src]="'https://yt3.ggpht.com/a/AGF-l79-QM7NkYV3TVJZK8Jssrj0odFlAOnxsHsD=s288-mo-c-c0xffffffff-rj-k-no'" alt="media.title">
-        <div class="media-name">Osons causer</div>
-      </ion-card>
-      </ath-horizontal>
-  
-
     <img id="fleche" src="assets/tirer.png" alt="tirer">
-
-
 
 
   </div>

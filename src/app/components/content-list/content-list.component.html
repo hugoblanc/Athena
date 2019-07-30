@@ -1,0 +1,16 @@
+<ngx-masonry>
+  <ion-list>
+
+    <span *ngFor="let content of contents" [ngSwitch]="content.contentType">
+      <p *ngSwitchCase="'ARTICLE'">
+        <ath-article-card [article]="content" [metaMediaKey]="metaMediaKey"></ath-article-card>
+      </p>
+      <p *ngSwitchCase="'VIDEO'">
+        <ath-video-card [video]="content" [metaMediaKey]="metaMediaKey"></ath-video-card>
+      </p>
+      <p *ngSwitchDefault>
+        <ath-article-card [article]="content" [metaMediaKey]="metaMediaKey"></ath-article-card>
+      </p>
+    </span>
+  </ion-list>
+</ngx-masonry>

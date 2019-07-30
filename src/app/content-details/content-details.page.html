@@ -1,0 +1,16 @@
+<ion-content>
+  <ion-back-button class="back-button" [text]="''" [defaultHref]="undefined"></ion-back-button>
+
+  <span *ngIf="content?.contentType" [ngSwitch]="content?.contentType">
+    <p *ngSwitchCase="'ARTICLE'">
+      <ath-article-details [post]="content"></ath-article-details>
+    </p>
+    <p *ngSwitchCase="'VIDEO'">
+      <ath-video-details [videoId]="content.id"></ath-video-details>
+    </p>
+    <p *ngSwitchDefault>
+      <ath-article-details [post]="content"></ath-article-details>
+    </p>
+  </span>
+
+</ion-content>
