@@ -56,8 +56,6 @@ export class MediaNotifToggleComponent implements OnInit {
       };
     });
 
-    AlertOption
-
 
     const alert = await this.alertController.create({
       header: 'Notifications',
