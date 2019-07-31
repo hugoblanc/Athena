@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { HttpService } from '../helper/http.service';
 import { ContentService } from './content.service';
 import { MetaMediaService } from '../meta-media/meta-media.service';
+import { WordpressCategory } from '../../models/categories/wordpress-category';
 
 
 /**
@@ -17,9 +18,10 @@ import { MetaMediaService } from '../meta-media/meta-media.service';
 @Injectable({
   providedIn: 'root'
 })
-export class MediasService extends ContentService<Post> {
+export class WordpressService extends ContentService<Post> {
 
   private static WORDPRESS_API = 'wp-json/wp/v2/';
+  private static CATEGORIES = 'categories';
   private static POSTS = 'posts';
   private static SIZE_NUMBER = '?per_page=';
   private static PAGE_NUMBER = '&page=';
@@ -72,11 +74,11 @@ export class MediasService extends ContentService<Post> {
 
   private getDataByUrl(): Observable<any> {
     const url = this.metaMediaService.currentMetaMedia.url +
-      MediasService.WORDPRESS_API +
-      MediasService.POSTS +
-      MediasService.SIZE_NUMBER + this.numberByPage +
-      MediasService.PAGE_NUMBER + this.pageNumber +
-      MediasService.EMBEDDED_CONTENT;
+      WordpressService.WORDPRESS_API +
+      WordpressService.POSTS +
+      WordpressService.SIZE_NUMBER + this.numberByPage +
+      WordpressService.PAGE_NUMBER + this.pageNumber +
+      WordpressService.EMBEDDED_CONTENT;
     return this.http.get(url);
   }
 
@@ -93,12 +95,34 @@ export class MediasService extends ContentService<Post> {
 
   }
 
+  /**
+   * Cette methode permet de renvoyer les categories worpres en virant la moitié toutes les categories
+   * dont le nombre d'article est inférieure a al moyenne des article
+   * En clair il y a souvent plein de categorie inutilisé donc on ne met pas tout pour simplifier pour l'utilisateur
+   */
+  public getNotificationCategories(): Observable<WordpressCategory[]> {
+    const url = this.metaMediaService.currentMetaMedia.url +
+      WordpressService.WORDPRESS_API +
+      WordpressService.CATEGORIES + '?per_page=40';
+    return this.http.get(url).pipe(map((categories: WordpressCategory[]) => {
+      let averageCount = 0;
+      for (const category of categories) {
+        averageCount += category.count;
+      }
+      averageCount = averageCount / categories.length;
+      return categories.filter((category) => {
+        return (category.count > averageCount);
+      }).sort((a: WordpressCategory, b: WordpressCategory) => {
+        return b.count - a.count;
+      });
+    }));
+  }
 
 
   findServerContentById(id: number): Observable<Post> {
     const url = this.metaMediaService.currentMetaMedia.url
-      + MediasService.WORDPRESS_API
-      + MediasService.POST_ONLY
+      + WordpressService.WORDPRESS_API
+      + WordpressService.POST_ONLY
       + id
       + '?_embed';
 

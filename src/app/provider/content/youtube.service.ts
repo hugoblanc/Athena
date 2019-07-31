@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PlaylistItem } from '../../models/content/youtube/playlist-item';
 import { ItemVideo } from '../../models/content/youtube/item-video';
+import { ICategories } from '../../models/categories/icategories';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import { ItemVideo } from '../../models/content/youtube/item-video';
 export class YoutubeService extends ContentService<ItemVideo> {
 
 
-  private static YOUTUBE_KEY = 'AIzaSyC8RK2EYC-nyiUielaLeHxHOu_UhztxF6c';
+  private static YOUTUBE_KEY = 'AIzaSyCKpSKvBresQQ5b8MiH0w2u53iepwP0A5o';
 
   private static BASE_URL = 'https://www.googleapis.com/youtube/v3/';
   private static VIDEO = 'videos';
@@ -76,5 +77,10 @@ export class YoutubeService extends ContentService<ItemVideo> {
       YoutubeService.YOUTUBE_KEY;
     return url;
   }
+
+  getNotificationCategories(): Observable<ICategories[]> {
+    throw new Error('Method not implemented.');
+  };
+
 
 }

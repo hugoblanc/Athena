@@ -1,9 +1,19 @@
 <ion-content>
-  <div>
-    <ath-horizontal *ngFor="let lstMetaMedia of listMetaMedia" [title]="lstMetaMedia.title">
-      <ath-card *ngFor="let metaMedia of lstMetaMedia.metaMedias" [routerLink]="'/media/'+metaMedia.key" button [media]="metaMedia">
-      </ath-card>
-    </ath-horizontal>
 
-  </div>
+  <ion-slides *ngFor="let lstMetaMedia of listMetaMedia" [options]="slidesOpts">
+    <ion-slide>
+    </ion-slide>
+    <ion-slide *ngFor="let metaMedia of lstMetaMedia.metaMedias">
+      <div class="reverba" [ngStyle]="{'background-image': 'url(../'+metaMedia.logo+')'}"></div>
+    </ion-slide>
+    <ion-slide>
+    </ion-slide>
+  </ion-slides>
+
+
+  <ath-horizontal *ngFor="let lstMetaMedia of listMetaMedia" [title]="lstMetaMedia.title">
+    <ath-card *ngFor="let metaMedia of lstMetaMedia.metaMedias" [routerLink]="'/media/'+metaMedia.key" button
+      [media]="metaMedia">
+    </ath-card>
+  </ath-horizontal>
 </ion-content>

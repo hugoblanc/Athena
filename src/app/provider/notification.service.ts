@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { StorageService } from './helper/storage.service';
 import { tap, flatMap, map, filter } from 'rxjs/operators';
 import { concat, Observable, from } from 'rxjs';
-import { MediasService } from './content/medias.service';
+import { WordpressService } from './content/wordpress.service';
 import { MetaMedia } from '../models/meta-media/meta-media';
 import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { Router } from '@angular/router';

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { MetaMedia } from '../../models/meta-media/meta-media';
 import { MetaMediaService } from '../meta-media/meta-media.service';
 import { IContent } from '../../models/content/icontent';
+import { ICategories } from '../../models/categories/icategories';
 
 @Injectable({
   providedIn: 'root'
@@ -45,11 +46,14 @@ export abstract class ContentService<T extends IContent> {
    * Elle devrait aussi stocker les informations nécessaire pour ensuite effetuer des
    * loarMore sans problème
    */
-  abstract  getContents(): Observable<T[]>;
+  abstract getContents(): Observable<T[]>;
 
   /**
    * Cette methode permet de charger plus de contenu (dans les infinite scroll notament)
    * Load more ne peut être appelé qu'après getContentByUrl donc si c'est pas le cas ça pete
    */
   abstract loadMore(): Observable<T[]>;
+
+
+  abstract getNotificationCategories(): Observable<ICategories[]>;
 }

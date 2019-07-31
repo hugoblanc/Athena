@@ -19,5 +19,37 @@
       --background: rgba(0, 0, 0, 0);
       margin-left: 0.5rem;
     }
+
+    ion-slides {
+      height: 250px;
+    }
+
+    .reverba {
+      background-size: cover;
+      border-radius: 4px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      width: 150px !important;
+      height: 150px !important;
+    }
+
+    .reverba::after {
+      transform: scale(.5);
+      top: 20px;
+      left: -56px;
+      content: "";
+      position: absolute;
+      width: 176%;
+      height: 100%;
+      background-image: inherit;
+      background-size: cover;
+      z-index: -1;
+      -webkit-animation: fadeIn 0.2s linear;
+      animation: fadeIn 0.2s linear;
+      -webkit-filter: blur(20px);
+      filter: blur(20px);
+
+    }
   }
 }

@@ -29,7 +29,7 @@ export class ContentDetailsPage implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               public contentService: ContentService<IContent>,
               public metaMediaService: MetaMediaService,
-              private styleService: StyleService,
+              public styleService: StyleService,
               private zone: NgZone) { }
 
   ionViewWillEnter() {
