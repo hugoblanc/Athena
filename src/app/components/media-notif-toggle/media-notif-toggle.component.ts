@@ -53,7 +53,7 @@ export class MediaNotifToggleComponent implements OnInit {
         label: category.name,
         value: category.id,
         check: true
-      };
+      } as AlertInput;
     });
 
 

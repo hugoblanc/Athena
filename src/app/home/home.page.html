@@ -5,9 +5,9 @@
       {{lstMetaMedia.title}}
     </h2>
     <ion-slides [options]="slidesOpts">
-      <ion-slide>
+      <ion-slide id="slide-ref" >
       </ion-slide>
-      <ion-slide *ngFor="let metaMedia of lstMetaMedia.metaMedias" [routerLink]="'/media/'+metaMedia.key">
+      <ion-slide [ngStyle]="{'width': width, 'height': width}" *ngFor="let metaMedia of lstMetaMedia.metaMedias" [routerLink]="'/media/'+metaMedia.key">
         <div class="reverba" [ngStyle]="{'background-image': 'url(../'+metaMedia.logo+')'}"></div>
       </ion-slide>
       <ion-slide>

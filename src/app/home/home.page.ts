@@ -13,6 +13,9 @@ export class HomePage implements OnInit {
   listMetaMedia: ListMetaMedias[];
   videos: [];
 
+
+  width: string;
+
   slidesOpts = {
     slidesPerView: 3,
     coverflowEffect: {
@@ -111,6 +114,18 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.listMetaMedia = this.metaMediaService.listMetaMedia;
+
+    setTimeout(() => {
+
+    }, 2000);
+
+  }
+
+  ionViewDidEnter() {
+    const slideRef = document.getElementById('slide-ref');
+    this.width = slideRef.style.width;
+    console.log(this.width);
+
   }
 
 

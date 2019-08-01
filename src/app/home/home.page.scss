@@ -21,7 +21,8 @@
     }
 
     ion-slides {
-      height: 250px;
+      height: 20vh;
+      overflow: visible;
     }
 
 
@@ -32,31 +33,34 @@
     }
 
     .reverba {
-      background-size: cover;
+      background-size: contain;
+      background-repeat: no-repeat;
       border-radius: 4px;
       text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-      width: 150px !important;
-      height: 150px !important;
+      width: 100%;
+      height: inherit;
     }
 
-    .reverba::after {
-      transform: scale(.5);
-      top: 20px;
-      left: -56px;
-      content: "";
-      position: absolute;
-      width: 176%;
-      height: 100%;
-      background-image: inherit;
-      background-size: cover;
-      z-index: -1;
-      -webkit-animation: fadeIn 0.2s linear;
-      animation: fadeIn 0.2s linear;
-      -webkit-filter: blur(20px);
-      filter: blur(20px);
+    // .reverba::after {
 
-    }
+    //   transform: scale(0.9);
+    //   // top: 67px;
+    //   left: 0px;
+    //   content: "";
+    //   position: absolute;
+    //   width: inherit;
+    //   height: inherit;
+    //   background-image: inherit;
+    //   background-size: contain;
+    //   background-repeat: no-repeat;
+    //   // z-index: -1;
+    //   -webkit-animation: fadeIn 0.2s linear;
+    //   animation: fadeIn 0.2s linear;
+    //   // -webkit-filter: blur(20px);
+    //   // filter: blur(6px);
+
+    //   border: 2px solid black;
+
+    // }
   }
 }
