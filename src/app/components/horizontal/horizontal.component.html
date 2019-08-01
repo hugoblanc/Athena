@@ -1,7 +1,8 @@
-<h2 *ngIf="title" class="section">
-  {{title}}
-</h2>
-<div id="scroll">
-  <ng-content>
-  </ng-content>
+<div>
+
+  <h2 class="section">
+    {{listMetaMedia?.title}}
+  </h2>
+
+  <ath-slides3d [metaMedias]="listMetaMedia.metaMedias"></ath-slides3d>
 </div>

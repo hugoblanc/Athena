@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
 
 @Component({
   selector: 'ath-horizontal',
@@ -7,13 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HorizontalComponent implements OnInit {
 
-  @Input() title: string;
+  @Input() listMetaMedia: ListMetaMedias;
 
-  width: number;
+
   constructor() { }
 
+
   ngOnInit() {
-    this.width = screen.width;
+
   }
+
 
 }

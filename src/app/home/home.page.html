@@ -1,22 +1,7 @@
 <ion-content>
 
   <div *ngFor="let lstMetaMedia of listMetaMedia">
-    <h2 *ngIf="lstMetaMedia?.title" class="section">
-      {{lstMetaMedia.title}}
-    </h2>
-    <ion-slides [options]="slidesOpts">
-      <ion-slide id="slide-ref" >
-      </ion-slide>
-      <ion-slide [ngStyle]="{'width': width, 'height': width}" *ngFor="let metaMedia of lstMetaMedia.metaMedias" [routerLink]="'/media/'+metaMedia.key">
-        <div>
-          <img class="reverba" [src]="metaMedia.logo" />
-          <div class="image-container" [ngStyle]="{'background-image': 'url(../'+metaMedia.logo+')'}"></div>
-        </div>
-        <!-- <div class="reverba" [ngStyle]="{'background-image': 'url(../'+metaMedia.logo+')'}"></div> -->
-      </ion-slide>
-      <ion-slide>
-      </ion-slide>
-    </ion-slides>
+    <ath-horizontal [listMetaMedia]="lstMetaMedia"></ath-horizontal>
   </div>
 
   <!--

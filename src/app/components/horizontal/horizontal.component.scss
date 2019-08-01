@@ -6,13 +6,4 @@
     margin-left: 0.5rem;
     margin-top: 1rem;
   }
-
-  #scroll {
-    overflow-x: auto;
-    white-space: nowrap;
-    ::-webkit-scrollbar {
-      display: none;
-    }
-
-  }
 }
