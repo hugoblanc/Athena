@@ -116,15 +116,14 @@ export class HomePage implements OnInit {
     this.listMetaMedia = this.metaMediaService.listMetaMedia;
 
     setTimeout(() => {
-
-    }, 2000);
+      const slideRef = document.getElementById('slide-ref');
+      this.width = slideRef.style.width;
+      console.log(this.width);
+    }, 1000);
 
   }
 
   ionViewDidEnter() {
-    const slideRef = document.getElementById('slide-ref');
-    this.width = slideRef.style.width;
-    console.log(this.width);
 
   }
 

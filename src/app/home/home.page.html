@@ -8,7 +8,11 @@
       <ion-slide id="slide-ref" >
       </ion-slide>
       <ion-slide [ngStyle]="{'width': width, 'height': width}" *ngFor="let metaMedia of lstMetaMedia.metaMedias" [routerLink]="'/media/'+metaMedia.key">
-        <div class="reverba" [ngStyle]="{'background-image': 'url(../'+metaMedia.logo+')'}"></div>
+        <div>
+          <img class="reverba" [src]="metaMedia.logo" />
+          <div class="image-container" [ngStyle]="{'background-image': 'url(../'+metaMedia.logo+')'}"></div>
+        </div>
+        <!-- <div class="reverba" [ngStyle]="{'background-image': 'url(../'+metaMedia.logo+')'}"></div> -->
       </ion-slide>
       <ion-slide>
       </ion-slide>
