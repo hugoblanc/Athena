@@ -10,8 +10,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +24,7 @@ import { HTTP } from '@ionic-native/http/ngx';
   providers: [
     StatusBar,
     SplashScreen,
-    FirebaseLib,
+    FirebaseX,
     HTTP,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

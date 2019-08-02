@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { StorageService } from './helper/storage.service';
-import { tap, flatMap, map, filter } from 'rxjs/operators';
-import { concat, Observable, from } from 'rxjs';
-import { WordpressService } from './content/wordpress.service';
-import { MetaMedia } from '../models/meta-media/meta-media';
-import { FirebaseLib } from '@ionic-native/firebase-lib/ngx';
 import { Router } from '@angular/router';
+import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+import { concat, from, Observable } from 'rxjs';
+import { filter, flatMap, map, tap } from 'rxjs/operators';
+import { MetaMedia } from '../models/meta-media/meta-media';
+import { StorageService } from './helper/storage.service';
 import { MetaMediaService } from './meta-media/meta-media.service';
 
 @Injectable({
@@ -22,7 +21,7 @@ export class NotificationService {
   constructor(
     private ss: StorageService,
     private metaMediaService: MetaMediaService,
-    private firebaseLib: FirebaseLib,
+    private firebaseX: FirebaseX,
     private router: Router) {
 
   }
@@ -38,7 +37,7 @@ export class NotificationService {
    * Initialisation de l'action a effectuer à l'ouverture d'une notification
    */
   public initOpenNotification(): void {
-    this.firebaseLib.onNotificationOpen()
+    this.firebaseX.onMessageReceived()
       .subscribe((notification) => {
         console.log(notification);
         if (notification.tap) {
@@ -65,6 +64,11 @@ export class NotificationService {
         filter((diff) => (diff.length > 0)),
         // Si on a des diff, alors on subscribe atout les topics
         flatMap((diff) => this.subscribeAll(diff)));
+
+
+    this.firebaseX.subscribe('test').then(() => {
+
+    });
 
     return makeDiff$;
   }
@@ -157,14 +161,14 @@ export class NotificationService {
 
 
   private subscribe(topic: string): Observable<any> {
-    return from(this.firebaseLib.subscribe(topic))
+    return from(this.firebaseX.subscribe(topic))
       .pipe(
         tap(() => this.notificationTopics[topic] = true),
         tap(() => this.genericMetaMediaIndSetter(true, topic)),
         flatMap(() => this.ss.editObject(NotificationService.NOTIFICATIONS_TOPICS, topic, true)));
   }
   private unsubscribe(topic: string): Observable<any> {
-    return from(this.firebaseLib.unsubscribe(topic))
+    return from(this.firebaseX.unsubscribe(topic))
       .pipe(
         tap(() => this.notificationTopics[topic] = false),
         tap(() => this.genericMetaMediaIndSetter(false, topic)),
