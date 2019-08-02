@@ -36,8 +36,6 @@ export class AppComponent implements OnInit {
   // La liste des différent médias que l'on veut afficher dans le menu
   appPages: ListMetaMedias[];
 
-  ionDid;
-
   /**
    * La methode qui est automatiquement appelé au démarrage du composant
    */

@@ -13,6 +13,7 @@ import { ArticleCardComponent } from './article-card/article-card.component';
 import { VideoCardComponent } from './video-card/video-card.component';
 import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.component';
 import { Slides3dComponent } from './slides3d/slides3d.component';
+import { SectionComponent } from './section/section.component';
 
 @NgModule({
   declarations: [AthLoaderComponent,
@@ -24,7 +25,8 @@ import { Slides3dComponent } from './slides3d/slides3d.component';
     ArticleCardComponent,
     VideoCardComponent,
     YoutubeIframeComponent,
-    Slides3dComponent
+    Slides3dComponent,
+    SectionComponent
   ],
   exports: [AthLoaderComponent,
     HorizontalComponent,
@@ -35,7 +37,8 @@ import { Slides3dComponent } from './slides3d/slides3d.component';
     ArticleCardComponent,
     VideoCardComponent,
     YoutubeIframeComponent,
-    Slides3dComponent
+    Slides3dComponent,
+    SectionComponent
   ],
   imports: [
     CommonModule,

@@ -1,9 +1,11 @@
 <ion-content>
-  <ion-back-button class="back-button" [text]="''" defaultHref="home"></ion-back-button>
 
-  <ion-button class="right-fixed" fill="clear" color="{{!styleService.isLight ? 'light' : 'medium'}}" (click)="switchNightMode()">
-    <ion-icon slot="icon-only" name="moon"></ion-icon>
-  </ion-button>
+  <ion-item id="header" slot="fixed">
+    <ion-back-button slot="start" class="back-button" [text]="''" defaultHref="home"></ion-back-button>
+    <ion-button slot="end" class="right-fixed" fill="clear" color="{{!styleService.isLight ? 'light' : 'medium'}}" (click)="switchNightMode()">
+      <ion-icon slot="icon-only" name="moon"></ion-icon>
+    </ion-button>
+  </ion-item>
 
   <span *ngIf="content?.contentType" [ngSwitch]="content?.contentType">
     <p *ngSwitchCase="'ARTICLE'">

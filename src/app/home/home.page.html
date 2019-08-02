@@ -5,13 +5,30 @@
     </ion-button>
     <ion-label id="main-title">Athena</ion-label>
     <ion-button slot="end" fill="clear" color="light" size="small">
-        <ion-icon slot="icon-only" name="contact"></ion-icon>
+      <ion-icon slot="icon-only" name="contact"></ion-icon>
     </ion-button>
   </ion-item>
 
   <div *ngFor="let lstMetaMedia of listMetaMedia">
     <ath-horizontal [listMetaMedia]="lstMetaMedia"></ath-horizontal>
   </div>
+
+  <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+
+
+    <ath-section title="Amélioration" ></ath-section>
+
+    <ion-item *ngFor="let text of items" >
+      <ion-label class="ion-text-wrap">
+        {{text}}
+      </ion-label>
+      <ion-reorder slot="end"></ion-reorder>
+    </ion-item>
+
+  </ion-reorder-group>
+  <ion-button *ngIf="showBtn" (click)="showConfirmation()" expand="block" fill="clear" color="light" shape="round">
+    Envoyer mon classement
+  </ion-button>
 
   <!--
   <ath-horizontal *ngFor="let lstMetaMedia of listMetaMedia" [title]="lstMetaMedia.title">
