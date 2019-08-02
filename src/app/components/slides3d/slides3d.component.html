@@ -2,8 +2,9 @@
   <ion-slide id="slide-ref">
   </ion-slide>
   <ion-slide *ngFor="let metaMedia of metaMedias" [routerLink]="'/media/'+metaMedia.key">
-    <div>
+    <div class="card-container">
       <img class="reverba" [src]="metaMedia.logo" />
+      <div class="media-name">{{metaMedia?.title}}</div>
       <div class="image-container" [ngStyle]="{'background-image': 'url(../'+metaMedia.logo+')'}"></div>
     </div>
   </ion-slide>

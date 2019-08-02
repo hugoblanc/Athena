@@ -64,12 +64,8 @@ export class Slides3dComponent implements OnInit {
           if (Math.abs(rotateY) < 0.001) { rotateY = 0; }
           if (Math.abs(rotateX) < 0.001) { rotateX = 0; }
 
-          // if (rotateY === 0) {
-          //   translateZ = 200;
-          // }
           const slideTransform = `translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
-          console.log(i + ' ' + slideTransform);
 
 
           $slideEl.transform(slideTransform);

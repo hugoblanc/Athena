@@ -2,11 +2,13 @@
   ion-content {
     --padding-top: 50px;
 
-    #fleche {
-      width: 80%;
-      height: auto;
-      margin-top: 10rem;
-      margin-left: -1rem;
+
+    #header-item{
+      --padding-start: 0px;
+      #main-title{
+        font-family: RobotoBlack;
+        font-size: 2rem;
+      }
     }
 
     ath-card {
