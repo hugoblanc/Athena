@@ -7,6 +7,7 @@ import { IContent } from '../../models/content/icontent';
 import { AlertController } from '@ionic/angular';
 import { ICategories } from '../../models/categories/icategories';
 import { AlertInput } from '@ionic/core';
+import { subscribeOn } from 'rxjs/operators';
 
 @Component({
   selector: 'ath-media-notif-toggle',
@@ -31,16 +32,6 @@ export class MediaNotifToggleComponent implements OnInit {
       });
   }
 
-  /**
-   * Cette methode se charge de set un nouvel état pour les notification du media courant
-   */
-  setNotifSetting() {
-    // On envoi l'état opposé à l'état actuel
-    this.notificationService.switchNotifSetting(this.media.key, !this.media.notification)
-      .subscribe((result) => {
-        // On s'en balec
-      });
-  }
 
   async createAlertNotif() {
     if (this.categories == null || this.categories.length === 0) {
@@ -52,8 +43,16 @@ export class MediaNotifToggleComponent implements OnInit {
         type: 'checkbox',
         label: category.name,
         value: category.id,
-        checked: true
+        checked: this.notificationService.isCategoryActivated(this.media.key, category.id),
       } as AlertInput;
+    });
+
+    inputs.unshift({
+      name: 'all',
+      type: 'checkbox',
+      label: 'Toutes les notifs',
+      value: 'all',
+      checked: this.media.notification
     });
 
 
@@ -71,8 +70,11 @@ export class MediaNotifToggleComponent implements OnInit {
           }
         }, {
           text: 'Ok',
-          handler: () => {
-            console.log('Confirm Ok');
+          handler: (data) => {
+            this.notificationService.dealWithUserChoice(this.media, data, [...this.categories]).subscribe((data) => {
+              console.log('Data saved');
+              console.log(data);
+            });
           }
         }
       ]

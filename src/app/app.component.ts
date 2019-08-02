@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -30,7 +30,8 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private metaMediaService: MetaMediaService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private zone: NgZone
   ) { }
 
   // La liste des différent médias que l'on veut afficher dans le menu
@@ -47,6 +48,8 @@ export class AppComponent implements OnInit {
 
 
   initializeApp() {
+    // Ici on récupère les media stocké en local dans le media service
+    this.appPages = this.metaMediaService.listMetaMedia;
 
     // Ici on gères les accès au fonciontnalité native du téléphone
     this.platform.ready().then(() => {
@@ -64,18 +67,23 @@ export class AppComponent implements OnInit {
           console.log(datas);
         });
 
+      // Et on vérifie aussi qu'il n'y a pas des nouveau media sur le serveur
+      this.metaMediaService.getMetaMediaList()
+        .subscribe((metaMedias) => {
+          // S'il y avait des nouveau média il sont maintenant stocké dans les ".medias;" locaux du service
+          // Voir getMedia pour plus d'informations
+          this.zone.run(() => {
+            this.appPages = this.metaMediaService.listMetaMedia;
+
+            this.notificationService.initData()
+              .subscribe((datas) => {
+                console.log(datas);
+              });
+          });
+        });
     });
 
-    // Ici on récupère les media stocké en local dans le media service
-    this.appPages = this.metaMediaService.listMetaMedia;
 
-    // Et on vérifie aussi qu'il n'y a pas des nouveau media sur le serveur
-    this.metaMediaService.getMetaMediaList()
-      .subscribe((metaMedias) => {
-        // S'il y avait des nouveau média il sont maintenant stocké dans les ".medias;" locaux du service
-        // Voir getMedia pour plus d'informations
-        this.appPages = this.metaMediaService.listMetaMedia;
-      });
 
 
 

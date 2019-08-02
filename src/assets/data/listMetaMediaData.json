@@ -34,18 +34,5 @@
         "type": "WORDPRESS"
       }
     ]
-  },
-  {
-    "title": "Vidéos",
-    "metaMedias": [
-      {
-        "key": "osonscauser",
-        "url": "https://lvsl.fr/",
-        "title": "Osons causer",
-        "donation": "https://lvsl.fr/faire-un-don/",
-        "logo": "https://yt3.ggpht.com/a/AGF-l79-QM7NkYV3TVJZK8Jssrj0odFlAOnxsHsD=s288-mo-c-c0xffffffff-rj-k-no",
-        "type": "YOUTUBE"
-      }
-    ]
   }
 ]

@@ -1,6 +1,6 @@
 <ion-content>
 
-  <ion-item id="header" slot="fixed">
+  <ion-item id="header" slot="fixed" lines="none" >
     <ion-back-button slot="start" class="back-button" [text]="''" defaultHref="home"></ion-back-button>
     <ion-button slot="end" class="right-fixed" fill="clear" color="{{!styleService.isLight ? 'light' : 'medium'}}" (click)="switchNightMode()">
       <ion-icon slot="icon-only" name="moon"></ion-icon>
