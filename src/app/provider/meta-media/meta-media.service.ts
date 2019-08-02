@@ -11,16 +11,17 @@ import { HttpService } from '../helper/http.service';
 })
 export class MetaMediaService {
 
+  constructor(private http: HttpService) { }
+  public static BASE_URL = 'https://athena-api.caprover.athena-app.fr/list-meta-media';
+
   public listMetaMedia: ListMetaMedias[] = listMetaMediaData;
   currentMetaMedia: MetaMedia;
 
-  constructor(private http: HttpService) { }
-
-  public getMediaList(): Observable<ListMetaMedias[]> {
-    return this.http.get('http://192.168.1.20:3000/media')
+  public getMetaMediaList(): Observable<ListMetaMedias[]> {
+    return this.http.get(MetaMediaService.BASE_URL)
       .pipe(tap((data: ListMetaMedias[]) => {
-        if (data && data.length > 3) {
-          this.listMetaMedia = data;
+        if (data && data.length > 0) {
+          this.listMetaMedia = data.map((lstMetaMedia) => new ListMetaMedias(lstMetaMedia));
         }
       }));
   }
