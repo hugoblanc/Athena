@@ -234,6 +234,9 @@ export class NotificationService {
 
   private genericMetaMediaIndSetter(status: boolean, topic: string) {
     const metaMedia = this.metaMediaService.findAndSetMediaByKey(topic);
+    if (!status) {
+      status = true;
+    }
     metaMedia.notification = status;
   }
 
