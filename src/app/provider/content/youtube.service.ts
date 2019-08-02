@@ -14,7 +14,8 @@ import { ICategories } from '../../models/categories/icategories';
 export class YoutubeService extends ContentService<ItemVideo> {
 
 
-  private static YOUTUBE_KEY = 'AIzaSyCKpSKvBresQQ5b8MiH0w2u53iepwP0A5o';
+  // private static YOUTUBE_KEY = 'AIzaSyBrjQzobaxuI-5Xl19035Am37IVF3sWdt4';
+  private static YOUTUBE_KEY = 'AIzaSyA1YYpnWwVcujgoqUk9Hmgqh9HkQm-nfHI';
 
   private static BASE_URL = 'https://www.googleapis.com/youtube/v3/';
   private static VIDEO = 'videos';

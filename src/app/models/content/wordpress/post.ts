@@ -68,10 +68,10 @@ export class Post implements IContent {
       this.publishedAt = this.date;
 
       const startPattern = 'https://www.youtube.com/embed/';
-      const endPattern = '?feature=oembed';
+      const endPattern = '?';
       const indexStart = this.content.rendered.indexOf(startPattern);
       if (indexStart !== -1) {
-        const endIndex = this.content.rendered.indexOf(endPattern);
+        const endIndex = this.content.rendered.indexOf(endPattern, indexStart);
         this.videoID = this.content.rendered.substring(indexStart + startPattern.length, endIndex);
       }
 

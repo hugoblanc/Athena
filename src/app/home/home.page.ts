@@ -19,17 +19,6 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.listMetaMedia = this.metaMediaService.listMetaMedia;
-
-    setTimeout(() => {
-      const slideRef = document.getElementById('slide-ref');
-      this.width = slideRef.style.width;
-      console.log(this.width);
-    }, 1000);
-
-  }
-
-  ionViewDidEnter() {
-
   }
 
 

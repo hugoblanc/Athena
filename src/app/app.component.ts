@@ -72,13 +72,12 @@ export class AppComponent implements OnInit {
     this.appPages = this.metaMediaService.listMetaMedia;
 
     // Et on vérifie aussi qu'il n'y a pas des nouveau media sur le serveur
-    // TODO: Décommenter ce truc quand ready
-    // this.mediasService.getMediaList()
-    //   .subscribe((metaMedias) => {
-    //     // S'il y avait des nouveau média il sont maintenant stocké dans les ".medias;" locaux du service
-    //     // Voir getMedia pour plus d'informations
-    //     this.appPages = this.mediasService.medias;
-    //   });
+    this.metaMediaService.getMetaMediaList()
+      .subscribe((metaMedias) => {
+        // S'il y avait des nouveau média il sont maintenant stocké dans les ".medias;" locaux du service
+        // Voir getMedia pour plus d'informations
+        this.appPages = this.metaMediaService.listMetaMedia;
+      });
 
 
 

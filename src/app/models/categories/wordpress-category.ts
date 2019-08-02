@@ -5,4 +5,10 @@ export class WordpressCategory implements ICategories {
   public name: string;
   public slug: string;
   public count: number;
+
+  constructor(input: WordpressCategory) {
+    if (input != null) {
+      Object.assign(this, input);
+    }
+  }
 }

@@ -52,7 +52,7 @@ export class MediaNotifToggleComponent implements OnInit {
         type: 'checkbox',
         label: category.name,
         value: category.id,
-        check: true
+        checked: true
       } as AlertInput;
     });
 
@@ -63,7 +63,7 @@ export class MediaNotifToggleComponent implements OnInit {
       inputs,
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Annuler',
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
