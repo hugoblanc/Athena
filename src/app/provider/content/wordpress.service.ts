@@ -34,8 +34,6 @@ export class WordpressService extends ContentService<Post> {
     super(metaMediaService);
   }
 
-
-  posts: Post[];
   pageNumber = 1;
   numberByPage = 8;
 
@@ -50,8 +48,8 @@ export class WordpressService extends ContentService<Post> {
     this.pageNumber = 1;
     return this.getDataByUrl()
       .pipe(map((data: Post[]) => {
-        this.posts = data.map((post) => new Post(post));
-        return this.posts;
+        this.contents = data.map((post) => new Post(post));
+        return this.contents;
       }));
   }
 
@@ -63,11 +61,11 @@ export class WordpressService extends ContentService<Post> {
           const freshPost = data.map((post) => {
             return new Post(post);
           });
-          this.posts = [...this.posts, ...freshPost];
+          this.contents = [...this.contents, ...freshPost];
         } catch (error) {
           throw error;
         }
-        return this.posts;
+        return this.contents;
       }));
   }
 
