@@ -77,7 +77,7 @@ export class WordpressService extends ContentService<Post> {
       WordpressService.SIZE_NUMBER + this.numberByPage +
       WordpressService.PAGE_NUMBER + this.pageNumber +
       WordpressService.EMBEDDED_CONTENT;
-    return this.http.get(url);
+    return this.http.get(url, true);
   }
 
   public getContentById(id: number): Observable<Post> {
@@ -102,7 +102,7 @@ export class WordpressService extends ContentService<Post> {
     const url = this.metaMediaService.currentMetaMedia.url +
       WordpressService.WORDPRESS_API +
       WordpressService.CATEGORIES + '?per_page=40';
-    return this.http.get(url).pipe(map((categories: WordpressCategory[]) => {
+    return this.http.get(url, true).pipe(map((categories: WordpressCategory[]) => {
       let averageCount = 0;
       for (const category of categories) {
         averageCount += category.count;
@@ -124,7 +124,7 @@ export class WordpressService extends ContentService<Post> {
       + id
       + '?_embed';
 
-    return this.http.get(url)
+    return this.http.get(url, true)
       .pipe(map((data: Post) => {
         return new Post(data);
       }));

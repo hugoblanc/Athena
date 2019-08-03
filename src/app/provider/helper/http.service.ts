@@ -21,10 +21,11 @@ export class HttpService {
    * Cette methode se charge d'appeler le bon service pour faire les requete
    * Sur mobile on doit utiliser un appel natif car le cors nous bloque sur Wordpress API
    * @param url l'url a get
+   * @param ignoreCors paramètre optionel qui indique si on doit utiliser le plugin natif pour ignorer le cors sur IOS
    */
-  get(url: string): Observable<any> {
+  get(url: string, ignoreCors?: boolean): Observable<any> {
     let get$;
-    if (this.develop) {
+    if (this.develop || !ignoreCors) {
       get$ = this.developGet(url);
     } else {
       get$ = this.nativeGet(url);
