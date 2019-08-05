@@ -34,6 +34,18 @@ export class HttpService {
   }
 
 
+  post(url: string, body?: any, ignoreCors?: boolean): Observable<any> {
+    let post$;
+    if (this.develop || !ignoreCors) {
+      post$ = this.developPost(url, body);
+    } else {
+      post$ = this.nativePost(url, body);
+    }
+    return post$;
+  }
+
+
+
   /**
    * La methode qui get en natif
    * @param url L'url a get
@@ -42,7 +54,6 @@ export class HttpService {
     return from(this.nativeHttp.get(url, {}, {}))
       .pipe(map((data: HTTPResponse) => JSON.parse(data.data)));
   }
-
   /**
    * La methode qui call en broswer
    * @param url l'url a get
@@ -50,4 +61,24 @@ export class HttpService {
   private developGet(url: string) {
     return this.developHttp.get(url);
   }
+
+  /**
+   * La methode qui post en natif
+   * @param url L'url a post
+   * @param body le body a poster
+   */
+  private nativePost(url: string, body?: any) {
+    return from(this.nativeHttp.post(url, body, {}))
+      .pipe(map((data: HTTPResponse) => JSON.parse(data.data)));
+  }
+  /**
+   * La methode qui call en broswer
+   * @param url l'url a get
+   * @param body le body a poster
+   */
+  private developPost(url: string, body?: any) {
+    return this.developHttp.post(url, body);
+  }
+
+
 }

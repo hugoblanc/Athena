@@ -1,0 +1,15 @@
+<ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+
+  <ath-section title="Amélioration"></ath-section>
+
+  <ion-item *ngFor="let issue of issues">
+    <ion-label class="ion-text-wrap">
+      {{issue.title}}
+    </ion-label>
+    <ion-reorder slot="end"></ion-reorder>
+  </ion-item>
+
+</ion-reorder-group>
+<ion-button *ngIf="showBtn" (click)="showConfirmation()" expand="block" fill="clear" color="light" shape="round">
+  Envoyer mon classement
+</ion-button>

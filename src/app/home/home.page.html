@@ -13,27 +13,25 @@
     <ath-horizontal [listMetaMedia]="lstMetaMedia"></ath-horizontal>
   </div>
 
-  <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+  <ath-reorder></ath-reorder>
 
 
-    <ath-section title="Amélioration" ></ath-section>
 
-    <ion-item *ngFor="let text of items" >
-      <ion-label class="ion-text-wrap">
-        {{text}}
-      </ion-label>
-      <ion-reorder slot="end"></ion-reorder>
-    </ion-item>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="createIssue()">
+        <ion-icon name="hammer"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 
-  </ion-reorder-group>
-  <ion-button *ngIf="showBtn" (click)="showConfirmation()" expand="block" fill="clear" color="light" shape="round">
-    Envoyer mon classement
-  </ion-button>
-
-  <!--
-  <ath-horizontal *ngFor="let lstMetaMedia of listMetaMedia" [title]="lstMetaMedia.title">
-    <ath-card *ngFor="let metaMedia of lstMetaMedia.metaMedias" [routerLink]="'/media/'+metaMedia.key" button
-      [media]="metaMedia">
-    </ath-card>
-  </ath-horizontal> -->
 </ion-content>
+
+
+
+
+
+<!--
+<ath-horizontal *ngFor="let lstMetaMedia of listMetaMedia" [title]="lstMetaMedia.title">
+  <ath-card *ngFor="let metaMedia of lstMetaMedia.metaMedias" [routerLink]="'/media/'+metaMedia.key" button
+    [media]="metaMedia">
+  </ath-card>
+</ath-horizontal> -->

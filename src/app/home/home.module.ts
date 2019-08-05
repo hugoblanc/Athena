@@ -1,12 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-import { HomePage } from './home.page';
-import { ComponentsModule } from '../components/components.module';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
+import { IonicModule } from '@ionic/angular';
+
+import { ComponentsModule } from '../components/components.module';
+import { HomePage } from './home.page';
+import { IssueModule } from '../issue/issue.module';
+
 
 @NgModule({
   imports: [
@@ -19,7 +21,8 @@ import { FirebaseX } from '@ionic-native/firebase-x/ngx';
         component: HomePage
       }
     ]),
-    ComponentsModule
+    ComponentsModule,
+    IssueModule
   ],
   declarations: [HomePage],
   providers: [FirebaseX]

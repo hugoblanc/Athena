@@ -14,6 +14,8 @@ import { VideoCardComponent } from './video-card/video-card.component';
 import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.component';
 import { Slides3dComponent } from './slides3d/slides3d.component';
 import { SectionComponent } from './section/section.component';
+import { ReorderComponent } from './reorder/reorder.component';
+import { HeaderModalComponent } from './header-modal/header-modal.component';
 
 @NgModule({
   declarations: [AthLoaderComponent,
@@ -26,7 +28,9 @@ import { SectionComponent } from './section/section.component';
     VideoCardComponent,
     YoutubeIframeComponent,
     Slides3dComponent,
-    SectionComponent
+    SectionComponent,
+    ReorderComponent,
+    HeaderModalComponent
   ],
   exports: [AthLoaderComponent,
     HorizontalComponent,
@@ -38,7 +42,9 @@ import { SectionComponent } from './section/section.component';
     VideoCardComponent,
     YoutubeIframeComponent,
     Slides3dComponent,
-    SectionComponent
+    SectionComponent,
+    ReorderComponent,
+    HeaderModalComponent
   ],
   imports: [
     CommonModule,
