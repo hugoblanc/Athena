@@ -2,39 +2,44 @@
 
   <ath-header-modal [title]="'Amélioration'"></ath-header-modal>
 
-  <div [formGroup]="validateForm">
+  <form id="form-issue" [formGroup]="validateForm" (ngSubmit)="postIssue()">
 
-    <ion-item>
-      <ion-label position="floating">Titre</ion-label>
-      <ion-input type="text" formControlName="title"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Description</ion-label>
-      <ion-textarea formControlName="body"></ion-textarea>
-    </ion-item>
 
     <ion-list>
-        <ion-radio-group formControlName="labels">
-          <ion-list-header>
-            Votre remarque:
-          </ion-list-header>
+      <ion-item>
+        <ion-label class="roboto-black" color="primary" position="floating">Titre</ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
 
-          <ion-item>
-            <ion-label>Signaler un bug</ion-label>
-            <ion-radio value="bug"></ion-radio>
-          </ion-item>
+      <ion-item>
+        <ion-label class="roboto-black" color="primary" position="floating">Description</ion-label>
+        <ion-textarea formControlName="body"></ion-textarea>
+      </ion-item>
 
-          <ion-item>
-            <ion-label>Proposer une fonctionalité</ion-label>
-            <ion-radio  value="feature"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-list>
-  </div>
+      <ion-radio-group color="primary" formControlName="labels">
+        <ion-list-header color="primary">
+          Votre remarque:
+        </ion-list-header>
 
-  <ion-button (click)="postIssue()">
-    Envoyer
-  </ion-button>
+        <ion-item>
+          <ion-label>Signaler un bug</ion-label>
+          <ion-radio value="bug"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Proposer une fonctionalité</ion-label>
+          <ion-radio value="feature"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+    <div id="btn-container">
+      <ion-button type="submit" [disabled]="!validateForm.valid">
+        Envoyer
+      </ion-button>
+    </div>
+  </form>
+
+
 
 </ion-content>

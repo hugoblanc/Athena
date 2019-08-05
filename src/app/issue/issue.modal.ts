@@ -19,14 +19,23 @@ export class IssueModalPage implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.formBuilder.group({
-      title: new FormControl('', Validators.required),
-      body: new FormControl('', Validators.required),
-      labels: new FormControl('', Validators.required)
+      title: new FormControl('', {
+        validators: Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(80)]),
+        updateOn: 'blur'
+      }),
+      body: new FormControl('', {
+        validators: Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(700)]),
+        updateOn: 'blur'
+      }),
+      labels: new FormControl('', {
+        validators: Validators.required
+      })
     });
   }
 
   postIssue() {
-    const formValue = this.validateForm.value;
+    const formValue: any = {};
+    Object.assign(formValue, this.validateForm.value);
     formValue.labels = [formValue.labels];
     const issue: Issue = formValue;
     this.githubService.postIssue(issue)
