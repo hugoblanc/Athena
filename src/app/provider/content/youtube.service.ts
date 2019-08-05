@@ -42,7 +42,6 @@ export class YoutubeService extends ContentService<ItemVideo> {
 
   findServerContentById(id: number): Observable<ItemVideo> {
     const url = this.creatUrl(YoutubeService.VIDEO, YoutubeService.VIDEO_ID + 'UUVeMw72tepFl1Zt5fvf9QKQ');
-
     return this.http.get(url)
       .pipe(map((data: any) => {
         return new ItemVideo(data.items[0]);
@@ -74,6 +73,7 @@ export class YoutubeService extends ContentService<ItemVideo> {
       YoutubeService.SNIPPET +
       '&' +
       idPart +
+      '&' +
       YoutubeService.KEY +
       YoutubeService.YOUTUBE_KEY;
     return url;
@@ -81,7 +81,7 @@ export class YoutubeService extends ContentService<ItemVideo> {
 
   getNotificationCategories(): Observable<ICategories[]> {
     throw new Error('Method not implemented.');
-  };
+  }
 
 
 }
