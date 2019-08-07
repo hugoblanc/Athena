@@ -8,11 +8,11 @@
   </ion-item>
 
   <span *ngIf="content?.contentType" [ngSwitch]="content?.contentType">
-    <p *ngSwitchCase="'ARTICLE'">
+    <p *ngSwitchCase="'WORDPRESS'">
       <ath-article-details [post]="content"></ath-article-details>
     </p>
-    <p *ngSwitchCase="'VIDEO'">
-      <ath-video-details [videoId]="content.id"></ath-video-details>
+    <p *ngSwitchCase="'YOUTUBE'">
+      <ath-video-details [videoId]="content.contentId"></ath-video-details>
     </p>
     <p *ngSwitchDefault>
       <ath-article-details [post]="content"></ath-article-details>

@@ -1,5 +1,5 @@
-import { ContentType } from './content-type.enum';
+import { MetaMediaType } from '../meta-media/meta-media-type.enum';
 
 export interface ItypedContent {
-  contentType: ContentType;
+  contentType: MetaMediaType;
 }

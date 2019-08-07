@@ -3,6 +3,7 @@ import { Embedded } from './embedded';
 import { ContentType } from '../content-type.enum';
 import { IContent } from '../icontent';
 import { Iimage } from '../Iimage';
+import { MetaMediaType } from '../../meta-media/meta-media-type.enum';
 
 export class Post implements IContent {
   publishedAt: Date;
@@ -65,7 +66,7 @@ export class Post implements IContent {
         this.image.width = this.embedded.featuredmedia[0].mediaDetails.width;
       }
 
-      this.contentType = ContentType.ARTICLE;
+      this.contentType = MetaMediaType.WORDPRESS;
       this.publishedAt = this.date;
 
       const startPattern = 'https://www.youtube.com/embed/';
