@@ -1,5 +1,5 @@
 <ion-card ngxMasonryItem class="masonry-item" routerLink="/media/{{metaMediaKey}}/details/{{article.id}}">
-  <ath-img [img]="article"></ath-img>
+  <ath-img [img]="article.image"></ath-img>
   <ion-card-header>
     <ion-card-title [innerHTML]="article.title"></ion-card-title>
     <ion-card-subtitle>Publiée le {{article.publishedAt | date:'dd/mm/y'}} </ion-card-subtitle>

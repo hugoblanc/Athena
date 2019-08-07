@@ -2,6 +2,7 @@ import { Content } from './content';
 import { Embedded } from './embedded';
 import { ContentType } from '../content-type.enum';
 import { IContent } from '../icontent';
+import { Iimage } from '../Iimage';
 
 export class Post implements IContent {
   publishedAt: Date;
@@ -17,6 +18,7 @@ export class Post implements IContent {
   format: string;
   guid: Content;
   id: number;
+  contentId: string | number;
   link: string;
   meta: any[];
   modified: Date;
@@ -29,10 +31,8 @@ export class Post implements IContent {
   template: string;
   title: string;
   type: string;
+  image: Iimage;
   embedded: Embedded;
-  mediaUrl: string;
-  mediaHeight: number;
-  mediaWidth: number;
   videoID?: string;
 
 
@@ -40,6 +40,7 @@ export class Post implements IContent {
   constructor(input: any) {
     try {
       Object.assign(this, input);
+      this.contentId = this.id;
       this.content = new Content(input.content);
       this.date = new Date(input.date);
       this.commentStatus = input.comment_status;
@@ -59,9 +60,9 @@ export class Post implements IContent {
         this.embedded.featuredmedia[0].mediaDetails &&
         this.embedded.featuredmedia[0].mediaDetails.file) {
         const url = this.guid.rendered.split('?');
-        this.mediaUrl = url[0] + 'wp-content/uploads/' + this.embedded.featuredmedia[0].mediaDetails.file;
-        this.mediaHeight = this.embedded.featuredmedia[0].mediaDetails.height;
-        this.mediaWidth = this.embedded.featuredmedia[0].mediaDetails.width;
+        this.image.url = url[0] + 'wp-content/uploads/' + this.embedded.featuredmedia[0].mediaDetails.file;
+        this.image.height = this.embedded.featuredmedia[0].mediaDetails.height;
+        this.image.width = this.embedded.featuredmedia[0].mediaDetails.width;
       }
 
       this.contentType = ContentType.ARTICLE;

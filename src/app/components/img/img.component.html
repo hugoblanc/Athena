@@ -1,5 +1,5 @@
-<img [ngStyle]="{'min-height': (ratio / img.mediaWidth)*img.mediaHeight+'px' }"
-        *ngIf="img?.mediaUrl" [src]="img.mediaUrl" [alt]="img.title">
+<img [ngStyle]="{'min-height': (ratio / img.width)*img.height+'px' }"
+        *ngIf="img?.url" [src]="img.url" >
 <div class="icon-container">
   <ion-icon class="optional-icon"  *ngIf="icon" [name]="icon"></ion-icon>
 </div>

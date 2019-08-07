@@ -14,17 +14,9 @@ import { ICategories } from '../../models/categories/icategories';
 export class YoutubeService extends ContentService<ItemVideo> {
 
 
-  // private static YOUTUBE_KEY = 'AIzaSyBrjQzobaxuI-5Xl19035Am37IVF3sWdt4';
-  private static YOUTUBE_KEY = 'AIzaSyA1YYpnWwVcujgoqUk9Hmgqh9HkQm-nfHI';
+  private static BASE_URL = 'https://athena-api.caprover.athena-app.fr/';
+  private static CONTENT = 'content/';
 
-  private static BASE_URL = 'https://www.googleapis.com/youtube/v3/';
-  private static VIDEO = 'videos';
-  private static VIDEO_ID = 'id=';
-  private static PLAYLIST_ITEMS = 'playlistItems';
-  private static PLAYLIST_ID = 'playlistId=';
-
-  private static SNIPPET = 'part=snippet';
-  private static KEY = 'key=';
 
 
 
@@ -40,8 +32,8 @@ export class YoutubeService extends ContentService<ItemVideo> {
   }
 
 
-  findServerContentById(id: number): Observable<ItemVideo> {
-    const url = this.creatUrl(YoutubeService.VIDEO, YoutubeService.VIDEO_ID + 'UUVeMw72tepFl1Zt5fvf9QKQ');
+  findServerContentById(id: string): Observable<ItemVideo> {
+    const url = this.creatUrl(id);
     return this.http.get(url)
       .pipe(map((data: any) => {
         return new ItemVideo(data.items[0]);
@@ -50,11 +42,10 @@ export class YoutubeService extends ContentService<ItemVideo> {
 
 
   getContents(): Observable<ItemVideo[]> {
-    const url = this.creatUrl(YoutubeService.PLAYLIST_ITEMS, YoutubeService.PLAYLIST_ID + 'UUVeMw72tepFl1Zt5fvf9QKQ');
+    const url = this.creatUrl();
     return this.http.get(url)
-      .pipe(map((data: any) => {
-        const playlistItems = new PlaylistItem(data);
-        this.contents = playlistItems.items;
+      .pipe(map((data: ItemVideo[]) => {
+        this.contents = data;
         return this.contents;
       }));
   }
@@ -66,16 +57,13 @@ export class YoutubeService extends ContentService<ItemVideo> {
 
 
 
-  private creatUrl(object: string, idPart: string) {
-    const url = YoutubeService.BASE_URL +
-      object +
-      '?' +
-      YoutubeService.SNIPPET +
-      '&' +
-      idPart +
-      '&' +
-      YoutubeService.KEY +
-      YoutubeService.YOUTUBE_KEY;
+  private creatUrl(idPart?: string) {
+    let url = YoutubeService.BASE_URL +
+      YoutubeService.CONTENT +
+      this.metaMediaService.currentMetaMedia.key;
+    if (idPart) {
+      url += '/' + idPart;
+    }
     return url;
   }
 

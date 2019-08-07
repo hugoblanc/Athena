@@ -1,5 +1,5 @@
+import { Iimage } from './Iimage';
+
 export interface IimagedMedia {
-  mediaUrl: string;
-  mediaHeight: number;
-  mediaWidth: number;
+  image: Iimage;
 }
