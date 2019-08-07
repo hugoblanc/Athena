@@ -12,7 +12,7 @@
       <ath-article-details [post]="content"></ath-article-details>
     </p>
     <p *ngSwitchCase="'YOUTUBE'">
-      <ath-video-details [videoId]="content.contentId"></ath-video-details>
+      <ath-video-details [video]="content"></ath-video-details>
     </p>
     <p *ngSwitchDefault>
       <ath-article-details [post]="content"></ath-article-details>

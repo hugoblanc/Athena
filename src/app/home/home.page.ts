@@ -24,7 +24,7 @@ export class HomePage implements OnInit {
     this.listMetaMedia = this.metaMediaService.listMetaMedia;
   }
 
-  async createIssue(type: string) {
+  async createIssue() {
     const modal = await this.modalController.create({
       component: IssueModalPage
     });

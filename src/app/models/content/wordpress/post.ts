@@ -1,13 +1,12 @@
 import { Content } from './content';
 import { Embedded } from './embedded';
-import { ContentType } from '../content-type.enum';
 import { IContent } from '../icontent';
 import { Iimage } from '../Iimage';
 import { MetaMediaType } from '../../meta-media/meta-media-type.enum';
 
 export class Post implements IContent {
   publishedAt: Date;
-  contentType: ContentType;
+  contentType: MetaMediaType;
   author: number;
   categories: number[];
   commentStatus: string;
@@ -61,9 +60,11 @@ export class Post implements IContent {
         this.embedded.featuredmedia[0].mediaDetails &&
         this.embedded.featuredmedia[0].mediaDetails.file) {
         const url = this.guid.rendered.split('?');
-        this.image.url = url[0] + 'wp-content/uploads/' + this.embedded.featuredmedia[0].mediaDetails.file;
-        this.image.height = this.embedded.featuredmedia[0].mediaDetails.height;
-        this.image.width = this.embedded.featuredmedia[0].mediaDetails.width;
+        this.image = {
+          url: url[0] + 'wp-content/uploads/' + this.embedded.featuredmedia[0].mediaDetails.file,
+          height: this.embedded.featuredmedia[0].mediaDetails.height,
+          width: this.embedded.featuredmedia[0].mediaDetails.width
+        };
       }
 
       this.contentType = MetaMediaType.WORDPRESS;

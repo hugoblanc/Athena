@@ -8,7 +8,6 @@ import { ItemVideo } from '../../../models/content/youtube/item-video';
 })
 export class VideoDetailsComponent implements OnInit {
   @Input() video: ItemVideo;
-  @Input() videoId: string;
 
 
   constructor() { }

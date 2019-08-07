@@ -16,6 +16,7 @@ export class YoutubeService extends ContentService<ItemVideo> {
 
   private static BASE_URL = 'https://athena-api.caprover.athena-app.fr/';
   private static CONTENT = 'content/';
+  private static MEDIA_KEY = 'mediakey/';
 
 
 
@@ -29,14 +30,16 @@ export class YoutubeService extends ContentService<ItemVideo> {
     if (video != null) {
       return of(video);
     }
+
+    return this.findServerContentById(id);
   }
 
 
-  findServerContentById(id: string): Observable<ItemVideo> {
+  findServerContentById(id: number): Observable<ItemVideo> {
     const url = this.creatUrl(id);
     return this.http.get(url)
       .pipe(map((data: any) => {
-        return new ItemVideo(data.items[0]);
+        return new ItemVideo(data);
       }));
   }
 
@@ -57,18 +60,23 @@ export class YoutubeService extends ContentService<ItemVideo> {
 
 
 
-  private creatUrl(idPart?: string) {
+  private creatUrl(idPart?: number) {
     let url = YoutubeService.BASE_URL +
-      YoutubeService.CONTENT +
-      this.metaMediaService.currentMetaMedia.key;
+      YoutubeService.CONTENT;
     if (idPart) {
-      url += '/' + idPart;
+      // Si on cherche par id
+      // ex: /content/11
+      url += idPart;
+    } else {
+      // SI on cherche par media key
+      // ex: /content/mediakey/osonscauser
+      url += YoutubeService.MEDIA_KEY + this.metaMediaService.currentMetaMedia.key;
     }
     return url;
   }
 
   getNotificationCategories(): Observable<ICategories[]> {
-    throw new Error('Method not implemented.');
+    return of([]);
   }
 
 

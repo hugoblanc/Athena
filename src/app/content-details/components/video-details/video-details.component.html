@@ -1,2 +1,7 @@
-<ath-youtube-iframe [videoID]="videoId"></ath-youtube-iframe>
-<h3 class="title">{{video.title}}</h3>
+<ath-youtube-iframe [videoID]="video.contentId"></ath-youtube-iframe>
+<div id="full-article">
+  <h3 class="title">{{video.title}}</h3>
+  <div class="article-content" >
+    {{video.description}}
+  </div>
+</div>

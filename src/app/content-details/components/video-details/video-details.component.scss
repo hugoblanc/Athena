@@ -1,0 +1,16 @@
+ath-youtube-iframe {
+  margin-top: 1.5rem;
+}
+
+#full-article {
+  margin: 1rem;
+  font-family: RobotoBlack;
+  .article-content {
+    font-family: RobotoRegular;
+    text-align: justify;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+}

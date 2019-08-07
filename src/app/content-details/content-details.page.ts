@@ -22,7 +22,7 @@ import { StyleService } from '../provider/style.service';
 })
 export class ContentDetailsPage implements OnInit, OnDestroy {
 
-  idContent: number;
+  id: number;
   content: IContent;
   currentMedia: MetaMedia;
 
@@ -34,14 +34,14 @@ export class ContentDetailsPage implements OnInit, OnDestroy {
 
   ionViewWillEnter() {
     const idPost = this.route.snapshot.paramMap.get('id');
-    this.idContent = parseInt(idPost, 10);
+    this.id = parseInt(idPost, 10);
     this.currentMedia = this.metaMediaService.currentMetaMedia;
 
     // Comme on utilise un plugin pour les call en natif sur mobile il faut forcer la zone angular
     // Si on fait pas ça bug a l'affichage
     this.zone.run(() => {
       // On cherche en locql puis si rien en locq on cherche coté serveur
-      this.contentService.getContentById(this.idContent)
+      this.contentService.getContentById(this.id)
         .subscribe((content) => {
           this.content = content;
         });
