@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular';
 import { GithubService } from '../../provider/github.service';
 import { Issue } from '../../models/github/github';
+import { IssueModalPage } from '../../issue/issue.modal';
 
 @Component({
   selector: 'ath-reorder',
@@ -12,7 +13,8 @@ export class ReorderComponent implements OnInit {
 
 
   constructor(private githubService: GithubService,
-              private toastController: ToastController) { }
+              private toastController: ToastController,
+              private modalController: ModalController) { }
 
   issues: Issue[];
 
@@ -61,6 +63,22 @@ export class ReorderComponent implements OnInit {
       ]
     });
     toast.present();
+  }
+
+
+
+  async createIssue() {
+    const modal = await this.modalController.create({
+      component: IssueModalPage
+    });
+    modal.onDidDismiss().then((data) => {
+      if (data != null) {
+
+      }
+      console.log(data);
+
+    });
+    return await modal.present();
   }
 
 }
