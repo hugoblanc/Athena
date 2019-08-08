@@ -6,6 +6,7 @@ export class ItemVideo implements IContent {
   id: number;
   contentId: string;
   title: string;
+  description: string;
   publishedAt: Date;
   contentType: MetaMediaType;
   kind: string;
