@@ -65,10 +65,10 @@
         </ion-text>
       </div>
       <div class="bloc-container-button">
-        <ion-button color="secondary">Plus d'information</ion-button>
+        <ion-button color="secondary" [routerLink]="'/informations'" routerLinkActive="active" >Plus d'information</ion-button>
       </div>
       <div class="bloc-container-button">
-          <ion-button color="primary">Terminer le tuto</ion-button>
+          <ion-button color="primary" [routerLink]="'/home'" routerLinkActive="active" routerDirection="root">Terminer le tuto</ion-button>
       </div>
     </ion-slide>
 
