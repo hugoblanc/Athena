@@ -1,4 +1,4 @@
-<img *ngIf="post?.embedded?.featuredmedia[0]?.title?.rendered && post.videoID == null" [src]="post.mediaUrl"
+<img *ngIf="post?.embedded?.featuredmedia[0]?.title?.rendered && post.videoID == null" [src]="post.image.url"
   [alt]="post.embedded.featuredmedia[0].title">
 <ath-youtube-iframe *ngIf="post?.videoID" [videoID]="post.videoID"></ath-youtube-iframe>
 <div id="full-article">
