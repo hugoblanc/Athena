@@ -67,6 +67,12 @@ export class NotificationService {
    * L'action a executer est la navigation vers la page en question avec les bon paramètre (id post wordpress ou youtube)
    */
   public initOpenNotification(): void {
+
+    this.firebaseX.getToken().then((token: string) => {
+      console.log(token);
+
+    })
+
     this.firebaseX.onMessageReceived()
       .subscribe((notification) => {
         console.log(notification);
@@ -203,7 +209,7 @@ export class NotificationService {
    * La methode qui fait la différence entre les data local et les média du media service
    */
   private makeDiffWithMedia(): MetaMedia[] {
-    const result = [];
+    let result = [];
     // Ici on cherche a voir si des medias sont présent mais pas géré en terme de notification
     // En d'autre terme, si un nouveau media est créé on doit ajouter le topic pour le user
     for (const listMedia of this.metaMediaService.listMetaMedia) {
@@ -213,7 +219,7 @@ export class NotificationService {
         // On doit donc l'ajouter
         return this.notificationTopics[metaMedia.key] == null;
       });
-      result.concat(diff);
+      result = result.concat(diff);
     }
 
     return result;

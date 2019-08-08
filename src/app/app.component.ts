@@ -1,11 +1,12 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-
-import { Platform } from '@ionic/angular';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { NotificationService } from './provider/notification.service';
+import { Platform } from '@ionic/angular';
 import { ListMetaMedias } from './models/meta-media/list-meta-medias';
 import { MetaMediaService } from './provider/meta-media/meta-media.service';
+import { NotificationService } from './provider/notification.service';
+import { StorageService } from './provider/helper/storage.service';
+import { Router } from '@angular/router';
 
 
 /**
@@ -23,7 +24,7 @@ import { MetaMediaService } from './provider/meta-media/meta-media.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit {
-
+  private static DISPLAY_TUTO = 'DISPLAY_TUTO';
 
   constructor(
     private platform: Platform,
@@ -31,7 +32,8 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private metaMediaService: MetaMediaService,
     private notificationService: NotificationService,
-    private zone: NgZone
+    private storage: StorageService,
+    private router: Router
   ) { }
 
   // La liste des différent médias que l'on veut afficher dans le menu
@@ -58,6 +60,16 @@ export class AppComponent implements OnInit {
         this.statusBar.overlaysWebView(true);
       }, 500);
 
+      this.metaMediaService.listMetaMedia$
+        .subscribe((listMetaMedia: ListMetaMedias[]) => {
+          this.appPages = listMetaMedia;
+          this.notificationService.initData()
+            .subscribe((datas) => {
+              console.log(datas);
+            });
+        });
+
+
       // La fin de l'affichage du splash screen
       this.splashScreen.hide();
 
@@ -67,20 +79,14 @@ export class AppComponent implements OnInit {
           console.log(datas);
         });
 
-      // Et on vérifie aussi qu'il n'y a pas des nouveau media sur le serveur
-      this.metaMediaService.getMetaMediaList()
-        .subscribe((metaMedias) => {
-          // S'il y avait des nouveau média il sont maintenant stocké dans les ".medias;" locaux du service
-          // Voir getMedia pour plus d'informations
-          this.zone.run(() => {
-            this.appPages = this.metaMediaService.listMetaMedia;
 
-            this.notificationService.initData()
-              .subscribe((datas) => {
-                console.log(datas);
-              });
-          });
-        });
+    this.storage.get(AppComponent.DISPLAY_TUTO).subscribe((alreadyDisplayed) => {
+        if (alreadyDisplayed) {
+          return;
+        }
+        this.router.navigate(['/tuto']);
+        this.storage.set(AppComponent.DISPLAY_TUTO, true);
+      });
     });
 
 
