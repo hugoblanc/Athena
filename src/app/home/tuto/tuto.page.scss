@@ -1,0 +1,42 @@
+ion-content {
+  --padding-top: 50px;
+  ion-slides {
+    height: 100%;
+    ion-slide {
+      padding: 2rem;
+      padding-top: 0;
+      display: inline;
+      .bloc-container-button, .bloc-container {
+        width: 100%;
+        text-align: center;
+      }
+      .bloc-container-button {
+        margin-bottom: 0;
+      }
+      .bloc-container {
+        margin-bottom: 7vh;
+        .image-container {
+          width: 100%;
+          margin-bottom: 0.5rem;
+          img {
+            width: 12vh;
+            height: auto;
+            color: white;
+          }
+
+          ion-icon {
+            font-size: 4rem;
+          }
+
+          #fusion {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      #fab-container {
+        padding-top: 5rem;
+      }
+    }
+  }
+}
