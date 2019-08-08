@@ -58,6 +58,16 @@ export class AppComponent implements OnInit {
         this.statusBar.overlaysWebView(true);
       }, 500);
 
+      this.metaMediaService.listMetaMedia$
+        .subscribe((listMetaMedia: ListMetaMedias[]) => {
+          this.appPages = listMetaMedia;
+          this.notificationService.initData()
+            .subscribe((datas) => {
+              console.log(datas);
+            });
+        });
+
+
       // La fin de l'affichage du splash screen
       this.splashScreen.hide();
 
@@ -67,20 +77,6 @@ export class AppComponent implements OnInit {
           console.log(datas);
         });
 
-      // Et on vérifie aussi qu'il n'y a pas des nouveau media sur le serveur
-      this.metaMediaService.getMetaMediaList()
-        .subscribe((metaMedias) => {
-          // S'il y avait des nouveau média il sont maintenant stocké dans les ".medias;" locaux du service
-          // Voir getMedia pour plus d'informations
-          this.zone.run(() => {
-            this.appPages = this.metaMediaService.listMetaMedia;
-
-            this.notificationService.initData()
-              .subscribe((datas) => {
-                console.log(datas);
-              });
-          });
-        });
     });
 
 

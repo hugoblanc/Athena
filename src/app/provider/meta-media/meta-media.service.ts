@@ -11,7 +11,14 @@ import { HttpService } from '../helper/http.service';
 })
 export class MetaMediaService {
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService) {
+
+    this.getMetaMediaList()
+      .subscribe((listMetaMedia) => {
+        console.log('Meta media récupéré');
+      });
+
+  }
   public static BASE_URL = 'https://athena-api.caprover.athena-app.fr/list-meta-media';
 
   public listMetaMedia: ListMetaMedias[] = listMetaMediaData;
