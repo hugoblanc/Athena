@@ -89,9 +89,7 @@
       "cordova-plugin-advanced-http": {},
       "cordova-sqlite-storage": {},
       "cordova-plugin-firebasex": {},
-      "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
-      }
+      "cordova-plugin-ionic-webview": {}
     },
     "platforms": [
       "ios",

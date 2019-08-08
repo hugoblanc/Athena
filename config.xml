@@ -100,6 +100,7 @@
     <plugin name="cordova-plugin-device" spec="2.0.2" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <plugin name="cordova-plugin-ionic-webview" spec="2.5.1" />
     <engine name="android" spec="^8.0.0" />
     <plugin name="cordova-plugin-firebasex" spec="latest" />
     <allow-navigation href="http://localhost:8100" sessionid="1a221008" />
