@@ -28,13 +28,13 @@
     <ion-slide>
       <div class="bloc-container">
         <div class="image-container">
-          <img  src="assets/debate.svg" />
+          <img src="assets/debate.svg" />
         </div>
         <ion-text>Mais en réalité l'idée derrière Athena est de faire un outil democratique </ion-text>
       </div>
       <div class="bloc-container">
         <div class="image-container">
-          <img  src="assets/vote.svg" />
+          <img src="assets/vote.svg" />
         </div>
         <ion-text>Ou chacun peut voter et proposer des idées d'améliorations </ion-text>
       </div>
@@ -47,8 +47,23 @@
 
     </ion-slide>
     <ion-slide>
-      <h1>Awesome Slide Content</h1>
+      <div class="bloc-container" id="fab-container">
+        <ion-fab vertical="top" horizontal="center" slot="fixed">
+          <ion-fab-button (click)="createIssue()">
+            <ion-icon name="hammer"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <ion-text>Ce boutton sera votre outil de contruction. Vous pourrez l'utiliser pour proposer une nouvelle idées révolutionnaire, signaler un bug, un manque de clarté  </ion-text>
+      </div>
+
+      <div class="bloc-container" >
+          <div class="image-container">
+              <ion-icon color="primary"  name="logo-github"></ion-icon>
+            </div>
+          <ion-text>Le repository open source github se trouve <a href="https://github.com/hugoblanc/Athena">ici</a> </ion-text>
+        </div>
     </ion-slide>
+
 
   </ion-slides>
 </ion-content>
