@@ -20,7 +20,10 @@ export class HomePage implements OnInit {
 
 
   ngOnInit(): void {
-    this.listMetaMedia = this.metaMediaService.listMetaMedia;
+    this.metaMediaService.listMetaMedia$
+      .subscribe((listMetaMedia: ListMetaMedias[]) => {
+        this.listMetaMedia = listMetaMedia;
+      })
   }
 
 

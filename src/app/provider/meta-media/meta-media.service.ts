@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
 import { MetaMedia } from '../../models/meta-media/meta-media';
@@ -15,6 +15,8 @@ export class MetaMediaService {
   public static BASE_URL = 'https://athena-api.caprover.athena-app.fr/list-meta-media';
 
   public listMetaMedia: ListMetaMedias[] = listMetaMediaData;
+  public listMetaMedia$ = new BehaviorSubject(this.listMetaMedia);
+
   currentMetaMedia: MetaMedia;
 
   public getMetaMediaList(): Observable<ListMetaMedias[]> {
@@ -22,6 +24,7 @@ export class MetaMediaService {
       .pipe(tap((data: ListMetaMedias[]) => {
         if (data && data.length > 0) {
           this.listMetaMedia = data.map((lstMetaMedia) => new ListMetaMedias(lstMetaMedia));
+          this.listMetaMedia$.next(this.listMetaMedia);
         }
       }));
   }
