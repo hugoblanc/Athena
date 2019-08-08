@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CurrentMetaMediaGuard } from './core/current-meta-media.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tuto', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'media/:key', canActivate: [CurrentMetaMediaGuard], loadChildren: './media/media.module#MediaPageModule' },
   // tslint:disable-next-line: max-line-length

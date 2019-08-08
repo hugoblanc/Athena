@@ -6,6 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { NotificationService } from './provider/notification.service';
 import { ListMetaMedias } from './models/meta-media/list-meta-medias';
 import { MetaMediaService } from './provider/meta-media/meta-media.service';
+import { StorageService } from './provider/helper/storage.service';
+import { Router } from '@angular/router';
 
 
 /**
@@ -23,7 +25,7 @@ import { MetaMediaService } from './provider/meta-media/meta-media.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit {
-
+  private static DISPLAY_TUTO = 'DISPLAY_TUTO';
 
   constructor(
     private platform: Platform,
@@ -31,7 +33,9 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private metaMediaService: MetaMediaService,
     private notificationService: NotificationService,
-    private zone: NgZone
+    private storage: StorageService,
+    private zone: NgZone,
+    private router: Router
   ) { }
 
   // La liste des différent médias que l'on veut afficher dans le menu
@@ -81,6 +85,14 @@ export class AppComponent implements OnInit {
               });
           });
         });
+
+      this.storage.get(AppComponent.DISPLAY_TUTO).subscribe((alreadyDisplayed) => {
+        if (alreadyDisplayed) {
+          return;
+        }
+        this.router.navigate(['/tuto']);
+        this.storage.set(AppComponent.DISPLAY_TUTO, true);
+      });
     });
 
 
