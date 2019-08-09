@@ -1,6 +1,6 @@
 {
   "name": "athena",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "release": "standard-version"
   },
   "private": true,
   "dependencies": {
@@ -74,6 +75,7 @@
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.4.0",
+    "standard-version": "^7.0.0",
     "ts-node": "~8.2.0",
     "tslint": "~5.17.0",
     "typescript": "~3.1.6"
