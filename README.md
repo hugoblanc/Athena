@@ -1,5 +1,7 @@
 [Logo athena](http://athena-api.caprover.athena-app.fr/menu.jpg "Logo Title Text 1")
 
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+
 ## Description
 L'application Athena a été réalisée avec [Ionic](https://github.com/ionic-team/ionic) (Cordova + Angular).
 
