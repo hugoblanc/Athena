@@ -47,6 +47,14 @@ body {
   --ion-item-background: white;
 }
 
+@media screen and (max-width: 335px) {
+  .masonry-item {
+    width: 44%;
+    margin: 5px;
+    --ion-item-background: white;
+  }
+}
+
 .alert-wrapper{
   --ion-text-color: black;
 }
