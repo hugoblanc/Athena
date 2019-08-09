@@ -1,5 +1,7 @@
 [Logo athena](http://athena-api.caprover.athena-app.fr/menu.jpg "Logo Title Text 1")
 
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+
 ## Description
 L'application Athena a été réalisée avec [Ionic](https://github.com/ionic-team/ionic) (Cordova + Angular).
 
@@ -45,6 +47,14 @@ $ ionic cordova run android -l
 $ ionic cordova run android --prod --release
 
 ```
+
+## Règle de commit
+Utilisation de standard-version pour générer automatiquement les changelogs: 
+
+`git commit -a -m"<type>[optional scope]: <description>"`
+***type***: feat, fix, BREAKING CHANGE, docs, refactor, test, optimization 
+
+[Article medium](https://medium.com/jobtome-engineering/how-to-generate-changelog-using-conventional-commits-10be40f5826c)
 
 
 ## Support
