@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { AthLoaderComponent } from './ath-loader/ath-loader.component';
-import { CardComponent } from './card/card.component';
 import { HeaderModalComponent } from './header-modal/header-modal.component';
 import { HorizontalComponent } from './horizontal/horizontal.component';
 import { ImgComponent } from './img/img.component';
@@ -15,7 +14,6 @@ import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.componen
 @NgModule({
   declarations: [AthLoaderComponent,
     HorizontalComponent,
-    CardComponent,
     ImgComponent,
     YoutubeIframeComponent,
     Slides3dComponent,
@@ -24,7 +22,6 @@ import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.componen
   ],
   exports: [AthLoaderComponent,
     HorizontalComponent,
-    CardComponent,
     ImgComponent,
     YoutubeIframeComponent,
     Slides3dComponent,
