@@ -1,7 +1,10 @@
 <ion-content>
+
+  <!-- MEDIA PART -->
+
   <ion-item id="header-item" lines="none">
-    <ion-button slot="start" fill="clear" color="light" size="small">
-      <ion-menu-button autoHide="false"></ion-menu-button>
+    <ion-button slot="start" fill="clear" size="small">
+      <ion-menu-button color="light" autoHide="false"></ion-menu-button>
     </ion-button>
     <ion-label id="main-title">Athena</ion-label>
     <ion-button slot="end" fill="clear" color="light" size="small">
@@ -13,7 +16,27 @@
     <ath-horizontal [listMetaMedia]="lstMetaMedia"></ath-horizontal>
   </div>
 
-  <ath-reorder></ath-reorder>
+
+
+
+  <!-- ISSUE PART -->
+
+  <ath-section title="Amélioration"></ath-section>
+
+  <ion-list>
+    <ion-item *ngFor="let issue of issues">
+      <ion-label class="ion-text-wrap">
+        {{issue.title}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="createIssue()">
+      <ion-icon name="hammer"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 
 </ion-content>
 
