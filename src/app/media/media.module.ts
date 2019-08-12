@@ -1,14 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-
-import { IonicModule } from '@ionic/angular';
-
-import { MediaPage } from './media.page';
-import { ComponentsModule } from '../components/components.module';
+import { RouterModule, Routes } from '@angular/router';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { IonicModule } from '@ionic/angular';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { ComponentsModule } from '../components/components.module';
+import { ArticleCardComponent } from './article-card/article-card.component';
+import { ContentListComponent } from './content-list/content-list.component';
+import { MediaPage } from './media.page';
+import { VideoCardComponent } from './video-card/video-card.component';
+
+
 
 const routes: Routes = [
   {
@@ -26,7 +29,9 @@ const routes: Routes = [
     ComponentsModule,
     NgxMasonryModule
   ],
-  declarations: [MediaPage],
+  declarations: [MediaPage, ContentListComponent,
+    ArticleCardComponent,
+    VideoCardComponent],
   providers: [StatusBar]
 })
-export class MediaPageModule {}
+export class MediaPageModule { }
