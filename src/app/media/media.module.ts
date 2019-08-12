@@ -6,10 +6,10 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule } from '@ionic/angular';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { ComponentsModule } from '../components/components.module';
-import { ArticleCardComponent } from './article-card/article-card.component';
-import { ContentListComponent } from './content-list/content-list.component';
+import { ArticleCardComponent } from './components/article-card/article-card.component';
+import { ContentListComponent } from './components/content-list/content-list.component';
 import { MediaPage } from './media.page';
-import { VideoCardComponent } from './video-card/video-card.component';
+import { VideoCardComponent } from './components/video-card/video-card.component';
 
 
 

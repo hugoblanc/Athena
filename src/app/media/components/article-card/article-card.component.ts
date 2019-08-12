@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Post } from '../../models/content/wordpress/post';
+import { Post } from '../../../models/content/wordpress/post';
 
 @Component({
   selector: 'ath-article-card',

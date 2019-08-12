@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ItemVideo } from '../../models/content/youtube/item-video';
+import { ItemVideo } from '../../../models/content/youtube/item-video';
 
 @Component({
   selector: 'ath-video-card',

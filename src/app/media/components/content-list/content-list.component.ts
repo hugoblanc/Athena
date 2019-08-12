@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Injector } from '@angular/core';
-import { MetaMediaService } from '../../provider/meta-media/meta-media.service';
+import { MetaMediaService } from '../../../provider/meta-media/meta-media.service';
 
 @Component({
   selector: 'ath-content-list',
