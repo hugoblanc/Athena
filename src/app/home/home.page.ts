@@ -29,23 +29,19 @@ export class HomePage implements OnInit {
       .subscribe((listMetaMedia: ListMetaMedias[]) => {
         this.listMetaMedia = listMetaMedia;
       });
-  }
-
-  ngOnInit(): void {
     this.githubService.getAllIssue()
       .subscribe((issues: Issue[]) => {
         this.issues = issues;
       });
   }
 
-
   async createIssue() {
     const modal = await this.modalController.create({
       component: IssueModalPage
     });
-    modal.onDidDismiss().then((data) => {
+    modal.onDidDismiss().then((data?: any) => {
       if (data != null) {
-
+        this.issues.push(data.data);
       }
       console.log(data);
 
