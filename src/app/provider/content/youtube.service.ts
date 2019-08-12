@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from '../helper/http.service';
-import { ContentService } from './content.service';
-import { MetaMediaService } from '../meta-media/meta-media.service';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { PlaylistItem } from '../../models/content/youtube/playlist-item';
-import { ItemVideo } from '../../models/content/youtube/item-video';
 import { ICategories } from '../../models/categories/icategories';
+import { ItemVideo } from '../../models/content/youtube/item-video';
+import { Page } from '../../models/core/page';
+import { HttpService } from '../helper/http.service';
+import { MetaMediaService } from '../meta-media/meta-media.service';
+import { ContentService } from './content.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +14,11 @@ import { ICategories } from '../../models/categories/icategories';
 export class YoutubeService extends ContentService<ItemVideo> {
 
 
-  private static BASE_URL = 'https://athena-api.caprover.athena-app.fr/';
+  // private static BASE_URL = 'https://athena-api.caprover.athena-app.fr/';
+  private static BASE_URL = 'http://localhost:3000/';
   private static CONTENT = 'content/';
   private static MEDIA_KEY = 'mediakey/';
-
-
-
+  private static PAGE = 'page/';
 
   constructor(private http: HttpService, metaMediaService: MetaMediaService) {
     super(metaMediaService);
@@ -44,17 +43,26 @@ export class YoutubeService extends ContentService<ItemVideo> {
   }
 
 
-  getContents(): Observable<ItemVideo[]> {
+  getContents(): Observable<Page<ItemVideo>> {
+    this.page = new Page<ItemVideo>();
+    this.page.next = 0;
     const url = this.creatUrl();
     return this.http.get(url)
-      .pipe(map((data: ItemVideo[]) => {
-        this.contents = data;
-        return this.contents;
+      .pipe(map((page: Page<ItemVideo>) => {
+        this.page = page;
+        return this.page;
       }));
   }
 
-  loadMore(): Observable<ItemVideo[]> {
-    throw new Error('Method not implemented.');
+  loadMore(): Observable<Page<ItemVideo>> {
+    const url = this.creatUrl();
+    return this.http.get(url)
+      .pipe(map((page: Page<ItemVideo>) => {
+        this.page.objects = [...this.page.objects, ...page.objects];
+        this.page.next = page.next;
+        this.page.count = page.count;
+        return this.page;
+      }));
   }
 
 
@@ -67,6 +75,11 @@ export class YoutubeService extends ContentService<ItemVideo> {
       // Si on cherche par id
       // ex: /content/11
       url += idPart;
+    } else if (this.page && this.page.next !== undefined) {
+      // SI on cherche par media key
+      // ex: /content/mediakey/osonscauser
+      url += YoutubeService.MEDIA_KEY + this.metaMediaService.currentMetaMedia.key + '/';
+      url += YoutubeService.PAGE + this.page.next;
     } else {
       // SI on cherche par media key
       // ex: /content/mediakey/osonscauser
