@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { IssueModalPage } from '../../issue/issue.modal';
 import { ModalController } from '@ionic/angular';
 
+/**
+ * Cette page est un ensemble de trois slides qui permet d'afficher les infrmations essentielle
+ * ces information ne sont affichez qu'une seul fois au démarrage de l'application
+ * 
+ */
 @Component({
   selector: 'ath-tuto',
   templateUrl: './tuto.page.html',

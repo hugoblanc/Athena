@@ -28,6 +28,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     ComponentsModule,
+    // Effet masonry pour les card décalé
     NgxMasonryModule
   ],
   declarations: [MediaPage, ContentListComponent,

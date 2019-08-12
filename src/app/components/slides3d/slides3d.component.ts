@@ -1,6 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MetaMedia } from '../../models/meta-media/meta-media';
 
+
+/**
+ * Composant d'affichage des slides "3d" de l'écran d'accueil
+ * J'ai pris l'effet 3d livré avec sur le site d'ionic
+ * Je l'ai modifié pour rajouté l'effet de halo sous les carte (voir scss)
+ * et c'est presque tout
+ */
 @Component({
   selector: 'ath-slides3d',
   templateUrl: './slides3d.component.html',

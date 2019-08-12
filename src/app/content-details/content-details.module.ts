@@ -10,6 +10,11 @@ import { ArticleDetailsComponent } from './components/article-details/article-de
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
 import { ComponentsModule } from '../components/components.module';
 
+/**
+ * Ce module concerne la page des détails d'un contenu
+ * Le contenu peut être de plusieurs type
+ * Wordpress (Post) et youtube(ItemVideo) en font partie
+ */
 const routes: Routes = [
   {
     path: '',

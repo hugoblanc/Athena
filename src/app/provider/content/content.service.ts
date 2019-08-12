@@ -5,11 +5,20 @@ import { IContent } from '../../models/content/icontent';
 import { Page } from '../../models/core/page';
 import { MetaMediaService } from '../meta-media/meta-media.service';
 
+/**
+ * Ce service est en réalité un interface pour YoutubeService, WordpressService, ...
+ * C'est eux qui seront réellement injecté dans les composant finaux
+ * Cepednatn ils suivrons toujours le modèle de ContentService pour utiliser l'héritage
+ *
+ */
 @Injectable({
   providedIn: 'root'
 })
 export abstract class ContentService<T extends IContent> {
 
+  // Une page est un object qui comporte une liste d'element
+  // Ainsi que des metadonées sur ceux-ci
+  // Nb total, nombre de page etc ... 
   page: Page<T>;
 
   constructor(protected metaMediaService: MetaMediaService) {

@@ -15,6 +15,11 @@ import { Page } from '../models/core/page';
  * Author: HugoBlanc |
  * *~~~~~~~~~~~~~~~~~~~
  * Cette page permet d'afficher la liste content d'un meta media donné
+ * Les MetaMedia sont les informations que l'on a au sujet des media
+ * leurs nom, photos, types, ...
+ * Le content service est injecté dynamiquement grace au mécanisme de logique implémenté dans contentServiceProvider.ts
+ * Globalement en fonction du type de currentMEtaMedia set dans MetaMediaService on va injecte run youtubeservice ou
+ * wordpressService
  * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 @Component({
@@ -34,10 +39,10 @@ export class MediaPage implements OnInit {
 
   currentMedia: MetaMedia;
   constructor(private route: ActivatedRoute,
-              public mediasService: ContentService<IContent>,
-              public metaMediaService: MetaMediaService,
-              public styleService: StyleService,
-              public statusBar: StatusBar) {
+    public contentService: ContentService<IContent>,
+    public metaMediaService: MetaMediaService,
+    public styleService: StyleService,
+    public statusBar: StatusBar) {
 
   }
 
@@ -57,16 +62,15 @@ export class MediaPage implements OnInit {
   }
 
 
-  ionViewWillEnter() {
-
-
-  }
-
-
+  /**
+   * Cette methode est délcanché quand l'utilisateur arrive sur la page
+   */
   initData() {
     // Appel de la méhode du service
     this.loading = true;
-    this.mediasService.getContents()
+    // Grace a l'injection dynamique, on sait à l'execution quel service sera executer
+    // outubeService ou WordpressService
+    this.contentService.getContents()
       .subscribe((page: Page<IContent>) => {
         // Affectation des données serveur dans notre variable local
         this.page = page;
@@ -77,8 +81,14 @@ export class MediaPage implements OnInit {
       });
   }
 
+  /**
+   * Cette methode est déclanché quand l'utilisateur scroll tout en bas de son téléphone
+   * @param event l'event javascript
+   */
   loadMore(event) {
-    this.mediasService.loadMore()
+        // Grace a l'injection dynamique, on sait à l'execution quel service sera executer
+    // outubeService ou WordpressService
+    this.contentService.loadMore()
       .subscribe((page: Page<IContent>) => {
         this.page = page;
         event.target.complete();
