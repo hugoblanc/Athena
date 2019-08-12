@@ -8,6 +8,7 @@ import { ContentService } from '../provider/content/content.service';
 import { IContent } from '../models/content/icontent';
 import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 import { contentServiceProvider } from '../provider/content/content.service.provider';
+import { Page } from '../models/core/page';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -28,7 +29,7 @@ export class MediaPage implements OnInit {
 
 
   idMedia: number;
-  contents: IContent[];
+  page: Page<IContent>;
   loading = false;
 
   currentMedia: MetaMedia;
@@ -66,9 +67,9 @@ export class MediaPage implements OnInit {
     // Appel de la méhode du service
     this.loading = true;
     this.mediasService.getContents()
-      .subscribe((contents: IContent[]) => {
+      .subscribe((page: Page<IContent>) => {
         // Affectation des données serveur dans notre variable local
-        this.contents = contents;
+        this.page = page;
         this.loading = false;
       }, (error) => {
         console.error(error);
@@ -78,8 +79,8 @@ export class MediaPage implements OnInit {
 
   loadMore(event) {
     this.mediasService.loadMore()
-      .subscribe((contents: IContent[]) => {
-        this.contents = contents;
+      .subscribe((page: Page<IContent>) => {
+        this.page = page;
         event.target.complete();
       }, (error) => {
         event.target.complete();
