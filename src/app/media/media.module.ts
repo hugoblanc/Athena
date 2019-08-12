@@ -10,6 +10,7 @@ import { ArticleCardComponent } from './components/article-card/article-card.com
 import { ContentListComponent } from './components/content-list/content-list.component';
 import { MediaPage } from './media.page';
 import { VideoCardComponent } from './components/video-card/video-card.component';
+import { MediaNotifToggleComponent } from './components/media-notif-toggle/media-notif-toggle.component';
 
 
 
@@ -30,6 +31,7 @@ const routes: Routes = [
     NgxMasonryModule
   ],
   declarations: [MediaPage, ContentListComponent,
+    MediaNotifToggleComponent,
     ArticleCardComponent,
     VideoCardComponent],
   providers: [StatusBar]

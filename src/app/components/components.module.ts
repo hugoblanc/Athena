@@ -8,7 +8,6 @@ import { CardComponent } from './card/card.component';
 import { HeaderModalComponent } from './header-modal/header-modal.component';
 import { HorizontalComponent } from './horizontal/horizontal.component';
 import { ImgComponent } from './img/img.component';
-import { MediaNotifToggleComponent } from './media-notif-toggle/media-notif-toggle.component';
 import { SectionComponent } from './section/section.component';
 import { Slides3dComponent } from './slides3d/slides3d.component';
 import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.component';
@@ -17,7 +16,6 @@ import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.componen
   declarations: [AthLoaderComponent,
     HorizontalComponent,
     CardComponent,
-    MediaNotifToggleComponent,
     ImgComponent,
     YoutubeIframeComponent,
     Slides3dComponent,
@@ -27,7 +25,6 @@ import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.componen
   exports: [AthLoaderComponent,
     HorizontalComponent,
     CardComponent,
-    MediaNotifToggleComponent,
     ImgComponent,
     YoutubeIframeComponent,
     Slides3dComponent,

@@ -1,13 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MetaMedia } from '../../models/meta-media/meta-media';
-import { NotificationService } from '../../provider/notification.service';
-import { contentServiceProvider } from '../../provider/content/content.service.provider';
-import { ContentService } from '../../provider/content/content.service';
-import { IContent } from '../../models/content/icontent';
+import { Component, Input, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { ICategories } from '../../models/categories/icategories';
 import { AlertInput } from '@ionic/core';
-import { subscribeOn } from 'rxjs/operators';
+import { ICategories } from '../../../models/categories/icategories';
+import { IContent } from '../../../models/content/icontent';
+import { MetaMedia } from '../../../models/meta-media/meta-media';
+import { ContentService } from '../../../provider/content/content.service';
+import { contentServiceProvider } from '../../../provider/content/content.service.provider';
+import { NotificationService } from '../../../provider/notification.service';
 
 @Component({
   selector: 'ath-media-notif-toggle',
