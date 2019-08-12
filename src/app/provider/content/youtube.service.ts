@@ -14,8 +14,8 @@ import { ContentService } from './content.service';
 export class YoutubeService extends ContentService<ItemVideo> {
 
 
-  // private static BASE_URL = 'https://athena-api.caprover.athena-app.fr/';
-  private static BASE_URL = 'http://localhost:3000/';
+  private static BASE_URL = 'https://athena-api.caprover.athena-app.fr/';
+  // private static BASE_URL = 'http://localhost:3000/';
   private static CONTENT = 'content/';
   private static MEDIA_KEY = 'mediakey/';
   private static PAGE = 'page/';
