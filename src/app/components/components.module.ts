@@ -9,6 +9,7 @@ import { ImgComponent } from './img/img.component';
 import { SectionComponent } from './section/section.component';
 import { Slides3dComponent } from './slides3d/slides3d.component';
 import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.component';
+import { DonationComponent } from './donation/donation.component';
 
 /**
  * Ce module intègre l'ensembles des composants qui sont globaux à l'application
@@ -23,7 +24,8 @@ import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.componen
     YoutubeIframeComponent,
     Slides3dComponent,
     SectionComponent,
-    HeaderModalComponent
+    HeaderModalComponent,
+    DonationComponent,
   ],
   exports: [AthLoaderComponent,
     HorizontalComponent,
@@ -31,7 +33,8 @@ import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.componen
     YoutubeIframeComponent,
     Slides3dComponent,
     SectionComponent,
-    HeaderModalComponent
+    HeaderModalComponent,
+    DonationComponent,
   ],
   imports: [
     CommonModule,

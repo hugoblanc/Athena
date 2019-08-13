@@ -76,29 +76,47 @@ export class MetaMediaService {
           counts = {};
           // Et on init le champ relatif au edia courant
           counts[this.currentMetaMedia.key] = { count: 1 };
-          this.storage.set(StorageService.COUNT_KEY, counts);
-          // Si l'objet n'est pas nul mais qu'il n'y a rien pour cette clé
         } else if (counts[this.currentMetaMedia.key] == null) {
           // On init la clé
           counts[this.currentMetaMedia.key] = { count: 1 };
-          // on set en storage
-          this.storage.set(StorageService.COUNT_KEY, counts);
+
         } else {
           // Dans le cas ou il y a déjà une valeur
           const metamediaCount = counts[this.currentMetaMedia.key];
           metamediaCount.count++;
+          if (metamediaCount.lastAsk != null) {
+            metamediaCount.lastAsk = new Date(metamediaCount.lastAsk);
+          }
           counts[this.currentMetaMedia.key] = metamediaCount;
-          this.storage.set(StorageService.COUNT_KEY, counts);
         }
-        // Ici on vérifie la date, elle doit être plus petite d'au moins 5 jour
-        let a = new Date();
-        a = new Date(a.getTime() + 432000000);
-        if (this.installDate != null && this.installDate < a
-          && counts[this.currentMetaMedia.key].count > 10) {
-            this.alertService.openExternalLink('Vous semblez aimer ' + this.currentMetaMedia.title ,
-            'Vous pouvez contribuez en offrant un pourboire ', this.currentMetaMedia.donation);
 
+        // Création d'une date vielle de 5 jours
+        let a = new Date();
+        a = new Date(a.getTime() - (1000 * 60 * 60 * 24 * 5));
+        // a = new Date(a.getTime() - 20000);
+
+        const mcount = counts[this.currentMetaMedia.key];
+        // Vérification de l'ensemble des critères
+        // Date d'install plus petite de 5 jours mini (pour passer la vérif du store)
+        if (this.installDate != null && this.installDate < a
+          // Que l'utilisateur est incrémenté son compte de 10 passage sur le currentmedia
+          && mcount.count > 10
+          // QUe le lien de donation ne soit pas null
+          && this.currentMetaMedia.donation != null
+          // Et même qu'il ne soit pas juste vide
+          && this.currentMetaMedia.donation.length > 2
+          && (mcount.lastAsk == null || mcount.lastAsk < a)) {
+
+            // Si on a passé l'ensemble des condition alors on affiche une alerte pour proposer de soutneir
+          this.currentMetaMedia.isDonationActivated = true;
+          this.alertService.openExternalLink('Soutenir ' + this.currentMetaMedia.title,
+            'On dirait bien que vous appréciez ce contenu, souhaitez-vous soutenir les auteurs ? ', this.currentMetaMedia.donation);
+            // On update a date de dernière mise a jour
+          counts[this.currentMetaMedia.key].lastAsk = new Date();
         }
+
+        // On set les informations en persitant dans le storage
+        this.storage.set(StorageService.COUNT_KEY, counts);
 
 
       });

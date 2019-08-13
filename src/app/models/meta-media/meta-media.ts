@@ -11,6 +11,7 @@ export class MetaMedia {
   public title: string;
   public type: MetaMediaType | string;
   public donation?: string;
+  public isDonationActivated?: boolean;
   public notification?: boolean;
   public logo: string;
 
