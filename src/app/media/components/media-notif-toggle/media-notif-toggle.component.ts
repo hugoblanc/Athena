@@ -8,6 +8,12 @@ import { ContentService } from '../../../provider/content/content.service';
 import { contentServiceProvider } from '../../../provider/content/content.service.provider';
 import { NotificationService } from '../../../provider/notification.service';
 
+/**
+ * Ce composant permet d'afficher le header d'un meta media
+ * On y retrouve un boutton qui affiche les régalge des notifications
+ * Ce boutton créait une alerte qui dépend des categories dispo pour le
+ * media en question
+ */
 @Component({
   selector: 'ath-media-notif-toggle',
   templateUrl: './media-notif-toggle.component.html',
@@ -25,17 +31,21 @@ export class MediaNotifToggleComponent implements OnInit {
     private alertController: AlertController) { }
 
   ngOnInit() {
+    // Récupération des categories pour le metamedia actuel
     this.contentService.getNotificationCategories()
       .subscribe((categories) => {
         this.categories = categories;
       });
   }
 
-
+  /**
+   * Création de l'alert qui demande à l'utilisateur ce qu'il veut activer/désactiver
+   */
   async createAlertNotif() {
     if (this.categories == null || this.categories.length === 0) {
       return;
     }
+    // Création d'un tableau de category
     const inputs: AlertInput[] = this.categories.map((category) => {
       return {
         name: category.slug,
@@ -46,6 +56,7 @@ export class MediaNotifToggleComponent implements OnInit {
       } as AlertInput;
     });
 
+    // Ajout de la category all au debut de le la liste
     inputs.unshift({
       name: 'all',
       type: 'checkbox',
@@ -54,7 +65,7 @@ export class MediaNotifToggleComponent implements OnInit {
       checked: this.media.notification
     });
 
-
+    // Création de l'alert
     const alert = await this.alertController.create({
       header: 'Notifications',
       subHeader: 'Recevoir: ',
@@ -70,6 +81,7 @@ export class MediaNotifToggleComponent implements OnInit {
         }, {
           text: 'Ok',
           handler: (data) => {
+            // On laisse le notification servcie gérer les données choisit par l'utilisateur
             this.notificationService.dealWithUserChoice(this.media, data, [...this.categories]).subscribe((data) => {
               console.log('Data saved');
               console.log(data);
