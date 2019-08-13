@@ -96,7 +96,12 @@ h2 {
 }
 
 .article-content {
-  text-align: justify;
+  font-family: RobotoRegular;
+  text-align: left;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
   img {
     margin-left: -1rem;
     max-width: none;
