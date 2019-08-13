@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
         });
 
 
-    this.storage.get(AppComponent.DISPLAY_TUTO).subscribe((alreadyDisplayed) => {
+      this.storage.get(AppComponent.DISPLAY_TUTO).subscribe((alreadyDisplayed) => {
         if (alreadyDisplayed) {
           return;
         }
@@ -88,10 +88,9 @@ export class AppComponent implements OnInit {
         this.storage.set(AppComponent.DISPLAY_TUTO, true);
       });
     });
+  }
 
-
-
-
-
+  openPrivacy() {
+    window.open('https://athena-api.caprover.athena-app.fr/privacy', '_self');
   }
 }
