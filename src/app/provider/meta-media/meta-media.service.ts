@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { tap, count } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import listMetaMediaData from '../../../assets/data/listMetaMediaData.json';
 import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
 import { MetaMedia } from '../../models/meta-media/meta-media';
-import listMetaMediaData from '../../../assets/data/listMetaMediaData.json';
 import { HttpService } from '../helper/http.service';
 import { StorageService } from '../helper/storage.service';
-import { AppComponent } from '../../app.component';
+import { AlertService } from '../helper/alert.service.js';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MetaMediaService {
-  constructor(private http: HttpService, private storage: StorageService) {
+  private static BASE_URL = 'https://athena-api.caprover.athena-app.fr/list-meta-media';
+  private installDate: Date;
+
+  public listMetaMedia: ListMetaMedias[] = listMetaMediaData;
+  public listMetaMedia$ = new BehaviorSubject(this.listMetaMedia);
+  public currentMetaMedia: MetaMedia;
+
+  constructor(private http: HttpService,
+              private storage: StorageService,
+              private alertService: AlertService) {
 
     this.getMetaMediaList()
       .subscribe((listMetaMedia) => {
@@ -28,14 +37,7 @@ export class MetaMediaService {
       });
 
   }
-  public static BASE_URL = 'https://athena-api.caprover.athena-app.fr/list-meta-media';
 
-  installDate: Date;
-
-  public listMetaMedia: ListMetaMedias[] = listMetaMediaData;
-  public listMetaMedia$ = new BehaviorSubject(this.listMetaMedia);
-
-  currentMetaMedia: MetaMedia;
 
   public getMetaMediaList(): Observable<ListMetaMedias[]> {
     return this.http.get(MetaMediaService.BASE_URL)
@@ -93,7 +95,8 @@ export class MetaMediaService {
         a = new Date(a.getTime() + 432000000);
         if (this.installDate != null && this.installDate < a
           && counts[this.currentMetaMedia.key].count > 10) {
-
+            this.alertService.openExternalLink('Vous semblez aimer ' + this.currentMetaMedia.title ,
+            'Vous pouvez contribuez en offrant un pourboire ', this.currentMetaMedia.donation);
 
         }
 
