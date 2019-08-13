@@ -7,7 +7,7 @@ import { MetaMediaService } from './provider/meta-media/meta-media.service';
 import { NotificationService } from './provider/notification.service';
 import { StorageService } from './provider/helper/storage.service';
 import { Router } from '@angular/router';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -33,7 +33,8 @@ export class AppComponent implements OnInit {
     private metaMediaService: MetaMediaService,
     private notificationService: NotificationService,
     private storage: StorageService,
-    private router: Router
+    private router: Router,
+    private iab: InAppBrowser
   ) { }
 
   // La liste des différent médias que l'on veut afficher dans le menu
@@ -91,6 +92,6 @@ export class AppComponent implements OnInit {
   }
 
   openPrivacy() {
-    window.open('https://athena-api.caprover.athena-app.fr/privacy', '_self');
+    const browser = this.iab.create('https://athena-api.caprover.athena-app.fr/privacy');
   }
 }
