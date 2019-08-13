@@ -19,24 +19,28 @@ import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 export class HomePage implements OnInit {
   constructor(public metaMediaService: MetaMediaService,
               private githubService: GithubService,
-              private modalController: ModalController) { }
+              private modalController: ModalController) {
+
+  }
 
   listMetaMedia: ListMetaMedias[];
   videos: [];
   width: string;
   issues: Issue[];
-
-  @ViewChild(IonReorderGroup) reorderGroup: IonReorderGroup;
+  loading = true;
 
 
   ngOnInit(): void {
+    this.loading = true;
     this.metaMediaService.listMetaMedia$
       .subscribe((listMetaMedia: ListMetaMedias[]) => {
         this.listMetaMedia = listMetaMedia;
+        this.loading = false;
       });
     this.githubService.getAllIssue()
       .subscribe((issues: Issue[]) => {
         this.issues = issues;
+        this.loading = false;
       });
   }
 
