@@ -9,7 +9,14 @@ import { ContentDetailsPage } from './content-details.page';
 import { ArticleDetailsComponent } from './components/article-details/article-details.component';
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
 import { ComponentsModule } from '../components/components.module';
+import { VideoHeaderComponent } from './components/video-header/video-header.component';
+import { MoonModeComponent } from './components/moon-mode/moon-mode.component';
 
+/**
+ * Ce module concerne la page des détails d'un contenu
+ * Le contenu peut être de plusieurs type
+ * Wordpress (Post) et youtube(ItemVideo) en font partie
+ */
 const routes: Routes = [
   {
     path: '',
@@ -25,7 +32,14 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ComponentsModule
   ],
-  declarations: [ContentDetailsPage, ArticleDetailsComponent, VideoDetailsComponent],
+  declarations: [
+    ContentDetailsPage,
+    ArticleDetailsComponent,
+    VideoDetailsComponent,
+    VideoHeaderComponent,
+    MoonModeComponent
+  ],
   exports: [ArticleDetailsComponent, VideoDetailsComponent]
 })
 export class ContentDetailsPageModule { }
+

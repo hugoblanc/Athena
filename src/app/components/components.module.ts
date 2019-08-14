@@ -1,55 +1,47 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AthLoaderComponent } from './ath-loader/ath-loader.component';
-import { IonicModule } from '@ionic/angular';
-import { HorizontalComponent } from './horizontal/horizontal.component';
-import { CardComponent } from './card/card.component';
-import { MediaNotifToggleComponent } from './media-notif-toggle/media-notif-toggle.component';
-import { NgxMasonryModule } from 'ngx-masonry';
-import { ImgComponent } from './img/img.component';
-import { ContentListComponent } from './content-list/content-list.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ArticleCardComponent } from './article-card/article-card.component';
-import { VideoCardComponent } from './video-card/video-card.component';
-import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.component';
-import { Slides3dComponent } from './slides3d/slides3d.component';
-import { SectionComponent } from './section/section.component';
-import { ReorderComponent } from './reorder/reorder.component';
+import { IonicModule } from '@ionic/angular';
+import { AthLoaderComponent } from './ath-loader/ath-loader.component';
 import { HeaderModalComponent } from './header-modal/header-modal.component';
+import { HorizontalComponent } from './horizontal/horizontal.component';
+import { ImgComponent } from './img/img.component';
+import { SectionComponent } from './section/section.component';
+import { Slides3dComponent } from './slides3d/slides3d.component';
+import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.component';
+import { DonationComponent } from './donation/donation.component';
+import { CardComponent } from './card/card.component';
 
+/**
+ * Ce module intègre l'ensembles des composants qui sont globaux à l'application
+ * Les composants qui se trouve ici devrait donc en théorie être présent dans plusieurs pages
+ * de modules différents.
+ * Si ça n'est pas le cas, il devrait déclaré dans les modules de la page en question
+ */
 @NgModule({
   declarations: [AthLoaderComponent,
     HorizontalComponent,
-    CardComponent,
-    MediaNotifToggleComponent,
-    ContentListComponent,
     ImgComponent,
-    ArticleCardComponent,
-    VideoCardComponent,
     YoutubeIframeComponent,
     Slides3dComponent,
     SectionComponent,
-    ReorderComponent,
-    HeaderModalComponent
+    HeaderModalComponent,
+    DonationComponent,
+    CardComponent
   ],
   exports: [AthLoaderComponent,
     HorizontalComponent,
-    CardComponent,
-    MediaNotifToggleComponent,
-    ContentListComponent,
     ImgComponent,
-    ArticleCardComponent,
-    VideoCardComponent,
     YoutubeIframeComponent,
     Slides3dComponent,
     SectionComponent,
-    ReorderComponent,
-    HeaderModalComponent
+    HeaderModalComponent,
+    DonationComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
     IonicModule.forRoot(),
-    NgxMasonryModule,
     RouterModule
   ]
 })

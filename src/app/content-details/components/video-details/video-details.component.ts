@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ItemVideo } from '../../../models/content/youtube/item-video';
 
+/**
+ * Ce composant englobe tous les détails propre aux vidéos
+ *
+ */
 @Component({
   selector: 'ath-video-details',
   templateUrl: './video-details.component.html',

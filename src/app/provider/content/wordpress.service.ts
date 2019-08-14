@@ -6,6 +6,7 @@ import { HttpService } from '../helper/http.service';
 import { ContentService } from './content.service';
 import { MetaMediaService } from '../meta-media/meta-media.service';
 import { WordpressCategory } from '../../models/categories/wordpress-category';
+import { Page } from '../../models/core/page';
 
 
 /**
@@ -34,7 +35,6 @@ export class WordpressService extends ContentService<Post> {
     super(metaMediaService);
   }
 
-  pageNumber = 1;
   numberByPage = 8;
 
 
@@ -43,29 +43,31 @@ export class WordpressService extends ContentService<Post> {
    * le premier chargement
    * Elle reinitialise aussi le numéro de page, appeler uniquement en cas d'init de données
    */
-  public getContents(): Observable<Post[]> {
+  public getContents(): Observable<Page<Post>> {
     // Ici on reinit le numéro de page a 1 car si on utilise getPostByUrl c'est pour init
-    this.pageNumber = 1;
+    this.page = new Page<Post>();
+    this.page.next = 1;
     return this.getDataByUrl()
       .pipe(map((data: Post[]) => {
-        this.contents = data.map((post) => new Post(post));
-        return this.contents;
+        this.page.objects = data.map((post) => new Post(post));
+        this.page.next = 2;
+        return this.page;
       }));
   }
 
-  public loadMore(): Observable<Post[]> {
-    this.pageNumber++;
+  public loadMore(): Observable<Page<Post>> {
     return this.getDataByUrl()
       .pipe(map((data: Post[]) => {
         try {
           const freshPost = data.map((post) => {
             return new Post(post);
           });
-          this.contents = [...this.contents, ...freshPost];
+          this.page.objects = [...this.page.objects, ...freshPost];
+          this.page.next++;
         } catch (error) {
           throw error;
         }
-        return this.contents;
+        return this.page;
       }));
   }
 
@@ -75,7 +77,7 @@ export class WordpressService extends ContentService<Post> {
       WordpressService.WORDPRESS_API +
       WordpressService.POSTS +
       WordpressService.SIZE_NUMBER + this.numberByPage +
-      WordpressService.PAGE_NUMBER + this.pageNumber +
+      WordpressService.PAGE_NUMBER + this.page.next +
       WordpressService.EMBEDDED_CONTENT;
     return this.http.get(url, true);
   }

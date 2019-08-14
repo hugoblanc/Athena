@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+/**
+ * Composant permetant l"affichage d'un titre propre en mode material
+ */
 @Component({
   selector: 'ath-section',
   templateUrl: './section.component.html',

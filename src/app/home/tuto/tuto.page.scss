@@ -24,7 +24,7 @@ ion-content {
             color: white;
           }
 
-          ion-icon {
+          .github-icon {
             font-size: 4rem;
           }
 
@@ -33,6 +33,32 @@ ion-content {
           }
         }
       }
+
+      @media screen and (max-height: 620px) {
+        .bloc-container {
+          margin-bottom: 4vh;
+          .image-container {
+            img {
+              width: 8vh;
+            }
+          }
+        }
+      }
+
+      @media screen and (min-height: 750px) {
+        .bloc-container {
+          margin-bottom: 9vh;
+          .image-container {
+            img {
+              width: 14vh;
+            }
+          }
+          .github-icon {
+            font-size: 6rem;
+          }
+        }
+      }
+
 
       #fab-container {
         padding-top: 5rem;

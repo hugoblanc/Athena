@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StyleService } from '../provider/style.service';
 import { MetaMedia } from '../models/meta-media/meta-media';
@@ -8,12 +8,18 @@ import { ContentService } from '../provider/content/content.service';
 import { IContent } from '../models/content/icontent';
 import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 import { contentServiceProvider } from '../provider/content/content.service.provider';
+import { Page } from '../models/core/page';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
  * Author: HugoBlanc |
  * *~~~~~~~~~~~~~~~~~~~
  * Cette page permet d'afficher la liste content d'un meta media donné
+ * Les MetaMedia sont les informations que l'on a au sujet des media
+ * leurs nom, photos, types, ...
+ * Le content service est injecté dynamiquement grace au mécanisme de logique implémenté dans contentServiceProvider.ts
+ * Globalement en fonction du type de currentMEtaMedia set dans MetaMediaService on va injecte run youtubeservice ou
+ * wordpressService
  * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 @Component({
@@ -28,15 +34,16 @@ export class MediaPage implements OnInit {
 
 
   idMedia: number;
-  contents: IContent[];
+  page: Page<IContent>;
   loading = false;
 
   currentMedia: MetaMedia;
   constructor(private route: ActivatedRoute,
-              public mediasService: ContentService<IContent>,
+              public contentService: ContentService<IContent>,
               public metaMediaService: MetaMediaService,
               public styleService: StyleService,
-              public statusBar: StatusBar) {
+              public statusBar: StatusBar,
+              private zone: NgZone) {
 
   }
 
@@ -56,30 +63,39 @@ export class MediaPage implements OnInit {
   }
 
 
-  ionViewWillEnter() {
-
-
-  }
-
-
+  /**
+   * Cette methode est délcanché quand l'utilisateur arrive sur la page
+   */
   initData() {
     // Appel de la méhode du service
     this.loading = true;
-    this.mediasService.getContents()
-      .subscribe((contents: IContent[]) => {
+    // Grace a l'injection dynamique, on sait à l'execution quel service sera executer
+    // outubeService ou WordpressService
+    this.contentService.getContents()
+      .subscribe((page: Page<IContent>) => {
         // Affectation des données serveur dans notre variable local
-        this.contents = contents;
-        this.loading = false;
+        this.zone.run(() => {
+          this.page = page;
+          this.loading = false;
+        });
       }, (error) => {
-        console.error(error);
-        this.loading = false;
+        this.zone.run(() => {
+          console.error(error);
+          this.loading = false;
+        });
       });
   }
 
+  /**
+   * Cette methode est déclanché quand l'utilisateur scroll tout en bas de son téléphone
+   * @param event l'event javascript
+   */
   loadMore(event) {
-    this.mediasService.loadMore()
-      .subscribe((contents: IContent[]) => {
-        this.contents = contents;
+        // Grace a l'injection dynamique, on sait à l'execution quel service sera executer
+    // outubeService ou WordpressService
+    this.contentService.loadMore()
+      .subscribe((page: Page<IContent>) => {
+        this.page = page;
         event.target.complete();
       }, (error) => {
         event.target.complete();

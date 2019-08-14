@@ -1,13 +1,14 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
+
 import { ListMetaMedias } from './models/meta-media/list-meta-medias';
+import { StorageService } from './provider/helper/storage.service';
 import { MetaMediaService } from './provider/meta-media/meta-media.service';
 import { NotificationService } from './provider/notification.service';
-import { StorageService } from './provider/helper/storage.service';
-import { Router } from '@angular/router';
-
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -24,7 +25,6 @@ import { Router } from '@angular/router';
   templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit {
-  private static DISPLAY_TUTO = 'DISPLAY_TUTO';
 
   constructor(
     private platform: Platform,
@@ -33,7 +33,8 @@ export class AppComponent implements OnInit {
     private metaMediaService: MetaMediaService,
     private notificationService: NotificationService,
     private storage: StorageService,
-    private router: Router
+    private router: Router,
+    private iab: InAppBrowser
   ) { }
 
   // La liste des différent médias que l'on veut afficher dans le menu
@@ -80,18 +81,18 @@ export class AppComponent implements OnInit {
         });
 
 
-    this.storage.get(AppComponent.DISPLAY_TUTO).subscribe((alreadyDisplayed) => {
+      this.storage.get(StorageService.DISPLAY_TUTO).subscribe((alreadyDisplayed) => {
         if (alreadyDisplayed) {
           return;
         }
         this.router.navigate(['/tuto']);
-        this.storage.set(AppComponent.DISPLAY_TUTO, true);
+        this.storage.set(StorageService.DISPLAY_TUTO, true);
+        this.storage.set(StorageService.INSTALLATION_DATE, new Date());
       });
     });
+  }
 
-
-
-
-
+  openPrivacy() {
+    const browser = this.iab.create('https://athena-api.caprover.athena-app.fr/privacy', '_blank');
   }
 }

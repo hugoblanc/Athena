@@ -8,9 +8,18 @@ import { Storage } from '@ionic/storage';
 })
 export class StorageService {
 
+  public static COUNT_KEY = 'COUNT_KEY';
+  public static INSTALLATION_DATE = 'INSTALLATION_DATE';
+  public static DISPLAY_TUTO = 'DISPLAY_TUTO';
+
   constructor(private storage: Storage) { }
 
-
+  /**
+   * Cette methode se charge de changer une propriété d'objet en storage:  key.objectKey = value
+   * @param key le nom en storage de l'objet
+   * @param objectKey La clé de la propriété de l'objet
+   * @param value la valeur que l'on veut doner à l'objet
+   */
   public editObject(key: string, objectKey: string, value: any): Observable<any> {
     return this.get<any>(key).pipe(tap((object: any) => {
       if (object == null) {
@@ -62,5 +71,6 @@ export class StorageService {
         return JSON.parse(data);
       }));
   }
+
 
 }

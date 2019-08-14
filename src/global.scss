@@ -47,6 +47,14 @@ body {
   --ion-item-background: white;
 }
 
+@media screen and (max-width: 335px) {
+  .masonry-item {
+    width: 44%;
+    margin: 5px;
+    --ion-item-background: white;
+  }
+}
+
 .alert-wrapper{
   --ion-text-color: black;
 }
@@ -55,7 +63,7 @@ ion-back-button {
   button {
     span {
       ion-icon {
-        color: white !important;
+        color: --ion-text-color !important;
       }
     }
   }
@@ -88,7 +96,12 @@ h2 {
 }
 
 .article-content {
-  text-align: justify;
+  font-family: RobotoRegular;
+  text-align: left;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
   img {
     margin-left: -1rem;
     max-width: none;

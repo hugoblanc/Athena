@@ -3,6 +3,7 @@ ion-slides {
   overflow: visible;
 }
 
+
 .reverba {
   border-radius: 6px;
   width: 100%;
@@ -24,6 +25,8 @@ ion-slides {
   z-index: -1;
   -webkit-animation: fadeIn 0.2s linear;
   animation: fadeIn 0.2s linear;
+
+  // * Effet de Halo
   -webkit-filter: blur(15px);
   filter: blur(15px);
 }

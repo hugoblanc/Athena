@@ -1,10 +1,11 @@
-<ion-slides [options]="slidesOpts">
+<ion-slides *ngIf="isVisible" [options]="slidesOpts">
   <ion-slide id="slide-ref">
   </ion-slide>
   <ion-slide *ngFor="let metaMedia of metaMedias" [routerLink]="'/media/'+metaMedia.key">
     <div class="card-container">
       <img class="reverba" [src]="metaMedia.logo" />
       <div class="media-name">{{metaMedia?.title}}</div>
+      <!-- Halo effect -->
       <div class="image-container" [ngStyle]="{'background-image': 'url(../'+metaMedia.logo+')'}"></div>
     </div>
   </ion-slide>

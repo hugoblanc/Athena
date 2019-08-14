@@ -12,6 +12,10 @@ import { StyleService } from '../provider/style.service';
  * Author: HugoBlanc |
  * *~~~~~~~~~~~~~~~~~~~
  * Cette page permet d'afficher les détails d'un article une fois qu'on a cliqué dessus
+ * Sa grand espécificité réside dans le provider du contentService
+ * En effet le service qui sera fournis au moment de la DI(dependecy injection) dépend du currentMetaMedia
+ * Si le metaMedia est de type youtube: on injectera le youtubeService, s'il est wordpress, on inject wordpressService ...
+ * Pour mieux compprendre le mecanisme, vous pouvez aller voir le current-meta-media.guard.ts et surtout contentServiceProvider.ts
  * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 @Component({
@@ -33,34 +37,43 @@ export class ContentDetailsPage implements OnInit, OnDestroy {
               private zone: NgZone) { }
 
   ionViewWillEnter() {
+    // Quand on arrive sur cette page, on récupère l'id dans l'url
     const idPost = this.route.snapshot.paramMap.get('id');
+    // il s'agit de l'id du contenu
     this.id = parseInt(idPost, 10);
+    // On récupère aussi le currentMetaMedia
     this.currentMedia = this.metaMediaService.currentMetaMedia;
 
     // Comme on utilise un plugin pour les call en natif sur mobile il faut forcer la zone angular
     // Si on fait pas ça bug a l'affichage
-    this.zone.run(() => {
-      // On cherche en locql puis si rien en locq on cherche coté serveur
-      this.contentService.getContentById(this.id)
-        .subscribe((content) => {
-          this.content = content;
+    // On cherche en local puis si rien en locq on cherche coté serveur
+    this.contentService.getContentById(this.id)
+    .subscribe((content) => {
+          this.zone.run(() => {
+            this.content = content;
         });
     });
   }
 
-  switchNightMode() {
-    this.styleService.switchNightMode();
-  }
-
-
+  /**
+   * Quand on arrive sur cette page il faut gérer les réglages de l'utilisateur
+   * S'il a réglé en blanc il faut rétablir ce régale pour la page
+   */
   ngOnInit() {
     this.styleService.initPage();
   }
 
+  /**
+   * Quand il quitte la page il faut rétablir dans le sens inverse si besoin
+   */
   ngOnDestroy(): void {
     this.styleService.leavePage();
   }
 
+  /**
+   *
+   * @param url Methode qui sera peut être utilisé pour les lien de payement
+   */
   openExternalPage(url: string) {
     window.open(url, '_system’');
   }
