@@ -6,4 +6,9 @@
     margin-left: 0.5rem;
     margin-top: 1rem;
   }
+
+  .card-container{
+    white-space: nowrap;
+    overflow-x: scroll;
+  }
 }

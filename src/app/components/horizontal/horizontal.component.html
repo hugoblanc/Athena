@@ -3,4 +3,8 @@
   <ath-section [title]="listMetaMedia?.title" ></ath-section>
   <!-- LISTE DE META-MEDIA -->
   <ath-slides3d [metaMedias]="listMetaMedia.metaMedias"></ath-slides3d>
+
+  <div class="card-container">
+    <ath-card *ngFor="let media of listMetaMedia.metaMedias" [media]="media" ></ath-card>
+  </div>
 </div>
