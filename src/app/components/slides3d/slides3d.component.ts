@@ -19,6 +19,7 @@ export class Slides3dComponent implements OnInit {
   @Input() metaMedias: MetaMedia[];
 
   simpleSlide = false;
+  isVisible = false;
   constructor(private platform: Platform) {
     this.simpleSlide = (platform.is('ios') && screen.width <= 375 && screen.height <= 700);
   }
@@ -119,6 +120,10 @@ export class Slides3dComponent implements OnInit {
         }
       };
     }
+
+    setTimeout(() => {
+      this.isVisible = true;
+    }, 200);
   }
 
 }
