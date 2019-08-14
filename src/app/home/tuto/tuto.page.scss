@@ -24,7 +24,7 @@ ion-content {
             color: white;
           }
 
-          ion-icon {
+          .github-icon {
             font-size: 4rem;
           }
 
@@ -41,6 +41,20 @@ ion-content {
             img {
               width: 8vh;
             }
+          }
+        }
+      }
+
+      @media screen and (min-height: 750px) {
+        .bloc-container {
+          margin-bottom: 9vh;
+          .image-container {
+            img {
+              width: 14vh;
+            }
+          }
+          .github-icon {
+            font-size: 6rem;
           }
         }
       }

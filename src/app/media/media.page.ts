@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StyleService } from '../provider/style.service';
 import { MetaMedia } from '../models/meta-media/meta-media';
@@ -39,10 +39,11 @@ export class MediaPage implements OnInit {
 
   currentMedia: MetaMedia;
   constructor(private route: ActivatedRoute,
-    public contentService: ContentService<IContent>,
-    public metaMediaService: MetaMediaService,
-    public styleService: StyleService,
-    public statusBar: StatusBar) {
+              public contentService: ContentService<IContent>,
+              public metaMediaService: MetaMediaService,
+              public styleService: StyleService,
+              public statusBar: StatusBar,
+              private zone: NgZone) {
 
   }
 
@@ -73,11 +74,15 @@ export class MediaPage implements OnInit {
     this.contentService.getContents()
       .subscribe((page: Page<IContent>) => {
         // Affectation des données serveur dans notre variable local
-        this.page = page;
-        this.loading = false;
+        this.zone.run(() => {
+          this.page = page;
+          this.loading = false;
+        });
       }, (error) => {
-        console.error(error);
-        this.loading = false;
+        this.zone.run(() => {
+          console.error(error);
+          this.loading = false;
+        });
       });
   }
 
