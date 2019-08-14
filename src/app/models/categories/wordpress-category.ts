@@ -1,5 +1,8 @@
 import { ICategories } from './icategories';
 
+/**
+ * Implémentation de 'interface categorie pour le flux wordpress
+ */
 export class WordpressCategory implements ICategories {
   public id: number;
   public name: string;

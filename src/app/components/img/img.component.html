@@ -1,5 +1,9 @@
+<!-- Calcul de la taille finale avant d'afficher l'image
+Cette technique permet d'éviter des bugs de décallage due a la définition de la taille
+des images à la fin de leurs chargement  -->
 <img [ngStyle]="{'min-height': (ratio / img.width)*img.height+'px' }"
         *ngIf="img?.url" [src]="img.url" >
+
 <div class="icon-container">
   <ion-icon class="optional-icon"  *ngIf="icon" [name]="icon"></ion-icon>
 </div>

@@ -24,7 +24,6 @@ import { Router } from '@angular/router';
   templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit {
-  private static DISPLAY_TUTO = 'DISPLAY_TUTO';
 
   constructor(
     private platform: Platform,
@@ -80,12 +79,13 @@ export class AppComponent implements OnInit {
         });
 
 
-    this.storage.get(AppComponent.DISPLAY_TUTO).subscribe((alreadyDisplayed) => {
+      this.storage.get(StorageService.DISPLAY_TUTO).subscribe((alreadyDisplayed) => {
         if (alreadyDisplayed) {
           return;
         }
         this.router.navigate(['/tuto']);
-        this.storage.set(AppComponent.DISPLAY_TUTO, true);
+        this.storage.set(StorageService.DISPLAY_TUTO, true);
+        this.storage.set(StorageService.INSTALLATION_DATE, new Date());
       });
     });
 

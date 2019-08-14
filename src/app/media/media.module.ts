@@ -1,14 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-
-import { IonicModule } from '@ionic/angular';
-
-import { MediaPage } from './media.page';
-import { ComponentsModule } from '../components/components.module';
+import { RouterModule, Routes } from '@angular/router';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { IonicModule } from '@ionic/angular';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { ComponentsModule } from '../components/components.module';
+import { ArticleCardComponent } from './components/article-card/article-card.component';
+import { ContentListComponent } from './components/content-list/content-list.component';
+import { MediaPage } from './media.page';
+import { VideoCardComponent } from './components/video-card/video-card.component';
+import { MediaNotifToggleComponent } from './components/media-notif-toggle/media-notif-toggle.component';
+
+
 
 const routes: Routes = [
   {
@@ -24,9 +28,13 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     ComponentsModule,
+    // Effet masonry pour les card décalé
     NgxMasonryModule
   ],
-  declarations: [MediaPage],
+  declarations: [MediaPage, ContentListComponent,
+    MediaNotifToggleComponent,
+    ArticleCardComponent,
+    VideoCardComponent],
   providers: [StatusBar]
 })
-export class MediaPageModule {}
+export class MediaPageModule { }

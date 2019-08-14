@@ -6,6 +6,11 @@ import { ListMetaMedias } from '../models/meta-media/list-meta-medias';
 import { GithubService } from '../provider/github.service';
 import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 
+/**
+ * Cette page est la paremière page qui est chargé dans le cas classique
+ * On évitera de mettre trop de logique ici
+ * On préfèrera l'approche composant pour décharger la page principale
+ */
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',

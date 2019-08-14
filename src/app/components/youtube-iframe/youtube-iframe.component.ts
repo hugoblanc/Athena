@@ -1,6 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
+
+/**
+ * Ce composant prend un id de vidéo youtube en entré
+ * et il s'occupe d'afficher automatiquement l'iframe
+ * de manière responsive et en virant les infos inutiles
+ */
 @Component({
   selector: 'ath-youtube-iframe',
   templateUrl: './youtube-iframe.component.html',
