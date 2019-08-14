@@ -49,11 +49,13 @@ export class StyleService {
     const themeWrapper = document.querySelector('body');
     themeWrapper.style.setProperty('--ion-background-color', this.ionBackgroundColor);
     themeWrapper.style.setProperty('--ion-text-color', this.ionTextColor);
+    themeWrapper.style.setProperty('--color', this.ionTextColor);
   }
   private setLight() {
     const themeWrapper = document.querySelector('body');
     themeWrapper.style.setProperty('--ion-background-color', '#FFFFFF');
     themeWrapper.style.setProperty('--ion-text-color', '#000000');
+    themeWrapper.style.setProperty('--color', '#000000');
   }
 
 }

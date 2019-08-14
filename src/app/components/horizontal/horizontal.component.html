@@ -1,6 +1,11 @@
 <div>
   <!-- TITRE DU TYPE DE LISTE  -->
   <ath-section [title]="listMetaMedia?.title" ></ath-section>
+
   <!-- LISTE DE META-MEDIA -->
-  <ath-slides3d [metaMedias]="listMetaMedia.metaMedias"></ath-slides3d>
+  <ath-slides3d *ngIf="!isIOS" [metaMedias]="listMetaMedia.metaMedias"></ath-slides3d>
+
+  <div *ngIf="isIOS" class="card-container">
+    <ath-card *ngFor="let metaMedia of listMetaMedia.metaMedias" [media]="metaMedia" [routerLink]="'/media/'+metaMedia.key" ></ath-card>
+  </div>
 </div>

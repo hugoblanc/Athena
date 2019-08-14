@@ -46,20 +46,13 @@ export class ContentDetailsPage implements OnInit, OnDestroy {
 
     // Comme on utilise un plugin pour les call en natif sur mobile il faut forcer la zone angular
     // Si on fait pas ça bug a l'affichage
-    this.zone.run(() => {
-      // On cherche en local puis si rien en locq on cherche coté serveur
-      this.contentService.getContentById(this.id)
-        .subscribe((content) => {
-          this.content = content;
+    // On cherche en local puis si rien en locq on cherche coté serveur
+    this.contentService.getContentById(this.id)
+    .subscribe((content) => {
+          this.zone.run(() => {
+            this.content = content;
         });
     });
-  }
-
-  /**
-   * Cette methode permet de basculer en mode nuit
-   */
-  switchNightMode() {
-    this.styleService.switchNightMode();
   }
 
   /**

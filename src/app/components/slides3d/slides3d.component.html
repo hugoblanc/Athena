@@ -1,4 +1,4 @@
-<ion-slides [options]="slidesOpts">
+<ion-slides *ngIf="isVisible" [options]="slidesOpts">
   <ion-slide id="slide-ref">
   </ion-slide>
   <ion-slide *ngFor="let metaMedia of metaMedias" [routerLink]="'/media/'+metaMedia.key">

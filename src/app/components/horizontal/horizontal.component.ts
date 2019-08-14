@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
+import { Platform } from '@ionic/angular';
 
 /**
  * Ce composant représente un bloc horizontal (titre + metaMedia)
@@ -16,12 +17,12 @@ export class HorizontalComponent implements OnInit {
 
   @Input() listMetaMedia: ListMetaMedias;
 
-
-  constructor() { }
+  isIOS = false;
+  constructor(private platform: Platform) { }
 
 
   ngOnInit() {
-
+    this.isIOS = this.platform.is('ios');
   }
 
 

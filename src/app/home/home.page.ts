@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { IonReorderGroup, ModalController } from '@ionic/angular';
 import { IssueModalPage } from '../issue/issue.modal';
 import { Issue } from '../models/github/github';
@@ -19,24 +19,31 @@ import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 export class HomePage implements OnInit {
   constructor(public metaMediaService: MetaMediaService,
               private githubService: GithubService,
-              private modalController: ModalController) { }
+              private modalController: ModalController,
+              private zone: NgZone) {
+
+  }
 
   listMetaMedia: ListMetaMedias[];
   videos: [];
   width: string;
   issues: Issue[];
-
-  @ViewChild(IonReorderGroup) reorderGroup: IonReorderGroup;
+  loading = true;
 
 
   ngOnInit(): void {
+    this.loading = true;
     this.metaMediaService.listMetaMedia$
       .subscribe((listMetaMedia: ListMetaMedias[]) => {
-        this.listMetaMedia = listMetaMedia;
+        this.zone.run(() => {
+          this.listMetaMedia = listMetaMedia;
+          this.loading = false;
+        })
       });
     this.githubService.getAllIssue()
       .subscribe((issues: Issue[]) => {
         this.issues = issues;
+        this.loading = false;
       });
   }
 
