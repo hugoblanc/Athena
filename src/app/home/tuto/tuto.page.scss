@@ -34,6 +34,18 @@ ion-content {
         }
       }
 
+      @media screen and (max-height: 620px) {
+        .bloc-container {
+          margin-bottom: 4vh;
+          .image-container {
+            img {
+              width: 8vh;
+            }
+          }
+        }
+      }
+
+
       #fab-container {
         padding-top: 5rem;
       }
