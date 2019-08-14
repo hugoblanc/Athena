@@ -56,13 +56,6 @@ export class ContentDetailsPage implements OnInit, OnDestroy {
   }
 
   /**
-   * Cette methode permet de basculer en mode nuit
-   */
-  switchNightMode() {
-    this.styleService.switchNightMode();
-  }
-
-  /**
    * Quand on arrive sur cette page il faut gérer les réglages de l'utilisateur
    * S'il a réglé en blanc il faut rétablir ce régale pour la page
    */

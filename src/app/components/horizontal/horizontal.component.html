@@ -6,6 +6,6 @@
   <ath-slides3d *ngIf="!isIOS" [metaMedias]="listMetaMedia.metaMedias"></ath-slides3d>
 
   <div *ngIf="isIOS" class="card-container">
-    <ath-card *ngFor="let media of listMetaMedia.metaMedias" [media]="media" ></ath-card>
+    <ath-card *ngFor="let metaMedia of listMetaMedia.metaMedias" [media]="metaMedia" [routerLink]="'/media/'+metaMedia.key" ></ath-card>
   </div>
 </div>

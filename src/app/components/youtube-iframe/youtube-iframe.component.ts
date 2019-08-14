@@ -24,7 +24,7 @@ export class YoutubeIframeComponent implements OnInit {
       this.videoID +
       '?' +
       'modestbranding=1&' +
-      'showinfo=0&'
+      'showinfo=0'
     );
   }
 
