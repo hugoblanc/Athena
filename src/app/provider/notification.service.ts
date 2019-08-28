@@ -71,7 +71,7 @@ export class NotificationService {
     this.firebaseX.getToken().then((token: string) => {
       console.log(token);
 
-    })
+    });
 
     this.firebaseX.onMessageReceived()
       .subscribe((notification) => {
@@ -240,7 +240,7 @@ export class NotificationService {
 
   private genericMetaMediaIndSetter(status: boolean, topic: string) {
     const metaMedia = this.metaMediaService.findAndSetMediaByKey(topic);
-    if (!status) {
+    if (status == null) {
       status = true;
     }
     metaMedia.notification = status;
