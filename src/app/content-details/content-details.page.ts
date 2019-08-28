@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
+import { Component, OnInit, NgZone, OnDestroy, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MetaMedia } from '../models/meta-media/meta-media';
 import { MetaMediaService } from '../provider/meta-media/meta-media.service';
@@ -6,6 +6,7 @@ import { IContent } from '../models/content/icontent';
 import { contentServiceProvider } from '../provider/content/content.service.provider';
 import { ContentService } from '../provider/content/content.service';
 import { StyleService } from '../provider/style.service';
+import { LinkService } from '../provider/helper/link.service';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -34,6 +35,8 @@ export class ContentDetailsPage implements OnInit, OnDestroy {
               public contentService: ContentService<IContent>,
               public metaMediaService: MetaMediaService,
               public styleService: StyleService,
+              public linkService: LinkService,
+              public element: ElementRef,
               private zone: NgZone) { }
 
   ionViewWillEnter() {
@@ -48,11 +51,11 @@ export class ContentDetailsPage implements OnInit, OnDestroy {
     // Si on fait pas ça bug a l'affichage
     // On cherche en local puis si rien en locq on cherche coté serveur
     this.contentService.getContentById(this.id)
-    .subscribe((content) => {
-          this.zone.run(() => {
-            this.content = content;
+      .subscribe((content) => {
+        this.zone.run(() => {
+          this.content = content;
         });
-    });
+      });
   }
 
   /**
@@ -61,6 +64,7 @@ export class ContentDetailsPage implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.styleService.initPage();
+    this.linkService._enableDynamicHyperlinks(this.element);
   }
 
   /**
