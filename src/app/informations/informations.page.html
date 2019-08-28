@@ -34,13 +34,13 @@
     <ion-list-header>
       Contribuer sur github
     </ion-list-header>
-    <ion-item href="https://github.com/hugoblanc/Athena">
+    <ion-item (click)="openLink('https://github.com/hugoblanc/Athena')">
       <ion-icon color="dark" name="logo-github" slot="start"></ion-icon>
       <ion-label color="warning">Application mobile</ion-label>
       <ion-icon color="secondary" name="logo-android" slot="end"></ion-icon>
       <ion-icon color="dark" name="logo-apple" slot="end"></ion-icon>
     </ion-item>
-    <ion-item href="https://github.com/hugoblanc/athena_api">
+    <ion-item (click)="openLink('https://github.com/hugoblanc/athena_api')">
       <ion-icon color="dark" name="logo-github" slot="start"></ion-icon>
       <ion-label color="warning">Serveur</ion-label>
       <ion-icon color="secondary" name="logo-nodejs" slot="end"></ion-icon>

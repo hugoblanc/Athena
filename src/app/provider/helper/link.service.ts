@@ -12,7 +12,7 @@ export class LinkService {
   /**
    * Enable hyperlinks that are embedded within a HTML string
    */
-  public _enableDynamicHyperlinks(element: ElementRef): void {
+  public enableDynamicHyperlinks(element: ElementRef): void {
     // Provide a minor delay to allow the HTML to be rendered and 'found'
     // within the view template
     setTimeout(() => {

@@ -64,7 +64,7 @@ export class ContentDetailsPage implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.styleService.initPage();
-    this.linkService._enableDynamicHyperlinks(this.element);
+    this.linkService.enableDynamicHyperlinks(this.element);
   }
 
   /**
