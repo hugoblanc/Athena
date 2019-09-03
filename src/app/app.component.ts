@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
-
 import { ListMetaMedias } from './models/meta-media/list-meta-medias';
+import { LinkService } from './provider/helper/link.service';
 import { StorageService } from './provider/helper/storage.service';
 import { MetaMediaService } from './provider/meta-media/meta-media.service';
 import { NotificationService } from './provider/notification.service';
+
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
     private notificationService: NotificationService,
     private storage: StorageService,
     private router: Router,
-    private iab: InAppBrowser
+    private linkService: LinkService
   ) { }
 
   // La liste des différent médias que l'on veut afficher dans le menu
@@ -93,6 +93,6 @@ export class AppComponent implements OnInit {
   }
 
   openPrivacy() {
-    const browser = this.iab.create('https://athena-api.caprover.athena-app.fr/privacy', '_blank');
+    this.linkService.launchInAppBrowser('https://athena-api.caprover.athena-app.fr/privacy');
   }
 }

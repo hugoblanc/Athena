@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/hugoblanc/Bifrost/compare/v0.0.3...v0.0.4) (2019-08-14)
+
+
+### Features
+
+* **tips:** affichage de la fenetre de tips ([8ec8708](https://github.com/hugoblanc/Bifrost/commit/8ec8708))
+* **tips:** enregistrer consultations medias ([8a7bdb9](https://github.com/hugoblanc/Bifrost/commit/8a7bdb9))
+
+### 1.0.5 (2019-08-08)
+
 ### 0.0.3 (2019-08-14)
 
 
