@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
         this.zone.run(() => {
           this.listMetaMedia = listMetaMedia;
           this.loading = false;
-        })
+        });
       });
     this.githubService.getAllIssue()
       .subscribe((issues: Issue[]) => {
