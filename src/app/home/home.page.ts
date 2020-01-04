@@ -18,16 +18,16 @@ import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 })
 export class HomePage implements OnInit {
   constructor(public metaMediaService: MetaMediaService,
-              private githubService: GithubService,
-              private modalController: ModalController,
-              private zone: NgZone) {
+    private githubService: GithubService,
+    private modalController: ModalController,
+    private zone: NgZone) {
 
   }
 
   listMetaMedia: ListMetaMedias[];
   videos: [];
   width: string;
-  issues: Issue[];
+  issues: Issue[] = [];
   loading = true;
 
 
@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
         this.zone.run(() => {
           this.listMetaMedia = listMetaMedia;
           this.loading = false;
-        })
+        });
       });
     this.githubService.getAllIssue()
       .subscribe((issues: Issue[]) => {
