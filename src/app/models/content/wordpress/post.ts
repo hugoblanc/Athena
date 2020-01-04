@@ -65,6 +65,11 @@ export class Post implements IContent {
           height: this.embedded.featuredmedia[0].mediaDetails.height,
           width: this.embedded.featuredmedia[0].mediaDetails.width
         };
+
+        // Fix source url MrMondialisatio il manque le https :/
+        if (this.image.url.indexOf('http') > 5) {
+          this.image.url = 'https:' + this.image.url;
+        }
       }
 
       this.contentType = MetaMediaType.WORDPRESS;

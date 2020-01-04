@@ -30,7 +30,9 @@ export class LinkService {
           // Log values to the console and open the link within the InAppBrowser plugin
           console.log('Name is: ' + event.target.innerText);
           console.log('Link is: ' + link);
-          this.launchInAppBrowser(link);
+          if (link != null) {
+            this.launchInAppBrowser(link);
+          }
         }, false);
       });
     }, 2000);
