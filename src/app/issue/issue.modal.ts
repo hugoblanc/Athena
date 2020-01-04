@@ -17,7 +17,22 @@ import { ModalController } from '@ionic/angular';
 })
 export class IssueModalPage implements OnInit {
 
+  title: FormControl = new FormControl('', {
+    validators: Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(80)]),
+    updateOn: 'change' // Mise a jour des indicateur une fois qu'on quitte l'input
+  });
+
+  body = new FormControl('', {
+    validators: Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(700)]),
+    updateOn: 'change'
+  });
+
+  labels = new FormControl('', {
+    validators: Validators.required
+  });
+
   validateForm: FormGroup;
+
   constructor(private formBuilder: FormBuilder,
               private githubService: GithubService,
               private modalController: ModalController) {
@@ -25,18 +40,12 @@ export class IssueModalPage implements OnInit {
 
   ngOnInit(): void {
     // INitilisation du reactive formulaire avec les validateur basique
+
+
     this.validateForm = this.formBuilder.group({
-      title: new FormControl('', {
-        validators: Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(80)]),
-        updateOn: 'blur' // Mise a jour des indicateur une fois qu'on quitte l'input
-      }),
-      body: new FormControl('', {
-        validators: Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(700)]),
-        updateOn: 'blur'
-      }),
-      labels: new FormControl('', {
-        validators: Validators.required
-      })
+      title: this.title,
+      body: this.body,
+      labels: this.labels
     });
   }
 

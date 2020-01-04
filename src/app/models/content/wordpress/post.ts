@@ -56,15 +56,20 @@ export class Post implements IContent {
       if (this.guid &&
         this.guid.rendered &&
         this.embedded &&
+        this.embedded.featuredmedia &&
         this.embedded.featuredmedia[0] &&
-        this.embedded.featuredmedia[0].mediaDetails &&
-        this.embedded.featuredmedia[0].mediaDetails.file) {
-        const url = this.guid.rendered.split('?');
+        this.embedded.featuredmedia[0].mediaDetails) {
+
         this.image = {
-          url: url[0] + 'wp-content/uploads/' + this.embedded.featuredmedia[0].mediaDetails.file,
+          url: this.embedded.featuredmedia[0].sourceUrl,
           height: this.embedded.featuredmedia[0].mediaDetails.height,
           width: this.embedded.featuredmedia[0].mediaDetails.width
         };
+
+        // Fix source url MrMondialisatio il manque le https :/
+        if (this.image.url.indexOf('http') > 5) {
+          this.image.url = 'https:' + this.image.url;
+        }
       }
 
       this.contentType = MetaMediaType.WORDPRESS;
