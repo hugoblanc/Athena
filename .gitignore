@@ -20,6 +20,7 @@ athena.keystore
 .sass-cache/
 .tmp/
 .versions/
+.gradle/
 coverage/
 www/
 node_modules/
