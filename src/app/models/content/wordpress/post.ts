@@ -67,7 +67,8 @@ export class Post implements IContent {
         };
 
         // Fix source url MrMondialisatio il manque le https :/
-        if (this.image.url.indexOf('http') > 5) {
+        const index = this.image.url.indexOf('http');
+        if (index === -1 || index > 5) {
           this.image.url = 'https:' + this.image.url;
         }
       }
