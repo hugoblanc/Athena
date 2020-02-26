@@ -88,10 +88,14 @@ export class NotificationService {
    * Initialisation des
    */
   public initData(): Observable<any[]> {
-    // Récupération des données en locastorage
-    const makeDiff$ = this.getLocal()
-      // On fait la différence entre les données du localstorage et les media récupéré
-      .pipe(map((result) => this.makeDiffWithMedia()),
+    const grantPermission$ = from(this.firebaseX.grantPermission());
+    const makeDiff$ = grantPermission$.pipe(
+        // Vérif permission (IOS only)  
+        filter((permission: boolean) => permission),
+        // Récupération des données en locastorage
+        flatMap(()=> this.getLocal()),
+        // On fait la différence entre les données du localstorage et les media récupéré
+        map((result) => this.makeDiffWithMedia()),
         // on convertis la liste de metamedia en liste de string classique
         map((diff: MetaMedia[]) => this.convertMetaMediaToTopics(diff)),
         // On met a jour les indicateur des media
