@@ -1,7 +1,7 @@
 <ion-app>
-  <ion-split-pane>
+  <ion-split-pane contentId="main-content">
 
-    <ion-menu>
+    <ion-menu contentId="main-content">
       <ion-content>
         <img id="image-menu" src="assets/menu.png" alt="image_menu">
         <ion-list>
@@ -43,7 +43,7 @@
       </ion-content>
     </ion-menu>
 
-    <ion-router-outlet main></ion-router-outlet>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
 
   </ion-split-pane>
 
