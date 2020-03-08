@@ -42,16 +42,12 @@ body {
 }
 
 .masonry-item {
-  width: 44%;
   margin: 10px;
-  --ion-item-background: white;
 }
 
 @media screen and (max-width: 335px) {
   .masonry-item {
-    width: 44%;
     margin: 5px;
-    --ion-item-background: white;
   }
 }
 
