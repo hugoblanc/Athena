@@ -1,4 +1,5 @@
 export enum MetaMediaType {
   YOUTUBE= 'YOUTUBE',
-  WORDPRESS= 'WORDPRESS'
+  WORDPRESS= 'WORDPRESS',
+  VIDEO= 'VIDEO'
 }

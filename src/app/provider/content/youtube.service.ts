@@ -50,6 +50,7 @@ export class YoutubeService extends ContentService<ItemVideo> {
     return this.http.get(url)
       .pipe(map((page: Page<ItemVideo>) => {
         this.page = page;
+        this.page.objects = this.page.objects.map((itemVideo) => new ItemVideo(itemVideo));
         return this.page;
       }));
   }

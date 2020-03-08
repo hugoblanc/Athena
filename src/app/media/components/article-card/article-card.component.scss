@@ -1,11 +1,12 @@
 ion-card {
   border-radius: 10px;
-  background-color: transparent;
+  --background: white;
 }
 
 ion-card-title {
   font-size: 0.85rem;
   color: black;
+  margin-bottom: 0.5rem;
   font-family: RobotoBlack;
   text-align: left;
 }
