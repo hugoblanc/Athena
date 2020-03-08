@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicModule } from '@ionic/angular';
-import { NgxMasonryModule } from 'ngx-masonry';
 import { ComponentsModule } from '../components/components.module';
 import { ArticleCardComponent } from './components/article-card/article-card.component';
 import { ContentListComponent } from './components/content-list/content-list.component';
@@ -27,9 +26,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule,
-    // Effet masonry pour les card décalé
-    NgxMasonryModule
+    ComponentsModule
   ],
   declarations: [MediaPage, ContentListComponent,
     MediaNotifToggleComponent,

@@ -30,7 +30,7 @@ import { Page } from '../models/core/page';
 })
 export class MediaPage implements OnInit {
 
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  @ViewChild('ion-infinite-scroll', {static: true}) infiniteScroll: IonInfiniteScroll;
 
 
   idMedia: number;
