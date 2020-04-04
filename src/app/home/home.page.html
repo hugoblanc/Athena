@@ -26,9 +26,9 @@
   <ath-section title="Amélioration"></ath-section>
 
   <ion-list>
-    <ion-item *ngFor="let issue of issues">
+    <ion-item *ngFor="let issue of issues" >
       <ion-label class="ion-text-wrap">
-        {{issue.title}}
+        {{issue?.title}}
       </ion-label>
     </ion-item>
   </ion-list>
