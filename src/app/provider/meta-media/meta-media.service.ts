@@ -30,9 +30,13 @@ export class MetaMediaService {
     this.storage.get<Date>(StorageService.INSTALLATION_DATE)
       .subscribe((dateInstall) => {
         try {
-          this.installDate = new Date(dateInstall);
+          if (dateInstall) {
+            this.installDate = new Date(dateInstall);
+          } else {
+            this.installDate = new Date();
+          }
         } catch (error) {
-          //
+          console.error(error);
         }
       });
 
@@ -74,9 +78,9 @@ export class MetaMediaService {
         if (counts == null) {
           // On init l'objet
           counts = {};
-          // Et on init le champ relatif au edia courant
-          counts[this.currentMetaMedia.key] = { count: 1 };
-        } else if (counts[this.currentMetaMedia.key] == null) {
+        }
+
+        if (counts[this.currentMetaMedia.key] == null) {
           // On init la clé
           counts[this.currentMetaMedia.key] = { count: 1 };
 
@@ -98,6 +102,7 @@ export class MetaMediaService {
         const mcount = counts[this.currentMetaMedia.key];
         // Vérification de l'ensemble des critères
         // Date d'install plus petite de 5 jours mini (pour passer la vérif du store)
+
         if (this.installDate != null && this.installDate < a
           // Que l'utilisateur est incrémenté son compte de 10 passage sur le currentmedia
           && mcount.count > 10
@@ -107,11 +112,11 @@ export class MetaMediaService {
           && this.currentMetaMedia.donation.length > 2
           && (mcount.lastAsk == null || mcount.lastAsk < a)) {
 
-            // Si on a passé l'ensemble des condition alors on affiche une alerte pour proposer de soutneir
+          // Si on a passé l'ensemble des condition alors on affiche une alerte pour proposer de soutneir
           this.currentMetaMedia.isDonationActivated = true;
           this.alertService.openExternalLink('Soutenir ' + this.currentMetaMedia.title,
             'On dirait bien que vous appréciez ce contenu, souhaitez-vous soutenir les auteurs ? ', this.currentMetaMedia.donation);
-            // On update a date de dernière mise a jour
+          // On update a date de dernière mise a jour
           counts[this.currentMetaMedia.key].lastAsk = new Date();
         }
 

@@ -52,7 +52,12 @@ body {
 }
 
 .alert-wrapper{
-  --ion-text-color: black;
+  .alert-head{
+    --ion-text-color: white;
+  }
+  .alert-message{
+    color: #CCCCCC;
+  }
 }
 
 ion-back-button {
