@@ -3,7 +3,6 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CurrentMetaMediaGuard } from './core/current-meta-media.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'tabs', pathMatch: 'full' },
   // { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'media/:key', canActivate: [CurrentMetaMediaGuard], loadChildren: './media/media.module#MediaPageModule' },
   // tslint:disable-next-line: max-line-length
@@ -11,7 +10,7 @@ const routes: Routes = [
   { path: 'informations', loadChildren: './informations/informations.module#InformationsPageModule' },
   // { path: 'tuto', loadChildren: './home/tuto/tuto.module#TutoPageModule' },
   {
-    path: 'tabs',
+    path: '',
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
