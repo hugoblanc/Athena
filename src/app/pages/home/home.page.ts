@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
-import { IonReorderGroup, ModalController } from '@ionic/angular';
-import { IssueModalPage } from '../issue/issue.modal';
-import { Issue } from '../models/github/github';
-import { ListMetaMedias } from '../models/meta-media/list-meta-medias';
-import { GithubService } from '../provider/github.service';
-import { MetaMediaService } from '../provider/meta-media/meta-media.service';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { IssueModalPage } from '../../issue/issue.modal';
+import { Issue } from '../../models/github/github';
+import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
+import { GithubService } from '../../provider/github.service';
+import { MetaMediaService } from '../../provider/meta-media/meta-media.service';
 
 /**
  * Cette page est la paremière page qui est chargé dans le cas classique
@@ -18,9 +18,9 @@ import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 })
 export class HomePage implements OnInit {
   constructor(public metaMediaService: MetaMediaService,
-    private githubService: GithubService,
-    private modalController: ModalController,
-    private zone: NgZone) {
+              private githubService: GithubService,
+              private modalController: ModalController,
+              private zone: NgZone) {
 
   }
 
