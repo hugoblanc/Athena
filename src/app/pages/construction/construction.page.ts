@@ -2,7 +2,7 @@ import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { GithubService } from '../../provider/github.service';
 import { Issue } from '../../models/github/github';
-import { IssueModalPage } from './issue/issue.modal';
+import { IssueModalPage } from './components/issue/issue.modal';
 
 @Component({
   selector: 'ath-construction',

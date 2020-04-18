@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
-import { Issue } from '../../../models/github/github';
-import { GithubService } from '../../../provider/github.service';
+import { Issue } from '../../../../models/github/github';
+import { GithubService } from '../../../../provider/github.service';
 import { ModalController, NavParams } from '@ionic/angular';
 
 
@@ -49,7 +49,7 @@ export class IssueModalPage implements OnInit {
     this.modalController.dismiss(issue);
   }
 
-  dismiss(){
+  dismiss() {
     this.modalController.dismiss();
   }
 }
