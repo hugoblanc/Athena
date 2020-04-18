@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { ConstructionPageRoutingModule } from './construction-routing.module';
-
-import { ConstructionPage } from './construction.page';
-import { IssuesListComponent } from './components/issues-list/issues-list.component';
 import { ComponentsModule } from '../../components/components.module';
-import { CreateIssueComponent } from './components/create-issue/create-issue.component';
+import { IssuesListComponent } from './components/issues-list/issues-list.component';
+import { ConstructionPageRoutingModule } from './construction-routing.module';
+import { ConstructionPage } from './construction.page';
+import { IssueModule } from './components/issue/issue.module';
+
+
+
+
 
 @NgModule({
   imports: [
@@ -17,12 +18,12 @@ import { CreateIssueComponent } from './components/create-issue/create-issue.com
     FormsModule,
     IonicModule,
     ComponentsModule,
-    ConstructionPageRoutingModule
+    ConstructionPageRoutingModule,
+    IssueModule
   ],
   declarations: [
     ConstructionPage,
-    IssuesListComponent,
-    CreateIssueComponent
+    IssuesListComponent
   ]
 })
 export class ConstructionPageModule {}

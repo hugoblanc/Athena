@@ -1,6 +1,8 @@
+import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { GithubService } from '../../provider/github.service';
 import { Issue } from '../../models/github/github';
+import { IssueModalPage } from './components/issue/issue.modal';
 
 @Component({
   selector: 'ath-construction',
@@ -14,12 +16,11 @@ export class ConstructionPage implements OnInit {
   issueType = 'feature';
 
 
-  constructor(private githubService: GithubService, ) { }
+  constructor(private githubService: GithubService, private modalController: ModalController) { }
 
   ngOnInit() {
 
     this.initIssuesByType(this.issueType);
-
   }
 
   initIssuesByType(type: string) {
@@ -34,8 +35,29 @@ export class ConstructionPage implements OnInit {
   sendIssue(issue: Issue) {
     this.githubService.postIssue(issue)
       .subscribe((issueCreated: Issue) => {
-        this.issues.push(issue);
+        this.issues.push(issueCreated);
       });
+  }
+
+  async openCreateModal() {
+    const createModal = await this.initModal();
+    await createModal.present();
+
+    const valueReturned = await createModal.onDidDismiss();
+    const issue = valueReturned.data;
+
+    if (issue != null) {
+      this.sendIssue(issue);
+    }
+  }
+
+
+  private async initModal() {
+    const createModal = await this.modalController.create({
+      component: IssueModalPage,
+      componentProps: { issueType: this.issueType }
+    });
+    return createModal;
   }
 
   issueTypeChanged(ev) {

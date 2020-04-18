@@ -1,0 +1,16 @@
+
+:host{
+  display: flex;
+  justify-content: flex-start;
+}
+#btn-container {
+  padding: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+
+.alert-danger {
+  color: red;
+  font-size: 0.8rem;
+}

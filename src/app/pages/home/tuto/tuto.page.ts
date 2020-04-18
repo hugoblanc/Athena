@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IssueModalPage } from '../../../issue/issue.modal';
+import { IssueModalPage } from '../../construction/components/issue/issue.modal';
 import { ModalController } from '@ionic/angular';
 
 /**
