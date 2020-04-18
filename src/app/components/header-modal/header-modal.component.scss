@@ -1,6 +1,14 @@
 :host {
+  width: 100vw;
+
+  ion-item {
+    --background: transparent !important;
+    align-items: center;
+  }
+
   #title {
     font-size: 2rem;
     --ion-font-family: RobotoBlack;
   }
+
 }

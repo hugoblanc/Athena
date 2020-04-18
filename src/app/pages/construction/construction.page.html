@@ -20,8 +20,11 @@
   </ath-loading>
 
 
+  <ion-button (click)="openCreateModal()" expand="block" fill="clear" shape="round">
+    {{issueType === 'bug' ? 'Signaler un bug' : 'Poster une idée'}}
+  </ion-button>
 
-  <ath-create-issue [type]="issueType" (issueCreated)="sendIssue($event)" ></ath-create-issue>
+  <!-- <ath-create-issue [type]="issueType" (issueCreated)="sendIssue($event)" ></ath-create-issue> -->
 
 
 </ion-content>
