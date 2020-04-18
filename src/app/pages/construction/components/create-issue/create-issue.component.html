@@ -1,0 +1,21 @@
+<ion-slides pager="false" scrollbar="false">
+  <ion-slide>
+    <ion-button (click)="next()" expand="block" fill="clear" shape="round">
+      {{type === 'bug' ? 'Signaler un bug' : 'Poster une idée'}}
+    </ion-button>
+  </ion-slide>
+  <ion-slide>
+
+    <ion-item>
+      <ion-label>Titre</ion-label>
+      <ion-input [(ngModel)]="title" ></ion-input>
+    </ion-item>
+  </ion-slide>
+  <ion-slide>
+
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea [(ngModel)]="description" ></ion-textarea>
+    </ion-item>
+  </ion-slide>
+</ion-slides>
