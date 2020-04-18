@@ -15,8 +15,8 @@
   </ion-segment>
 
 
-  <ath-loader [loading]="loading"></ath-loader>
-
-  <ath-issues-list [issues]="issues"></ath-issues-list>
+  <ath-loading [loading]="loading">
+    <ath-issues-list [issues]="issues"></ath-issues-list>
+  </ath-loading>
 
 </ion-content>

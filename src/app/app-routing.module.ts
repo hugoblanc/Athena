@@ -9,7 +9,7 @@ const routes: Routes = [
   // tslint:disable-next-line: max-line-length
   { path: 'media/:key/details/:id', canActivate: [CurrentMetaMediaGuard], loadChildren: './content-details/content-details.module#ContentDetailsPageModule' },
   { path: 'informations', loadChildren: './informations/informations.module#InformationsPageModule' },
-  { path: 'tuto', loadChildren: './home/tuto/tuto.module#TutoPageModule' },
+  // { path: 'tuto', loadChildren: './home/tuto/tuto.module#TutoPageModule' },
   {
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
