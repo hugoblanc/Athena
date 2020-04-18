@@ -3,7 +3,7 @@
   <ath-section title="Améliorer Athena"></ath-section>
 
 
-  <ion-segment value="pizza" (ionChange)="issueTypeChanged($event)">
+  <ion-segment [value]="issueType" (ionChange)="issueTypeChanged($event)">
     <ion-segment-button value="feature">
       <ion-label>Idées</ion-label>
       <ion-icon name="bulb"></ion-icon>
@@ -21,7 +21,7 @@
 
 
 
-  <ath-create-issue (issueCreated)="sendIssue($event)" ></ath-create-issue>
+  <ath-create-issue [type]="issueType" (issueCreated)="sendIssue($event)" ></ath-create-issue>
 
 
 </ion-content>
