@@ -31,6 +31,12 @@ export class ConstructionPage implements OnInit {
       });
   }
 
+  sendIssue(issue: Issue) {
+    this.githubService.postIssue(issue)
+      .subscribe((issueCreated: Issue) => {
+        this.issues.push(issue);
+      });
+  }
 
   issueTypeChanged(ev) {
     this.issueType = ev.target.value;

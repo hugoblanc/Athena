@@ -6,11 +6,11 @@
   <ion-segment value="pizza" (ionChange)="issueTypeChanged($event)">
     <ion-segment-button value="feature">
       <ion-label>Idées</ion-label>
-      <ion-icon name="bug"></ion-icon>
+      <ion-icon name="bulb"></ion-icon>
     </ion-segment-button>
     <ion-segment-button value="bug">
       <ion-label>Bugs</ion-label>
-      <ion-icon name="bulb"></ion-icon>
+      <ion-icon name="bug"></ion-icon>
     </ion-segment-button>
   </ion-segment>
 
@@ -18,5 +18,10 @@
   <ath-loading [loading]="loading">
     <ath-issues-list [issues]="issues"></ath-issues-list>
   </ath-loading>
+
+
+
+  <ath-create-issue (issueCreated)="sendIssue($event)" ></ath-create-issue>
+
 
 </ion-content>

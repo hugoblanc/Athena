@@ -9,6 +9,7 @@ import { ConstructionPageRoutingModule } from './construction-routing.module';
 import { ConstructionPage } from './construction.page';
 import { IssuesListComponent } from './components/issues-list/issues-list.component';
 import { ComponentsModule } from '../../components/components.module';
+import { CreateIssueComponent } from './components/create-issue/create-issue.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,10 @@ import { ComponentsModule } from '../../components/components.module';
     ComponentsModule,
     ConstructionPageRoutingModule
   ],
-  declarations: [ConstructionPage, IssuesListComponent]
+  declarations: [
+    ConstructionPage,
+    IssuesListComponent,
+    CreateIssueComponent
+  ]
 })
 export class ConstructionPageModule {}
