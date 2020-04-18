@@ -16,11 +16,10 @@
 
 body {
   --background: #000000;
-  --ion-background-color: linear-gradient(
-    to right,
-    #485563,
-    #29323c
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  --ion-background-color: linear-gradient(to right,
+      #485563,
+      #29323c);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   --ion-text-color: white;
 
   --primaryColor: #000000;
@@ -51,8 +50,14 @@ body {
   }
 }
 
-.alert-wrapper{
-  --ion-text-color: black;
+.alert-wrapper {
+  .alert-head {
+    --ion-text-color: white;
+  }
+
+  .alert-message {
+    color: #CCCCCC;
+  }
 }
 
 ion-back-button {
@@ -83,6 +88,7 @@ h2 {
   font-family: "RobotoBlack";
   // margin-left: 0.5rem;
 }
+
 .roboto-black {
   font-family: "RobotoBlack";
 }
@@ -98,10 +104,19 @@ h2 {
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
+
   img {
     margin-left: -1rem;
     max-width: none;
     width: 110%;
     height: auto;
   }
+}
+
+
+ion-modal {
+  --max-height: 90vh !important;
+  --border-radius: 16px 16px 0 0 !important;
+  align-items: flex-end !important;
+
 }

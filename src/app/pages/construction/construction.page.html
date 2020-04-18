@@ -1,0 +1,29 @@
+<ion-content>
+
+  <ath-section title="Améliorer Athena"></ath-section>
+
+
+  <ion-segment [value]="issueType" (ionChange)="issueTypeChanged($event)">
+    <ion-segment-button value="feature">
+      <ion-label>Idées</ion-label>
+      <ion-icon name="bulb"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="bug">
+      <ion-label>Bugs</ion-label>
+      <ion-icon name="bug"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <ath-loading [loading]="loading">
+    <ath-issues-list [issues]="issues"></ath-issues-list>
+  </ath-loading>
+
+
+  <ion-button (click)="openCreateModal()" expand="block" fill="clear" shape="round">
+    {{issueType === 'bug' ? 'Signaler un bug' : 'Poster une idée'}}
+  </ion-button>
+
+
+
+</ion-content>

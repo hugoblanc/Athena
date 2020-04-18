@@ -19,12 +19,12 @@ export class GithubService {
 
   }
 
-  getAllIssue(): Observable<Issue[]> {
-    return this.http.get(GithubService.BASE_GITHUB_URL + GithubService.ATHENA + GithubService.ISSUE);
+  getIssueByLabel(label: string): Observable<Issue[]> {
+    return this.http.get(GithubService.BASE_GITHUB_URL + GithubService.ATHENA + GithubService.ISSUE + `?labels=${label}`);
   }
 
 
-  postIssue(issue: Issue): Observable<Issue>  {
+  postIssue(issue: Issue): Observable<Issue> {
     return this.http.post(GithubService.BASE_ATHENA_URL + GithubService.ISSUE, issue);
   }
 }
