@@ -1,0 +1,14 @@
+ion-tabs{
+    background-color: #DDDDDD;
+  }
+
+  ion-tab-bar{
+    --background: var(--ion-color-dark);
+    border-radius: 16px;
+    margin: 1.5%;
+    padding: 4% 0%;
+    position: fixed;
+    bottom: 0px;
+    width: 97%;
+
+}

@@ -11,6 +11,7 @@ import { Slides3dComponent } from './slides3d/slides3d.component';
 import { YoutubeIframeComponent } from './youtube-iframe/youtube-iframe.component';
 import { DonationComponent } from './donation/donation.component';
 import { CardComponent } from './card/card.component';
+import { LoadingComponent } from './loading/loading.component';
 
 /**
  * Ce module intègre l'ensembles des composants qui sont globaux à l'application
@@ -27,7 +28,8 @@ import { CardComponent } from './card/card.component';
     SectionComponent,
     HeaderModalComponent,
     DonationComponent,
-    CardComponent
+    CardComponent,
+    LoadingComponent
   ],
   exports: [AthLoaderComponent,
     HorizontalComponent,
@@ -37,7 +39,8 @@ import { CardComponent } from './card/card.component';
     SectionComponent,
     HeaderModalComponent,
     DonationComponent,
-    CardComponent
+    CardComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,

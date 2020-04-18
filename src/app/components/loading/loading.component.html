@@ -1,0 +1,16 @@
+<ng-template #spinner>
+  <div id="spinner-container" class="bf-centered" *ngIf="loading">
+    <ion-spinner name="crescent"></ion-spinner>
+  <div id="label-spinner">
+    Chargement en cours
+  </div>
+</div>
+</ng-template>
+
+<ng-template #content >
+<ng-content></ng-content>
+</ng-template>
+
+
+<ng-container *ngTemplateOutlet="loading ? spinner: content">
+</ng-container>
