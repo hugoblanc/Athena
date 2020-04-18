@@ -1,4 +1,4 @@
-<ion-slides pager="false" scrollbar="false">
+<ion-slides [options]="swiperConfig"  pager="false" scrollbar="false">
   <ion-slide>
     <ion-button (click)="next()" expand="block" fill="clear" shape="round">
       {{type === 'bug' ? 'Signaler un bug' : 'Poster une idée'}}
@@ -7,15 +7,21 @@
   <ion-slide>
 
     <ion-item>
-      <ion-label>Titre</ion-label>
-      <ion-input [(ngModel)]="title" ></ion-input>
+      <ion-label position="floating">Titre</ion-label>
+      <ion-input [(ngModel)]="issue.title"></ion-input>
     </ion-item>
+    <ion-button *ngIf="issue.title?.length > 0" (click)="next()" expand="block" fill="clear" shape="round">
+      Valider
+    </ion-button>
   </ion-slide>
   <ion-slide>
 
     <ion-item>
       <ion-label position="floating">Description</ion-label>
-      <ion-textarea [(ngModel)]="description" ></ion-textarea>
+      <ion-textarea [(ngModel)]="issue.body"></ion-textarea>
     </ion-item>
+    <ion-button *ngIf="issue.body?.length > 0" (click)="create()" expand="block" fill="clear" shape="round">
+      Envoyer
+    </ion-button>
   </ion-slide>
 </ion-slides>

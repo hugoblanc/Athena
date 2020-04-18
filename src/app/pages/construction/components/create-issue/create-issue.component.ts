@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
-import { Issue } from '../../../../models/github/github';
+import { Issue, Label } from '../../../../models/github/github';
 import { IonSlides } from '@ionic/angular';
 
 @Component({
@@ -14,13 +14,25 @@ export class CreateIssueComponent implements OnInit {
   @ViewChild(IonSlides, { static: true }) slides: IonSlides;
 
 
-  issue = {} as Issue;
+  swiperConfig = { allowTouchMove: false };
+
+
+  issue = { title: '', body: '' } as Issue;
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // Slides;
+  }
 
   next() {
     this.slides.slideNext();
+  }
+
+  create() {
+    this.issue.labels = [this.type as Label];
+    this.issueCreated.emit(this.issue);
+    this.slides.slideTo(0);
+    this.issue = { title: '', body: '' };
   }
 }
