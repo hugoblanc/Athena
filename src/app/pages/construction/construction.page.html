@@ -1,0 +1,22 @@
+<ion-content>
+
+  <ath-section title="Améliorer Athena"></ath-section>
+
+
+  <ion-segment value="pizza" (ionChange)="issueTypeChanged($event)">
+    <ion-segment-button value="feature">
+      <ion-label>Idées</ion-label>
+      <ion-icon name="bug"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="bug">
+      <ion-label>Bugs</ion-label>
+      <ion-icon name="bulb"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <ath-loader [loading]="loading"></ath-loader>
+
+  <ath-issues-list [issues]="issues"></ath-issues-list>
+
+</ion-content>

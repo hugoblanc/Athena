@@ -1,3 +1,4 @@
+
 import { Component, NgZone, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { IssueModalPage } from '../../issue/issue.modal';
@@ -40,7 +41,7 @@ export class HomePage implements OnInit {
           this.loading = false;
         });
       });
-    this.githubService.getAllIssue()
+    this.githubService.getIssueByLabel()
       .subscribe((issues: Issue[]) => {
         this.issues = issues;
         this.loading = false;

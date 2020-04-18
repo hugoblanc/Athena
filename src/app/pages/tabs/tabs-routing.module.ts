@@ -17,16 +17,16 @@ const routes: Routes = [
           }
         ]
       },
-      // {
-      //   path: 'analysis',
-      //   children: [
-      //     {
-      //       path: '',
-      //       loadChildren: () =>
-      //         import('../analysis/analysis.module').then(m => m.AnalysisPageModule)
-      //     }
-      //   ]
-      // },
+      {
+        path: 'construction',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../construction/construction.module').then(m => m.ConstructionPageModule)
+          }
+        ]
+      },
       // {
       //   path: 'guide',
       //   children: [
