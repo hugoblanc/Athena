@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IssueModalPage } from '../construction/components/issue/issue.modal';
-import { ModalController } from '@ionic/angular';
+import { StorageService } from '../../provider/helper/storage.service';
+import { Router } from '@angular/router';
 
 /**
  * Cette page est un ensemble de trois slides qui permet d'afficher les infrmations essentielle
@@ -14,22 +14,14 @@ import { ModalController } from '@ionic/angular';
 })
 export class TutoPage implements OnInit {
 
-  constructor(private modalController: ModalController) { }
+  constructor(private storageService: StorageService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  async createIssue() {
-    const modal = await this.modalController.create({
-      component: IssueModalPage
-    });
-    modal.onDidDismiss().then((data) => {
-      if (data != null) {
 
-      }
-      console.log(data);
-
-    });
-    return await modal.present();
+  finishTuto() {
+    this.storageService.initFirstLaunch();
+    this.router.navigateByUrl('/tabs/home');
   }
 }

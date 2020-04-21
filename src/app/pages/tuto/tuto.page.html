@@ -49,7 +49,7 @@
     <ion-slide>
       <div class="bloc-container" id="fab-container">
         <ion-fab vertical="top" horizontal="center" slot="fixed">
-          <ion-fab-button (click)="createIssue()">
+          <ion-fab-button >
             <ion-icon name="hammer"></ion-icon>
           </ion-fab-button>
         </ion-fab>
@@ -68,7 +68,7 @@
         <ion-button color="secondary" [routerLink]="'/informations'" routerLinkActive="active" >Plus d'informations</ion-button>
       </div>
       <div class="bloc-container-button">
-          <ion-button color="primary" [routerLink]="'/home'" routerLinkActive="active" routerDirection="root">Terminer le tuto</ion-button>
+          <ion-button color="primary" (click)="finishTuto()">Terminer le tuto</ion-button>
       </div>
     </ion-slide>
 
