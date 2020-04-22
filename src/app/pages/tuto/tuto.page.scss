@@ -1,9 +1,9 @@
 ion-content {
-  --padding-top: 50px;
+  // --padding-top: 50px;
   ion-slides {
     height: 100%;
     ion-slide {
-      padding: 2rem;
+      // padding: 2rem;
       padding-top: 0;
       display: inline;
       .bloc-container-button, .bloc-container {
@@ -59,10 +59,19 @@ ion-content {
         }
       }
 
-
-      #fab-container {
-        padding-top: 5rem;
-      }
     }
   }
 }
+
+
+ion-slide {
+  overflow: hidden;
+  .back{
+    position: absolute;
+    top: 0px;
+    left: 15px;
+  }
+}
+
+
+
