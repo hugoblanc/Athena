@@ -1,63 +1,65 @@
 ion-content {
+
   // --padding-top: 50px;
   ion-slides {
     height: 100%;
+
     ion-slide {
       // padding: 2rem;
-      padding-top: 0;
+      // padding-top: 0;
       display: inline;
-      .bloc-container-button, .bloc-container {
-        width: 100%;
-        text-align: center;
-      }
-      .bloc-container-button {
-        margin-bottom: 0;
-      }
-      .bloc-container {
-        margin-bottom: 7vh;
-        .image-container {
-          width: 100%;
-          margin-bottom: 0.5rem;
-          img {
-            width: 12vh;
-            height: auto;
-            color: white;
-          }
+      // .bloc-container-button, .bloc-container {
+      //   width: 100%;
+      //   text-align: center;
+      // }
+      // .bloc-container-button {
+      //   margin-bottom: 0;
+      // }
+      // .bloc-container {
+      //   margin-bottom: 7vh;
+      //   .image-container {
+      //     width: 100%;
+      //     margin-bottom: 0.5rem;
+      //     img {
+      //       width: 12vh;
+      //       height: auto;
+      //       color: white;
+      //     }
 
-          .github-icon {
-            font-size: 4rem;
-          }
+      //     .github-icon {
+      //       font-size: 4rem;
+      //     }
 
-          #fusion {
-            transform: rotate(180deg);
-          }
-        }
-      }
+      //     #fusion {
+      //       transform: rotate(180deg);
+      //     }
+      //   }
+      // }
 
-      @media screen and (max-height: 620px) {
-        .bloc-container {
-          margin-bottom: 4vh;
-          .image-container {
-            img {
-              width: 8vh;
-            }
-          }
-        }
-      }
+      // @media screen and (max-height: 620px) {
+      //   .bloc-container {
+      //     margin-bottom: 4vh;
+      //     .image-container {
+      //       img {
+      //         width: 8vh;
+      //       }
+      //     }
+      //   }
+      // }
 
-      @media screen and (min-height: 750px) {
-        .bloc-container {
-          margin-bottom: 9vh;
-          .image-container {
-            img {
-              width: 14vh;
-            }
-          }
-          .github-icon {
-            font-size: 6rem;
-          }
-        }
-      }
+      // @media screen and (min-height: 750px) {
+      //   .bloc-container {
+      //     margin-bottom: 9vh;
+      //     .image-container {
+      //       img {
+      //         width: 14vh;
+      //       }
+      //     }
+      //     .github-icon {
+      //       font-size: 6rem;
+      //     }
+      //   }
+      // }
 
     }
   }
@@ -66,12 +68,43 @@ ion-content {
 
 ion-slide {
   overflow: hidden;
-  .back{
+
+  .back {
     position: absolute;
     top: 0px;
-    left: 15px;
+    left: 0px;
+  }
+
+  text-align: left;
+
+  img {
+    z-index: 10;
+    width: 100vw;
+    max-height: unset;
+  }
+
+  .tuto2{
+    top: inherit;
+    bottom: 0px;
+  }
+
+
+  .body {
+    padding: 1rem;
+    padding-top: 20vh;
+  }
+
+  h1,
+  p {
+    z-index: 110;
+    position: relative;
+  }
+
+  h1 {
+    font-family: "RobotoBlack";
+  }
+
+  p {
+    font-family: "RobotoRegular";
   }
 }
-
-
-
