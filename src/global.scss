@@ -40,6 +40,11 @@ body {
   --color: white !important;
 }
 
+ion-content {
+  --padding-top: var(--ath-top-padding);
+  --padding-bottom: var(--ath-bottom-padding);
+}
+
 .masonry-item {
   margin: 10px;
 }
