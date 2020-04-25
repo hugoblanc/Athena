@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { StorageService } from '../../provider/helper/storage.service';
 import { Router } from '@angular/router';
+import { IonSlides } from '@ionic/angular';
 
 /**
  * Cette page est un ensemble de trois slides qui permet d'afficher les infrmations essentielle
@@ -16,7 +17,18 @@ export class TutoPage implements OnInit {
 
   constructor(private storageService: StorageService, private router: Router) { }
 
+
+  @ViewChild(IonSlides, {static: true}) slides: IonSlides;
+
   ngOnInit() {
+  }
+  async next() {
+    const index = await this.slides.getActiveIndex();
+    if (index < 2) {
+      await this.slides.slideNext();
+    } else {
+      this.finishTuto();
+    }
   }
 
 
