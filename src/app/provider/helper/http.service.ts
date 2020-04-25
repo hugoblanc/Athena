@@ -59,11 +59,7 @@ export class HttpService {
    * @param url l'url a get
    */
   private developGet(url: string) {
-
-    let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.set('If-None-Match', '');
-
-    return this.developHttp.get(url, { headers });
+    return this.developHttp.get(url, );
   }
 
   /**
