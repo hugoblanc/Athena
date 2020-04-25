@@ -12,7 +12,7 @@ export class GithubService {
   private static BASE_GITHUB_URL = 'https://api.github.com/repos/';
   private static ATHENA = 'hugoblanc/Athena/';
   private static ISSUE = 'issues';
-  private static CLAPS = '/clap';
+  private static CLAP = '/clap';
 
 
 
@@ -34,7 +34,7 @@ export class GithubService {
 
     const url = GithubService.BASE_ATHENA_URL
       + GithubService.ISSUE + '/' + issue.number
-      + GithubService.CLAPS;
+      + GithubService.CLAP;
 
 
     return this.http.post(url, {});
