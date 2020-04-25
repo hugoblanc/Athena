@@ -83,9 +83,14 @@ ion-slide {
     max-height: unset;
   }
 
-  .tuto2{
+  .back-bottom{
     top: inherit;
     bottom: 0px;
+  }
+
+  .top-left{
+    width: 30vw;
+    margin: 2rem
   }
 
 
@@ -107,4 +112,12 @@ ion-slide {
   p {
     font-family: "RobotoRegular";
   }
+}
+
+
+ion-button{
+  position: absolute;
+  right: 7%;
+  bottom: 2%;
+  z-index: 10;
 }
