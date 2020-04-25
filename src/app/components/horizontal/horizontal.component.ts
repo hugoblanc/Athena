@@ -22,7 +22,7 @@ export class HorizontalComponent implements OnInit {
 
 
   ngOnInit() {
-    this.isIOS = this.platform.is('ios');
+    this.isIOS = true || this.platform.is('ios');
   }
 
 
