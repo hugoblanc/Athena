@@ -1,6 +1,7 @@
 :host {
   ion-content {
-    --padding-top: 50px;
+    --padding-top: var(--ath-top-padding);
+    --padding-bottom: var(--ath-top-bottom);
 
 
     #header-item{

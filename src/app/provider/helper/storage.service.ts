@@ -11,8 +11,22 @@ export class StorageService {
   public static COUNT_KEY = 'COUNT_KEY';
   public static INSTALLATION_DATE = 'INSTALLATION_DATE';
   public static DISPLAY_TUTO = 'DISPLAY_TUTO';
+  private static FIRST_LAUNCH = 'FIRST_LAUNCH';
+
 
   constructor(private storage: Storage) { }
+
+
+
+  initFirstLaunch(): void {
+    this.set(StorageService.FIRST_LAUNCH, true);
+  }
+
+
+  isFirstLaunch(): Observable<boolean> {
+    return this.get(StorageService.FIRST_LAUNCH)
+               .pipe(map((isFirst) => (isFirst == null)));
+  }
 
   /**
    * Cette methode se charge de changer une propriété d'objet en storage:  key.objectKey = value

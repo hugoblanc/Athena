@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { CheckFirstGuard } from './core/check-first.guard';
 import { CurrentMetaMediaGuard } from './core/current-meta-media.guard';
 
 const routes: Routes = [
@@ -8,14 +9,19 @@ const routes: Routes = [
   // tslint:disable-next-line: max-line-length
   { path: 'media/:key/details/:id', canActivate: [CurrentMetaMediaGuard], loadChildren: './content-details/content-details.module#ContentDetailsPageModule' },
   { path: 'informations', loadChildren: './informations/informations.module#InformationsPageModule' },
-  // { path: 'tuto', loadChildren: './home/tuto/tuto.module#TutoPageModule' },
+  {
+    path: 'tuto',
+    loadChildren: () => import('./pages/tuto/tuto.module').then(m => m.TutoPageModule)
+  },
   {
     path: '',
-    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
+    canLoad: [CheckFirstGuard]
   },
   {
     path: 'construction',
-    loadChildren: () => import('./pages/construction/construction.module').then( m => m.ConstructionPageModule)
+    loadChildren: () => import('./pages/construction/construction.module').then(m => m.ConstructionPageModule),
+    canLoad: [CheckFirstGuard]
   },
 ];
 

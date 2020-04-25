@@ -1,5 +1,5 @@
 import { Issue } from './../../../../models/github/github';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'ath-issues-list',
@@ -8,10 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class IssuesListComponent implements OnInit {
 
-  @Input() issues: Issue[] =  [];
+  @Input() issues: Issue[] = [];
+  @Output() claped = new EventEmitter<Issue>();
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  clapIssue(issue: Issue) {
+    this.claped.emit(issue);
+  }
 
 }

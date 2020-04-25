@@ -84,16 +84,14 @@ export class NotificationService {
       });
   }
 
-  /**
-   * Initialisation des
-   */
+
   public initData(): Observable<any[]> {
     const grantPermission$ = from(this.firebaseX.grantPermission());
     const makeDiff$ = grantPermission$.pipe(
-        // Vérif permission (IOS only)  
+        // Vérif permission (IOS only)
         filter((permission: boolean) => permission),
         // Récupération des données en locastorage
-        flatMap(()=> this.getLocal()),
+        flatMap(() => this.getLocal()),
         // On fait la différence entre les données du localstorage et les media récupéré
         map((result) => this.makeDiffWithMedia()),
         // on convertis la liste de metamedia en liste de string classique

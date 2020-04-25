@@ -1,13 +1,21 @@
-ion-segment{
-  margin-bottom: 2rem;
-}
+:host {
+  ion-content {
+    --padding-top: var(--ath-top-padding);
+    --padding-bottom: var(--ath-top-bottom);
 
-ath-section{
-  margin: 2rem;
-  display: block;
-}
+    ion-segment {
+      margin-bottom: 2rem;
+    }
 
-ath-create-issue{
-  display: block;
-  margin-top: 1rem;
+    ath-section {
+      margin: 2rem;
+      display: block;
+    }
+
+    ath-create-issue {
+      display: block;
+      margin-top: 1rem;
+    }
+
+  }
 }

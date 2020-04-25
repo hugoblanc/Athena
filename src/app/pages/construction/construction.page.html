@@ -3,7 +3,7 @@
   <ath-section title="Améliorer Athena"></ath-section>
 
 
-  <ion-segment [value]="issueType" (ionChange)="issueTypeChanged($event)">
+  <ion-segment [value]="issueType" mode="md" (ionChange)="issueTypeChanged($event)">
     <ion-segment-button value="feature">
       <ion-label>Idées</ion-label>
       <ion-icon name="bulb"></ion-icon>
@@ -16,7 +16,7 @@
 
 
   <ath-loading [loading]="loading">
-    <ath-issues-list [issues]="issues"></ath-issues-list>
+    <ath-issues-list [issues]="issues" (claped)="createClap($event)" ></ath-issues-list>
   </ath-loading>
 
 
