@@ -6,9 +6,15 @@ ion-tabs{
     --background: var(--ion-color-dark);
     border-radius: 16px;
     margin: 1.5%;
-    padding: 4% 0%;
+    padding: 0;
     position: fixed;
     bottom: 0px;
     width: 97%;
+    height: 10vh;
+
+    ion-tab-button{
+      // --padding-bottom: 4vh;
+      // --padding-top: 4vh;
+    }
 
 }
