@@ -20,18 +20,9 @@ const routes: Routes = [
     loadChildren: () => import('./content-details/content-details.module').then(m => m.ContentDetailsPageModule)
   },
   {
-    path: 'informations',
-    loadChildren: () => import('./pages/informations/informations.module').then(m => m.InformationsPageModule)
-  },
-  {
     path: 'tuto',
     loadChildren: () => import('./pages/tuto/tuto.module').then(m => m.TutoPageModule)
-  },
-  {
-    path: 'construction',
-    loadChildren: () => import('./pages/construction/construction.module').then(m => m.ConstructionPageModule),
-    canLoad: [CheckFirstGuard]
-  },
+  }
 ];
 
 @NgModule({
