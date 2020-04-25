@@ -3,7 +3,7 @@ import { Platform } from '@ionic/angular';
 import { HTTP, HTTPResponse } from '@ionic-native/http/ngx';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +59,11 @@ export class HttpService {
    * @param url l'url a get
    */
   private developGet(url: string) {
-    return this.developHttp.get(url);
+
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.set('If-None-Match', '');
+
+    return this.developHttp.get(url, { headers });
   }
 
   /**
@@ -68,6 +72,7 @@ export class HttpService {
    * @param body le body a poster
    */
   private nativePost(url: string, body?: any) {
+
     return from(this.nativeHttp.post(url, body, {}))
       .pipe(map((data: HTTPResponse) => JSON.parse(data.data)));
   }
