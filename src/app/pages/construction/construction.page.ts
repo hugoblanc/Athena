@@ -19,25 +19,23 @@ export class ConstructionPage implements OnInit {
   constructor(private githubService: GithubService, private modalController: ModalController) { }
 
   ngOnInit() {
-
     this.initIssuesByType(this.issueType);
   }
 
-  initIssuesByType(type: string) {
+  issueTypeChanged(ev) {
+    this.issueType = ev.target.value;
     this.loading = true;
-    this.githubService.getIssueByLabel(type)
-      .subscribe((issues: Issue[]) => {
-        this.issues = issues;
-        this.loading = false;
+    this.initIssuesByType(this.issueType);
+  }
+
+
+  createClap(issue: Issue) {
+    this.githubService.postClapComment(issue)
+      .subscribe((comment) => {
+        this.initIssuesByType(this.issueType);
       });
   }
 
-  sendIssue(issue: Issue) {
-    this.githubService.postIssue(issue)
-      .subscribe((issueCreated: Issue) => {
-        this.issues.push(issueCreated);
-      });
-  }
 
   async openCreateModal() {
     const createModal = await this.initModal();
@@ -51,6 +49,13 @@ export class ConstructionPage implements OnInit {
     }
   }
 
+  private initIssuesByType(type: string) {
+    this.githubService.getIssueByLabel(type)
+      .subscribe((issues: Issue[]) => {
+        this.issues = issues;
+        this.loading = false;
+      });
+  }
 
   private async initModal() {
     const createModal = await this.modalController.create({
@@ -60,9 +65,13 @@ export class ConstructionPage implements OnInit {
     return createModal;
   }
 
-  issueTypeChanged(ev) {
-    this.issueType = ev.target.value;
-    this.initIssuesByType(this.issueType);
+  private sendIssue(issue: Issue) {
+    this.githubService.postIssue(issue)
+      .subscribe((issueCreated: Issue) => {
+        this.issues.push(issueCreated);
+      });
   }
+
+
 
 }
