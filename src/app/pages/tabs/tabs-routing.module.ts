@@ -27,6 +27,15 @@ const routes: Routes = [
           }
         ]
       },
+      {
+        path: 'informations',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../informations/informations.module').then(m => m.InformationsPageModule)
+          }
+        ]
+      },
       // {
       //   path: 'guide',
       //   children: [
