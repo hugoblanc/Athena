@@ -4,7 +4,7 @@ routerLinkActive="router-link-active" >
     {{issue?.title}}
   </ion-label>
 
-  <ion-button shape="round" fill="clear" (click)="clapIssue(issue)">
+  <ion-button shape="round" fill="clear" (click)="clapIssue($event, issue); false">
     <ion-icon slot="icon-only" src="assets/clap.svg"></ion-icon>
     {{issue?.comments}}
   </ion-button>
