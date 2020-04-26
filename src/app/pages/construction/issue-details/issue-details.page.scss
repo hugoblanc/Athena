@@ -1,3 +1,9 @@
+#title{
+  h2{
+    font-size: 1.3rem;;
+  }
+}
+
 .inline-back-button {
   display: block;
   margin-right: 0px;
@@ -10,3 +16,12 @@ ion-back-button {
   --padding-start: 0.8rem;
 }
 
+
+@media screen and (max-width: 450px) {
+  #title{
+    h2{
+
+      font-size: 1.1rem;
+      }
+    }
+}
