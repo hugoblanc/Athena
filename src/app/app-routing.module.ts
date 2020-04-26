@@ -5,9 +5,8 @@ import { CurrentMetaMediaGuard } from './core/current-meta-media.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
-    canLoad: [CheckFirstGuard]
+    path: 'tuto',
+    loadChildren: () => import('./pages/tuto/tuto.module').then(m => m.TutoPageModule)
   },
   {
     path: 'media/:key',
@@ -20,9 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./content-details/content-details.module').then(m => m.ContentDetailsPageModule)
   },
   {
-    path: 'tuto',
-    loadChildren: () => import('./pages/tuto/tuto.module').then(m => m.TutoPageModule)
-  }
+    path: '',
+    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
+    canLoad: [CheckFirstGuard]
+  },
 ];
 
 @NgModule({

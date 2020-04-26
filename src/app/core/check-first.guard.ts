@@ -16,7 +16,7 @@ export class CheckFirstGuard implements CanLoad {
     const isFirstLaunch = this.storageService.isFirstLaunch();
     return isFirstLaunch.pipe(map((isFirst: boolean) => {
       if (isFirst) {
-        this.router.navigateByUrl('/tuto');
+        this.router.navigateByUrl('tuto');
       }
       // Return false si c'est le premier lancement
       return !isFirst;
