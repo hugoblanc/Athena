@@ -14,6 +14,8 @@ export class GithubService {
   private static ISSUE = 'issues';
   private static CLAP = '/clap';
 
+  private static FULL_GITHUB_URL = GithubService.BASE_GITHUB_URL + GithubService.ATHENA + GithubService.ISSUE;
+
 
 
   constructor(public http: HttpService) {
@@ -21,7 +23,12 @@ export class GithubService {
   }
 
   getIssueByLabel(label: string): Observable<Issue[]> {
-    return this.http.get(GithubService.BASE_GITHUB_URL + GithubService.ATHENA + GithubService.ISSUE + `?labels=${label}`);
+    return this.http.get(GithubService.FULL_GITHUB_URL + `?labels=${label}`);
+  }
+
+
+  getIssueByNumber(issueNumber: number): Observable<Issue> {
+    return this.http.get(GithubService.FULL_GITHUB_URL + '/' + issueNumber);
   }
 
 
