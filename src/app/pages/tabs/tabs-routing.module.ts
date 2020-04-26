@@ -9,53 +9,16 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../home/home.module').then(m => m.HomePageModule)
-          }
-        ]
+        loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
       },
       {
         path: 'construction',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../construction/construction.module').then(m => m.ConstructionPageModule)
-          }
-        ]
+        loadChildren: () => import('../construction/construction.module').then(m => m.ConstructionPageModule)
       },
       {
         path: 'informations',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('../informations/informations.module').then(m => m.InformationsPageModule)
-          }
-        ]
+        loadChildren: () => import('../informations/informations.module').then(m => m.InformationsPageModule)
       },
-      // {
-      //   path: 'guide',
-      //   children: [
-      //     {
-      //       path: '',
-      //       loadChildren: () =>
-      //         import('../guide/guide.module').then(m => m.GuidePageModule)
-      //     }
-      //   ]
-      // },
-      // {
-      //   path: 'calendar',
-      //   children: [
-      //     {
-      //       path: '',
-      //       loadChildren: () =>
-      //         import('../calendar/calendar.module').then(m => m.CalendarPageModule)
-      //     }
-      //   ]
-      // },
       {
         path: '',
         redirectTo: 'home',
@@ -74,4 +37,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }
