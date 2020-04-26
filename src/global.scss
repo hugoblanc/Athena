@@ -40,6 +40,11 @@ body {
   --color: white !important;
 }
 
+ion-content {
+  --padding-top: var(--ath-top-padding);
+  --padding-bottom: var(--ath-bottom-padding);
+}
+
 .masonry-item {
   margin: 10px;
 }
@@ -84,6 +89,11 @@ ion-back-button {
   src: url("./assets/fonts/roboto/Roboto-Regular.ttf");
 }
 
+@font-face {
+  font-family: "RobotoMediumItalic";
+  src: url("./assets/fonts/roboto/Roboto-MediumItalic.ttf");
+}
+
 h2 {
   font-family: "RobotoBlack";
   // margin-left: 0.5rem;
@@ -125,4 +135,10 @@ ion-modal {
 
 .swiper-pagination {
   bottom: 4.5% !important
+}
+
+
+
+.ath-alert {
+  --background: linear-gradient(to right, #485563, #29323c);
 }

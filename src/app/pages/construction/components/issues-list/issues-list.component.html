@@ -1,4 +1,5 @@
-<ion-item color="transparent"  *ngFor="let issue of issues">
+<ion-item color="transparent"  *ngFor="let issue of issues" [routerLink]="['issue-details', issue.number]"
+routerLinkActive="router-link-active" >
   <ion-label class="ion-text-wrap">
     {{issue?.title}}
   </ion-label>
