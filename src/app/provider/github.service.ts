@@ -8,7 +8,7 @@ import { HttpService } from './helper/http.service';
 })
 export class GithubService {
 
-  public static BASE_ATHENA_URL = 'https://athena-api.caprover.athena-app.fr/github/';
+  public static BASE_ATHENA_URL = 'https://www.athena-app.fr/github/';
   private static BASE_GITHUB_URL = 'https://api.github.com/repos/';
   private static ATHENA = 'hugoblanc/Athena/';
   private static ISSUE = 'issues';

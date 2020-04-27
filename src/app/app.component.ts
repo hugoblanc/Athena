@@ -93,6 +93,6 @@ export class AppComponent implements OnInit {
   }
 
   openPrivacy() {
-    this.linkService.launchInAppBrowser('https://athena-api.caprover.athena-app.fr/privacy');
+    this.linkService.launchInAppBrowser('https://www.athena-app.fr/privacy');
   }
 }
