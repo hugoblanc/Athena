@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/hugoblanc/Athena/compare/v1.4.0...v1.4.1) (2020-04-27)
+
+
+### Bug Fixes
+
+* navigation error on startup ([9483df9](https://github.com/hugoblanc/Athena/commit/9483df9358c7e7daac467964e5ebd3707e5a75f2))
+* padding top/bottom on tuto ([9c917f4](https://github.com/hugoblanc/Athena/commit/9c917f4c5409c94c4437ab6d9842f08a2bbdeaf8))
+* prevent default ([42b9775](https://github.com/hugoblanc/Athena/commit/42b9775156be086ab94d431ee5519bd4b6ddfc63))
+* size back button ([605da4c](https://github.com/hugoblanc/Athena/commit/605da4c3794e26082d2e870e8dc4a41adfebe915))
+
 ## [1.4.0](https://github.com/hugoblanc/Athena/compare/v1.3.0...v1.4.0) (2020-04-26)
 
 
