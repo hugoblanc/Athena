@@ -12,7 +12,7 @@ import { AlertService } from '../helper/alert.service.js';
   providedIn: 'root'
 })
 export class MetaMediaService {
-  private static BASE_URL = 'https://athena-api.caprover.athena-app.fr/list-meta-media';
+  private static BASE_URL = 'https://www.athena-app.fr/list-meta-media';
   private installDate: Date;
 
   public listMetaMedia: ListMetaMedias[] = listMetaMediaData;

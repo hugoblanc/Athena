@@ -2,6 +2,67 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/hugoblanc/Athena/compare/v1.4.1...v1.4.2) (2020-04-28)
+
+
+### Bug Fixes
+
+* info website link ([5e45876](https://github.com/hugoblanc/Athena/commit/5e458767685014a4c2c13873c7506dc8f961fe0a))
+* padding bottom content ([352de11](https://github.com/hugoblanc/Athena/commit/352de11d42c7d55cd5b0e82aa049984f58b10c7c))
+* update api endpoint ([a80552a](https://github.com/hugoblanc/Athena/commit/a80552aef38088c1e0b978d467e74454430312e8))
+
+### [1.4.1](https://github.com/hugoblanc/Athena/compare/v1.4.0...v1.4.1) (2020-04-27)
+
+
+### Bug Fixes
+
+* navigation error on startup ([9483df9](https://github.com/hugoblanc/Athena/commit/9483df9358c7e7daac467964e5ebd3707e5a75f2))
+* padding top/bottom on tuto ([9c917f4](https://github.com/hugoblanc/Athena/commit/9c917f4c5409c94c4437ab6d9842f08a2bbdeaf8))
+* prevent default ([42b9775](https://github.com/hugoblanc/Athena/commit/42b9775156be086ab94d431ee5519bd4b6ddfc63))
+* size back button ([605da4c](https://github.com/hugoblanc/Athena/commit/605da4c3794e26082d2e870e8dc4a41adfebe915))
+
+## [1.4.0](https://github.com/hugoblanc/Athena/compare/v1.3.0...v1.4.0) (2020-04-26)
+
+
+### Features
+
+* **issue-deatils:** navigate to details ([e54aca3](https://github.com/hugoblanc/Athena/commit/e54aca38cb47f7d48ff760130cbed7af85dab34a))
+* add firstlaunch detection ([a1fdab2](https://github.com/hugoblanc/Athena/commit/a1fdab2881fe0d8610638bfacd6bb3b6204e4e3d))
+* add github methode to get by number ([255f727](https://github.com/hugoblanc/Athena/commit/255f7278322b43afe1511b3a9bb0b43d972bf4a4))
+* add informations page ([f55bb13](https://github.com/hugoblanc/Athena/commit/f55bb131f507d91980976b825cd50ace7bf765b1))
+* back tuto 1 ([73b25c8](https://github.com/hugoblanc/Athena/commit/73b25c8c33bcba5d9c253d9112447c067dd45f4e))
+* construction page ([9143fe3](https://github.com/hugoblanc/Athena/commit/9143fe37d0ee5736c71cd60440cebc5f929cbe59))
+* create issue by step ([09aef5c](https://github.com/hugoblanc/Athena/commit/09aef5c487ba05734cc90a87ae39af03271afcc7))
+* create issue concluded ([6890b41](https://github.com/hugoblanc/Athena/commit/6890b412eb0fb44257aeb80362617229318094cf))
+* create issue details page ([115f589](https://github.com/hugoblanc/Athena/commit/115f589f2d426ace518310ed77dc8ca2e9a7ef44))
+* global font ([f404942](https://github.com/hugoblanc/Athena/commit/f404942e929bde056cc702fb76bc6e5162ae977b))
+* guard importation ([6da78a8](https://github.com/hugoblanc/Athena/commit/6da78a856a7f01d2d8d7b7759c8b72c1e88c1781))
+* make guard async ([e1e4d8d](https://github.com/hugoblanc/Athena/commit/e1e4d8d403e293bf6e2837f328f51eb72fbbfd00))
+* modal integration clean ([6d82936](https://github.com/hugoblanc/Athena/commit/6d8293692e4ccadf0256567c7cca20386c58428a))
+* protect routes ([d9bf520](https://github.com/hugoblanc/Athena/commit/d9bf52099d38ba8999f4a0e8b6aca5de2cbea9a6))
+* stepper integration ([e8d1e3e](https://github.com/hugoblanc/Athena/commit/e8d1e3eb3d0f3a4583c1a2b30c02b9c916c56951))
+* text + disposition ([38e2802](https://github.com/hugoblanc/Athena/commit/38e2802c21750c793a7b57734295facd579d6d2c))
+* text tuto ([55ff293](https://github.com/hugoblanc/Athena/commit/55ff293f66552b42604d9e4d25fa47c30a8c32a6))
+* tuto 2 background image ([07e78e1](https://github.com/hugoblanc/Athena/commit/07e78e145ebfba484137a261f38bdcfa970938a1))
+* tuto svg ([42bde11](https://github.com/hugoblanc/Athena/commit/42bde11f4db7b36241fc2741517e101e36f10f49))
+* update FIRST_LAUCH ([59cff7d](https://github.com/hugoblanc/Athena/commit/59cff7d6e29a758e529529e13cda58525a8e8b4c))
+
+
+### Bug Fixes
+
+*  ios and low resolution fixes ([4c7afce](https://github.com/hugoblanc/Athena/commit/4c7afcebb9c128a0fb107ffa10ef8a8c69253ba4))
+* add If-none-match ([a2405e4](https://github.com/hugoblanc/Athena/commit/a2405e4f9fbb16198c41615131cf3ee74ff85e38))
+* clean undefined home method ([8d70c6f](https://github.com/hugoblanc/Athena/commit/8d70c6fa32782fdbdf0c4ccb36d272c205054624))
+* correction info text ([a40c119](https://github.com/hugoblanc/Athena/commit/a40c1196d11d878a0bb0784eb547fe703a6d3d9d))
+* create form correctly fill ([adf4c5b](https://github.com/hugoblanc/Athena/commit/adf4c5b5b8d99d3de87cb5df703d96dbc8b448a7))
+* ios alert donation transparent ([8a75e12](https://github.com/hugoblanc/Athena/commit/8a75e12a24113ece19e03badb1de089ba264976f))
+* issue undefined generating aditional issue ([38de8fd](https://github.com/hugoblanc/Athena/commit/38de8fdff0add9e5f041c631f8b6968d77cf51de))
+* refresh counter ([7ece520](https://github.com/hugoblanc/Athena/commit/7ece5208a9cae775219e84959a8466d16b59cdfd))
+* routing double tap ([c1565e0](https://github.com/hugoblanc/Athena/commit/c1565e0152ba1ca424d51738ab0633abe490fa4f))
+* scss wrong variable name ([4561037](https://github.com/hugoblanc/Athena/commit/4561037d195b52294c3233845fb6f5611657e528))
+* size tab bar ([392ee7c](https://github.com/hugoblanc/Athena/commit/392ee7c47cba3d70bc9c4dbaf9fd1fee8018ebc4))
+* tips popup apparition ([07b6e17](https://github.com/hugoblanc/Athena/commit/07b6e171dda1a9b1b25d5511730723f26bb814d5))
+
 ## [1.3.0](https://github.com/hugoblanc/Athena/compare/v1.0.5...v1.3.0) (2020-03-08)
 
 

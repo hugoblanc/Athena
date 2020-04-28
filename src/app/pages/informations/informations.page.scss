@@ -1,0 +1,27 @@
+:host {
+  ion-content {
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    img {
+      padding: 1rem 0;
+    }
+
+
+    .quote-bloc{
+      margin-bottom: 3rem;
+      .quote-text{
+        font-family: "RobotoMediumItalic";
+        font-size: 1.3rem;
+      }
+      .quote-source{
+        float: right;
+      }
+    }
+
+    .text{
+      font-size: 1.1rem;
+    }
+
+
+  }
+}

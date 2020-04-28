@@ -4,23 +4,23 @@ import { CheckFirstGuard } from './core/check-first.guard';
 import { CurrentMetaMediaGuard } from './core/current-meta-media.guard';
 
 const routes: Routes = [
-  // { path: 'home', loadChildren: './home/home.module#HomePageModule' },
-  { path: 'media/:key', canActivate: [CurrentMetaMediaGuard], loadChildren: './media/media.module#MediaPageModule' },
-  // tslint:disable-next-line: max-line-length
-  { path: 'media/:key/details/:id', canActivate: [CurrentMetaMediaGuard], loadChildren: './content-details/content-details.module#ContentDetailsPageModule' },
-  { path: 'informations', loadChildren: './informations/informations.module#InformationsPageModule' },
   {
     path: 'tuto',
     loadChildren: () => import('./pages/tuto/tuto.module').then(m => m.TutoPageModule)
   },
   {
-    path: '',
-    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
-    canLoad: [CheckFirstGuard]
+    path: 'media/:key',
+    canActivate: [CurrentMetaMediaGuard],
+    loadChildren: () => import('./media/media.module').then(m => m.MediaPageModule)
   },
   {
-    path: 'construction',
-    loadChildren: () => import('./pages/construction/construction.module').then(m => m.ConstructionPageModule),
+    path: 'media/:key/details/:id',
+    canActivate: [CurrentMetaMediaGuard],
+    loadChildren: () => import('./content-details/content-details.module').then(m => m.ContentDetailsPageModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
     canLoad: [CheckFirstGuard]
   },
 ];

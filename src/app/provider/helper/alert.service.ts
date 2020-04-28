@@ -42,7 +42,8 @@ export class AlertService {
       subHeader,
       message,
       inputs,
-      buttons
+      buttons,
+      cssClass: 'ath-alert'
     });
 
     await alert.present();

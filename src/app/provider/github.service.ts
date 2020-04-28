@@ -8,11 +8,13 @@ import { HttpService } from './helper/http.service';
 })
 export class GithubService {
 
-  public static BASE_ATHENA_URL = 'https://athena-api.caprover.athena-app.fr/github/';
+  public static BASE_ATHENA_URL = 'https://www.athena-app.fr/github/';
   private static BASE_GITHUB_URL = 'https://api.github.com/repos/';
   private static ATHENA = 'hugoblanc/Athena/';
   private static ISSUE = 'issues';
   private static CLAP = '/clap';
+
+  private static FULL_GITHUB_URL = GithubService.BASE_GITHUB_URL + GithubService.ATHENA + GithubService.ISSUE;
 
 
 
@@ -21,7 +23,12 @@ export class GithubService {
   }
 
   getIssueByLabel(label: string): Observable<Issue[]> {
-    return this.http.get(GithubService.BASE_GITHUB_URL + GithubService.ATHENA + GithubService.ISSUE + `?labels=${label}`);
+    return this.http.get(GithubService.FULL_GITHUB_URL + `?labels=${label}`);
+  }
+
+
+  getIssueByNumber(issueNumber: number): Observable<Issue> {
+    return this.http.get(GithubService.FULL_GITHUB_URL + '/' + issueNumber);
   }
 
 

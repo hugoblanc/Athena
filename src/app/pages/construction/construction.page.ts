@@ -32,7 +32,7 @@ export class ConstructionPage implements OnInit {
   createClap(issue: Issue) {
     this.githubService.postClapComment(issue)
       .subscribe((comment) => {
-        this.initIssuesByType(this.issueType);
+        issue.comments++;
       });
   }
 

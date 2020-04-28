@@ -6,9 +6,14 @@
     align-items: center;
   }
 
-  #title {
-    font-size: 2rem;
-    --ion-font-family: RobotoBlack;
+
+
+  @media screen and (max-width: 450px) {
+    #title {
+      font-size: 1.5rem;
+      --ion-font-family: RobotoBlack;
+    }
   }
 
 }
+

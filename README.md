@@ -1,4 +1,4 @@
-[Logo athena](http://athena-api.caprover.athena-app.fr/menu.jpg "Logo Title Text 1")
+[Logo athena](http://www.athena-app.fr/menu.jpg "Logo Title Text 1")
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 

@@ -1,62 +1,68 @@
-ion-slides {
-  ion-slide {
-    display: inline;
-    overflow: hidden;
+ion-content {
+  --padding-top: 0;
+  --padding-bottom: 0;
 
-    .back {
-      position: absolute;
-      top: 0px;
-      left: 0px;
+  ion-slides {
+    ion-slide {
+      display: inline;
+      overflow: hidden;
+
+      .back {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+      }
+
+      text-align: left;
+
+      img {
+        z-index: 10;
+        width: 100vw;
+        max-height: unset;
+      }
+
+      .back-bottom {
+        top: inherit;
+        bottom: 0px;
+      }
+
+      .top-left {
+        width: 30vw;
+        margin: 2rem
+      }
+
+
+      .body {
+        padding: 1rem;
+        padding-top: 20vh;
+      }
+
+      h1,
+      p {
+        z-index: 110;
+        position: relative;
+      }
+
+      h1 {
+        font-family: "RobotoBlack";
+      }
+
+      p {
+        font-family: "RobotoRegular";
+      }
     }
 
-    text-align: left;
-
-    img {
-      z-index: 10;
-      width: 100vw;
-      max-height: unset;
-    }
-
-    .back-bottom {
-      top: inherit;
-      bottom: 0px;
-    }
-
-    .top-left {
-      width: 30vw;
-      margin: 2rem
-    }
-
-
-    .body {
-      padding: 1rem;
-      padding-top: 20vh;
-    }
-
-    h1,
-    p {
-      z-index: 110;
-      position: relative;
-    }
-
-    h1 {
-      font-family: "RobotoBlack";
-    }
-
-    p {
-      font-family: "RobotoRegular";
-    }
+    height: 100%;
   }
 
-  height: 100%;
-}
 
 
 
+  ion-button {
+    position: absolute;
+    right: 7%;
+    bottom: 2%;
+    z-index: 10;
+  }
 
-ion-button {
-  position: absolute;
-  right: 7%;
-  bottom: 2%;
-  z-index: 10;
 }

@@ -15,7 +15,8 @@ export class IssuesListComponent implements OnInit {
 
   ngOnInit() { }
 
-  clapIssue(issue: Issue) {
+  clapIssue(event, issue: Issue) {
+    event.stopPropagation();
     this.claped.emit(issue);
   }
 

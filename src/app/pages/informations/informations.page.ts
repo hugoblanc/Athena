@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { LinkService } from '../provider/helper/link.service';
+import { LinkService } from '../../provider/helper/link.service';
 
 /**
  * Cette page permet d'afficher quelque informations supplémentaire sur l'application
@@ -18,7 +18,7 @@ export class InformationsPage implements OnInit {
 
   ngOnInit() {
 
-  } 
+  }
 
   openLink(link: string) {
     this.linkService.launchInAppBrowser(link);
