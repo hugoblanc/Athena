@@ -11,6 +11,7 @@ import { VideoDetailsComponent } from './components/video-details/video-details.
 import { ComponentsModule } from '../components/components.module';
 import { VideoHeaderComponent } from './components/video-header/video-header.component';
 import { MoonModeComponent } from './components/moon-mode/moon-mode.component';
+import { DirectivesModule } from '../directives/directives.module';
 
 /**
  * Ce module concerne la page des détails d'un contenu
@@ -30,7 +31,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
+    DirectivesModule
   ],
   declarations: [
     ContentDetailsPage,
@@ -42,4 +44,5 @@ const routes: Routes = [
   exports: [ArticleDetailsComponent, VideoDetailsComponent]
 })
 export class ContentDetailsPageModule { }
+
 
