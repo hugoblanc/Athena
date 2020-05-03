@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.open.athena" version="1.4.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.open.athena" version="1.4.3" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Athena</name>
     <description>Elle est la déesse de la sagesse, de la stratégie militaire, des artisans, des artistes et des maîtres d'école. Athéna était considérée comme la protectrice d’Athènes. </description>
     <author email="hugoblanc.blend@gmail.com" href="https://github.com/hugoblanc">Hugo Blanc</author>
