@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.3](https://github.com/hugoblanc/Athena/compare/v1.4.2...v1.4.3) (2020-05-08)
+
+
+### Bug Fixes
+
+* spelling tuto / information ([ba59ae4](https://github.com/hugoblanc/Athena/commit/ba59ae44dabbafcd23c1d31b5ae10121bf9da575))
+* typo ([cd78197](https://github.com/hugoblanc/Athena/commit/cd7819746861908842a89329283d6fe512644ecb))
+
 ### [1.4.2](https://github.com/hugoblanc/Athena/compare/v1.4.1...v1.4.2) (2020-04-28)
 
 
