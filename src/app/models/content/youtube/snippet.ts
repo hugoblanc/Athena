@@ -12,7 +12,7 @@ export class Snippet {
   position: number;
   resourceId: ResourceId;
 
-  constructor(input: Snippet) {
+  constructor(input?: Snippet) {
     if (input != null) {
       Object.assign(this, input);
       this.thumbnails = new Thumbnails(input.thumbnails);

@@ -3,7 +3,7 @@ export class Default {
   width: number;
   height: number;
 
-  constructor(input: Default) {
+  constructor(input?: Default) {
     if (input != null) {
       Object.assign(this, input);
     }
