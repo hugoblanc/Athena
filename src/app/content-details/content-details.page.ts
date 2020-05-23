@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, OnDestroy, ElementRef } from '@angular/core';
+import { Component, OnInit, NgZone, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MetaMedia } from '../models/meta-media/meta-media';
 import { MetaMediaService } from '../provider/meta-media/meta-media.service';
@@ -7,6 +7,7 @@ import { contentServiceProvider } from '../provider/content/content.service.prov
 import { ContentService } from '../provider/content/content.service';
 import { StyleService } from '../provider/style.service';
 import { LinkService } from '../provider/helper/link.service';
+import { IonContent } from '@ionic/angular';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -26,6 +27,8 @@ import { LinkService } from '../provider/helper/link.service';
   providers: [contentServiceProvider]
 })
 export class ContentDetailsPage implements OnInit, OnDestroy {
+
+  @ViewChild(IonContent, {static: false}) ionContent: IonContent;
 
   id: number;
   content: IContent;
@@ -80,6 +83,11 @@ export class ContentDetailsPage implements OnInit, OnDestroy {
    */
   openExternalPage(url: string) {
     window.open(url, '_system’');
+  }
+
+
+  async scrollTop() {
+    await this.ionContent.scrollToTop(500);
   }
 
 }
