@@ -1,4 +1,4 @@
-import { Component, ElementRef, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ScrollDetail } from '@ionic/core/dist/types/components/content/content-interface';
 import { IContent } from '../models/content/icontent';
@@ -9,6 +9,7 @@ import { HelpService } from '../provider/helper/help.service';
 import { LinkService } from '../provider/helper/link.service';
 import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 import { StyleService } from '../provider/style.service';
+import { IonContent } from '@ionic/angular';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -30,15 +31,17 @@ import { StyleService } from '../provider/style.service';
 export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
 
   constructor(private route: ActivatedRoute,
-              public contentService: ContentService<IContent>,
-              public metaMediaService: MetaMediaService,
-              public styleService: StyleService,
-              public linkService: LinkService,
-              public helpService: HelpService,
-              public element: ElementRef,
-              private zone: NgZone) { }
+    public contentService: ContentService<IContent>,
+    public metaMediaService: MetaMediaService,
+    public styleService: StyleService,
+    public linkService: LinkService,
+    public helpService: HelpService,
+    public element: ElementRef,
+    private zone: NgZone) { }
 
   private static scrollDeltaY = -500;
+
+  @ViewChild(IonContent, { static: false }) ionContent: IonContent;
   private helpTriggered = false;
 
 
@@ -99,6 +102,11 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
    */
   openExternalPage(url: string) {
     window.open(url, '_system’');
+  }
+
+
+  async scrollTop() {
+    await this.ionContent.scrollToTop(500);
   }
 
 }
