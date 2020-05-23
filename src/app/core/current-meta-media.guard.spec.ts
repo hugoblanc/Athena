@@ -1,6 +1,6 @@
-import { TestBed, async, inject } from '@angular/core/testing';
-
+import { inject, TestBed } from '@angular/core/testing';
 import { CurrentMetaMediaGuard } from './current-meta-media.guard';
+
 
 describe('CurrentMetaMediaGuard', () => {
   beforeEach(() => {

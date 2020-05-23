@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 import { ScrollDetail } from '@ionic/core/dist/types/components/content/content-interface';
 import { IContent } from '../models/content/icontent';
-import { MetaMedia } from '../models/meta-media/meta-media';
 import { ContentService } from '../provider/content/content.service';
 import { contentServiceProvider } from '../provider/content/content.service.provider';
 import { HelpService } from '../provider/helper/help.service';

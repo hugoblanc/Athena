@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { StyleService } from '../provider/style.service';
-import { MetaMedia } from '../models/meta-media/meta-media';
-import { IonInfiniteScroll } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { ContentService } from '../provider/content/content.service';
+import { IonInfiniteScroll } from '@ionic/angular';
 import { IContent } from '../models/content/icontent';
-import { MetaMediaService } from '../provider/meta-media/meta-media.service';
-import { contentServiceProvider } from '../provider/content/content.service.provider';
 import { Page } from '../models/core/page';
+import { MetaMedia } from '../models/meta-media/meta-media';
+import { ContentService } from '../provider/content/content.service';
+import { contentServiceProvider } from '../provider/content/content.service.provider';
+import { MetaMediaService } from '../provider/meta-media/meta-media.service';
+import { StyleService } from '../provider/style.service';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~

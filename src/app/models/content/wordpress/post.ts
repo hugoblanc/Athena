@@ -1,8 +1,8 @@
-import { Content } from './content';
-import { Embedded } from './embedded';
+import { MetaMediaType } from '../../meta-media/meta-media-type.enum';
 import { IContent } from '../icontent';
 import { Iimage } from '../Iimage';
-import { MetaMediaType } from '../../meta-media/meta-media-type.enum';
+import { Content } from './content';
+import { Embedded } from './embedded';
 
 export class Post implements IContent {
   publishedAt: Date;

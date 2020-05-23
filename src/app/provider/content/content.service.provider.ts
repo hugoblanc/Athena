@@ -1,9 +1,9 @@
+import { Injector } from '@angular/core';
+import { MetaMediaType } from '../../models/meta-media/meta-media-type.enum';
 import { MetaMediaService } from '../meta-media/meta-media.service';
+import { ContentService } from './content.service';
 import { WordpressService } from './wordpress.service';
 import { YoutubeService } from './youtube.service';
-import { ContentService } from './content.service';
-import { MetaMediaType } from '../../models/meta-media/meta-media-type.enum';
-import { Injector } from '@angular/core';
 
 /**
  * Cette classe permet de gérer l'injection du ContentService

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
+import { from, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

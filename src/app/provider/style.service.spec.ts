@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-
 import { StyleService } from './style.service';
+
 
 describe('StyleService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

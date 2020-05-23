@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MediaPage } from './media.page';
+
 
 describe('MediaPage', () => {
   let component: MediaPage;

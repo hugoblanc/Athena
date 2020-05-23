@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GithubService } from '../../../provider/github.service';
-import { Observable } from 'rxjs';
 import { Issue } from '../../../models/github/github';
+import { GithubService } from '../../../provider/github.service';
 
 @Component({
   selector: 'ath-issue-details',

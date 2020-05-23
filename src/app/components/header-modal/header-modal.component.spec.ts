@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HeaderModalComponent } from './header-modal.component';
+
 
 describe('HeaderModalComponent', () => {
   let component: HeaderModalComponent;

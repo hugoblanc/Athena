@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MediaNotifToggleComponent } from './media-notif-toggle.component';
+
 
 describe('MediaNotifToggleComponent', () => {
   let component: MediaNotifToggleComponent;

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanLoad, Route, Router, UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { StorageService } from '../provider/helper/storage.service';
-import { tap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { StorageService } from '../../provider/helper/storage.service';
 import { Router } from '@angular/router';
 import { IonSlides } from '@ionic/angular';
+import { StorageService } from '../../provider/helper/storage.service';
 
 /**
  * Cette page est un ensemble de trois slides qui permet d'afficher les infrmations essentielle
