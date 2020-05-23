@@ -1,14 +1,16 @@
-import { Component, OnInit, NgZone, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MetaMedia } from '../models/meta-media/meta-media';
-import { MetaMediaService } from '../provider/meta-media/meta-media.service';
-import { IContent } from '../models/content/icontent';
-import { contentServiceProvider } from '../provider/content/content.service.provider';
-import { ContentService } from '../provider/content/content.service';
-import { StyleService } from '../provider/style.service';
-import { LinkService } from '../provider/helper/link.service';
 import { IonContent } from '@ionic/angular';
+import { ScrollDetail } from '@ionic/core/dist/types/components/content/content-interface';
+import { IContent } from '../models/content/icontent';
+import { MetaMedia } from '../models/meta-media/meta-media';
+import { ContentService } from '../provider/content/content.service';
+import { contentServiceProvider } from '../provider/content/content.service.provider';
 import { HelpService } from '../provider/helper/help.service';
+import { LinkService } from '../provider/helper/link.service';
+import { MetaMediaService } from '../provider/meta-media/meta-media.service';
+import { StyleService } from '../provider/style.service';
+
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -29,12 +31,6 @@ import { HelpService } from '../provider/helper/help.service';
 })
 export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
 
-  @ViewChild(IonContent, {static: false}) ionContent: IonContent;
-
-  id: number;
-  content: IContent;
-  currentMedia: MetaMedia;
-  PAGE_CODE = 'content-details';
 
   constructor(private route: ActivatedRoute,
               public contentService: ContentService<IContent>,
@@ -45,13 +41,21 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
               public element: ElementRef,
               private zone: NgZone) { }
 
+  private static scrollDeltaY = -500;
+
+  @ViewChild(IonContent, { static: false }) ionContent: IonContent;
+  private helpTriggered = false;
+
+
+  private id: number;
+  content: IContent;
+  PAGE_CODE = 'content-details';
+
   ionViewWillEnter() {
     // Quand on arrive sur cette page, on récupère l'id dans l'url
     const idPost = this.route.snapshot.paramMap.get('id');
     // il s'agit de l'id du contenu
     this.id = parseInt(idPost, 10);
-    // On récupère aussi le currentMetaMedia
-    this.currentMedia = this.metaMediaService.currentMetaMedia;
 
     // Comme on utilise un plugin pour les call en natif sur mobile il faut forcer la zone angular
     // Si on fait pas ça bug a l'affichage
@@ -71,7 +75,6 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
   ngOnInit() {
     this.styleService.initPage();
     this.linkService.enableDynamicHyperlinks(this.element);
-    this.displayHelp();
   }
 
   /**
@@ -80,6 +83,15 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
   ngOnDestroy(): void {
     this.styleService.leavePage();
   }
+
+  onScroll(scrollEvent: CustomEvent<ScrollDetail>) {
+    const deltaY = scrollEvent.detail.deltaY;
+    if (deltaY < ContentDetailsPage.scrollDeltaY && !this.helpTriggered) {
+      this.helpTriggered = true;
+      this.displayHelp();
+    }
+  }
+
 
   async displayHelp() {
     await this.helpService.displayHelp(this.PAGE_CODE);
