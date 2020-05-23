@@ -7,6 +7,7 @@ import { contentServiceProvider } from '../provider/content/content.service.prov
 import { ContentService } from '../provider/content/content.service';
 import { StyleService } from '../provider/style.service';
 import { LinkService } from '../provider/helper/link.service';
+import { HelpService } from '../provider/helper/help.service';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -25,17 +26,19 @@ import { LinkService } from '../provider/helper/link.service';
   styleUrls: ['./content-details.page.scss'],
   providers: [contentServiceProvider]
 })
-export class ContentDetailsPage implements OnInit, OnDestroy {
+export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
 
   id: number;
   content: IContent;
   currentMedia: MetaMedia;
+  PAGE_CODE = 'content-details';
 
   constructor(private route: ActivatedRoute,
               public contentService: ContentService<IContent>,
               public metaMediaService: MetaMediaService,
               public styleService: StyleService,
               public linkService: LinkService,
+              public helpService: HelpService,
               public element: ElementRef,
               private zone: NgZone) { }
 
@@ -60,11 +63,12 @@ export class ContentDetailsPage implements OnInit, OnDestroy {
 
   /**
    * Quand on arrive sur cette page il faut gérer les réglages de l'utilisateur
-   * S'il a réglé en blanc il faut rétablir ce régale pour la page
+   * S'il a réglé en blanc il faut rétablir ce réglage pour la page
    */
   ngOnInit() {
     this.styleService.initPage();
     this.linkService.enableDynamicHyperlinks(this.element);
+    this.displayHelp();
   }
 
   /**
@@ -73,6 +77,11 @@ export class ContentDetailsPage implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.styleService.leavePage();
   }
+
+  async displayHelp() {
+    await this.helpService.displayHelp(this.PAGE_CODE);
+  }
+
 
   /**
    *
