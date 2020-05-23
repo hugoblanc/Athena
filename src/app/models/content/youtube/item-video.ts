@@ -13,7 +13,7 @@ export class ItemVideo implements IContent {
   etag: string;
   image: Iimage;
 
-  constructor(input: ItemVideo) {
+  constructor(input?: ItemVideo) {
     if (input != null) {
       Object.assign(this, input);
       this.publishedAt = new Date(input.publishedAt);

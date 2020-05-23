@@ -9,7 +9,7 @@ export class WordpressCategory implements ICategories {
   public slug: string;
   public count: number;
 
-  constructor(input: WordpressCategory) {
+  constructor(input?: WordpressCategory) {
     if (input != null) {
       Object.assign(this, input);
     }
