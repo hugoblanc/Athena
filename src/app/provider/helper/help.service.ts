@@ -13,11 +13,13 @@ export class HelpService {
 
   async displayHelp(code: string) {
     const helpMessage = this.findHelpFromCode(code);
-    const alert = await this.alertService.classicAlert(helpMessage.title, null, helpMessage.code);
+    const alert = await this.alertService.classicAlert(helpMessage.title, null, helpMessage.text);
+    return alert;
   }
 
 
-  private findHelpFromCode(code: string): Help {
+
+  findHelpFromCode(code: string): Help {
     const messages = helpMessages.map(h => new Help(h));
     const message = messages.find(m => m.code === code);
 
