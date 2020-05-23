@@ -11,7 +11,6 @@ import { LinkService } from '../provider/helper/link.service';
 import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 import { StyleService } from '../provider/style.service';
 
-
 /**
  * *~~~~~~~~~~~~~~~~~~~
  * Author: HugoBlanc |
