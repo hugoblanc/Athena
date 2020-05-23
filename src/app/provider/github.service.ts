@@ -16,8 +16,6 @@ export class GithubService {
 
   private static FULL_GITHUB_URL = GithubService.BASE_GITHUB_URL + GithubService.ATHENA + GithubService.ISSUE;
 
-
-
   constructor(public http: HttpService) {
 
   }
@@ -42,7 +40,6 @@ export class GithubService {
     const url = GithubService.BASE_ATHENA_URL
       + GithubService.ISSUE + '/' + issue.number
       + GithubService.CLAP;
-
 
     return this.http.post(url, {});
   }
