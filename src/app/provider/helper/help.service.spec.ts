@@ -9,4 +9,11 @@ describe('HelpService', () => {
     const service: HelpService = TestBed.get(HelpService);
     expect(service).toBeTruthy();
   });
+
+  it('should contains a displayHelp method', () => {
+    const service: HelpService = TestBed.get(HelpService);
+    expect(service.displayHelp).toBeTruthy();
+  });
+
+
 });
