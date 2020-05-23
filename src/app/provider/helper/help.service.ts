@@ -23,7 +23,7 @@ export class HelpService {
     const helpMessage = this.findHelpFromCode(code);
     const alert = await this.alertService.classicAlert(helpMessage.title, null, helpMessage.text);
 
-    this.storageService.addToArray(HelpService.LOCAL_HELP_KEY, code);
+    await this.storageService.addToArray(HelpService.LOCAL_HELP_KEY, code).toPromise();
 
     return alert;
   }
