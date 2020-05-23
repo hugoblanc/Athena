@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)" >
 
   <!-- <ion-item id="header" slot="fixed" lines="none" >
     <ion-back-button slot="start" class="back-button" [text]="''" defaultHref="home"></ion-back-button>
