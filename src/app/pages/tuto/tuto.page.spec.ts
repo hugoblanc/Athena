@@ -1,6 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TutoPage } from './tuto.page';
+import { StorageService } from '../../provider/helper/storage.service';
+import { Router } from '@angular/router';
 
 
 describe('TutoPage', () => {
@@ -11,6 +13,7 @@ describe('TutoPage', () => {
     TestBed.configureTestingModule({
       declarations: [ TutoPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [StorageService, Router]
     })
     .compileComponents();
   }));

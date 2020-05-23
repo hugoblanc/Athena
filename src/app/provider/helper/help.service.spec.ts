@@ -16,7 +16,7 @@ describe('HelpService', () => {
 
   it('should contains a findHelpFromCode method', () => {
     const service: HelpService = TestBed.get(HelpService);
-    expect(service.findHelpFromCode).toBeTruthy();
+    expect(service.findHelpFromCode).toBeDefined();
   });
 
 
@@ -35,7 +35,7 @@ describe('HelpService', () => {
 
   it('should contains a displayHelp method', () => {
     const service: HelpService = TestBed.get(HelpService);
-    expect(service.displayHelp).toBeTruthy();
+    expect(service.displayHelp).toBeDefined();
   });
 
 

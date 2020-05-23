@@ -1,6 +1,6 @@
-<div>
+<div *ngIf="listMetaMedia" >
   <!-- TITRE DU TYPE DE LISTE  -->
-  <ath-section [title]="listMetaMedia?.title" ></ath-section>
+  <ath-section [title]="listMetaMedia.title" ></ath-section>
 
   <!-- LISTE DE META-MEDIA -->
   <ath-slides3d *ngIf="!isIOS" [metaMedias]="listMetaMedia.metaMedias"></ath-slides3d>

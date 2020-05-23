@@ -1,21 +1,23 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
 import { AppComponent } from './app.component';
+import { MetaMediaService } from './provider/meta-media/meta-media.service';
 
 
 
 describe('AppComponent', () => {
 
-  let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy;
-
+  let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy, metaMediaSpy;
   beforeEach(async(() => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
     splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
     platformReadySpy = Promise.resolve();
     platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
+    metaMediaSpy = jasmine.createSpyObj('MetaMediaService', ['listMetaMedia$']);
 
     TestBed.configureTestingModule({
       declarations: [AppComponent],
@@ -24,7 +26,9 @@ describe('AppComponent', () => {
         { provide: StatusBar, useValue: statusBarSpy },
         { provide: SplashScreen, useValue: splashScreenSpy },
         { provide: Platform, useValue: platformSpy },
+        { provide: MetaMediaService, useValue: metaMediaSpy }
       ],
+      imports: [RouterTestingModule]
     }).compileComponents();
   }));
 
