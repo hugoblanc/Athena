@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { ConstructionPage } from './construction.page';
+import { ComponentsModule } from '../../components/components.module';
 
 
 describe('ConstructionPage', () => {
@@ -10,7 +11,7 @@ describe('ConstructionPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ConstructionPage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), ComponentsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ConstructionPage);

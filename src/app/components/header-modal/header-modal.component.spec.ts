@@ -6,13 +6,14 @@ import { ModalController } from '@ionic/angular';
 
 describe('HeaderModalComponent', () => {
   let component: HeaderModalComponent;
+  const modalCtrlSpy = jasmine.createSpyObj('ModalController', ['dismiss']);
   let fixture: ComponentFixture<HeaderModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeaderModalComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [ModalController]
+      providers: [{provide: ModalController, useValue: modalCtrlSpy}]
     })
     .compileComponents();
   }));
