@@ -11,7 +11,7 @@ import { Post } from '../../../models/content/wordpress/post';
 })
 export class ArticleCardComponent implements OnInit {
 
-  @Input() article: Post;
+  @Input() article: Post = new Post();
   @Input() metaMediaKey: string;
 
   constructor() { }

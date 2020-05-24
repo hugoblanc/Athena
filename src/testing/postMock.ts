@@ -1,6 +1,7 @@
+import { Post } from '../app/models/content/wordpress/post';
 export const postMock = {
   id: 25039,
-  date: '2019-0Post20:03:28',
+  date: '2019-06-11T20:03:28',
   date_gmt: '2019-06-11T20:03:28',
   guid: {
     rendered: 'https://lvsl.fr/?p=25039'
