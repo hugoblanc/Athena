@@ -2,14 +2,13 @@ import { Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@an
 import { ActivatedRoute } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 import { ScrollDetail } from '@ionic/core/dist/types/components/content/content-interface';
+import { Helpable } from '../core/interfaces/helpable.interface';
 import { IContent } from '../models/content/icontent';
 import { ContentService } from '../provider/content/content.service';
 import { contentServiceProvider } from '../provider/content/content.service.provider';
 import { HelpService } from '../provider/helper/help.service';
 import { LinkService } from '../provider/helper/link.service';
-import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 import { StyleService } from '../provider/style.service';
-import { Helpable } from '../core/interfaces/helpable.interface';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -33,7 +32,6 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
 
   constructor(private route: ActivatedRoute,
               public contentService: ContentService<IContent>,
-              public metaMediaService: MetaMediaService,
               public styleService: StyleService,
               public linkService: LinkService,
               public helpService: HelpService,

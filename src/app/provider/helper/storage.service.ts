@@ -82,7 +82,7 @@ export class StorageService {
   public get<T>(key: string): Observable<T> {
     return from(this.storage.get(key))
       .pipe(map((data: string) => {
-        return JSON.parse(data);
+        return JSON.parse(data || 'null');
       }));
   }
 
