@@ -4,19 +4,28 @@ import { AlertController } from '@ionic/angular';
 import { ContentService } from '../../../provider/content/content.service';
 import { NotificationService } from '../../../provider/notification.service';
 import { MediaNotifToggleComponent } from './media-notif-toggle.component';
+import { of } from 'rxjs';
 
 
 describe('MediaNotifToggleComponent', () => {
   let component: MediaNotifToggleComponent;
   let fixture: ComponentFixture<MediaNotifToggleComponent>;
+  const notificationServiceSpy = jasmine.createSpyObj('NotificationService', ['isCategoryActivated']);
+  const contentServiceSpy = jasmine.createSpyObj('ContentService',
+  {getNotificationCategories: of([{ id: 1, name: 'Economie', slug: 'eco' }])}
+  );
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MediaNotifToggleComponent ],
+      declarations: [MediaNotifToggleComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [NotificationService, ContentService, AlertController]
+      providers: [
+        { provide: NotificationService, useValue: notificationServiceSpy },
+        { provide: ContentService, useValue: contentServiceSpy },
+        AlertController
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
