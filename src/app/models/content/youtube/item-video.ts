@@ -9,8 +9,6 @@ export class ItemVideo implements IContent {
   description: string;
   publishedAt: Date;
   contentType = MetaMediaType.VIDEO;
-  kind: string;
-  etag: string;
   image: Iimage;
 
   constructor(input?: ItemVideo) {
