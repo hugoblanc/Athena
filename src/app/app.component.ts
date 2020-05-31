@@ -75,16 +75,6 @@ export class AppComponent {
           console.log(datas);
         });
 
-
-      this.storage.get(StorageService.DISPLAY_TUTO)
-        .subscribe((alreadyDisplayed) => {
-          if (alreadyDisplayed) {
-            return;
-          }
-          this.router.navigate(['/tuto']);
-          this.storage.set(StorageService.DISPLAY_TUTO, true);
-          this.storage.set(StorageService.INSTALLATION_DATE, new Date());
-        });
     });
   }
 

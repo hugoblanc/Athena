@@ -34,6 +34,7 @@ export class MetaMediaService {
             this.installDate = new Date(dateInstall);
           } else {
             this.installDate = new Date();
+            this.storage.set(StorageService.INSTALLATION_DATE, this.installDate);
           }
         } catch (error) {
           console.error(error);

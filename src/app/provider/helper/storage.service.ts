@@ -10,7 +10,6 @@ export class StorageService {
 
   public static COUNT_KEY = 'COUNT_KEY';
   public static INSTALLATION_DATE = 'INSTALLATION_DATE';
-  public static DISPLAY_TUTO = 'DISPLAY_TUTO';
   private static FIRST_LAUNCH = 'FIRST_LAUNCH';
 
 
