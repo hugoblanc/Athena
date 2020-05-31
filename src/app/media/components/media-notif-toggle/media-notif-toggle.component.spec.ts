@@ -21,11 +21,15 @@ describe('MediaNotifToggleComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         { provide: NotificationService, useValue: notificationServiceSpy },
-        { provide: ContentService, useValue: contentServiceSpy },
         AlertController
       ]
-    })
-      .compileComponents();
+    }).overrideComponent(MediaNotifToggleComponent, {
+      set: {
+        providers: [
+          {provide: ContentService, useValue: contentServiceSpy}
+        ]
+      }
+    }).compileComponents();
   }));
 
   beforeEach(() => {

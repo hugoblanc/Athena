@@ -1,6 +1,5 @@
 import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { IContent } from '../models/content/icontent';
 import { Page } from '../models/core/page';
@@ -8,7 +7,6 @@ import { MetaMedia } from '../models/meta-media/meta-media';
 import { ContentService } from '../provider/content/content.service';
 import { contentServiceProvider } from '../provider/content/content.service.provider';
 import { MetaMediaService } from '../provider/meta-media/meta-media.service';
-import { StyleService } from '../provider/style.service';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -41,8 +39,6 @@ export class MediaPage implements OnInit {
   constructor(private route: ActivatedRoute,
               public contentService: ContentService<IContent>,
               public metaMediaService: MetaMediaService,
-              public styleService: StyleService,
-              public statusBar: StatusBar,
               private zone: NgZone) {
 
   }
@@ -54,11 +50,7 @@ export class MediaPage implements OnInit {
     // récupération des information du média associé
     this.currentMedia = this.metaMediaService.currentMetaMedia;
 
-    // Config de la couleur principale du media
-    // TODO: Voir si ça vaut le coup de faire un gradient en fonctoin de la couleur du media
-    // this.styleService.setPrimaryColor();
-
-    // Initiailisation Récupération des données sur wordpress
+    // Initiailisation Récupération des données sur wordpress ou autre
     this.initData();
   }
 
