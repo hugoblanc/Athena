@@ -3,19 +3,22 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TutoPage } from './tuto.page';
 import { StorageService } from '../../provider/helper/storage.service';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe('TutoPage', () => {
   let component: TutoPage;
   let fixture: ComponentFixture<TutoPage>;
+  const storageServiceSpy = jasmine.createSpyObj('StorageService', { initFirstLaunch: null });
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TutoPage ],
+      declarations: [TutoPage],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [StorageService, Router]
+      providers: [{ provide: StorageService, useValue: storageServiceSpy }],
+      imports: [RouterTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
