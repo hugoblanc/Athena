@@ -15,7 +15,7 @@ export interface Issue {
   locked?: boolean;
   assignee?: null;
   assignees?: any[];
-  milestone?: null;
+  milestone?: string | null;
   comments?: number;
   created_at?: string;
   updated_at?: string;
@@ -31,7 +31,7 @@ export interface Label {
   name?: string;
   color?: string;
   default?: boolean;
-  description?: null;
+  description?: string | null;
 }
 
 export interface User {
