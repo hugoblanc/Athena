@@ -1,9 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TutoPage } from './tuto.page';
-import { StorageService } from '../../provider/helper/storage.service';
-import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { StorageService } from '../../provider/helper/storage.service';
+import { TutoPage } from './tuto.page';
+
 
 
 describe('TutoPage', () => {
