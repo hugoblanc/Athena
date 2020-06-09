@@ -1,7 +1,7 @@
-import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
-import { GithubService } from '../../provider/github.service';
+import { ModalController } from '@ionic/angular';
 import { Issue } from '../../models/github/github';
+import { GithubService } from '../../provider/github.service';
 import { IssueModalPage } from './components/issue/issue.modal';
 
 @Component({

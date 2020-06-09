@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { concat, from, Observable } from 'rxjs';
 import { filter, flatMap, map, tap } from 'rxjs/operators';
+import { ICategories } from '../models/categories/icategories';
 import { MetaMedia } from '../models/meta-media/meta-media';
 import { StorageService } from './helper/storage.service';
 import { MetaMediaService } from './meta-media/meta-media.service';
-import { ICategories } from '../models/categories/icategories';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~

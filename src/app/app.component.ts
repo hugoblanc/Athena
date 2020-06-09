@@ -24,7 +24,7 @@ import { NotificationService } from './provider/notification.service';
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   constructor(
     private platform: Platform,
@@ -35,19 +35,12 @@ export class AppComponent implements OnInit {
     private storage: StorageService,
     private router: Router,
     private linkService: LinkService
-  ) { }
-
-  // La liste des différent médias que l'on veut afficher dans le menu
-  appPages: ListMetaMedias[];
-
-  /**
-   * La methode qui est automatiquement appelé au démarrage du composant
-   */
-  ngOnInit(): void {
-    // On déclanche l'initialisation de l'application
+  ) {
     this.initializeApp();
   }
 
+  // La liste des différent médias que l'on veut afficher dans le menu
+  appPages: ListMetaMedias[];
 
 
   initializeApp() {
@@ -56,7 +49,9 @@ export class AppComponent implements OnInit {
 
     // Ici on gères les accès au fonciontnalité native du téléphone
     this.platform.ready().then(() => {
-      // La couleur de la bar de status
+
+      // La couleur de la bar de status, bug de la lib,
+      // impossible de gérer ça de manière synchrone
       setTimeout(() => {
         this.statusBar.overlaysWebView(true);
       }, 500);
@@ -80,15 +75,6 @@ export class AppComponent implements OnInit {
           console.log(datas);
         });
 
-
-      this.storage.get(StorageService.DISPLAY_TUTO).subscribe((alreadyDisplayed) => {
-        if (alreadyDisplayed) {
-          return;
-        }
-        this.router.navigate(['/tuto']);
-        this.storage.set(StorageService.DISPLAY_TUTO, true);
-        this.storage.set(StorageService.INSTALLATION_DATE, new Date());
-      });
     });
   }
 

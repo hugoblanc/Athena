@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Injector } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MetaMediaService } from '../../../provider/meta-media/meta-media.service';
 
   /**

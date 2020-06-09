@@ -1,16 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-
-import { ContentDetailsPage } from './content-details.page';
-import { ArticleDetailsComponent } from './components/article-details/article-details.component';
-import { VideoDetailsComponent } from './components/video-details/video-details.component';
 import { ComponentsModule } from '../components/components.module';
-import { VideoHeaderComponent } from './components/video-header/video-header.component';
+import { DirectivesModule } from '../directives/directives.module';
+import { ArticleDetailsComponent } from './components/article-details/article-details.component';
 import { MoonModeComponent } from './components/moon-mode/moon-mode.component';
+import { VideoDetailsComponent } from './components/video-details/video-details.component';
+import { VideoHeaderComponent } from './components/video-header/video-header.component';
+import { ContentDetailsPage } from './content-details.page';
+
+
 
 /**
  * Ce module concerne la page des détails d'un contenu
@@ -30,7 +31,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
+    DirectivesModule
   ],
   declarations: [
     ContentDetailsPage,
@@ -42,4 +44,5 @@ const routes: Routes = [
   exports: [ArticleDetailsComponent, VideoDetailsComponent]
 })
 export class ContentDetailsPageModule { }
+
 

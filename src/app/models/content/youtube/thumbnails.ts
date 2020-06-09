@@ -7,7 +7,7 @@ export class Thumbnails {
   standard: Default;
   maxres?: Default;
 
-  constructor(input: Thumbnails) {
+  constructor(input?: Thumbnails) {
     if (input != null) {
       Object.assign(this, input);
       this.default = new Default(input.default);

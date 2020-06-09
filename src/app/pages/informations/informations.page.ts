@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+
 import { LinkService } from '../../provider/helper/link.service';
 
 /**
@@ -14,7 +14,7 @@ import { LinkService } from '../../provider/helper/link.service';
 })
 export class InformationsPage implements OnInit {
 
-  constructor(public statusBar: StatusBar, private linkService: LinkService) { }
+  constructor(private linkService: LinkService) { }
 
   ngOnInit() {
 

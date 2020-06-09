@@ -33,9 +33,8 @@ export class AlertService {
   async classicAlert(header: string,
                      subHeader: string,
                      message: string,
-                     inputs: AlertInput[],
-                     buttons: AlertButton[] = AlertService.BASIC_BUTTONS
-  ) {
+                     inputs?: AlertInput[],
+                     buttons: AlertButton[] = AlertService.BASIC_BUTTONS) {
 
     const alert = await this.alertController.create({
       header,
@@ -47,5 +46,6 @@ export class AlertService {
     });
 
     await alert.present();
+    return alert;
   }
 }

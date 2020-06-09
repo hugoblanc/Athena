@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
-import { Issue } from '../../../../models/github/github';
-import { GithubService } from '../../../../provider/github.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavParams } from '@ionic/angular';
+import { Issue } from '../../../../models/github/github';
 
 
 @Component({

@@ -8,7 +8,7 @@ export class PlaylistItem {
   pageInfo: PageInfo;
   items: ItemVideo[];
 
-  constructor(input: PlaylistItem) {
+  constructor(input?: PlaylistItem) {
     if (input != null) {
       Object.assign(this, input);
       this.pageInfo = new PageInfo(input.pageInfo);

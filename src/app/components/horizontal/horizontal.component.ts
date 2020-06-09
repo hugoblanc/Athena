@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
+import { Component, Input, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
 
 /**
  * Ce composant représente un bloc horizontal (titre + metaMedia)

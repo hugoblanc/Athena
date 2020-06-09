@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
+import { from, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,6 @@ export class StorageService {
 
   public static COUNT_KEY = 'COUNT_KEY';
   public static INSTALLATION_DATE = 'INSTALLATION_DATE';
-  public static DISPLAY_TUTO = 'DISPLAY_TUTO';
   private static FIRST_LAUNCH = 'FIRST_LAUNCH';
 
 
@@ -82,7 +81,7 @@ export class StorageService {
   public get<T>(key: string): Observable<T> {
     return from(this.storage.get(key))
       .pipe(map((data: string) => {
-        return JSON.parse(data);
+        return JSON.parse(data || 'null');
       }));
   }
 

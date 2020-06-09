@@ -1,5 +1,5 @@
-import { Thumbnails } from './thumbnails';
 import { ResourceId } from './resource-id';
+import { Thumbnails } from './thumbnails';
 
 export class Snippet {
   publishedAt: string;
@@ -12,7 +12,7 @@ export class Snippet {
   position: number;
   resourceId: ResourceId;
 
-  constructor(input: Snippet) {
+  constructor(input?: Snippet) {
     if (input != null) {
       Object.assign(this, input);
       this.thumbnails = new Thumbnails(input.thumbnails);
