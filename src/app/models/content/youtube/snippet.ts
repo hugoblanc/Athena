@@ -1,5 +1,5 @@
-import { Thumbnails } from './thumbnails';
 import { ResourceId } from './resource-id';
+import { Thumbnails } from './thumbnails';
 
 export class Snippet {
   publishedAt: string;

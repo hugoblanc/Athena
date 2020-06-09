@@ -1,11 +1,14 @@
-import { TestBed, async, inject } from '@angular/core/testing';
-
+import { inject, TestBed } from '@angular/core/testing';
 import { CurrentMetaMediaGuard } from './current-meta-media.guard';
+import { MetaMediaService } from '../provider/meta-media/meta-media.service';
+
 
 describe('CurrentMetaMediaGuard', () => {
+  const metaMediaSpy = jasmine.createSpyObj('MetaMediaService', { findAndSetMediaByKey: null });
   beforeEach(() => {
+
     TestBed.configureTestingModule({
-      providers: [CurrentMetaMediaGuard]
+      providers: [CurrentMetaMediaGuard, { provide: MetaMediaService, useValue: metaMediaSpy }]
     });
   });
 

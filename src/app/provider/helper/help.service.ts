@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AlertService } from './alert.service';
+import { map } from 'rxjs/operators';
 import helpMessages from '../../../assets/data/help-messages.json';
 import { Help } from '../../models/help/help';
+import { AlertService } from './alert.service';
 import { StorageService } from './storage.service';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

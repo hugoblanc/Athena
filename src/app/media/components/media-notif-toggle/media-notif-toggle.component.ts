@@ -66,6 +66,7 @@ export class MediaNotifToggleComponent implements OnInit {
     });
 
     // Création de l'alert
+    // TODO: rempalcer par le AlertService homemade
     const alert = await this.alertController.create({
       header: 'Notifications',
       subHeader: 'Recevoir: ',

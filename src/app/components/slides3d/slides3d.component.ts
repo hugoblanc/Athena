@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MetaMedia } from '../../models/meta-media/meta-media';
+import { Component, Input, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { MetaMedia } from '../../models/meta-media/meta-media';
 
 
 /**

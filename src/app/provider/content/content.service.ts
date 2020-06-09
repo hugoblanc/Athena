@@ -18,7 +18,7 @@ export abstract class ContentService<T extends IContent> {
 
   // Une page est un object qui comporte une liste d'element
   // Ainsi que des metadonées sur ceux-ci
-  // Nb total, nombre de page etc ... 
+  // Nb total, nombre de page etc ...
   page: Page<T>;
 
   constructor(protected metaMediaService: MetaMediaService) {

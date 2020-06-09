@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Post } from '../../models/content/wordpress/post';
 import { Observable, of } from 'rxjs';
-import { HttpService } from '../helper/http.service';
-import { ContentService } from './content.service';
-import { MetaMediaService } from '../meta-media/meta-media.service';
+import { map } from 'rxjs/operators';
 import { WordpressCategory } from '../../models/categories/wordpress-category';
+import { Post } from '../../models/content/wordpress/post';
 import { Page } from '../../models/core/page';
+import { HttpService } from '../helper/http.service';
+import { MetaMediaService } from '../meta-media/meta-media.service';
+import { ContentService } from './content.service';
 
 
 /**

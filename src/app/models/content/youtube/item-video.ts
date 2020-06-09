@@ -1,6 +1,6 @@
+import { MetaMediaType } from '../../meta-media/meta-media-type.enum';
 import { IContent } from '../icontent';
 import { Iimage } from '../Iimage';
-import { MetaMediaType } from '../../meta-media/meta-media-type.enum';
 
 export class ItemVideo implements IContent {
   id: number;
@@ -9,8 +9,6 @@ export class ItemVideo implements IContent {
   description: string;
   publishedAt: Date;
   contentType = MetaMediaType.VIDEO;
-  kind: string;
-  etag: string;
   image: Iimage;
 
   constructor(input?: ItemVideo) {

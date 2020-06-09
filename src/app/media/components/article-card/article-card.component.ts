@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../../../models/content/wordpress/post';
 
 /**
@@ -11,7 +11,7 @@ import { Post } from '../../../models/content/wordpress/post';
 })
 export class ArticleCardComponent implements OnInit {
 
-  @Input() article: Post;
+  @Input() article: Post = new Post();
   @Input() metaMediaKey: string;
 
   constructor() { }

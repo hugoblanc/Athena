@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Slides3dComponent } from './slides3d.component';
+
 
 describe('Slides3dComponent', () => {
   let component: Slides3dComponent;

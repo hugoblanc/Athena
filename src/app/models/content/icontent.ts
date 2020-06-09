@@ -1,5 +1,5 @@
-import { ItypedContent } from './ityped-content';
 import { IimagedMedia } from './iimaged-content';
+import { ItypedContent } from './ityped-content';
 
 /**
  * L'interface générale qui caractérise le contenu

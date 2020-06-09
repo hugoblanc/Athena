@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Output } from '@angular/core';
 import { GestureController } from '@ionic/angular';
 
 @Directive({
