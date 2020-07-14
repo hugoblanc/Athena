@@ -59,6 +59,7 @@ export class AppComponent {
       this.metaMediaService.listMetaMedia$
         .subscribe((listMetaMedia: ListMetaMedias[]) => {
           this.appPages = listMetaMedia;
+          this.notificationService.initOpenNotification();
           this.notificationService.initData()
             .subscribe((datas) => {
               console.log(datas);
@@ -69,11 +70,10 @@ export class AppComponent {
       // La fin de l'affichage du splash screen
       this.splashScreen.hide();
 
-      this.notificationService.initOpenNotification();
-      this.notificationService.initData()
-        .subscribe((datas) => {
-          console.log(datas);
-        });
+      // this.notificationService.initData()
+      //   .subscribe((datas) => {
+      //     console.log(datas);
+      //   });
 
     });
   }

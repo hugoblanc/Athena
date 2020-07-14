@@ -276,10 +276,12 @@ export class NotificationService {
     const subAll$ = topics.map((topic) => this.subscribeMEtaMedia(topic));
     return concat(...subAll$);
   }
-  private unsubscribeAllMetaMedia(topics: string[]): Observable<any[]> {
-    const unsubAll$ = topics.map((topic) => this.unsubscribeMetaMedia(topic));
-    return concat(...unsubAll$);
-  }
+
+  // Si jamais un jour on veut faire une options pour couper toutes les notifications
+  // private unsubscribeAllMetaMedia(topics: string[]): Observable<any[]> {
+  //   const unsubAll$ = topics.map((topic) => this.unsubscribeMetaMedia(topic));
+  //   return concat(...unsubAll$);
+  // }
 
   private subscribeMEtaMedia(topic: string): Observable<any> {
     return this.subscribeTopic(topic)

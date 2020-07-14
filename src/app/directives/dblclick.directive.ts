@@ -7,7 +7,7 @@ import { GestureController } from '@ionic/angular';
 export class DblclickDirective {
 
   private lastOnStart = 0;
-  private DOUBLE_CLICK_THRESHOLD = 400;
+  private DOUBLE_CLICK_THRESHOLD = 250;
 
   @Output() athDblclick = new EventEmitter();
 

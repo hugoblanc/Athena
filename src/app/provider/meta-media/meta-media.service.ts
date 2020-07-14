@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { AsyncSubject, Observable, ReplaySubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import listMetaMediaData from '../../../assets/data/listMetaMediaData.json';
 import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
@@ -16,7 +16,7 @@ export class MetaMediaService {
   private installDate: Date;
 
   public listMetaMedia: ListMetaMedias[] = listMetaMediaData;
-  public listMetaMedia$ = new BehaviorSubject(this.listMetaMedia);
+  public listMetaMedia$ = new ReplaySubject(1);
   public currentMetaMedia: MetaMedia;
 
   constructor(private http: HttpService,
