@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/hugoblanc/Athena/compare/v1.4.4...v1.5.0) (2020-07-14)
+
+
+### Features
+
+* display help message on content-detail ([63e0080](https://github.com/hugoblanc/Athena/commit/63e0080da183137f154bc12adbb7c88254b1af8b))
+* display help message on content-detail ([6ec6c1b](https://github.com/hugoblanc/Athena/commit/6ec6c1b3ee6e5981a6d84c932f5c87aa5d114fdf))
+* go to top on double click ([ec729e7](https://github.com/hugoblanc/Athena/commit/ec729e768f2b6221a886f89613c37e5654323d5b))
+* go to top on double click ([9cdafcc](https://github.com/hugoblanc/Athena/commit/9cdafcc400fb835b45fffd5d463257500339824e))
+
+
+### Bug Fixes
+
+* app starting ([8b80702](https://github.com/hugoblanc/Athena/commit/8b8070289dee05b72cb247284dd80ec42b89b14a))
+* chrome version ([3eb20fe](https://github.com/hugoblanc/Athena/commit/3eb20fed428af674dd20f1ebaefec6c42f19be29))
+* geenral hidden bugs discover with tests ([878e611](https://github.com/hugoblanc/Athena/commit/878e611b7df7fa610709627a55894d0aa7861de4))
+* missing export interface helpable ([6a3e4c2](https://github.com/hugoblanc/Athena/commit/6a3e4c221dc7d9ebeeb229619812b071742a0299))
+* node version ([b165eff](https://github.com/hugoblanc/Athena/commit/b165efff3363ed9a7faebe33361d9d0fa36ac1ee))
+* node version ([1437692](https://github.com/hugoblanc/Athena/commit/14376921d36c7c461b3435c284bfd87ad538c162))
+* wrong label's description type ([e5c4916](https://github.com/hugoblanc/Athena/commit/e5c49161a773bf4fe805323b5cb8f1d929006a09))
+
 ### [1.4.4](https://github.com/hugoblanc/Athena/compare/v1.4.3...v1.4.4) (2020-05-08)
 
 ### [1.4.3](https://github.com/hugoblanc/Athena/compare/v1.4.2...v1.4.3) (2020-05-08)
