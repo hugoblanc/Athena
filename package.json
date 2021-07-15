@@ -1,6 +1,6 @@
 {
   "name": "athena",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -33,7 +33,7 @@
     "@ionic-native/firebase-x": "^5.11.0",
     "@ionic-native/http": "^5.9.0",
     "@ionic-native/in-app-browser": "^5.12.0",
-    "@ionic/storage": "^2.2.0",
+    "@ionic/storage": "2.2.0",
     "cordova-android": "^8.0.0",
     "cordova-ios": "^5.1.1",
     "cordova-plugin-advanced-http": "^2.1.1",

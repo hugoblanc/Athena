@@ -15,13 +15,21 @@
       },
       "oauth_client": [
         {
+          "client_id": "468962553465-td0io10kmrj5mhd0odpilhp147d1f4aq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.open.athena",
+            "certificate_hash": "413239a668803b8ac4ff5ba70b4678533716ab9e"
+          }
+        },
+        {
           "client_id": "468962553465-11ubko5h3umsvsf6dme4sa7nbsali9hv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD6lIIrhBD-5100qlgnmjuUHCZfPnnub_0"
+          "current_key": "AIzaSyC9PiaOFewrRB26cCmnAGr2ODzS0uNsz2Y"
         }
       ],
       "services": {
@@ -30,6 +38,13 @@
             {
               "client_id": "468962553465-11ubko5h3umsvsf6dme4sa7nbsali9hv.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "468962553465-80s1rdn3pkji4u75rk0396l70a73tbae.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.open.athena"
+              }
             }
           ]
         }
