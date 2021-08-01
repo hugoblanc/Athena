@@ -55,6 +55,8 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
   private id: number;
   content: IContent;
   PAGE_CODE = "content-details";
+  private maxHeight: number;
+  readingProgress = 0;
 
   ionViewWillEnter() {
     // Quand on arrive sur cette page, on récupère l'id dans l'url
@@ -88,6 +90,12 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
     this.linkService.enableDynamicHyperlinks(this.element);
   }
 
+  async ngAfterViewInit(): Promise<void> {
+    setTimeout(async () => {
+      const scrollElement = await this.ionContent.getScrollElement();
+      this.maxHeight = scrollElement.scrollHeight;
+    }, 100);
+  }
   /**
    * Quand il quitte la page il faut rétablir dans le sens inverse si besoin
    */
@@ -97,6 +105,9 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
 
   onScroll(scrollEvent: CustomEvent<ScrollDetail>) {
     const deltaY = scrollEvent.detail.deltaY;
+    this.readingProgress =
+      (scrollEvent.detail.scrollTop / (this.maxHeight - window.innerHeight)) *
+      100;
     if (deltaY < ContentDetailsPage.scrollDeltaY && !this.helpTriggered) {
       this.helpTriggered = true;
       this.displayHelp();

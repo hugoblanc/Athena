@@ -10,6 +10,7 @@ import { MoonModeComponent } from './components/moon-mode/moon-mode.component';
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
 import { VideoHeaderComponent } from './components/video-header/video-header.component';
 import { ContentDetailsPage } from './content-details.page';
+import { ReadingProgressComponent } from './components/reading-progress/reading-progress.component';
 
 
 
@@ -39,7 +40,8 @@ const routes: Routes = [
     ArticleDetailsComponent,
     VideoDetailsComponent,
     VideoHeaderComponent,
-    MoonModeComponent
+    MoonModeComponent,
+    ReadingProgressComponent
   ],
   exports: [ArticleDetailsComponent, VideoDetailsComponent]
 })
