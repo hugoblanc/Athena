@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { FirebaseX } from '@ionic-native/firebase-x/ngx';
-import { concat, from, Observable } from 'rxjs';
-import { filter, flatMap, map, tap } from 'rxjs/operators';
-import { ICategories } from '../models/categories/icategories';
-import { MetaMedia } from '../models/meta-media/meta-media';
-import { StorageService } from './helper/storage.service';
-import { MetaMediaService } from './meta-media/meta-media.service';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { FirebaseX } from "@ionic-native/firebase-x/ngx";
+import { concat, from, Observable } from "rxjs";
+import { filter, flatMap, map, tap } from "rxjs/operators";
+import { ICategories } from "../models/categories/icategories";
+import { MetaMedia } from "../models/meta-media/meta-media";
+import { StorageService } from "./helper/storage.service";
+import { MetaMediaService } from "./meta-media/meta-media.service";
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -22,17 +22,16 @@ import { MetaMediaService } from './meta-media/meta-media.service';
  * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class NotificationService {
-
-
   // TODO: CLeaner ce service qui est complètement parti en live
   // TODO :Implementer un mécanisme qui permettrait de subscribe a tout ce qui doit l'etre (local storage) au démarrage
 
   // Storage Key
-  private static NOTIFICATIONS_TOPICS = 'NOTIFICATIONS_TOPICS';
-  private static NOTIFICATIONS_TOPICS_CATEGORIES = 'NOTIFICATIONS_TOPICS_CATEGORIES';
+  private static NOTIFICATIONS_TOPICS = "NOTIFICATIONS_TOPICS";
+  private static NOTIFICATIONS_TOPICS_CATEGORIES =
+    "NOTIFICATIONS_TOPICS_CATEGORIES";
 
   // Le sujet auquel l'utilisateur est abonné/désabonné
   private notificationTopics: any = {};
@@ -44,17 +43,18 @@ export class NotificationService {
     private ss: StorageService,
     private metaMediaService: MetaMediaService,
     private firebaseX: FirebaseX,
-    private router: Router) {
-
+    private router: Router
+  ) {
     // Au démarrage on récupère les catégorie que l'utilisateur a expressement désactivé
-    const notifTopics$ = this.ss.get<any[]>(NotificationService.NOTIFICATIONS_TOPICS_CATEGORIES);
+    const notifTopics$ = this.ss.get<any[]>(
+      NotificationService.NOTIFICATIONS_TOPICS_CATEGORIES
+    );
 
     // On les assigne a notre variable global
     notifTopics$.subscribe((notificationTopicCategories) => {
       this.notificationTopicsCategories = notificationTopicCategories || {};
     });
   }
-
 
   /**
    * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -67,46 +67,46 @@ export class NotificationService {
    * L'action a executer est la navigation vers la page en question avec les bon paramètre (id post wordpress ou youtube)
    */
   public initOpenNotification(): void {
-
     this.firebaseX.getToken().then((token: string) => {
       console.log(token);
-
     });
 
-    this.firebaseX.onMessageReceived()
-      .subscribe((notification) => {
+    this.firebaseX.onMessageReceived().subscribe(
+      (notification) => {
         console.log(notification);
         if (notification.tap) {
-          this.router.navigateByUrl(`/media/${notification.key}/details/${notification.id}`);
+          this.router.navigateByUrl(
+            `/media/${notification.key}/details/${notification.id}`
+          );
         }
-      }, (error) => {
+      },
+      (error) => {
         console.error(error);
-      });
+      }
+    );
   }
-
 
   public initData(): Observable<any[]> {
     const grantPermission$ = from(this.firebaseX.grantPermission());
     const makeDiff$ = grantPermission$.pipe(
-        // Vérif permission (IOS only)
-        filter((permission: boolean) => permission),
-        // Récupération des données en locastorage
-        flatMap(() => this.getLocal()),
-        // On fait la différence entre les données du localstorage et les media récupéré
-        map((result) => this.makeDiffWithMedia()),
-        // on convertis la liste de metamedia en liste de string classique
-        map((diff: MetaMedia[]) => this.convertMetaMediaToTopics(diff)),
-        // On met a jour les indicateur des media
-        tap(() => this.updateMediaNotificationIndicator()),
-        // Si on a 0 diff on s'arrète la
-        filter((diff) => (diff.length > 0)),
-        // Si on a des diff, alors on subscribe atout les topics
-        flatMap((diff) => this.subscribeAllMetaMedia(diff)));
-
+      // Vérif permission (IOS only)
+      filter((permission: boolean) => permission),
+      // Récupération des données en locastorage
+      flatMap(() => this.getLocal()),
+      // On fait la différence entre les données du localstorage et les media récupéré
+      map((result) => this.makeDiffWithMedia()),
+      // on convertis la liste de metamedia en liste de string classique
+      map((diff: MetaMedia[]) => this.convertMetaMediaToTopics(diff)),
+      // On met a jour les indicateur des media
+      tap(() => this.updateMediaNotificationIndicator()),
+      // Si on a 0 diff on s'arrète la
+      filter((diff) => diff.length > 0),
+      // Si on a des diff, alors on subscribe atout les topics
+      flatMap((diff) => this.subscribeAllMetaMedia(diff))
+    );
 
     return makeDiff$;
   }
-
 
   public isCategoryActivated(key: string, id: number) {
     const unsubCategories = this.notificationTopicsCategories[key];
@@ -114,41 +114,49 @@ export class NotificationService {
       return true;
     }
 
-    if (!unsubCategories.find((idLocal) => (id === idLocal))) {
+    if (!unsubCategories.find((idLocal) => id === idLocal)) {
       return true;
     }
 
     return false;
   }
 
-
   /**
    * Le monstre du loch ness
    * Quand j'ai écris ce code seul dieux et moi savions ce qu'il faisait (vendredi soir 20:15 ...)
    * SI je ne rattrape pas le tire rapidement seul dieux saura ce qu'il fait !
    */
-  public dealWithUserChoice(metaMedia: MetaMedia, choices: any[], categories: ICategories[]): Observable<any[]> {
+  public dealWithUserChoice(
+    metaMedia: MetaMedia,
+    choices: any[],
+    categories: ICategories[]
+  ): Observable<any[]> {
     // MEta media part
-    const isMetaMediaActivated = (choices[0] === 'all');
+    const isMetaMediaActivated = choices[0] === "all";
     if (isMetaMediaActivated !== metaMedia.notification) {
-      this.switchMetaMediaNotifSetting(metaMedia.key, isMetaMediaActivated)
-        .subscribe(() => {
-          console.log('Done');
-          // TODO: Rendre ce truc asynchrone et cleaner cette merde
-        });
+      this.switchMetaMediaNotifSetting(
+        metaMedia.key,
+        isMetaMediaActivated
+      ).subscribe(() => {
+        console.log("Done");
+        // TODO: Rendre ce truc asynchrone et cleaner cette merde
+      });
     }
 
     // Récupération des topic en localstorage
-    const storedTopic: number[] = this.notificationTopicsCategories[metaMedia.key] || [];
+    const storedTopic: number[] =
+      this.notificationTopicsCategories[metaMedia.key] || [];
 
     // Ici on vérifie s'il n'y a pas de topic categorie qui sont en localstorage mais pas dans les categorie fraichement récupéré
     // Risque de perte de controle sinon
-    const idToUnsub = storedTopic.filter((id) => (categories.findIndex((cat) => cat.id === id) !== -1));
+    const idToUnsub = storedTopic.filter(
+      (id) => categories.findIndex((cat) => cat.id === id) !== -1
+    );
 
     const topicToUnsubscribe = [];
     // On itère sur tout les id présent dans la liste de choix
     for (const val of choices) {
-      if (val !== 'all') {
+      if (val !== "all") {
         // On supprime du tableau de categories l'ensemble des choix actif du user
         const indexToDelete = categories.findIndex((cat) => val === cat.id);
         categories.splice(indexToDelete, 1);
@@ -166,16 +174,28 @@ export class NotificationService {
     console.log(topicToSubscribe);
 
     const allOperation$ = concat(
-      this.unsubscribeAllTopic(topicToUnsubscribe.map((id) => this.constructTopicForMetaKeyAndCategoryId(metaMedia.key, id))),
-      this.subscribeAllTopic(topicToSubscribe.map((id) => this.constructTopicForMetaKeyAndCategoryId(metaMedia.key, id)))
+      this.unsubscribeAllTopic(
+        topicToUnsubscribe.map((id) =>
+          this.constructTopicForMetaKeyAndCategoryId(metaMedia.key, id)
+        )
+      ),
+      this.subscribeAllTopic(
+        topicToSubscribe.map((id) =>
+          this.constructTopicForMetaKeyAndCategoryId(metaMedia.key, id)
+        )
+      )
     );
 
-    return allOperation$.pipe(tap(() => {
-      this.notificationTopicsCategories[metaMedia.key] = topicToSubscribe;
-      this.ss.set(NotificationService.NOTIFICATIONS_TOPICS_CATEGORIES, this.notificationTopicsCategories);
-    }));
+    return allOperation$.pipe(
+      tap(() => {
+        this.notificationTopicsCategories[metaMedia.key] = topicToSubscribe;
+        this.ss.set(
+          NotificationService.NOTIFICATIONS_TOPICS_CATEGORIES,
+          this.notificationTopicsCategories
+        );
+      })
+    );
   }
-
 
   /**
    * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -183,13 +203,15 @@ export class NotificationService {
    * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    */
 
-
   /**
    * Cette methode permet de switcher les notification global d'un média
    * @param mediaKey la clé d'un media dont on veut switcher l'état
    * @param newIndicator le nouvel état
    */
-  private switchMetaMediaNotifSetting(mediaKey: string, newIndicator: boolean): Observable<any> {
+  private switchMetaMediaNotifSetting(
+    mediaKey: string,
+    newIndicator: boolean
+  ): Observable<any> {
     let switch$;
     if (newIndicator) {
       switch$ = this.subscribeMEtaMedia(mediaKey);
@@ -199,11 +221,13 @@ export class NotificationService {
     return switch$;
   }
 
-
   private getLocal(): Observable<any> {
     // Préparation de l'observable qui va stocker les objet sous la forme key/value avec value boolean true/false pour activé/désactivé
-    const notifTopics$ = this.ss.get<any>(NotificationService.NOTIFICATIONS_TOPICS)
-      .pipe(tap((notifTopics) => this.notificationTopics = notifTopics || {}));
+    const notifTopics$ = this.ss
+      .get<any>(NotificationService.NOTIFICATIONS_TOPICS)
+      .pipe(
+        tap((notifTopics) => (this.notificationTopics = notifTopics || {}))
+      );
     return notifTopics$;
   }
 
@@ -215,7 +239,6 @@ export class NotificationService {
     // Ici on cherche a voir si des medias sont présent mais pas géré en terme de notification
     // En d'autre terme, si un nouveau media est créé on doit ajouter le topic pour le user
     for (const listMedia of this.metaMediaService.listMetaMedia) {
-
       const diff = listMedia.metaMedias.filter((metaMedia: MetaMedia) => {
         // Si c'est null ça veut dire qu'on a pas de trace de ce meta media dans le locastroage
         // On doit donc l'ajouter
@@ -245,7 +268,9 @@ export class NotificationService {
     if (status == null) {
       status = true;
     }
-    metaMedia.notification = status;
+    if (metaMedia) {
+      metaMedia.notification = status;
+    }
   }
 
   /**
@@ -253,9 +278,8 @@ export class NotificationService {
    * ! que l'utilisateur ne souhaite pas recevoir
    */
   private constructTopicForMetaKeyAndCategoryId(key: string, id: number) {
-    return key + '-' + id;
+    return key + "-" + id;
   }
-
 
   /**
    * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -266,8 +290,6 @@ export class NotificationService {
    * - Mettre a jour le localstorage
    * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    */
-
-
 
   // ** SUB/UNSUB - MetaMedia -  Part
 
@@ -284,18 +306,30 @@ export class NotificationService {
   // }
 
   private subscribeMEtaMedia(topic: string): Observable<any> {
-    return this.subscribeTopic(topic)
-      .pipe(
-        tap(() => this.notificationTopics[topic] = true),
-        tap(() => this.genericMetaMediaIndSetter(true, topic)),
-        flatMap(() => this.ss.editObject(NotificationService.NOTIFICATIONS_TOPICS, topic, true)));
+    return this.subscribeTopic(topic).pipe(
+      tap(() => (this.notificationTopics[topic] = true)),
+      tap(() => this.genericMetaMediaIndSetter(true, topic)),
+      flatMap(() =>
+        this.ss.editObject(
+          NotificationService.NOTIFICATIONS_TOPICS,
+          topic,
+          true
+        )
+      )
+    );
   }
   private unsubscribeMetaMedia(topic: string): Observable<any> {
-    return this.unsubscribeTopic(topic)
-      .pipe(
-        tap(() => this.notificationTopics[topic] = false),
-        tap(() => this.genericMetaMediaIndSetter(false, topic)),
-        flatMap(() => this.ss.editObject(NotificationService.NOTIFICATIONS_TOPICS, topic, false)));
+    return this.unsubscribeTopic(topic).pipe(
+      tap(() => (this.notificationTopics[topic] = false)),
+      tap(() => this.genericMetaMediaIndSetter(false, topic)),
+      flatMap(() =>
+        this.ss.editObject(
+          NotificationService.NOTIFICATIONS_TOPICS,
+          topic,
+          false
+        )
+      )
+    );
   }
 
   // ** SUB/UNSUB - TOPIC -  Part
@@ -318,7 +352,6 @@ export class NotificationService {
     return from(this.firebaseX.unsubscribe(topic));
   }
 
-
   /**
    * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    * * -------------------------------------------  ERROR HANDLING  ----------------------------------------
@@ -331,8 +364,7 @@ export class NotificationService {
    */
   private checkNullOrEmpty(object: any) {
     if (object == null) {
-      throw new Error('L\'objet est null');
+      throw new Error("L'objet est null");
     }
   }
-
 }
