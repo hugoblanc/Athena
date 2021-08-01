@@ -3,7 +3,6 @@
   font-family: RobotoBlack;
 }
 
-
 #header {
   --background: transparent;
   top: 4rem;
@@ -15,10 +14,16 @@
   // position: fixed;
   // top: 4rem;
   z-index: 55;
-  filter: drop-shadow(5px 0px 2px rgba(0, 0, 0, 0.4)) drop-shadow(-2px 0px 2px rgba(0, 0, 0, 0.6))
-    drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.3)) drop-shadow(0px -2px 2px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(5px 0px 2px rgba(0, 0, 0, 0.4))
+    drop-shadow(-2px 0px 2px rgba(0, 0, 0, 0.6))
+    drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.3))
+    drop-shadow(0px -2px 2px rgba(0, 0, 0, 0.5));
 }
 
 .back-button {
   color: white;
+}
+
+ion-fab {
+  position: fixed;
 }

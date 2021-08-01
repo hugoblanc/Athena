@@ -1,0 +1,10 @@
+:host {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  .progress-bar {
+    height: 1rem;
+    width: 100%;
+    background-color: #000000aa;
+    border-radius: 10px;
+  }
+}

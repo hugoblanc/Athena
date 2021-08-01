@@ -1,17 +1,17 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
-import { ComponentsModule } from '../components/components.module';
-import { DirectivesModule } from '../directives/directives.module';
-import { ArticleDetailsComponent } from './components/article-details/article-details.component';
-import { MoonModeComponent } from './components/moon-mode/moon-mode.component';
-import { VideoDetailsComponent } from './components/video-details/video-details.component';
-import { VideoHeaderComponent } from './components/video-header/video-header.component';
-import { ContentDetailsPage } from './content-details.page';
-
-
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { RouterModule, Routes } from "@angular/router";
+import { SocialSharing } from "@ionic-native/social-sharing/ngx";
+import { IonicModule } from "@ionic/angular";
+import { ComponentsModule } from "../components/components.module";
+import { DirectivesModule } from "../directives/directives.module";
+import { ArticleDetailsComponent } from "./components/article-details/article-details.component";
+import { MoonModeComponent } from "./components/moon-mode/moon-mode.component";
+import { ReadingProgressComponent } from "./components/reading-progress/reading-progress.component";
+import { VideoDetailsComponent } from "./components/video-details/video-details.component";
+import { VideoHeaderComponent } from "./components/video-header/video-header.component";
+import { ContentDetailsPage } from "./content-details.page";
 
 /**
  * Ce module concerne la page des détails d'un contenu
@@ -20,9 +20,9 @@ import { ContentDetailsPage } from './content-details.page';
  */
 const routes: Routes = [
   {
-    path: '',
-    component: ContentDetailsPage
-  }
+    path: "",
+    component: ContentDetailsPage,
+  },
 ];
 
 @NgModule({
@@ -32,17 +32,17 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
     ComponentsModule,
-    DirectivesModule
+    DirectivesModule,
   ],
+  providers: [SocialSharing],
   declarations: [
     ContentDetailsPage,
     ArticleDetailsComponent,
     VideoDetailsComponent,
     VideoHeaderComponent,
-    MoonModeComponent
+    MoonModeComponent,
+    ReadingProgressComponent,
   ],
-  exports: [ArticleDetailsComponent, VideoDetailsComponent]
+  exports: [ArticleDetailsComponent, VideoDetailsComponent],
 })
-export class ContentDetailsPageModule { }
-
-
+export class ContentDetailsPageModule {}

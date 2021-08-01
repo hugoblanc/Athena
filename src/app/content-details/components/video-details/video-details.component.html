@@ -2,8 +2,14 @@
 <ath-youtube-iframe [videoID]="video.contentId"></ath-youtube-iframe>
 <div id="full-article">
   <ath-moon-mode></ath-moon-mode>
-  <h3 class="title">{{video.title}}</h3>
+  <h3 class="title">{{ video.title }}</h3>
   <div class="article-content">
-    {{video.description}}
+    {{ video.description }}
   </div>
 </div>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button size="small" color="primary" (click)="shareVideo()">
+    <ion-icon name="share-social-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
