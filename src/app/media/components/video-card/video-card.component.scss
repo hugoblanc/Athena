@@ -16,5 +16,10 @@
     color: #444444;
     font-size: 0.65rem;
   }
+}
 
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

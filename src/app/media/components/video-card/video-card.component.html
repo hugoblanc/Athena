@@ -1,7 +1,16 @@
-<ion-card class="masonry-item" routerLink="/media/{{metaMediaKey}}/details/{{video.id}}">
-  <img [src]="video.image.url" alt="video">
+<ion-card
+  class="masonry-item"
+  routerLink="/media/{{ metaMediaKey }}/details/{{ video.id }}"
+>
+  <img [src]="video.image.url" alt="video" />
   <ion-card-header>
     <ion-card-title [innerHTML]="video.title"></ion-card-title>
-    <ion-card-subtitle>Publiée le {{video.publishedAt | date:'dd/MM/y'}} </ion-card-subtitle>
+    <div class="info">
+      <ion-card-subtitle
+        >Publiée le {{ video.publishedAt | date: "dd/MM/y" }}
+      </ion-card-subtitle>
+      <ion-badge *ngIf="isNew" color="dark">Nouveau</ion-badge>
+      <ion-badge *ngIf="isRead" color="medium">Lu</ion-badge>
+    </div>
   </ion-card-header>
 </ion-card>

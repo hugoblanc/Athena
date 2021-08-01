@@ -1,14 +1,22 @@
-import { Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { IonContent } from '@ionic/angular';
-import { ScrollDetail } from '@ionic/core/dist/types/components/content/content-interface';
-import { Helpable } from '../core/interfaces/helpable.interface';
-import { IContent } from '../models/content/icontent';
-import { ContentService } from '../provider/content/content.service';
-import { contentServiceProvider } from '../provider/content/content.service.provider';
-import { HelpService } from '../provider/helper/help.service';
-import { LinkService } from '../provider/helper/link.service';
-import { StyleService } from '../provider/style.service';
+import {
+  Component,
+  ElementRef,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { IonContent } from "@ionic/angular";
+import { ScrollDetail } from "@ionic/core/dist/types/components/content/content-interface";
+import { Helpable } from "../core/interfaces/helpable.interface";
+import { IContent } from "../models/content/icontent";
+import { ContentService } from "../provider/content/content.service";
+import { contentServiceProvider } from "../provider/content/content.service.provider";
+import { HelpService } from "../provider/helper/help.service";
+import { LinkService } from "../provider/helper/link.service";
+import { StorageService } from "../provider/helper/storage.service";
+import { StyleService } from "../provider/style.service";
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -22,47 +30,53 @@ import { StyleService } from '../provider/style.service';
  * *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 @Component({
-  selector: 'app-post-details',
-  templateUrl: './content-details.page.html',
-  styleUrls: ['./content-details.page.scss'],
-  providers: [contentServiceProvider]
+  selector: "app-post-details",
+  templateUrl: "./content-details.page.html",
+  styleUrls: ["./content-details.page.scss"],
+  providers: [contentServiceProvider],
 })
 export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
-
-
-  constructor(private route: ActivatedRoute,
-              public contentService: ContentService<IContent>,
-              public styleService: StyleService,
-              public linkService: LinkService,
-              public helpService: HelpService,
-              public element: ElementRef,
-              private zone: NgZone) { }
+  constructor(
+    private route: ActivatedRoute,
+    public contentService: ContentService<IContent>,
+    public styleService: StyleService,
+    public linkService: LinkService,
+    public helpService: HelpService,
+    public element: ElementRef,
+    private zone: NgZone,
+    private readonly storage: StorageService
+  ) {}
 
   private static scrollDeltaY = -500;
 
   @ViewChild(IonContent, { static: false }) ionContent: IonContent;
   private helpTriggered = false;
 
-
   private id: number;
   content: IContent;
-  PAGE_CODE = 'content-details';
+  PAGE_CODE = "content-details";
 
   ionViewWillEnter() {
     // Quand on arrive sur cette page, on récupère l'id dans l'url
-    const idPost = this.route.snapshot.paramMap.get('id');
+    const idPost = this.route.snapshot.paramMap.get("id");
+    const key = this.route.snapshot.paramMap.get("key");
     // il s'agit de l'id du contenu
     this.id = parseInt(idPost, 10);
 
     // Comme on utilise un plugin pour les call en natif sur mobile il faut forcer la zone angular
     // Si on fait pas ça bug a l'affichage
-    // On cherche en local puis si rien en locq on cherche coté serveur
-    this.contentService.getContentById(this.id)
-      .subscribe((content) => {
-        this.zone.run(() => {
-          this.content = content;
-        });
+    // On cherche en local puis si rien en local on cherche coté serveur
+    this.contentService.getContentById(this.id).subscribe((content) => {
+      this.zone.run(() => {
+        this.content = content;
       });
+    });
+
+    setTimeout(() => {
+      if (this.content && this.content.contentId) {
+        this.storage.set(key + this.content.contentId, true);
+      }
+    }, 15000);
   }
 
   /**
@@ -89,23 +103,19 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
     }
   }
 
-
   async displayHelp() {
     await this.helpService.displayHelp(this.PAGE_CODE);
   }
-
 
   /**
    *
    * @param url Methode qui sera peut être utilisé pour les lien de payement
    */
   openExternalPage(url: string) {
-    window.open(url, '_system’');
+    window.open(url, "_system’");
   }
-
 
   async scrollTop() {
     await this.ionContent.scrollToTop(500);
   }
-
 }
