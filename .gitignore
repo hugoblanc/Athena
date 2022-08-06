@@ -21,6 +21,7 @@ athena.keystore
 .tmp/
 .versions/
 .gradle/
+.angular/
 coverage/
 www/
 node_modules/

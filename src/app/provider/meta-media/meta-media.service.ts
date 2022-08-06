@@ -4,7 +4,7 @@ import { tap } from 'rxjs/operators';
 import listMetaMediaData from '../../../assets/data/listMetaMediaData.json';
 import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
 import { MetaMedia } from '../../models/meta-media/meta-media';
-import { AlertService } from '../helper/alert.service.js';
+import { AlertService } from '../helper/alert.service';
 import { HttpService } from '../helper/http.service';
 import { StorageService } from '../helper/storage.service';
 

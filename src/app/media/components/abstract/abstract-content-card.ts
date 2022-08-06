@@ -1,6 +1,8 @@
 import { StorageService } from "../../../provider/helper/storage.service";
 import { isOlderThanAWeek } from "../../../utils/date.utils";
+import { Directive } from "@angular/core";
 
+@Directive()
 export abstract class AbstractContentCard {
   constructor(protected readonly storage: StorageService) {}
 
