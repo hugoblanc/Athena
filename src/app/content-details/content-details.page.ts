@@ -49,7 +49,7 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
 
   private static scrollDeltaY = -500;
 
-  @ViewChild(IonContent, { static: false }) ionContent: IonContent;
+  @ViewChild(IonContent) ionContent: IonContent;
   private helpTriggered = false;
 
   private id: number;
