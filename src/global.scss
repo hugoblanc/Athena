@@ -83,8 +83,15 @@ ion-back-button {
 }
 
 @font-face {
+  font-family: "RobotoMedium";
+  font-weight: 600;
+  font-style: normal;
+  src: url("./assets/fonts/roboto/Roboto-Medium.ttf");
+}
+
+@font-face {
   font-family: "RobotoRegular";
-  font-weight: 900;
+  font-weight: 600;
   font-style: normal;
   src: url("./assets/fonts/roboto/Roboto-Regular.ttf");
 }
@@ -141,4 +148,12 @@ ion-modal {
 
 .ath-alert {
   --background: linear-gradient(to right, #485563, #29323c);
+}
+
+
+
+
+hr{
+  background-color: rgba(106, 106, 106, 0.295);
+  height: 2px;
 }

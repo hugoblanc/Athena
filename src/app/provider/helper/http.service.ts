@@ -13,7 +13,7 @@ export class HttpService {
 
   private develop: boolean; // L'indicateur de plateforme web ou native
 
-  constructor(private platform: Platform, public nativeHttp: HTTP, public developHttp: HttpClient) {
+  constructor(platform: Platform, private readonly nativeHttp: HTTP, private readonly developHttp: HttpClient) {
     this.develop = !platform.is('cordova');
   }
 
@@ -59,7 +59,7 @@ export class HttpService {
    * @param url l'url a get
    */
   private developGet(url: string) {
-    return this.developHttp.get(url, );
+    return this.developHttp.get(url,);
   }
 
   /**

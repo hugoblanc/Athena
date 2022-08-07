@@ -1,0 +1,21 @@
+:host{
+  display: block;
+  padding: 1rem;
+
+  .article-img {
+    border-radius: 1rem;
+  }
+
+  .title {
+    font-size: 1rem;
+    color: #fff;
+    font-family: RobotoMedium;
+    text-align: left;
+  }
+  ion-chip{
+    margin: 0;
+    margin-top: 1rem;
+    --background:  transparent;
+    --color: rgb(191, 191, 191);
+  }
+}

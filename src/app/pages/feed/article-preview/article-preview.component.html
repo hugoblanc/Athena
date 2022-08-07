@@ -1,0 +1,13 @@
+<div class="article">
+  <img *ngIf="mixedContent?.image?.url" class="article-img" [src]="mixedContent.image.url" />
+
+  <div class="title" [innerHTML]="mixedContent.title" >
+  </div>
+
+  <ion-chip>
+    <ion-avatar>
+      <img [src]="mixedContent.metaMedia.logo">
+    </ion-avatar>
+    <ion-label>{{mixedContent.metaMedia.title}}</ion-label>
+  </ion-chip>
+</div>

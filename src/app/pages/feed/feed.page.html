@@ -1,0 +1,8 @@
+<ion-content>
+
+  <div *ngFor="let content of lastContent$ | async">
+    <hr>
+    <ath-article-preview [mixedContent]="content"></ath-article-preview>
+  </div>
+
+</ion-content>

@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
 import { ListMetaMedias } from './models/meta-media/list-meta-medias';
-import { LinkService } from './provider/helper/link.service';
-import { StorageService } from './provider/helper/storage.service';
 import { MetaMediaService } from './provider/meta-media/meta-media.service';
 import { NotificationService } from './provider/notification.service';
 
@@ -32,9 +29,6 @@ export class AppComponent {
     private statusBar: StatusBar,
     private metaMediaService: MetaMediaService,
     private notificationService: NotificationService,
-    private storage: StorageService,
-    private router: Router,
-    private linkService: LinkService
   ) {
     this.initializeApp();
   }
@@ -78,7 +72,4 @@ export class AppComponent {
     });
   }
 
-  openPrivacy() {
-    this.linkService.launchInAppBrowser('https://www.athena-app.fr/privacy');
-  }
 }

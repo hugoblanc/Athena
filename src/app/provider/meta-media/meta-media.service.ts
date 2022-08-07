@@ -24,7 +24,7 @@ export class MetaMediaService {
               private alertService: AlertService) {
 
     this.getMetaMediaList()
-      .subscribe((listMetaMedia) => {
+      .subscribe(() => {
         console.log('Meta media récupéré');
       });
     this.storage.get<Date>(StorageService.INSTALLATION_DATE)
