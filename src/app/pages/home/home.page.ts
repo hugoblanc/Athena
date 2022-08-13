@@ -1,5 +1,5 @@
 
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Issue } from '../../models/github/github';
 import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
 import { MetaMediaService } from '../../provider/meta-media/meta-media.service';
@@ -15,8 +15,7 @@ import { MetaMediaService } from '../../provider/meta-media/meta-media.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  constructor(public metaMediaService: MetaMediaService,
-              private zone: NgZone) {
+  constructor(public metaMediaService: MetaMediaService) {
 
   }
 
@@ -31,10 +30,8 @@ export class HomePage implements OnInit {
     this.loading = true;
     this.metaMediaService.listMetaMedia$
       .subscribe((listMetaMedia: ListMetaMedias[]) => {
-        this.zone.run(() => {
-          this.listMetaMedia = listMetaMedia;
-          this.loading = false;
-        });
+        this.listMetaMedia = listMetaMedia;
+        this.loading = false;
       });
   }
 

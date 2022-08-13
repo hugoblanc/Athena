@@ -1,10 +1,8 @@
 import {
   Component,
-  ElementRef,
-  NgZone,
-  OnDestroy,
+  ElementRef, OnDestroy,
   OnInit,
-  ViewChild,
+  ViewChild
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IonContent } from "@ionic/angular";
@@ -43,9 +41,8 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
     public linkService: LinkService,
     public helpService: HelpService,
     public element: ElementRef,
-    private zone: NgZone,
     private readonly storage: StorageService
-  ) {}
+  ) { }
 
   private static scrollDeltaY = -500;
 
@@ -65,13 +62,9 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
     // il s'agit de l'id du contenu
     this.id = parseInt(idPost, 10);
 
-    // Comme on utilise un plugin pour les call en natif sur mobile il faut forcer la zone angular
-    // Si on fait pas ça bug a l'affichage
     // On cherche en local puis si rien en local on cherche coté serveur
     this.contentService.getContentById(this.id).subscribe((content) => {
-      this.zone.run(() => {
-        this.content = content;
-      });
+      this.content = content;
     });
 
     setTimeout(() => {

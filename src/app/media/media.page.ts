@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { IContent } from '../models/content/icontent';
@@ -28,7 +28,7 @@ import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 })
 export class MediaPage implements OnInit {
 
-  @ViewChild('ion-infinite-scroll', {static: true}) infiniteScroll: IonInfiniteScroll;
+  @ViewChild('ion-infinite-scroll', { static: true }) infiniteScroll: IonInfiniteScroll;
 
 
   idMedia: number;
@@ -37,9 +37,8 @@ export class MediaPage implements OnInit {
 
   currentMedia: MetaMedia;
   constructor(private route: ActivatedRoute,
-              public contentService: ContentService<IContent>,
-              public metaMediaService: MetaMediaService,
-              private zone: NgZone) {
+    public contentService: ContentService<IContent>,
+    public metaMediaService: MetaMediaService) {
 
   }
 
@@ -66,15 +65,11 @@ export class MediaPage implements OnInit {
     this.contentService.getContents()
       .subscribe((page: Page<IContent>) => {
         // Affectation des données serveur dans notre variable local
-        this.zone.run(() => {
-          this.page = page;
-          this.loading = false;
-        });
+        this.page = page;
+        this.loading = false;
       }, (error) => {
-        this.zone.run(() => {
-          console.error(error);
-          this.loading = false;
-        });
+        console.error(error);
+        this.loading = false;
       });
   }
 
@@ -83,13 +78,13 @@ export class MediaPage implements OnInit {
    * @param event l'event javascript
    */
   loadMore(event) {
-        // Grace a l'injection dynamique, on sait à l'execution quel service sera executer
+    // Grace a l'injection dynamique, on sait à l'execution quel service sera executer
     // outubeService ou WordpressService
     this.contentService.loadMore()
       .subscribe((page: Page<IContent>) => {
         this.page = page;
         event.target.complete();
-      }, (error) => {
+      }, () => {
         event.target.complete();
       });
   }

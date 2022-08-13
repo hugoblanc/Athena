@@ -10,6 +10,7 @@ import { MixedContent } from './mixed-content';
 export class MixedContentService {
   private static BASE_URL = environment.apiUrl;
   constructor(private readonly http: HttpService) { }
+
   getLastFeedContent(): Observable<MixedContent[]> {
     return this.http.get(`${MixedContentService.BASE_URL}content/last`);
   }

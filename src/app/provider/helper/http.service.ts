@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { HTTP, HTTPResponse } from '@ionic-native/http/ngx';
 import { Platform } from '@ionic/angular';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { runInZone } from '../../utils/run-in-zone.operator';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class HttpService {
 
   private develop: boolean; // L'indicateur de plateforme web ou native
 
-  constructor(platform: Platform, private readonly nativeHttp: HTTP, private readonly developHttp: HttpClient) {
+  constructor(platform: Platform, private readonly nativeHttp: HTTP, private readonly developHttp: HttpClient, private readonly zone: NgZone) {
     this.develop = !platform.is('cordova');
   }
 
@@ -52,7 +53,10 @@ export class HttpService {
    */
   private nativeGet(url: string) {
     return from(this.nativeHttp.get(url, {}, {}))
-      .pipe(map((data: HTTPResponse) => JSON.parse(data.data)));
+      .pipe(
+        runInZone(this.zone),
+        map((data: HTTPResponse) => JSON.parse(data.data))
+      );
   }
   /**
    * La methode qui call en broswer
@@ -70,7 +74,9 @@ export class HttpService {
   private nativePost(url: string, body?: any) {
 
     return from(this.nativeHttp.post(url, body, {}))
-      .pipe(map((data: HTTPResponse) => JSON.parse(data.data)));
+      .pipe(
+        runInZone(this.zone),
+        map((data: HTTPResponse) => JSON.parse(data.data)));
   }
   /**
    * La methode qui call en broswer
