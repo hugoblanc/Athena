@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
       },
       {
+        path: 'feed',
+        loadChildren: () => import('../feed/feed.module').then(m => m.FeedPageModule)
+      },
+      {
         path: 'construction',
         loadChildren: () => import('../construction/construction.module').then(m => m.ConstructionPageModule)
       },
@@ -21,7 +25,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'feed',
         pathMatch: 'full'
       }
     ]
