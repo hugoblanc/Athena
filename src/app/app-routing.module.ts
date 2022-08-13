@@ -9,6 +9,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tuto/tuto.module').then(m => m.TutoPageModule)
   },
   {
+    path: 'feed',
+    loadChildren: () => import('./pages/feed/feed.module').then(m => m.FeedPageModule)
+  },
+  {
     path: 'media/:key',
     canActivate: [CurrentMetaMediaGuard],
     loadChildren: () => import('./media/media.module').then(m => m.MediaPageModule)

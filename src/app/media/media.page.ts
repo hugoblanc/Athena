@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IonInfiniteScroll } from '@ionic/angular';
 import { IContent } from '../models/content/icontent';
 import { Page } from '../models/core/page';
 import { MetaMedia } from '../models/meta-media/meta-media';
@@ -28,7 +27,6 @@ import { MetaMediaService } from '../provider/meta-media/meta-media.service';
 })
 export class MediaPage implements OnInit {
 
-  @ViewChild('ion-infinite-scroll', { static: true }) infiniteScroll: IonInfiniteScroll;
 
 
   idMedia: number;
