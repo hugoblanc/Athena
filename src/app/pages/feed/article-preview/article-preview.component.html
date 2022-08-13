@@ -1,6 +1,5 @@
 <div class="article">
-  <img *ngIf="mixedContent?.image?.url" class="article-img" [src]="mixedContent.image.url" />
-
+  <div *ngIf="mixedContent?.image?.url" class="img-container" [style.background-image]="'url('+mixedContent.image.url+')'" ></div>
   <div class="title" [innerHTML]="mixedContent.title" >
   </div>
 
