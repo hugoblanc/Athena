@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AsyncSubject, Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import listMetaMediaData from '../../../assets/data/listMetaMediaData.json';
+import { environment } from '../../../environments/environment';
 import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
 import { MetaMedia } from '../../models/meta-media/meta-media';
 import { AlertService } from '../helper/alert.service';
@@ -12,7 +13,7 @@ import { StorageService } from '../helper/storage.service';
   providedIn: 'root'
 })
 export class MetaMediaService {
-  private static BASE_URL = 'https://www.athena-app.fr/list-meta-media';
+  private static BASE_URL = `${environment.apiUrl}list-meta-media`;
   private installDate: Date;
 
   public listMetaMedia: ListMetaMedias[] = listMetaMediaData;
@@ -20,8 +21,8 @@ export class MetaMediaService {
   public currentMetaMedia: MetaMedia;
 
   constructor(private http: HttpService,
-              private storage: StorageService,
-              private alertService: AlertService) {
+    private storage: StorageService,
+    private alertService: AlertService) {
 
     this.getMetaMediaList()
       .subscribe(() => {
