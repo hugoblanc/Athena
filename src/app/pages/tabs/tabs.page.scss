@@ -3,7 +3,7 @@ ion-tabs{
   }
 
   ion-tab-bar{
-    --background: var(--ion-color-dark);
+    --background: var(--ion-color-dark-glass);
     border-radius: 16px;
     margin: 1.5%;
     padding: 0;
@@ -11,10 +11,10 @@ ion-tabs{
     bottom: 0px;
     width: 97%;
     height: 10vh;
+    overflow: hidden;
 
-    ion-tab-button{
-      // --padding-bottom: 4vh;
-      // --padding-top: 4vh;
+    &.ios{
+      border-bottom-left-radius: 35px;
+      border-bottom-right-radius: 35px;
     }
-
 }
