@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Host, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { MixedContent } from '../../../provider/content/mixed-content';
 
 @Component({
@@ -7,13 +8,20 @@ import { MixedContent } from '../../../provider/content/mixed-content';
   styleUrls: ['./article-preview.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ArticlePreviewComponent implements OnInit {
+export class ArticlePreviewComponent {
 
   @Input() mixedContent: MixedContent;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  @HostListener('click')
+  onClick() {
+    this.goToContentDetails();
   }
+
+  constructor(private readonly router: Router) { }
+
+  private goToContentDetails() {
+    this.router.navigate(['/', 'media', this.mixedContent.metaMedia.key, 'details', this.mixedContent.resourceId]);
+  }
+
 
 }

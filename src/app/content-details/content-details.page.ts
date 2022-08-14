@@ -67,11 +67,7 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
       this.content = content;
     });
 
-    setTimeout(() => {
-      if (this.content && this.content.contentId) {
-        this.storage.set(key + this.content.contentId, true);
-      }
-    }, 15000);
+    this.markContentAsRead(key);
   }
 
   /**
@@ -121,5 +117,13 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
 
   async scrollTop() {
     await this.ionContent.scrollToTop(500);
+  }
+
+  private markContentAsRead(key: string) {
+    setTimeout(() => {
+      if (this.content && this.content.contentId) {
+        this.storage.set(key + this.content.contentId, true);
+      }
+    }, 15000);
   }
 }

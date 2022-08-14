@@ -24,7 +24,7 @@ export class HttpService {
    * @param url l'url a get
    * @param ignoreCors paramètre optionel qui indique si on doit utiliser le plugin natif pour ignorer le cors sur IOS
    */
-  get(url: string, ignoreCors?: boolean): Observable<any> {
+  get<T>(url: string, ignoreCors?: boolean): Observable<T> {
     let get$;
     if (this.develop || !ignoreCors) {
       get$ = this.developGet(url);
@@ -35,7 +35,7 @@ export class HttpService {
   }
 
 
-  post(url: string, body?: any, ignoreCors?: boolean): Observable<any> {
+  post<T>(url: string, body?: any, ignoreCors?: boolean): Observable<T> {
     let post$;
     if (this.develop || !ignoreCors) {
       post$ = this.developPost(url, body);
