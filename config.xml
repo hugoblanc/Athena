@@ -23,6 +23,7 @@
     <preference name="deployment-target" value="11.0" />
     <preference name="target-device" value="handset" />
     <preference name="Orientation" value="portrait" />
+    <preference name="AndroidXEnabled" value="true" />
     <platform name="android">
         <preference name="android-minSdkVersion" value="29" />
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
