@@ -1,54 +1,59 @@
-
-import { Component, OnInit } from '@angular/core';
-import { Issue } from '../../models/github/github';
-import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
-import { MixedContent } from '../../provider/content/mixed-content';
-import { MixedContentService } from '../../provider/content/mixed-content.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { IonInfiniteScroll } from "@ionic/angular";
+import { InputChangeEventDetail } from "@ionic/core/dist/types/interface";
+import { MixedContent } from "../../provider/content/mixed-content";
+import { MixedContentService } from "../../provider/content/mixed-content.service";
 
 @Component({
-  selector: 'app-feed',
-  templateUrl: 'feed.page.html',
-  styleUrls: ['feed.page.scss'],
+  selector: "app-feed",
+  templateUrl: "feed.page.html",
+  styleUrls: ["feed.page.scss"],
 })
 export class FeedPage implements OnInit {
-
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   contents: MixedContent[] = [];
 
-  constructor(public mixedContentService: MixedContentService) {
+  private page: number | undefined = 1;
+  private size = 15;
+  private terms = "";
 
-  }
-
-  listMetaMedia: ListMetaMedias[];
-  videos: [];
-  width: string;
-  issues: Issue[] = [];
-  loading = true;
-
-  page: number | undefined = 1;
-  size = 15;
+  constructor(public mixedContentService: MixedContentService) {}
 
   ngOnInit(): void {
+    this.initSearch();
+  }
+
+  searchTermsChanged(terms: CustomEvent<InputChangeEventDetail>) {
+    this.terms = terms.detail.value;
+    this.initSearch();
+  }
+
+  loadNextContent(event?: any) {
+    if (this.page === undefined) {
+      console.log("End of page");
+    }
+
+    this.mixedContentService
+      .getLastFeedContent(this.page, this.size, this.terms)
+      .subscribe((pageResult) => {
+        this.contents.push(...pageResult.objects);
+        this.page = pageResult.next;
+        if (event) {
+          event.target.complete();
+        }
+        if (pageResult.next === undefined) {
+          this.infiniteScroll.disabled = true;
+        }
+      });
+  }
+
+  private initSearch() {
+    this.page = 1;
+    this.contents = [];
+    if (this.infiniteScroll?.disabled === true) {
+      this.infiniteScroll.disabled = false;
+    }
     this.loadNextContent();
   }
-
-  loadNextContent(event?:any) {
-    if (this.page === undefined) {
-      console.log('End of page');
-    }
-    this.loading = true;
-    this.mixedContentService.getLastFeedContent(this.page, this.size).subscribe(pageResult => {
-      this.contents.push(...pageResult.objects);
-      this.page = pageResult.next;
-      this.loading = false;
-      if(event){
-        event.target.complete();
-        if(pageResult.next === undefined){
-          event.target.disabled = true;
-        }
-      }
-    });
-  }
-
-
 }

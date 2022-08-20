@@ -1,13 +1,12 @@
 <ion-content>
+  <ion-searchbar debounce="500" animated mode="ios" (ionChange)="searchTermsChanged($event)"></ion-searchbar>
   <div *ngFor="let content of contents; let first = first;">
     <hr *ngIf="!first">
     <ath-article-preview [mixedContent]="content"></ath-article-preview>
   </div>
 
-  <ion-infinite-scroll threshold="300px"  (ionInfinite)="loadNextContent($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
+  <ion-infinite-scroll threshold="300px" (ionInfinite)="loadNextContent($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Chargement des données ...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
