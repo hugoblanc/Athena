@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { FirebaseX } from "@ionic-native/firebase-x/ngx";
-import { concat, from, Observable } from "rxjs";
-import { filter, flatMap, map, tap } from "rxjs/operators";
+import { concat, Observable, of } from "rxjs";
+import { flatMap, tap } from "rxjs/operators";
 import { ICategories } from "../models/categories/icategories";
 import { MetaMedia } from "../models/meta-media/meta-media";
 import { StorageService } from "./helper/storage.service";
@@ -42,7 +41,7 @@ export class NotificationService {
   constructor(
     private ss: StorageService,
     private metaMediaService: MetaMediaService,
-    private firebaseX: FirebaseX,
+    // private firebaseX: FirebaseX,
     private router: Router
   ) {
     // Au démarrage on récupère les catégorie que l'utilisateur a expressement désactivé
@@ -67,45 +66,46 @@ export class NotificationService {
    * L'action a executer est la navigation vers la page en question avec les bon paramètre (id post wordpress ou youtube)
    */
   public initOpenNotification(): void {
-    this.firebaseX.getToken().then((token: string) => {
-      console.log(token);
-    });
+    // this.firebaseX.getToken().then((token: string) => {
+    //   console.log(token);
+    // });
 
-    this.firebaseX.onMessageReceived().subscribe(
-      (notification) => {
-        console.log(notification);
-        if (notification.tap) {
-          this.router.navigateByUrl(
-            `/media/${notification.key}/details/${notification.id}`
-          );
-        }
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    // this.firebaseX.onMessageReceived().subscribe(
+    //   (notification) => {
+    //     console.log(notification);
+    //     if (notification.tap) {
+    //       this.router.navigateByUrl(
+    //         `/media/${notification.key}/details/${notification.id}`
+    //       );
+    //     }
+    //   },
+    //   (error) => {
+    //     console.error(error);
+    //   }
+    // );
   }
 
   public initData(): Observable<any[]> {
-    const grantPermission$ = from(this.firebaseX.grantPermission());
-    const makeDiff$ = grantPermission$.pipe(
-      // Vérif permission (IOS only)
-      filter((permission: boolean) => permission),
-      // Récupération des données en locastorage
-      flatMap(() => this.getLocal()),
-      // On fait la différence entre les données du localstorage et les media récupéré
-      map((result) => this.makeDiffWithMedia()),
-      // on convertis la liste de metamedia en liste de string classique
-      map((diff: MetaMedia[]) => this.convertMetaMediaToTopics(diff)),
-      // On met a jour les indicateur des media
-      tap(() => this.updateMediaNotificationIndicator()),
-      // Si on a 0 diff on s'arrète la
-      filter((diff) => diff.length > 0),
-      // Si on a des diff, alors on subscribe atout les topics
-      flatMap((diff) => this.subscribeAllMetaMedia(diff))
-    );
+    return of([1]);
+    // const grantPermission$ = from(this.firebaseX.grantPermission());
+    // const makeDiff$ = grantPermission$.pipe(
+    //   // Vérif permission (IOS only)
+    //   filter((permission: boolean) => permission),
+    //   // Récupération des données en locastorage
+    //   flatMap(() => this.getLocal()),
+    //   // On fait la différence entre les données du localstorage et les media récupéré
+    //   map((result) => this.makeDiffWithMedia()),
+    //   // on convertis la liste de metamedia en liste de string classique
+    //   map((diff: MetaMedia[]) => this.convertMetaMediaToTopics(diff)),
+    //   // On met a jour les indicateur des media
+    //   tap(() => this.updateMediaNotificationIndicator()),
+    //   // Si on a 0 diff on s'arrète la
+    //   filter((diff) => diff.length > 0),
+    //   // Si on a des diff, alors on subscribe atout les topics
+    //   flatMap((diff) => this.subscribeAllMetaMedia(diff))
+    // );
 
-    return makeDiff$;
+    // return makeDiff$;
   }
 
   public isCategoryActivated(key: string, id: number) {
@@ -344,12 +344,14 @@ export class NotificationService {
     return concat(...unsubAll$);
   }
 
-  private subscribeTopic(topic: string) {
-    return from(this.firebaseX.subscribe(topic));
+  private subscribeTopic(topic: string): Observable<any> {
+    return of(1);
+    // return from(this.firebaseX.subscribe(topic));
   }
 
-  private unsubscribeTopic(topic: string) {
-    return from(this.firebaseX.unsubscribe(topic));
+  private unsubscribeTopic(topic: string): Observable<any> {
+    return of(1);
+    // return from(this.firebaseX.unsubscribe(topic));
   }
 
   /**

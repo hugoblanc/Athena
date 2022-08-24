@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { MetaMedia } from '../models/meta-media/meta-media';
 import { StorageService } from './helper/storage.service';
 import { MetaMediaService } from './meta-media/meta-media.service';
@@ -36,7 +35,6 @@ describe('NotificationService', () => {
       providers: [
         NotificationService,
         { provide: Router, useFactory: routerStub },
-        { provide: FirebaseX, useFactory: firebaseXStub },
         { provide: MetaMedia, useFactory: metaMediaStub },
         { provide: StorageService, useFactory: storageServiceStub },
         { provide: MetaMediaService, useFactory: metaMediaServiceStub }
@@ -50,13 +48,8 @@ describe('NotificationService', () => {
   describe('initOpenNotification', () => {
     it('makes expected calls', () => {
       const routerStub: Router = TestBed.get(Router);
-      const firebaseXStub: FirebaseX = TestBed.get(FirebaseX);
       spyOn(routerStub, 'navigateByUrl').and.callThrough();
-      spyOn(firebaseXStub, 'getToken').and.callThrough();
-      spyOn(firebaseXStub, 'onMessageReceived').and.callThrough();
       service.initOpenNotification();
-      expect(firebaseXStub.getToken).toHaveBeenCalled();
-      expect(firebaseXStub.onMessageReceived).toHaveBeenCalled();
     });
   });
 });

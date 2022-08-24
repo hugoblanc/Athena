@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
 import { ListMetaMedias } from './models/meta-media/list-meta-medias';
 import { MetaMediaService } from './provider/meta-media/meta-media.service';
@@ -26,7 +25,6 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
     private metaMediaService: MetaMediaService,
     private notificationService: NotificationService,
   ) {
@@ -46,9 +44,9 @@ export class AppComponent {
 
       // La couleur de la bar de status, bug de la lib,
       // impossible de gérer ça de manière synchrone
-      setTimeout(() => {
-        this.statusBar.overlaysWebView(true);
-      }, 500);
+      // setTimeout(() => {
+      //   this.statusBar.overlaysWebView(true);
+      // }, 500);
 
       this.metaMediaService.listMetaMedia$
         .subscribe((listMetaMedia: ListMetaMedias[]) => {

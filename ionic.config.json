@@ -1,7 +1,7 @@
 {
   "name": "athena",
   "integrations": {
-    "cordova": {}
+    "capacitor": {}
   },
   "type": "angular"
 }

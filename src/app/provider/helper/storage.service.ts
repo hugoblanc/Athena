@@ -13,7 +13,11 @@ export class StorageService {
   private static FIRST_LAUNCH = 'FIRST_LAUNCH';
 
 
-  constructor(private storage: Storage) { }
+  constructor(private storage: Storage) {
+    console.log('storage.driver');
+    console.log(storage.driver);
+
+  }
 
 
 

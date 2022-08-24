@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
-import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { IonicModule } from "@ionic/angular";
 import { ComponentsModule } from "../components/components.module";
 import { DirectivesModule } from "../directives/directives.module";
@@ -34,7 +33,6 @@ const routes: Routes = [
     ComponentsModule,
     DirectivesModule,
   ],
-  providers: [SocialSharing],
   declarations: [
     ContentDetailsPage,
     ArticleDetailsComponent,
