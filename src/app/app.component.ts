@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 import { ListMetaMedias } from './models/meta-media/list-meta-medias';
 import { MetaMediaService } from './provider/meta-media/meta-media.service';
 import { NotificationService } from './provider/notification.service';
-
+import { StatusBar, Style } from '@capacitor/status-bar';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -31,42 +31,26 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  // La liste des différent médias que l'on veut afficher dans le menu
   appPages: ListMetaMedias[];
 
 
   initializeApp() {
-    // Ici on récupère les media stocké en local dans le media service
+    StatusBar.setOverlaysWebView({overlay: true})
     this.appPages = this.metaMediaService.listMetaMedia;
 
-    // Ici on gères les accès au fonciontnalité native du téléphone
     this.platform.ready().then(() => {
 
-      // La couleur de la bar de status, bug de la lib,
-      // impossible de gérer ça de manière synchrone
-      // setTimeout(() => {
-      //   this.statusBar.overlaysWebView(true);
-      // }, 500);
-
       this.metaMediaService.listMetaMedia$
-        .subscribe((listMetaMedia: ListMetaMedias[]) => {
+        .subscribe(async (listMetaMedia: ListMetaMedias[]) => {
           this.appPages = listMetaMedia;
-          this.notificationService.initOpenNotification();
+          await this.notificationService.initOpenNotification();
           this.notificationService.initData()
             .subscribe((datas) => {
               console.log(datas);
             });
         });
 
-
-      // La fin de l'affichage du splash screen
       this.splashScreen.hide();
-
-      // this.notificationService.initData()
-      //   .subscribe((datas) => {
-      //     console.log(datas);
-      //   });
-
     });
   }
 

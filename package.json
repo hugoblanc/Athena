@@ -28,6 +28,7 @@
     "@capacitor/haptics": "4.0.1",
     "@capacitor/ios": "^4.1.0",
     "@capacitor/keyboard": "4.0.1",
+    "@capacitor/push-notifications": "^4.0.1",
     "@capacitor/share": "^4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@ionic-native/core": "^5.0.0",
@@ -108,14 +109,7 @@
       },
       "cordova-sqlite-storage": {},
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-firebasex": {
-        "FIREBASE_ANALYTICS_COLLECTION_ENABLED": "false",
-        "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "false",
-        "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "false",
-        "FIREBASE_FCM_AUTOINIT_ENABLED": "true",
-        "IOS_USE_PRECOMPILED_FIRESTORE_POD": "false"
-      }
+      "cordova-plugin-ionic-webview": {}
     },
     "platforms": [
       "android",

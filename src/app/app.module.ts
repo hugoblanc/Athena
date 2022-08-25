@@ -19,7 +19,8 @@ import { Drivers } from '@ionic/storage';
     AppRoutingModule,
     HttpClientModule,
     IonicStorageModule.forRoot({
-      driverOrder: [CordovaSQLiteDriver._driver, Drivers.IndexedDB, Drivers.LocalStorage]
+      driverOrder: [CordovaSQLiteDriver._driver, Drivers.IndexedDB, Drivers.LocalStorage],
+      
     })],
   providers: [
     SplashScreen,
