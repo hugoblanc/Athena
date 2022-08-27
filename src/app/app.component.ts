@@ -23,7 +23,6 @@ import { StatusBar, Style } from '@capacitor/status-bar';
 export class AppComponent {
 
   constructor(
-    private platform: Platform,
     private splashScreen: SplashScreen,
     private metaMediaService: MetaMediaService,
     private notificationService: NotificationService,
@@ -31,27 +30,23 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  appPages: ListMetaMedias[];
 
 
   initializeApp() {
-    StatusBar.setOverlaysWebView({overlay: true})
-    this.appPages = this.metaMediaService.listMetaMedia;
+    StatusBar.setOverlaysWebView({ overlay: true })
 
-    this.platform.ready().then(() => {
+    this.metaMediaService.listMetaMedia$
+      .subscribe(async () => {
+        await this.notificationService.initOpenNotification();
+        this.notificationService.initData()
+          .subscribe((datas) => {
+            console.log(datas);
+          });
+      });
 
-      this.metaMediaService.listMetaMedia$
-        .subscribe(async (listMetaMedia: ListMetaMedias[]) => {
-          this.appPages = listMetaMedia;
-          await this.notificationService.initOpenNotification();
-          this.notificationService.initData()
-            .subscribe((datas) => {
-              console.log(datas);
-            });
-        });
-
-      this.splashScreen.hide();
-    });
+    this.splashScreen.hide();
+    // this.platform.ready().then(() => {
+    // });
   }
 
 }

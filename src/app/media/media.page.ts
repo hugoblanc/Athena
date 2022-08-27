@@ -66,6 +66,7 @@ export class MediaPage implements OnInit {
         this.page = page;
         this.loading = false;
       }, (error) => {
+        console.error("error media page");
         console.error(error);
         this.loading = false;
       });

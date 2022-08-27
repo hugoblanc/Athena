@@ -1,13 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { FirebaseMessaging, PermissionStatus } from '@capacitor-firebase/messaging';
 import { concat, from, Observable, of } from "rxjs";
-import { filter, mergeMap, map, tap } from "rxjs/operators";
+import { filter, map, mergeMap, tap } from "rxjs/operators";
 import { ICategories } from "../models/categories/icategories";
 import { MetaMedia } from "../models/meta-media/meta-media";
 import { StorageService } from "./helper/storage.service";
 import { MetaMediaService } from "./meta-media/meta-media.service";
-import { PermissionStatus, PushNotifications } from '@capacitor/push-notifications';
-import { PermissionState } from '@capacitor/core';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -68,26 +67,28 @@ export class NotificationService {
    * L'action a executer est la navigation vers la page en question avec les bon paramètre (id post wordpress ou youtube)
    */
   public async initOpenNotification(): Promise<void> {
-    // this.firebaseX.getToken().then((token: string) => {
-    //   console.log(token);
-    // });
+    const result = await FirebaseMessaging.getToken();
+    console.log(JSON.stringify(result.token));
 
-    await  PushNotifications.addListener('pushNotificationActionPerformed',
+
+    console.log("---------------------------------------------------------");
+    await  FirebaseMessaging.addListener('notificationActionPerformed',
       (notificationPerformed) => {
-        console.error("---------------------------------------------------------");
-        console.error(JSON.stringify(notificationPerformed));
-        if (notificationPerformed.actionId) {
-          this.router.navigateByUrl(
-            `/media/${notificationPerformed.notification.data.key}/details/${notificationPerformed.notification.data.id}`
-          );
+        console.debug(JSON.stringify(notificationPerformed));
+        const payload:NotificationPayload = notificationPerformed.notification.data;
+        if (notificationPerformed.actionId && payload?.key && payload?.id) {
+          this.router.navigateByUrl(`/media/${payload.key}/details/${payload.id}`);
         }
+        console.error("payload",payload );
+        console.error(payload );
       }).catch((error) => {
-      console.error(error);
+      console.error('JSON.stringify(error)');
+      console.error(JSON.stringify(error));
     })
   }
 
   public initData(): Observable<any[]> {
-    const requestPermission$ = from(PushNotifications.requestPermissions())
+    const requestPermission$ = from(FirebaseMessaging.requestPermissions())
     const makeDiff$ = requestPermission$.pipe(
       // Vérif permission (IOS only)
       filter((permission: PermissionStatus) => (permission.receive === 'granted')),
@@ -369,4 +370,13 @@ export class NotificationService {
       throw new Error("L'objet est null");
     }
   }
+}
+
+
+
+interface NotificationPayload {
+  id?:string;
+  body?:string;
+  key?:string;
+  title?:string;
 }

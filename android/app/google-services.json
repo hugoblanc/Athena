@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "468962553465",
+    "firebase_url": "https://open-athena.firebaseio.com",
+    "project_id": "open-athena",
+    "storage_bucket": "open-athena.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468962553465:android:69a94b6252158c21",
+        "android_client_info": {
+          "package_name": "com.open.athena"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468962553465-td0io10kmrj5mhd0odpilhp147d1f4aq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.open.athena",
+            "certificate_hash": "413239a668803b8ac4ff5ba70b4678533716ab9e"
+          }
+        },
+        {
+          "client_id": "468962553465-11ubko5h3umsvsf6dme4sa7nbsali9hv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9PiaOFewrRB26cCmnAGr2ODzS0uNsz2Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468962553465-11ubko5h3umsvsf6dme4sa7nbsali9hv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "468962553465-80s1rdn3pkji4u75rk0396l70a73tbae.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.open.athena"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
