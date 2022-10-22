@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
+import { Capacitor } from '@capacitor/core';
 import { HTTP, HTTPResponse } from '@ionic-native/http/ngx';
-import { Platform } from '@ionic/angular';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { runInZone } from '../../utils/run-in-zone.operator';
@@ -14,8 +14,8 @@ export class HttpService {
 
   private develop: boolean; // L'indicateur de plateforme web ou native
 
-  constructor(platform: Platform, private readonly nativeHttp: HTTP, private readonly developHttp: HttpClient, private readonly zone: NgZone) {
-    this.develop = !platform.is('cordova');
+  constructor(private readonly nativeHttp: HTTP, private readonly developHttp: HttpClient, private readonly zone: NgZone) {
+    this.develop = !Capacitor.isNativePlatform();
   }
 
   /**

@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { FirebaseX } from "@ionic-native/firebase-x/ngx";
-import { concat, from, Observable } from "rxjs";
-import { filter, flatMap, map, tap } from "rxjs/operators";
+import { FirebaseMessaging, PermissionStatus } from '@capacitor-firebase/messaging';
+import { concat, from, Observable, of } from "rxjs";
+import { filter, map, mergeMap, tap } from "rxjs/operators";
 import { ICategories } from "../models/categories/icategories";
 import { MetaMedia } from "../models/meta-media/meta-media";
 import { StorageService } from "./helper/storage.service";
@@ -42,7 +42,6 @@ export class NotificationService {
   constructor(
     private ss: StorageService,
     private metaMediaService: MetaMediaService,
-    private firebaseX: FirebaseX,
     private router: Router
   ) {
     // Au démarrage on récupère les catégorie que l'utilisateur a expressement désactivé
@@ -66,33 +65,32 @@ export class NotificationService {
    * Cette methode permet de configurer les action a effectuer lors du clique sur une notifications
    * L'action a executer est la navigation vers la page en question avec les bon paramètre (id post wordpress ou youtube)
    */
-  public initOpenNotification(): void {
-    this.firebaseX.getToken().then((token: string) => {
-      console.log(token);
-    });
+  public async initOpenNotification(): Promise<void> {
+    const result = await FirebaseMessaging.getToken();
+    console.log(JSON.stringify(result.token));
 
-    this.firebaseX.onMessageReceived().subscribe(
-      (notification) => {
-        console.log(notification);
-        if (notification.tap) {
-          this.router.navigateByUrl(
-            `/media/${notification.key}/details/${notification.id}`
-          );
+
+    console.log("---------------------------------------------------------");
+    await FirebaseMessaging.addListener('notificationActionPerformed',
+      (notificationPerformed) => {
+        console.debug(JSON.stringify(notificationPerformed));
+        const payload: NotificationPayload = notificationPerformed.notification.data;
+        if (notificationPerformed.actionId && payload?.key && payload?.id) {
+          this.router.navigateByUrl(`/media/${payload.key}/details/${payload.id}`);
         }
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+      }).catch((error) => {
+        console.error('JSON.stringify(error)');
+        console.error(JSON.stringify(error));
+      })
   }
 
   public initData(): Observable<any[]> {
-    const grantPermission$ = from(this.firebaseX.grantPermission());
-    const makeDiff$ = grantPermission$.pipe(
+    const requestPermission$ = from(FirebaseMessaging.requestPermissions())
+    const makeDiff$ = requestPermission$.pipe(
       // Vérif permission (IOS only)
-      filter((permission: boolean) => permission),
+      filter((permission: PermissionStatus) => (permission.receive === 'granted')),
       // Récupération des données en locastorage
-      flatMap(() => this.getLocal()),
+      mergeMap(() => this.getLocal()),
       // On fait la différence entre les données du localstorage et les media récupéré
       map((result) => this.makeDiffWithMedia()),
       // on convertis la liste de metamedia en liste de string classique
@@ -102,7 +100,7 @@ export class NotificationService {
       // Si on a 0 diff on s'arrète la
       filter((diff) => diff.length > 0),
       // Si on a des diff, alors on subscribe atout les topics
-      flatMap((diff) => this.subscribeAllMetaMedia(diff))
+      mergeMap((diff) => this.subscribeAllMetaMedia(diff))
     );
 
     return makeDiff$;
@@ -214,7 +212,7 @@ export class NotificationService {
   ): Observable<any> {
     let switch$;
     if (newIndicator) {
-      switch$ = this.subscribeMEtaMedia(mediaKey);
+      switch$ = this.subscribeMetaMedia(mediaKey);
     } else {
       switch$ = this.unsubscribeMetaMedia(mediaKey);
     }
@@ -295,7 +293,7 @@ export class NotificationService {
 
   private subscribeAllMetaMedia(topics: string[]): Observable<any[]> {
     this.checkNullOrEmpty(topics);
-    const subAll$ = topics.map((topic) => this.subscribeMEtaMedia(topic));
+    const subAll$ = topics.map((topic) => this.subscribeMetaMedia(topic));
     return concat(...subAll$);
   }
 
@@ -305,11 +303,11 @@ export class NotificationService {
   //   return concat(...unsubAll$);
   // }
 
-  private subscribeMEtaMedia(topic: string): Observable<any> {
+  private subscribeMetaMedia(topic: string): Observable<any> {
     return this.subscribeTopic(topic).pipe(
       tap(() => (this.notificationTopics[topic] = true)),
       tap(() => this.genericMetaMediaIndSetter(true, topic)),
-      flatMap(() =>
+      mergeMap(() =>
         this.ss.editObject(
           NotificationService.NOTIFICATIONS_TOPICS,
           topic,
@@ -322,7 +320,7 @@ export class NotificationService {
     return this.unsubscribeTopic(topic).pipe(
       tap(() => (this.notificationTopics[topic] = false)),
       tap(() => this.genericMetaMediaIndSetter(false, topic)),
-      flatMap(() =>
+      mergeMap(() =>
         this.ss.editObject(
           NotificationService.NOTIFICATIONS_TOPICS,
           topic,
@@ -344,12 +342,13 @@ export class NotificationService {
     return concat(...unsubAll$);
   }
 
-  private subscribeTopic(topic: string) {
-    return from(this.firebaseX.subscribe(topic));
+  private subscribeTopic(topic: string): Observable<any> {
+    return from(FirebaseMessaging.subscribeToTopic({ topic }));
+    // return from(this.firebaseX.subscribe(topic));
   }
 
-  private unsubscribeTopic(topic: string) {
-    return from(this.firebaseX.unsubscribe(topic));
+  private unsubscribeTopic(topic: string): Observable<any> {
+    return from(FirebaseMessaging.unsubscribeFromTopic({ topic }));
   }
 
   /**
@@ -367,4 +366,13 @@ export class NotificationService {
       throw new Error("L'objet est null");
     }
   }
+}
+
+
+
+interface NotificationPayload {
+  id?: string;
+  body?: string;
+  key?: string;
+  title?: string;
 }

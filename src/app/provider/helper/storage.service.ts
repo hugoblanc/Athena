@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { from, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,13 @@ export class StorageService {
   private static FIRST_LAUNCH = 'FIRST_LAUNCH';
 
 
-  constructor(private storage: Storage) { }
+  constructor(private storage: Storage) {
+    this.storage.defineDriver(CordovaSQLiteDriver);
+    this.storage.create();
+    console.log('storage.driver');
+    console.log(storage.driver);
 
+  }
 
 
   initFirstLaunch(): void {

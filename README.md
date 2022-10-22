@@ -1,8 +1,9 @@
-[Logo athena](http://www.athena-app.fr/menu.jpg "Logo Title Text 1")
+[Logo athena](http://athena-app.xyz/assets/menu.jpg "Logo Title Text 1")
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 ## Description
+
 L'application Athena a été réalisée avec [Ionic](https://github.com/ionic-team/ionic) (Cordova + Angular).
 
 Elle permet de notifier les utilisateurs lorsque du contenu est posté par les médias libres intégrés à l'application
@@ -10,8 +11,8 @@ Elle permet de notifier les utilisateurs lorsque du contenu est posté par les m
 ## Prérequis d'utilisation
 
 - [Node JS](https://nodejs.org/fr/download/)
-- [Ionic](https://github.com/ionic-team/ionic)  ``` npm i -g ionic ```
-- [cordova](https://github.com/apache/cordova)  ``` npm i -g cordova@9.0.1 (ou supérieur) ```
+- [Ionic](https://github.com/ionic-team/ionic) `npm i -g ionic`
+- [cordova](https://github.com/apache/cordova) `npm i -g cordova@9.0.1 (ou supérieur)`
 
 ## Installation en local
 
@@ -22,7 +23,6 @@ $ git clone https://github.com/hugoblanc/Athena.git
 $ cd Athena
 ```
 
-
 ## Running the app
 
 ```bash
@@ -31,7 +31,7 @@ $ ionic serve
 
 # création d'un apk (android) ou d'un projet xcode en fonction de la plateforme ciblée
 $ ionic cordova build android
-ou/et 
+ou/et
 $ ionic cordova build ios
 
 
@@ -49,13 +49,13 @@ $ ionic cordova run android --prod --release
 ```
 
 ## Règle de commit
-Utilisation de standard-version pour générer automatiquement les changelogs: 
+
+Utilisation de standard-version pour générer automatiquement les changelogs:
 
 `git commit -a -m"<type>[optional scope]: <description>"`
-***type***: feat, fix, BREAKING CHANGE, docs, refactor, test, optimization 
+**_type_**: feat, fix, BREAKING CHANGE, docs, refactor, test, optimization
 
 [Article medium](https://medium.com/jobtome-engineering/how-to-generate-changelog-using-conventional-commits-10be40f5826c)
-
 
 ## Support
 
@@ -66,6 +66,6 @@ Si vous jugez qu'il manque des fonctionnalités vous pouvez proposer une pull re
 
 - Auteur - Hugo Blanc - hugoblanc.blend@gmail.com
 
-
 ## License
-  Athena est sous licence [LGPL-3.0](LICENSE).
+
+Athena est sous licence [LGPL-3.0](LICENSE).

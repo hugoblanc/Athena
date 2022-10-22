@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import listMetaMediaData from '../../../assets/data/listMetaMediaData.json';
 import { environment } from '../../../environments/environment';
 import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
 import { MetaMedia } from '../../models/meta-media/meta-media';
@@ -16,18 +15,17 @@ export class MetaMediaService {
   private static BASE_URL = `${environment.apiUrl}list-meta-media`;
   private installDate: Date;
 
-  public listMetaMedia: ListMetaMedias[] = listMetaMediaData;
+  public listMetaMedia: ListMetaMedias[] = [];
   public listMetaMedia$ = new ReplaySubject(1);
   public currentMetaMedia: MetaMedia;
 
   constructor(private http: HttpService,
     private storage: StorageService,
     private alertService: AlertService) {
+  }
 
-    this.getMetaMediaList()
-      .subscribe(() => {
-        console.log('Meta media récupéré');
-      });
+  public init(): Observable<ListMetaMedias[]> {
+
     this.storage.get<Date>(StorageService.INSTALLATION_DATE)
       .subscribe((dateInstall) => {
         try {
@@ -38,21 +36,22 @@ export class MetaMediaService {
             this.storage.set(StorageService.INSTALLATION_DATE, this.installDate);
           }
         } catch (error) {
+          console.error("error meta media service");
           console.error(error);
         }
       });
+
+    return this.getMetaMediaList().pipe(tap((data) => {
+      this.listMetaMedia = data.map((lstMetaMedia) => new ListMetaMedias(lstMetaMedia));
+      this.listMetaMedia$.next(this.listMetaMedia);
+      console.log('Meta media récupéré')
+    }));
 
   }
 
 
   public getMetaMediaList(): Observable<ListMetaMedias[]> {
-    return this.http.get(MetaMediaService.BASE_URL)
-      .pipe(tap((data: ListMetaMedias[]) => {
-        if (data && data.length > 0) {
-          this.listMetaMedia = data.map((lstMetaMedia) => new ListMetaMedias(lstMetaMedia));
-          this.listMetaMedia$.next(this.listMetaMedia);
-        }
-      }));
+    return this.http.get(MetaMediaService.BASE_URL);
   }
 
   public findAndSetMediaByKey(key: string): MetaMedia {
@@ -73,7 +72,7 @@ export class MetaMediaService {
    * Car si on met le lien en direct, on se fait kicker par les stores
    * Pour non prespect de la privacy policy
    */
-  public dealWithTips() {
+  public dealWithTips(): void {
     this.storage.get<any>(StorageService.COUNT_KEY)
       .subscribe((counts: any) => {
         // S'il n'y a auncune données en storage

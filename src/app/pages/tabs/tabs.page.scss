@@ -1,20 +1,25 @@
-ion-tabs{
-    background-color: #DDDDDD;
+ion-tabs {
+  background-color: #DDDDDD;
+}
+
+ion-tab-bar {
+  --background: var(--ion-color-dark-glass);
+  border-radius: 16px;
+  margin: 1.5%;
+  padding: 0;
+  position: fixed;
+  bottom: 0px;
+  width: 97%;
+  height: 10vh;
+  overflow: hidden;
+
+  &.ios {
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
   }
 
-  ion-tab-bar{
-    --background: var(--ion-color-dark-glass);
-    border-radius: 16px;
-    margin: 1.5%;
-    padding: 0;
-    position: fixed;
-    bottom: 0px;
-    width: 97%;
-    height: 10vh;
-    overflow: hidden;
-
-    &.ios{
-      border-bottom-left-radius: 35px;
-      border-bottom-right-radius: 35px;
-    }
+  ion-label {
+    font-size: 0, 8rem;
+    font-family: RobotoBlack;
+  }
 }

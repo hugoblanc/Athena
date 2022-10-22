@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { SocialSharing } from "@ionic-native/social-sharing/ngx";
+import { Share } from '@capacitor/share';
 import { ItemVideo } from "../../../models/content/youtube/item-video";
 
 /**
@@ -14,16 +14,15 @@ import { ItemVideo } from "../../../models/content/youtube/item-video";
 export class VideoDetailsComponent implements OnInit {
   @Input() video: ItemVideo;
 
-  constructor(private socialSharing: SocialSharing) {}
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   async shareVideo() {
-    await this.socialSharing.share(
-      "Voici un vidéo que j'ai trouvé sur Athena",
-      null,
-      null,
-      "https://www.youtube.com/watch?v=" + this.video.contentId
-    );
+    await Share.share({
+      title: "Regarde cette vidéo",
+      text: "J'ai trouvé ça sur Athena app: ",
+      url: "https://www.youtube.com/watch?v=" + this.video.contentId,
+      dialogTitle: 'Informes tes amis',
+    });
   }
 }

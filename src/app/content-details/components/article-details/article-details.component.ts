@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { Post } from "../../../models/content/wordpress/post";
+import { Share } from '@capacitor/share';
 
 /**
  * Ce composant représente le contenu d'un article
@@ -14,16 +14,15 @@ import { Post } from "../../../models/content/wordpress/post";
 export class ArticleDetailsComponent implements OnInit {
   @Input() post: Post;
 
-  constructor(private socialSharing: SocialSharing) {}
 
   ngOnInit() {}
 
   async shareArticle() {
-    await this.socialSharing.share(
-      "Voici un article que j'ai trouvé sur Athena",
-      null,
-      null,
-      this.post.link
-    );
+    await Share.share({
+      title: "Regarde cet article",
+      text: "J'ai trouvé ça sur Athena app: ",
+      url: this.post.link,
+      dialogTitle: 'Informes tes amis',
+    });
   }
 }
