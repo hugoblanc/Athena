@@ -15,7 +15,7 @@ export class VideoDetailsComponent implements OnInit {
   @Input() video: ItemVideo;
 
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   async shareVideo() {
     await Share.share({

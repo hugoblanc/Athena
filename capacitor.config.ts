@@ -20,6 +20,15 @@ const config: CapacitorConfig = {
       Orientation: 'portrait',
       AndroidXEnabled: 'true'
     }
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false,
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": true,
+      "splashFullScreen": false,
+      "splashImmersive": false
+    }
   }
 };
 

@@ -1,6 +1,6 @@
 <ion-content>
 
-  <ath-section title="Améliorer Athena"></ath-section>
+  <ath-section title="Améliorations"></ath-section>
 
 
   <ion-segment [value]="issueType" mode="md" (ionChange)="issueTypeChanged($event)">
@@ -16,7 +16,7 @@
 
 
   <ath-loading [loading]="loading">
-    <ath-issues-list [issues]="issues" (claped)="createClap($event)" ></ath-issues-list>
+    <ath-issues-list [issues]="issues" (claped)="createClap($event)"></ath-issues-list>
   </ath-loading>
 
 

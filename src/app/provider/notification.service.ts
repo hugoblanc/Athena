@@ -42,7 +42,6 @@ export class NotificationService {
   constructor(
     private ss: StorageService,
     private metaMediaService: MetaMediaService,
-    // private firebaseX: FirebaseX,
     private router: Router
   ) {
     // Au démarrage on récupère les catégorie que l'utilisateur a expressement désactivé
@@ -72,19 +71,17 @@ export class NotificationService {
 
 
     console.log("---------------------------------------------------------");
-    await  FirebaseMessaging.addListener('notificationActionPerformed',
+    await FirebaseMessaging.addListener('notificationActionPerformed',
       (notificationPerformed) => {
         console.debug(JSON.stringify(notificationPerformed));
-        const payload:NotificationPayload = notificationPerformed.notification.data;
+        const payload: NotificationPayload = notificationPerformed.notification.data;
         if (notificationPerformed.actionId && payload?.key && payload?.id) {
           this.router.navigateByUrl(`/media/${payload.key}/details/${payload.id}`);
         }
-        console.error("payload",payload );
-        console.error(payload );
       }).catch((error) => {
-      console.error('JSON.stringify(error)');
-      console.error(JSON.stringify(error));
-    })
+        console.error('JSON.stringify(error)');
+        console.error(JSON.stringify(error));
+      })
   }
 
   public initData(): Observable<any[]> {
@@ -346,13 +343,12 @@ export class NotificationService {
   }
 
   private subscribeTopic(topic: string): Observable<any> {
-    return of(1);
+    return from(FirebaseMessaging.subscribeToTopic({ topic }));
     // return from(this.firebaseX.subscribe(topic));
   }
 
   private unsubscribeTopic(topic: string): Observable<any> {
-    return of(1);
-    // return from(this.firebaseX.unsubscribe(topic));
+    return from(FirebaseMessaging.unsubscribeFromTopic({ topic }));
   }
 
   /**
@@ -375,8 +371,8 @@ export class NotificationService {
 
 
 interface NotificationPayload {
-  id?:string;
-  body?:string;
-  key?:string;
-  title?:string;
+  id?: string;
+  body?: string;
+  key?: string;
+  title?: string;
 }
