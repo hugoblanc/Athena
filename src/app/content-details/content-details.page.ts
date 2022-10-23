@@ -15,6 +15,7 @@ import { HelpService } from "../provider/helper/help.service";
 import { LinkService } from "../provider/helper/link.service";
 import { StorageService } from "../provider/helper/storage.service";
 import { StyleService } from "../provider/style.service";
+import { shareContent } from './utils/shareable-content.utils';
 
 /**
  * *~~~~~~~~~~~~~~~~~~~
@@ -50,6 +51,7 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
   private helpTriggered = false;
 
   private id: number;
+  private key: string;
   content: IContent;
   PAGE_CODE = "content-details";
   private maxHeight: number;
@@ -58,16 +60,17 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
   ionViewWillEnter() {
     // Quand on arrive sur cette page, on récupère l'id dans l'url
     const idPost = this.route.snapshot.paramMap.get("id");
-    const key = this.route.snapshot.paramMap.get("key");
+    this.key = this.route.snapshot.paramMap.get("key");
     // il s'agit de l'id du contenu
     this.id = parseInt(idPost, 10);
 
     // On cherche en local puis si rien en local on cherche coté serveur
     this.contentService.getContentById(this.id).subscribe((content) => {
       this.content = content;
+      this.content.id = this.id;
     });
 
-    this.markContentAsRead(key);
+    this.markContentAsRead(this.key);
   }
 
   /**
@@ -113,6 +116,10 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
    */
   openExternalPage(url: string) {
     window.open(url, "_system’");
+  }
+
+  async shareContent() {
+    await shareContent(this.key, this.id, "Regarde ce que j'ai trouvé")
   }
 
   async scrollTop() {

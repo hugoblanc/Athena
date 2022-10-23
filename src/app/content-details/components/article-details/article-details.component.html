@@ -1,20 +1,7 @@
-<ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button size="small" color="primary" (click)="shareArticle()">
-    <ion-icon name="share-social-outline"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
-
 <ath-video-header></ath-video-header>
-<img
-  *ngIf="!post?.videoID && post?.image?.url"
-  [src]="post.image?.url"
-  [alt]="post.embedded.featuredmedia[0].title"
-/>
+<img *ngIf="!post?.videoID && post?.image?.url" [src]="post.image?.url" [alt]="post.embedded.featuredmedia[0].title" />
 
-<ath-youtube-iframe
-  *ngIf="post?.videoID"
-  [videoID]="post.videoID"
-></ath-youtube-iframe>
+<ath-youtube-iframe *ngIf="post?.videoID" [videoID]="post.videoID"></ath-youtube-iframe>
 
 <div id="full-article">
   <ath-moon-mode></ath-moon-mode>

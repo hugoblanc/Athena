@@ -12,12 +12,12 @@ export class IssueDetailsPage implements OnInit {
 
   issue: Issue;
 
-  constructor(private route: ActivatedRoute, private githuService: GithubService) { }
+  constructor(private route: ActivatedRoute, private githubService: GithubService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       const issueNumber = +params.get('issueNumber');
-      this.githuService.getIssueByNumber(issueNumber)
+      this.githubService.getIssueByNumber(issueNumber)
         .subscribe((issue) => this.issue = issue);
     });
   }

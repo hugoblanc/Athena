@@ -1,9 +1,4 @@
-<ion-content
-  athDblclick
-  (athDblclick)="scrollTop()"
-  [scrollEvents]="true"
-  (ionScroll)="onScroll($event)"
->
+<ion-content athDblclick (athDblclick)="scrollTop()" [scrollEvents]="true" (ionScroll)="onScroll($event)">
   <span *ngIf="content?.contentType" [ngSwitch]="content?.contentType">
     <p *ngSwitchCase="'WORDPRESS'">
       <ath-article-details [post]="content"></ath-article-details>
@@ -17,4 +12,11 @@
   </span>
 
   <ath-reading-progress [progress]="readingProgress"></ath-reading-progress>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" color="primary" (click)="shareContent()">
+      <ion-icon name="share-social-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
