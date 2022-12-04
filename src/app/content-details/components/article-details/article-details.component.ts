@@ -1,11 +1,35 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 import { Post } from "../../../models/content/wordpress/post";
+import { AudioContentService, AudioContentUrl } from '../../../provider/content/audio-content.service';
+import { MixedContentService } from '../../../provider/content/mixed-content.service';
 
 @Component({
   selector: "ath-article-details",
   templateUrl: "./article-details.component.html",
   styleUrls: ["./article-details.component.scss"],
 })
-export class ArticleDetailsComponent {
+export class ArticleDetailsComponent implements OnInit {
+
   @Input() post: Post;
+  @Input() key: string;
+
+  audio$: Observable<AudioContentUrl | undefined>;
+
+
+
+
+  isAudioPlaying = false;
+  constructor(private readonly audioContentService: AudioContentService,
+    private readonly mixedContentService: MixedContentService) { }
+
+  ngOnInit(): void {
+    this.audio$ = this.mixedContentService.getIdFromContentIdAndMediaKey(this.key, this.post.contentId + '')
+      .pipe(
+        mergeMap(({ id }) => this.audioContentService.getAudioContentUrlById(id))
+      )
+  }
+
+
 }

@@ -4,7 +4,19 @@
 <ath-youtube-iframe *ngIf="post?.videoID" [videoID]="post.videoID"></ath-youtube-iframe>
 
 <div id="full-article">
-  <ath-moon-mode></ath-moon-mode>
+
+  <div class="action-menu">
+
+
+    <ath-article-audio-reader *ngIf="audio$ | async as audioContentUrl" [audioContentUrl]="audioContentUrl">
+    </ath-article-audio-reader>
+
+    <div class="separator"></div>
+
+    <ath-moon-mode></ath-moon-mode>
+
+  </div>
+
   <h2 [innerHTML]="post?.title"></h2>
   <div class="article-content" [innerHTML]="post?.content.rendered"></div>
 </div>

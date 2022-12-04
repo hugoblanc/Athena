@@ -13,6 +13,7 @@ import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 import { Drivers } from '@ionic/storage';
 import { MetaMediaService } from './provider/meta-media/meta-media.service';
 import { initializeAppFactory } from './core/initializer/media.initializer';
+import { Media } from '@awesome-cordova-plugins/media/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { initializeAppFactory } from './core/initializer/media.initializer';
       deps: [MetaMediaService],
       multi: true
     },
+    Media,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

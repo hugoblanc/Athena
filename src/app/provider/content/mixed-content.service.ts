@@ -11,7 +11,7 @@ import { MixedContent } from "./mixed-content";
 })
 export class MixedContentService {
   private static BASE_URL = environment.apiUrl;
-  constructor(private readonly http: HttpService) {}
+  constructor(private readonly http: HttpService) { }
 
   getLastFeedContent(
     page: number,
@@ -30,5 +30,9 @@ export class MixedContentService {
           return page;
         })
       );
+  }
+
+  getIdFromContentIdAndMediaKey(key: string, contentId: string): Observable<{ id: number } | undefined> {
+    return this.http.get(`${MixedContentService.BASE_URL}content/get-id-from-content-id-and-media-key/${key}/${contentId}`)
   }
 }
