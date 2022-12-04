@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { forkJoin, Observable } from "rxjs";
 import { environment } from "../../environments/environment.prod";
 import { Issue } from "../models/github/github";
 import { HttpService } from "./helper/http.service";
+import { StorageService } from './helper/storage.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: "root",
@@ -17,10 +19,23 @@ export class GithubService {
   private static FULL_GITHUB_URL =
     GithubService.BASE_GITHUB_URL + GithubService.ATHENA + GithubService.ISSUE;
 
-  constructor(public http: HttpService) {}
+  constructor(private readonly http: HttpService, private readonly storage: StorageService) { }
 
-  getIssueByLabel(label: string): Observable<Issue[]> {
-    return this.http.get(GithubService.FULL_GITHUB_URL + `?labels=${label}`);
+  getIssuesByLabel(label: string): Observable<Issue[]> {
+
+    return forkJoin([
+      this.http.get<Issue[]>(GithubService.FULL_GITHUB_URL + `?labels=${label}`),
+      this.storage.get<number[]>(StorageService.CLAPPED_ISSUE)
+    ]).pipe(
+      map(([issues, alreadyClappedIssuesId]) => {
+        return issues.map(i => {
+          if (alreadyClappedIssuesId && alreadyClappedIssuesId.includes(i.id)) {
+            i.hasBeenClapped = true;
+          }
+          return i;
+        });
+      })
+    );
   }
 
   getIssueByNumber(issueNumber: number): Observable<Issue> {

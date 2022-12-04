@@ -5,7 +5,7 @@ export interface Issue {
   comments_url?: string;
   events_url?: string;
   html_url?: string;
-  id?: number;
+  id: number;
   node_id?: string;
   number?: number;
   title?: string;
@@ -22,6 +22,7 @@ export interface Issue {
   closed_at?: null;
   author_association?: string;
   body?: string;
+  hasBeenClapped?: boolean;
 }
 
 export interface Label {
