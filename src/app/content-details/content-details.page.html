@@ -1,13 +1,10 @@
 <ion-content athDblclick (athDblclick)="scrollTop()" [scrollEvents]="true" (ionScroll)="onScroll($event)">
   <span *ngIf="content?.contentType" [ngSwitch]="content?.contentType">
-    <p *ngSwitchCase="'WORDPRESS'">
-      <ath-article-details [post]="content"></ath-article-details>
-    </p>
     <p *ngSwitchCase="'YOUTUBE'">
       <ath-video-details [video]="content"></ath-video-details>
     </p>
     <p *ngSwitchDefault>
-      <ath-article-details [post]="content"></ath-article-details>
+      <ath-article-details [post]="content" [key]="key"></ath-article-details>
     </p>
   </span>
 

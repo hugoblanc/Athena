@@ -51,7 +51,7 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
   private helpTriggered = false;
 
   private id: number;
-  private key: string;
+  key: string;
   content: IContent;
   PAGE_CODE = "content-details";
   private maxHeight: number;

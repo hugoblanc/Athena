@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  // apiUrl: "http://192.168.3.154:3000/",
   // apiUrl: "http://localhost:3000/",
   apiUrl: "https://www.athena-app.fr/",
   webAppUrl: "https://athena-app.xyz/",

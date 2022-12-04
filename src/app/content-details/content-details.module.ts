@@ -5,6 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { IonicModule } from "@ionic/angular";
 import { ComponentsModule } from "../components/components.module";
 import { DirectivesModule } from "../directives/directives.module";
+import { ArticleAudioReaderComponent } from './components/article-audio-reader/article-audio-reader.component';
 import { ArticleDetailsComponent } from "./components/article-details/article-details.component";
 import { MoonModeComponent } from "./components/moon-mode/moon-mode.component";
 import { ReadingProgressComponent } from "./components/reading-progress/reading-progress.component";
@@ -40,7 +41,8 @@ const routes: Routes = [
     VideoHeaderComponent,
     MoonModeComponent,
     ReadingProgressComponent,
+    ArticleAudioReaderComponent,
   ],
   exports: [ArticleDetailsComponent, VideoDetailsComponent],
 })
-export class ContentDetailsPageModule {}
+export class ContentDetailsPageModule { }
