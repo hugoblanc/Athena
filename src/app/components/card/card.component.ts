@@ -8,11 +8,11 @@ import { MetaMedia } from '../../models/meta-media/meta-media';
 })
 export class CardComponent implements OnInit {
 
-  @Input() media: MetaMedia;
+  @Input() media!: MetaMedia;
 
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

@@ -16,7 +16,7 @@ import { ModalController } from '@ionic/angular';
 export class HeaderModalComponent implements OnInit {
 
   // Le titre de al modale
-  @Input() title: string;
+  @Input() title!: string;
 
   constructor(private modalController: ModalController) { }
 

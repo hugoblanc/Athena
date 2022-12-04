@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, filter } from 'rxjs/operators';
 import { Post } from "../../../models/content/wordpress/post";
 import { AudioContentService, AudioContentUrl } from '../../../provider/content/audio-content.service';
-import { MixedContentService } from '../../../provider/content/mixed-content.service';
+import { MixedContentService, AthenaId } from '../../../provider/content/mixed-content.service';
+import { isNotNullOrUndefined } from '../../../utils/is-not-null-or-undefined/operator';
 
 @Component({
   selector: "ath-article-details",
@@ -12,10 +13,10 @@ import { MixedContentService } from '../../../provider/content/mixed-content.ser
 })
 export class ArticleDetailsComponent implements OnInit {
 
-  @Input() post: Post;
-  @Input() key: string;
+  @Input() post!: Post;
+  @Input() key!: string;
 
-  audio$: Observable<AudioContentUrl | undefined>;
+  audio$!: Observable<AudioContentUrl | undefined>;
 
 
 
@@ -27,6 +28,7 @@ export class ArticleDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.audio$ = this.mixedContentService.getIdFromContentIdAndMediaKey(this.key, this.post.contentId + '')
       .pipe(
+        isNotNullOrUndefined(),
         mergeMap(({ id }) => this.audioContentService.getAudioContentUrlById(id))
       )
   }

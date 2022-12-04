@@ -19,9 +19,9 @@ export class HomePage implements OnInit {
 
   }
 
-  listMetaMedia: ListMetaMedias[];
-  videos: [];
-  width: string;
+  listMetaMedia!: ListMetaMedias[];
+  videos!: [];
+  width!: string;
   issues: Issue[] = [];
   loading = true;
 

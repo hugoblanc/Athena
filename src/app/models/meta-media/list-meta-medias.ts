@@ -6,8 +6,8 @@ import { MetaMedia } from './meta-media';
  * on finis donc avec un tableau de liste de meta media (une matrice 2D)
  */
 export class ListMetaMedias {
-  title: string;
-  metaMedias: MetaMedia[];
+  title!: string;
+  metaMedias!: MetaMedia[];
 
   constructor(input?: ListMetaMedias) {
     if (input != null) {

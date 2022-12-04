@@ -22,9 +22,10 @@ import { NotificationService } from '../../../provider/notification.service';
 })
 export class MediaNotifToggleComponent implements OnInit {
 
-  @Input() media: MetaMedia;
+  @Input() media!: MetaMedia;
 
-  categories: ICategories[];
+  categories: ICategories[] = [];
+
   constructor(
     private notificationService: NotificationService,
     public contentService: ContentService<IContent>,

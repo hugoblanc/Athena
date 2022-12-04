@@ -3,13 +3,13 @@ import { IContent } from '../icontent';
 import { Iimage } from '../Iimage';
 
 export class ItemVideo implements IContent {
-  id: number;
-  contentId: string;
-  title: string;
-  description: string;
-  publishedAt: Date;
+  id!: number;
+  contentId!: string;
+  title!: string;
+  description!: string;
+  publishedAt!: Date;
   contentType = MetaMediaType.VIDEO;
-  image: Iimage;
+  image!: Iimage;
 
   constructor(input?: ItemVideo) {
     if (input != null) {

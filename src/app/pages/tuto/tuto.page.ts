@@ -13,15 +13,13 @@ import { StorageService } from '../../provider/helper/storage.service';
   templateUrl: './tuto.page.html',
   styleUrls: ['./tuto.page.scss'],
 })
-export class TutoPage implements OnInit {
+export class TutoPage {
 
   constructor(private storageService: StorageService, private router: Router) { }
 
 
-  @ViewChild(IonSlides, {static: true}) slides: IonSlides;
+  @ViewChild(IonSlides, { static: true }) slides!: IonSlides;
 
-  ngOnInit() {
-  }
   async next() {
     const index = await this.slides.getActiveIndex();
     if (index < 2) {

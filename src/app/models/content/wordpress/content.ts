@@ -1,5 +1,5 @@
 export class Content {
-  rendered: string;
+  rendered!: string;
   protected?: boolean;
 
   constructor(input: any) {

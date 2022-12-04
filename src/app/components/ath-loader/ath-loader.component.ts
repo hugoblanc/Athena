@@ -10,14 +10,8 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './ath-loader.component.html',
   styleUrls: ['./ath-loader.component.scss'],
 })
-export class AthLoaderComponent implements OnInit {
+export class AthLoaderComponent {
 
   // Indicateur d'affichage
-  @Input() loading: boolean;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  @Input() loading!: boolean;
 }

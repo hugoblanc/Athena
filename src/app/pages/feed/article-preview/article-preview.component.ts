@@ -10,7 +10,7 @@ import { MixedContent } from '../../../provider/content/mixed-content';
 })
 export class ArticlePreviewComponent {
 
-  @Input() mixedContent: MixedContent;
+  @Input() mixedContent!: MixedContent;
 
   @HostListener('click')
   onClick() {

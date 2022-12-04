@@ -20,15 +20,13 @@ import { Iimage } from '../../models/content/Iimage';
   templateUrl: './img.component.html',
   styleUrls: ['./img.component.scss'],
 })
-export class ImgComponent implements OnInit {
+export class ImgComponent {
 
-  @Input() img: Iimage;
+  @Input() img!: Iimage;
 
   @Input() icon?: string;
 
   ratio = screen.width * 0.43;
-  constructor() { }
 
-  ngOnInit() {}
 
 }

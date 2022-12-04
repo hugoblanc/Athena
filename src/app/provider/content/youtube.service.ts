@@ -44,7 +44,7 @@ export class YoutubeService extends ContentService<ItemVideo> {
     this.page = new Page<ItemVideo>();
     this.page.next = 0;
     const url = this.creatUrl();
-    return this.http.get(url).pipe(
+    return this.http.get<Page<ItemVideo>>(url).pipe(
       map((page: Page<ItemVideo>) => {
         this.page = page;
         this.page.objects = this.page.objects.map(
@@ -57,7 +57,7 @@ export class YoutubeService extends ContentService<ItemVideo> {
 
   loadMore(): Observable<Page<ItemVideo>> {
     const url = this.creatUrl();
-    return this.http.get(url).pipe(
+    return this.http.get<Page<ItemVideo>>(url).pipe(
       map((page: Page<ItemVideo>) => {
         this.page.objects = [...this.page.objects, ...page.objects];
         this.page.next = page.next;

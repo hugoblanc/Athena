@@ -1,7 +1,7 @@
 export class Help {
-  code: string;
-  title: string;
-  text: string;
+  code!: string;
+  title!: string;
+  text!: string;
 
   constructor(help?: Help) {
     if (help) {

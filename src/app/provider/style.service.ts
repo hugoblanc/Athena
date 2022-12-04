@@ -5,14 +5,16 @@ import { Injectable } from '@angular/core';
 })
 export class StyleService {
 
-  ionBackgroundColor: string;
-  ionTextColor: string;
+  ionBackgroundColor!: string;
+  ionTextColor!: string;
 
   public isLight = false;
   constructor() {
     const themeWrapper = document.querySelector('body');
-    this.ionBackgroundColor = themeWrapper.style.getPropertyValue('--ion-background-color');
-    this.ionTextColor = themeWrapper.style.getPropertyValue('--ion-text-color');
+    if (themeWrapper) {
+      this.ionBackgroundColor = themeWrapper?.style.getPropertyValue('--ion-background-color');
+      this.ionTextColor = themeWrapper?.style.getPropertyValue('--ion-text-color');
+    }
   }
 
 
@@ -47,15 +49,15 @@ export class StyleService {
 
   private setDark() {
     const themeWrapper = document.querySelector('body');
-    themeWrapper.style.setProperty('--ion-background-color', this.ionBackgroundColor);
-    themeWrapper.style.setProperty('--ion-text-color', this.ionTextColor);
-    themeWrapper.style.setProperty('--color', this.ionTextColor);
+    themeWrapper?.style.setProperty('--ion-background-color', this.ionBackgroundColor);
+    themeWrapper?.style.setProperty('--ion-text-color', this.ionTextColor);
+    themeWrapper?.style.setProperty('--color', this.ionTextColor);
   }
   private setLight() {
     const themeWrapper = document.querySelector('body');
-    themeWrapper.style.setProperty('--ion-background-color', '#FFFFFF');
-    themeWrapper.style.setProperty('--ion-text-color', '#000000');
-    themeWrapper.style.setProperty('--color', '#000000');
+    themeWrapper?.style.setProperty('--ion-background-color', '#FFFFFF');
+    themeWrapper?.style.setProperty('--ion-text-color', '#000000');
+    themeWrapper?.style.setProperty('--color', '#000000');
   }
 
 }

@@ -22,7 +22,7 @@ export class ConstructionPage implements OnInit {
     this.initIssuesByType(this.issueType);
   }
 
-  issueTypeChanged(ev) {
+  issueTypeChanged(ev: any) {
     this.issueType = ev.target.value;
     this.loading = true;
     this.initIssuesByType(this.issueType);
@@ -31,7 +31,7 @@ export class ConstructionPage implements OnInit {
 
   createClap(issue: Issue) {
     this.githubService.postClapComment(issue)
-      .subscribe((comment) => {
+      .subscribe(() => {
         issue.comments++;
       });
   }

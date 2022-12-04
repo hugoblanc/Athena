@@ -13,14 +13,10 @@ import { LinkService } from '../../provider/helper/link.service';
   templateUrl: './informations.page.html',
   styleUrls: ['./informations.page.scss'],
 })
-export class InformationsPage implements OnInit {
-  curr_playing_file: MediaObject;
-  constructor(private linkService: LinkService, private media: Media) { }
+export class InformationsPage {
+  curr_playing_file!: MediaObject;
+  constructor(private linkService: LinkService) { }
 
-  ngOnInit() {
-    this.curr_playing_file = this.media.create("https://storage.googleapis.com/athena_prod/1666525031464.wav");
-    this.curr_playing_file.play();
-  }
 
   openLink(link: string) {
     this.linkService.launchInAppBrowser(link);

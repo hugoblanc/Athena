@@ -32,7 +32,10 @@ export class MixedContentService {
       );
   }
 
-  getIdFromContentIdAndMediaKey(key: string, contentId: string): Observable<{ id: number } | undefined> {
+  getIdFromContentIdAndMediaKey(key: string, contentId: string): Observable<AthenaId | undefined> {
     return this.http.get(`${MixedContentService.BASE_URL}content/get-id-from-content-id-and-media-key/${key}/${contentId}`)
   }
 }
+
+
+export interface AthenaId { id: number }

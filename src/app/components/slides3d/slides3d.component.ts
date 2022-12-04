@@ -16,7 +16,7 @@ import { MetaMedia } from '../../models/meta-media/meta-media';
 })
 export class Slides3dComponent implements OnInit {
 
-  @Input() metaMedias: MetaMedia[];
+  @Input() metaMedias!: MetaMedia[];
 
   simpleSlide = false;
   isVisible = false;
@@ -111,7 +111,7 @@ export class Slides3dComponent implements OnInit {
             ws.perspectiveOrigin = `${center}px 50%`;
           }
         },
-        setTransition(duration) {
+        setTransition(duration: number) {
           const swiper = this;
           swiper.slides
             .transition(duration)

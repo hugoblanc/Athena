@@ -47,20 +47,20 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
 
   private static scrollDeltaY = -500;
 
-  @ViewChild(IonContent) ionContent: IonContent;
+  @ViewChild(IonContent) ionContent!: IonContent;
   private helpTriggered = false;
 
-  private id: number;
-  key: string;
-  content: IContent;
+  private id!: number;
+  key!: string;
+  content!: IContent;
   PAGE_CODE = "content-details";
-  private maxHeight: number;
+  private maxHeight!: number;
   readingProgress = 0;
 
   ionViewWillEnter() {
     // Quand on arrive sur cette page, on récupère l'id dans l'url
-    const idPost = this.route.snapshot.paramMap.get("id");
-    this.key = this.route.snapshot.paramMap.get("key");
+    const idPost = this.route.snapshot.paramMap.get("id") ?? '0';
+    this.key = this.route.snapshot.paramMap.get("key") ?? '';
     // il s'agit de l'id du contenu
     this.id = parseInt(idPost, 10);
 

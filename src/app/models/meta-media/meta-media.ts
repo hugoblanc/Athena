@@ -6,14 +6,14 @@ import { MetaMediaType } from './meta-media-type.enum';
  * notification est renseigné en fonction des réglage locaux du user
  */
 export class MetaMedia {
-  public key: string;
-  public url: string;
-  public title: string;
-  public type: MetaMediaType | string;
+  public key!: string;
+  public url!: string;
+  public title!: string;
+  public type!: MetaMediaType | string;
   public donation?: string;
   public isDonationActivated?: boolean;
   public notification?: boolean;
-  public logo: string;
+  public logo!: string;
 
 
 }

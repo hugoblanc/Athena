@@ -20,6 +20,9 @@ export class CurrentMetaMediaGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
     const key = next.paramMap.get('key');
+    if (!key) {
+      return false;
+    }
     return (this.metaMediaService.findAndSetMediaByKey(key) != null);
   }
 }

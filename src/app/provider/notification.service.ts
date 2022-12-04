@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { FirebaseMessaging, PermissionStatus } from '@capacitor-firebase/messaging';
+import { FirebaseMessaging, NotificationActionPerformedEvent, PermissionStatus } from '@capacitor-firebase/messaging';
 import { concat, from, Observable, of } from "rxjs";
 import { filter, map, mergeMap, tap } from "rxjs/operators";
 import { ICategories } from "../models/categories/icategories";
@@ -72,9 +72,9 @@ export class NotificationService {
 
     console.log("---------------------------------------------------------");
     await FirebaseMessaging.addListener('notificationActionPerformed',
-      (notificationPerformed) => {
+      (notificationPerformed: NotificationActionPerformedEvent) => {
         console.debug(JSON.stringify(notificationPerformed));
-        const payload: NotificationPayload = notificationPerformed.notification.data;
+        const payload: NotificationPayload = notificationPerformed.notification.data as NotificationPayload;
         if (notificationPerformed.actionId && payload?.key && payload?.id) {
           this.router.navigateByUrl(`/media/${payload.key}/details/${payload.id}`);
         }
@@ -112,7 +112,7 @@ export class NotificationService {
       return true;
     }
 
-    if (!unsubCategories.find((idLocal) => id === idLocal)) {
+    if (!unsubCategories.find((idLocal: any) => id === idLocal)) {
       return true;
     }
 
@@ -233,7 +233,7 @@ export class NotificationService {
    * La methode qui fait la différence entre les data local et les média du media service
    */
   private makeDiffWithMedia(): MetaMedia[] {
-    let result = [];
+    let result: MetaMedia[] = [];
     // Ici on cherche a voir si des medias sont présent mais pas géré en terme de notification
     // En d'autre terme, si un nouveau media est créé on doit ajouter le topic pour le user
     for (const listMedia of this.metaMediaService.listMetaMedia) {

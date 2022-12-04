@@ -25,20 +25,19 @@ export class AlertService {
     basic[1].handler = () => {
       window.open(url, '_system');
     };
-    return from(this.classicAlert(header, undefined, message, undefined, basic));
+    return from(this.classicAlert(header, message, undefined, basic));
   }
 
 
 
   async classicAlert(header: string,
-                     subHeader: string,
-                     message: string,
-                     inputs?: AlertInput[],
-                     buttons: AlertButton[] = AlertService.BASIC_BUTTONS) {
+    message: string,
+    inputs?: AlertInput[],
+    buttons: AlertButton[] = AlertService.BASIC_BUTTONS) {
 
     const alert = await this.alertController.create({
       header,
-      subHeader,
+      subHeader: undefined,
       message,
       inputs,
       buttons,

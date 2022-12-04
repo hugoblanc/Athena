@@ -4,8 +4,8 @@
  * - des données sur cette liste
  */
 export class Page<T> {
-  count: number;
-  totalCount: number;
-  objects: T[];
-  next: number;
+  count!: number;
+  totalCount!: number;
+  objects!: T[];
+  next!: number;
 }

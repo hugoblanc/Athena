@@ -26,23 +26,17 @@ import { MetaMediaService } from '../provider/meta-media/meta-media.service';
   providers: [contentServiceProvider]
 })
 export class MediaPage implements OnInit {
-
-
-
-  idMedia: number;
-  page: Page<IContent>;
+  idMedia!: number;
+  page?: Page<IContent>;
   loading = false;
+  currentMedia!: MetaMedia;
 
-  currentMedia: MetaMedia;
-  constructor(private route: ActivatedRoute,
-    public contentService: ContentService<IContent>,
+  constructor(public contentService: ContentService<IContent>,
     public metaMediaService: MetaMediaService) {
 
   }
 
   ngOnInit() {
-    // Récupération de la key du metamedia cible
-    const key = this.route.snapshot.paramMap.get('key');
 
     // récupération des information du média associé
     this.currentMedia = this.metaMediaService.currentMetaMedia;
@@ -76,7 +70,7 @@ export class MediaPage implements OnInit {
    * Cette methode est déclanché quand l'utilisateur scroll tout en bas de son téléphone
    * @param event l'event javascript
    */
-  loadMore(event) {
+  loadMore(event: any) {
     // Grace a l'injection dynamique, on sait à l'execution quel service sera executer
     // outubeService ou WordpressService
     this.contentService.loadMore()

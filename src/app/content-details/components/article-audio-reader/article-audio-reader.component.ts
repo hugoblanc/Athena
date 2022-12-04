@@ -9,7 +9,7 @@ import { AudioPlayerService } from '../../../provider/audio-player.service';
 })
 export class ArticleAudioReaderComponent implements OnInit {
 
-  @Input() audioContentUrl: AudioContentUrl;
+  @Input() audioContentUrl!: AudioContentUrl;
   playerState: 'playing' | 'stop' | 'paused' = 'stop';
 
   constructor(private readonly audioPlayer: AudioPlayerService) { }

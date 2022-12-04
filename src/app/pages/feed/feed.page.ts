@@ -10,7 +10,7 @@ import { MixedContentService } from "../../provider/content/mixed-content.servic
   styleUrls: ["feed.page.scss"],
 })
 export class FeedPage implements OnInit {
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  @ViewChild(IonInfiniteScroll) infiniteScroll!: IonInfiniteScroll;
 
   contents: MixedContent[] = [];
 
@@ -18,20 +18,21 @@ export class FeedPage implements OnInit {
   private size = 15;
   private terms = "";
 
-  constructor(public mixedContentService: MixedContentService) {}
+  constructor(public mixedContentService: MixedContentService) { }
 
   ngOnInit(): void {
     this.initSearch();
   }
 
   searchTermsChanged(terms: CustomEvent<InputChangeEventDetail>) {
-    this.terms = terms.detail.value;
+    this.terms = terms.detail.value ?? '';
     this.initSearch();
   }
 
   loadNextContent(event?: any) {
     if (this.page === undefined) {
       console.log("End of page");
+      return;
     }
 
     this.mixedContentService
