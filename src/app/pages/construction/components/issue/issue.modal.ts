@@ -21,14 +21,14 @@ export class IssueModalPage implements OnInit {
     updateOn: 'change'
   });
 
-  validateForm: FormGroup;
+  validateForm!: FormGroup;
 
 
-  issueType: 'feature' | 'bug';
+  issueType!: 'feature' | 'bug';
 
   constructor(private formBuilder: FormBuilder,
-              private modalController: ModalController,
-              private navParams: NavParams) {
+    private modalController: ModalController,
+    private navParams: NavParams) {
   }
 
   ngOnInit(): void {

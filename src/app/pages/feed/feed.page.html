@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-searchbar debounce="500" animated mode="ios" (ionChange)="searchTermsChanged($event)"></ion-searchbar>
+  <ion-searchbar debounce="500" animated mode="ios" (ionChange)="searchTermsChanged($any($event))"></ion-searchbar>
   <div *ngFor="let content of contents; let first = first;">
     <hr *ngIf="!first">
     <ath-article-preview [mixedContent]="content"></ath-article-preview>

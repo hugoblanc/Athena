@@ -16,7 +16,7 @@ export interface Issue {
   assignee?: null;
   assignees?: any[];
   milestone?: string | null;
-  comments?: number;
+  comments: number;
   created_at?: string;
   updated_at?: string;
   closed_at?: null;

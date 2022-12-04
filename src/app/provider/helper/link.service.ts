@@ -20,9 +20,9 @@ export class LinkService {
       const urls: any = element.nativeElement.querySelectorAll('a');
 
       // Iterate through these
-      urls.forEach((url) => {
+      urls.forEach((url: any) => {
         // Listen for a click event on each hyperlink found
-        url.addEventListener('click', (event) => {
+        url.addEventListener('click', (event: any) => {
           // Retrieve the href value from the selected hyperlink
           event.preventDefault();
           const link = event.target.href;

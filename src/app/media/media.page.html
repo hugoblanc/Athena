@@ -6,7 +6,7 @@
       <ath-media-notif-toggle [media]="currentMedia"></ath-media-notif-toggle>
       <ath-donation></ath-donation>
       <ath-loader [loading]="loading"></ath-loader>
-      <ath-content-list [contents]="page?.objects"></ath-content-list>
+      <ath-content-list *ngIf="page" [contents]="page.objects"></ath-content-list>
 
     </ion-list>
   </div>

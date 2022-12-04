@@ -1,7 +1,7 @@
 <ion-item id="title" lines="none">
-    <ion-back-button  slot="start" class="inline-back-button" [text]="''" defaultHref="tabs" ></ion-back-button>
-  <h2>{{media?.title}}</h2>
-  <ion-button *ngIf="categories?.length > 0" slot="end" fill="clear" color="{{media?.notification ? 'light' : 'medium'}}"
+  <ion-back-button slot="start" class="inline-back-button" [text]="''" defaultHref="tabs"></ion-back-button>
+  <h2>{{media.title}}</h2>
+  <ion-button *ngIf="categories.length > 0" slot="end" fill="clear" color="{{media.notification ? 'light' : 'medium'}}"
     (click)="createAlertNotif()">
     <ion-icon slot="icon-only" name="notifications"></ion-icon>
   </ion-button>

@@ -29,7 +29,7 @@ export class AudioPlayerService {
 
   public pauseAudio() {
     console.log("Playing paused")
-    this.audio.pause();
+    this.audio?.pause();
   }
 
 

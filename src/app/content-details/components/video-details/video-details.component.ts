@@ -8,5 +8,5 @@ import { ItemVideo } from "../../../models/content/youtube/item-video";
   styleUrls: ["./video-details.component.scss"],
 })
 export class VideoDetailsComponent {
-  @Input() video: ItemVideo;
+  @Input() video!: ItemVideo;
 }

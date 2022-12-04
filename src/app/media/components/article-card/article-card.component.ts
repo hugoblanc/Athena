@@ -14,24 +14,22 @@ import { AbstractContentCard } from "../abstract/abstract-content-card";
 })
 export class ArticleCardComponent
   extends AbstractContentCard
-  implements OnInit
-{
+  implements OnInit {
   @Input() article: Post = new Post();
-  @Input() metaMediaKey: string;
-  creationDate: Date;
-  contentId: string | number;
+  @Input() metaMediaKey!: string;
+  creationDate!: Date;
+  contentId!: string | number;
 
   get isNew() {
     return !isOlderThanAWeek(this.article.publishedAt) && !this.isRead;
   }
 
-  isRead = false;
 
-  constructor(protected readonly storage: StorageService) {
+  constructor(storage: StorageService) {
     super(storage);
   }
 
-  ngOnInit() {
+  override ngOnInit(): void {
     this.creationDate = this.article.publishedAt;
     this.contentId = this.article.contentId;
     super.ngOnInit();

@@ -16,9 +16,9 @@ import { MetaMediaService } from "../../../provider/meta-media/meta-media.servic
   styleUrls: ["./content-list.component.scss"],
 })
 export class ContentListComponent implements OnInit {
-  @Input() contents: any[];
-  metaMediaKey: string;
-  constructor(private metaMediaService: MetaMediaService) {}
+  @Input() contents!: any[];
+  metaMediaKey!: string;
+  constructor(private metaMediaService: MetaMediaService) { }
 
   ngOnInit() {
     // On set le media actuel pour trouver le type

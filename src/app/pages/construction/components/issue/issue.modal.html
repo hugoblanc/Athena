@@ -12,13 +12,13 @@
     <ion-label class="roboto-black" color="primary" position="floating">Titre</ion-label>
     <ion-input id="title" type="text" formControlName="title"></ion-input>
     <div *ngIf="title.invalid && form.submitted" class="alert alert-danger">
-      <div *ngIf="title?.errors?.required">
+      <div *ngIf="title.errors?.['required']">
         Le titre est obligatoire
       </div>
-      <div *ngIf="title?.errors.minlength">
+      <div *ngIf="title?.errors?.['minlength']">
         Le titre doit faire au moins 10 caractères
       </div>
-      <div *ngIf="title?.errors.maxlength">
+      <div *ngIf="title?.errors?.['maxlength']">
         Le titre peut faire au maximum 80 caractères
       </div>
     </div>
@@ -29,20 +29,20 @@
     <ion-label class="roboto-black" color="primary" position="floating">Description</ion-label>
     <ion-textarea autoGrow="true" formControlName="body"></ion-textarea>
     <div *ngIf="body.invalid && form.submitted" class="alert alert-danger">
-      <div *ngIf="body?.errors?.required">
+      <div *ngIf="body?.errors?.['required']">
         La description est obligatoire
       </div>
-      <div *ngIf="body?.errors.minlength">
+      <div *ngIf="body?.errors?.['minlength']">
         La description doit faire au moins 10 caractères
       </div>
-      <div *ngIf="body?.errors.maxlength">
+      <div *ngIf="body?.errors?.['maxlength']">
         Le titre peut faire au maximum 700 caractères
       </div>
     </div>
   </ion-item>
 
   <div id="btn-container">
-    <ion-button fill="clear"   type="submit">
+    <ion-button fill="clear" type="submit">
       Envoyer
     </ion-button>
   </div>

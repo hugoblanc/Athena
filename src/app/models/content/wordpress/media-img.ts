@@ -2,19 +2,19 @@ import { Content } from './content';
 
 export class MediaImg {
   altText: string;
-  author: number;
+  author!: number;
   caption: Content;
   date: Date;
-  id: number;
-  link: string;
+  id!: number;
+  link!: string;
   mediaDetails: any;
   mediaType: string;
   mimeType: string;
-  slug: string;
+  slug!: string;
   smush: any;
   sourceUrl: string;
   title: Content;
-  type: string;
+  type!: string;
   links: any;
 
 

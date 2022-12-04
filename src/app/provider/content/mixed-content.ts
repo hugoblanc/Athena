@@ -2,11 +2,11 @@ import { MetaMediaType } from '../../models/meta-media/meta-media-type.enum';
 
 
 export class MixedContent {
-  id: number;
-  contentId: string;
-  title: string;
-  publishedAt: string;
-  metaMedia: MetaMedia;
+  id!: number;
+  contentId!: string;
+  title!: string;
+  publishedAt!: string;
+  metaMedia!: MetaMedia;
   image?: any;
 
   get resourceId(): number | string {

@@ -19,7 +19,7 @@ export abstract class ContentService<T extends IContent> {
   // Une page est un object qui comporte une liste d'element
   // Ainsi que des metadonées sur ceux-ci
   // Nb total, nombre de page etc ...
-  page: Page<T>;
+  page!: Page<T>;
 
   constructor(protected metaMediaService: MetaMediaService) {
 
@@ -41,11 +41,11 @@ export abstract class ContentService<T extends IContent> {
    * Cette methode doit retourner le contenu local au service ou null si non présent
    * @param id l'id du contenu a chercher en local
    */
-  protected findLocalContentById(id: number): T {
+  protected findLocalContentById(id: number): T | null {
     if (!this.page || !this.page.objects) {
       return null;
-  }
-    return this.page.objects.find((content) => (content.id === id));
+    }
+    return this.page.objects.find((content) => (content.id === id)) ?? null;
   }
 
 

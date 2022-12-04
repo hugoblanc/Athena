@@ -21,7 +21,7 @@ export class HelpService {
     }
 
     const helpMessage = this.findHelpFromCode(code);
-    const alert = await this.alertService.classicAlert(helpMessage.title, null, helpMessage.text);
+    const alert = await this.alertService.classicAlert(helpMessage.title, helpMessage.text);
 
     await this.storageService.addToArray(HelpService.LOCAL_HELP_KEY, code).toPromise();
 

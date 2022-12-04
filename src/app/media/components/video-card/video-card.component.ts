@@ -13,22 +13,21 @@ import { AbstractContentCard } from "../abstract/abstract-content-card";
   styleUrls: ["./video-card.component.scss"],
 })
 export class VideoCardComponent extends AbstractContentCard implements OnInit {
-  @Input() video: ItemVideo;
-  @Input() metaMediaKey: string;
-  creationDate: Date;
-  contentId: string | number;
+  @Input() video!: ItemVideo;
+  @Input() metaMediaKey!: string;
+  creationDate!: Date;
+  contentId!: string | number;
 
-  isRead = false;
 
   get isNew() {
     return !isOlderThanAWeek(this.video.publishedAt) && !this.isRead;
   }
 
-  constructor(protected readonly storage: StorageService) {
+  constructor(storage: StorageService) {
     super(storage);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.creationDate = this.video.publishedAt;
     this.contentId = this.video.contentId;
     super.ngOnInit();

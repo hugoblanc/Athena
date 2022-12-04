@@ -13,11 +13,11 @@ import { StorageService } from '../helper/storage.service';
 })
 export class MetaMediaService {
   private static BASE_URL = `${environment.apiUrl}list-meta-media`;
-  private installDate: Date;
+  private installDate!: Date;
 
   public listMetaMedia: ListMetaMedias[] = [];
-  public listMetaMedia$ = new ReplaySubject(1);
-  public currentMetaMedia: MetaMedia;
+  public listMetaMedia$ = new ReplaySubject<ListMetaMedias[]>(1);
+  public currentMetaMedia!: MetaMedia;
 
   constructor(private http: HttpService,
     private storage: StorageService,
@@ -55,13 +55,22 @@ export class MetaMediaService {
   }
 
   public findAndSetMediaByKey(key: string): MetaMedia {
+    let metaMedia: MetaMedia | undefined;
     for (const lstMetaMedia of this.listMetaMedia) {
-      this.currentMetaMedia = lstMetaMedia.metaMedias.find((metaMedia) => metaMedia.key === key);
-      if (this.currentMetaMedia != null) {
-        this.dealWithTips();
-        return this.currentMetaMedia;
+      metaMedia = lstMetaMedia.metaMedias.find((metaMedia) => metaMedia.key === key);
+      if (metaMedia) {
+        break;
       }
     }
+
+    if (metaMedia == undefined) {
+      console.error('MetaMedia not found');
+      throw new Error('MetaMedia not found ' + key + '    ' + JSON.stringify(this.listMetaMedia))
+    }
+
+    this.currentMetaMedia = metaMedia;
+    this.dealWithTips();
+    return this.currentMetaMedia;
   }
 
   /**

@@ -15,7 +15,7 @@ import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
 })
 export class HorizontalComponent implements OnInit {
 
-  @Input() listMetaMedia: ListMetaMedias;
+  @Input() listMetaMedia!: ListMetaMedias;
 
   isIOS = false;
   constructor(private platform: Platform) { }

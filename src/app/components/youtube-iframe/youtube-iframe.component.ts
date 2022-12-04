@@ -14,9 +14,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class YoutubeIframeComponent implements OnInit {
 
-  @Input() videoID: string;
+  @Input() videoID!: string;
 
-  link: SafeResourceUrl;
+  link!: SafeResourceUrl;
   constructor(private domSanitizer: DomSanitizer) { }
 
   ngOnInit() {

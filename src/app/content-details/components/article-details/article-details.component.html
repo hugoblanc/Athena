@@ -1,5 +1,5 @@
 <ath-video-header></ath-video-header>
-<img *ngIf="!post?.videoID && post?.image?.url" [src]="post.image?.url" [alt]="post.embedded.featuredmedia[0].title" />
+<img *ngIf="!post?.videoID && post.image.url" [src]="post.image.url" [alt]="post.embedded.featuredmedia[0].title" />
 
 <ath-youtube-iframe *ngIf="post?.videoID" [videoID]="post.videoID"></ath-youtube-iframe>
 
@@ -17,6 +17,6 @@
 
   </div>
 
-  <h2 [innerHTML]="post?.title"></h2>
-  <div class="article-content" [innerHTML]="post?.content.rendered"></div>
+  <h2 [innerHTML]="post.title"></h2>
+  <div class="article-content" [innerHTML]="post.content.rendered"></div>
 </div>

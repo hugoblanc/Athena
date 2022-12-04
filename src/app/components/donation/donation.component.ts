@@ -15,7 +15,7 @@ export class DonationComponent implements OnInit {
 
 
   constructor(public metaMediaService: MetaMediaService,
-              private alertService: AlertService) { }
+    private alertService: AlertService) { }
 
   ngOnInit() {
 
@@ -23,6 +23,10 @@ export class DonationComponent implements OnInit {
 
 
   askConfirmation() {
+    if (!this.metaMediaService.currentMetaMedia.donation) {
+      return;
+    }
+
     this.alertService.openExternalLink(
       'Soutenir ' + this.metaMediaService.currentMetaMedia.title,
       'Vous allez être redirigé vers la page de soutient mise en place par '

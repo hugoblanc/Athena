@@ -104,18 +104,19 @@ export class WordpressService extends ContentService<Post> {
     const url = this.metaMediaService.currentMetaMedia.url +
       WordpressService.WORDPRESS_API +
       WordpressService.CATEGORIES + '?per_page=40';
-    return this.http.get(url, true).pipe(map((categories: WordpressCategory[]) => {
-      let averageCount = 0;
-      for (const category of categories) {
-        averageCount += category.count;
-      }
-      averageCount = averageCount / categories.length;
-      return categories.filter((category) => {
-        return (category.count > averageCount);
-      }).sort((a: WordpressCategory, b: WordpressCategory) => {
-        return b.count - a.count;
-      });
-    }));
+    return this.http.get<WordpressCategory[]>(url, true).pipe(
+      map((categories: WordpressCategory[]) => {
+        let averageCount = 0;
+        for (const category of categories) {
+          averageCount += category.count;
+        }
+        averageCount = averageCount / categories.length;
+        return categories.filter((category) => {
+          return (category.count > averageCount);
+        }).sort((a: WordpressCategory, b: WordpressCategory) => {
+          return b.count - a.count;
+        });
+      }));
   }
 
 
@@ -126,10 +127,8 @@ export class WordpressService extends ContentService<Post> {
       + id
       + '?_embed';
 
-    return this.http.get(url, true)
-      .pipe(map((data: Post) => {
-        return new Post(data);
-      }));
+    return this.http.get<Partial<Post>>(url, true)
+      .pipe(map((data) => new Post(data)));
   }
 
 }
