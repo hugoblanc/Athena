@@ -6,18 +6,13 @@ import { Issue } from './../../../../models/github/github';
   templateUrl: './issues-list.component.html',
   styleUrls: ['./issues-list.component.scss'],
 })
-export class IssuesListComponent implements OnInit {
+export class IssuesListComponent {
 
   @Input() issues: Issue[] = [];
   @Output() claped = new EventEmitter<Issue>();
-
-  constructor() { }
-
-  ngOnInit() { }
 
   clapIssue(event: any, issue: Issue) {
     event.stopPropagation();
     this.claped.emit(issue);
   }
-
 }

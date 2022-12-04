@@ -11,6 +11,7 @@ export class StorageService {
 
   public static COUNT_KEY = 'COUNT_KEY';
   public static INSTALLATION_DATE = 'INSTALLATION_DATE';
+  public static CLAPPED_ISSUE = 'CLAPPED_ISSUE';
   private static FIRST_LAUNCH = 'FIRST_LAUNCH';
 
 
@@ -30,7 +31,7 @@ export class StorageService {
 
   isFirstLaunch(): Observable<boolean> {
     return this.get(StorageService.FIRST_LAUNCH)
-               .pipe(map((isFirst) => (isFirst == null)));
+      .pipe(map((isFirst) => (isFirst == null)));
   }
 
   /**
@@ -81,7 +82,7 @@ export class StorageService {
   }
 
   /**
-   * Cette emtode se charge de récupérer un objet en local storage et de le parser
+   * Cette metode se charge de récupérer un objet en local storage et de le parser
    * @param key La clé a récupérer dans le localstorage
    */
   public get<T>(key: string): Observable<T> {

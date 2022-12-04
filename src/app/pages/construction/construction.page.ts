@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { Issue } from '../../models/github/github';
 import { GithubService } from '../../provider/github.service';
 import { IssueModalPage } from './components/issue/issue.modal';
+import { StorageService } from '../../provider/helper/storage.service';
+import { tap, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'ath-construction',
@@ -16,7 +18,11 @@ export class ConstructionPage implements OnInit {
   issueType = 'feature';
 
 
-  constructor(private githubService: GithubService, private modalController: ModalController) { }
+  constructor(
+    private readonly githubService: GithubService,
+    private readonly modalController: ModalController,
+    private readonly storage: StorageService
+  ) { }
 
   ngOnInit() {
     this.initIssuesByType(this.issueType);
@@ -29,10 +35,14 @@ export class ConstructionPage implements OnInit {
   }
 
 
-  createClap(issue: Issue) {
+  clap(issue: Issue) {
     this.githubService.postClapComment(issue)
+      .pipe(
+        mergeMap(() => this.storage.addToArray(StorageService.CLAPPED_ISSUE, issue.id))
+      )
       .subscribe(() => {
         issue.comments++;
+        issue.hasBeenClapped = true;
       });
   }
 
@@ -50,7 +60,7 @@ export class ConstructionPage implements OnInit {
   }
 
   private initIssuesByType(type: string) {
-    this.githubService.getIssueByLabel(type)
+    this.githubService.getIssuesByLabel(type)
       .subscribe((issues: Issue[]) => {
         this.issues = issues;
         this.loading = false;

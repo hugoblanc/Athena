@@ -1,9 +1,9 @@
-<ion-item color="transparent"  *ngFor="let issue of issues" [routerLink]="['issue-details', issue.number]" >
+<ion-item color="transparent" *ngFor="let issue of issues" [routerLink]="['issue-details', issue.number]">
   <ion-label class="ion-text-wrap">
     {{issue?.title}}
   </ion-label>
 
-  <ion-button shape="round" fill="clear" (click)="clapIssue($event, issue); false">
+  <ion-button shape="round" fill="clear" [disabled]="issue.hasBeenClapped" (click)="clapIssue($event, issue); false">
     <ion-icon slot="icon-only" src="assets/clap.svg"></ion-icon>
     {{issue?.comments}}
   </ion-button>
