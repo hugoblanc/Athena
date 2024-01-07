@@ -1,6 +1,7 @@
 <div class="article">
-  <div *ngIf="mixedContent?.image?.url" class="img-container" [style.background-image]="'url('+mixedContent.image.url+')'" ></div>
-  <div class="title" [innerHTML]="mixedContent.title" >
+  <div *ngIf="mixedContent?.image?.url" class="img-container"
+    [style.background-image]="'url('+mixedContent.image.url+')'"></div>
+  <div class="title" [innerHTML]="mixedContent.title">
   </div>
 
   <ion-chip>
@@ -8,5 +9,8 @@
       <img [src]="mixedContent.metaMedia.logo">
     </ion-avatar>
     <ion-label>{{mixedContent.metaMedia.title}}</ion-label>
+  </ion-chip>
+  <ion-chip>
+    <ion-label>{{mixedContent.publishedAt | date}}</ion-label>
   </ion-chip>
 </div>
