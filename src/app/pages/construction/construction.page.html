@@ -4,6 +4,10 @@
 
 
   <ion-segment [value]="issueType" mode="md" (ionChange)="issueTypeChanged($event)">
+    <ion-segment-button value="media">
+      <ion-label>Média</ion-label>
+      <ion-icon name="newspaper-outline"></ion-icon>
+    </ion-segment-button>
     <ion-segment-button value="feature">
       <ion-label>Idées</ion-label>
       <ion-icon name="bulb"></ion-icon>
@@ -21,7 +25,7 @@
 
 
   <ion-button (click)="openCreateModal()" expand="block" fill="clear" shape="round">
-    {{issueType === 'bug' ? 'Signaler un bug' : 'Poster une idée'}}
+    {{issueType === 'bug' ? 'Signaler un bug' : issueType ==='feature' ? 'Poster une idée' : 'Proposer un média'}}
   </ion-button>
 
 

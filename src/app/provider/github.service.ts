@@ -24,7 +24,7 @@ export class GithubService {
   getIssuesByLabel(label: string): Observable<Issue[]> {
 
     return forkJoin([
-      this.http.get<Issue[]>(GithubService.FULL_GITHUB_URL + `?labels=${label}`),
+      this.http.get<Issue[]>(GithubService.FULL_GITHUB_URL + `?labels=${label}&per_page=100`),
       this.storage.get<number[]>(StorageService.CLAPPED_ISSUE)
     ]).pipe(
       map(([issues, alreadyClappedIssuesId]) => {

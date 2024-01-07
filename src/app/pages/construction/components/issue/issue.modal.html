@@ -1,5 +1,6 @@
 <ion-item lines="none">
-  <ath-header-modal [title]="issueType === 'feature' ? 'Nouvelle Idée ?' : 'Signaler un bug'">
+  <ath-header-modal
+    [title]="issueType === 'feature' ? 'Nouvelle Idée ?' : issueType === 'bug' ? 'Signaler un bug' : 'Proposer un média'">
 
   </ath-header-modal>
 </ion-item>
