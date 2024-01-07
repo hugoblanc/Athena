@@ -10,7 +10,7 @@
     </ion-avatar>
     <ion-label>{{mixedContent.metaMedia.title}}</ion-label>
   </ion-chip>
-  <ion-chip>
+  <ion-chip *ngIf="mixedContent.publishedAt">
     <ion-label>{{mixedContent.publishedAt | date}}</ion-label>
   </ion-chip>
 </div>
