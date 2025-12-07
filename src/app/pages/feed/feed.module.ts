@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { ComponentsModule } from '../../components/components.module';
 import { FeedPage } from './feed.page';
 import { ArticlePreviewComponent } from './article-preview/article-preview.component';
+import { FeedFilterModalComponent } from './feed-filter-modal/feed-filter-modal.component';
 
 
 
@@ -22,6 +23,6 @@ import { ArticlePreviewComponent } from './article-preview/article-preview.compo
     ]),
     ComponentsModule
   ],
-  declarations: [FeedPage, ArticlePreviewComponent],
+  declarations: [FeedPage, ArticlePreviewComponent, FeedFilterModalComponent],
 })
 export class FeedPageModule { }

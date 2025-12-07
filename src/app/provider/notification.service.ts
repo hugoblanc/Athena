@@ -206,7 +206,7 @@ export class NotificationService {
    * @param mediaKey la clé d'un media dont on veut switcher l'état
    * @param newIndicator le nouvel état
    */
-  private switchMetaMediaNotifSetting(
+  public switchMetaMediaNotifSetting(
     mediaKey: string,
     newIndicator: boolean
   ): Observable<any> {

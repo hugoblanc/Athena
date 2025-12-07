@@ -1,0 +1,51 @@
+<ath-header-modal title="Filtrer les médias"></ath-header-modal>
+
+<ion-content>
+  <!-- Message d'info sur la synchronisation -->
+  <div class="info-banner">
+    <ion-icon name="information-circle-outline"></ion-icon>
+    <span>Les médias décochés ne vous enverront plus de notifications.</span>
+  </div>
+
+  <!-- Actions rapides -->
+  <div class="quick-actions">
+    <ion-button fill="clear" size="small" (click)="selectAll()">
+      Tout sélectionner
+    </ion-button>
+    <ion-button fill="clear" size="small" (click)="deselectAll()">
+      Tout désélectionner
+    </ion-button>
+  </div>
+
+  <!-- Liste des médias par catégorie -->
+  <div class="categories-container">
+    <div *ngFor="let category of categories" class="category">
+      <h3 class="category-title">{{ category.title }}</h3>
+
+      <ion-list lines="none">
+        <ion-item *ngFor="let item of category.items"
+                  (click)="toggleMedia(item)"
+                  button
+                  detail="false">
+          <img [src]="item.media.logo"
+               class="media-logo"
+               slot="start"
+               [alt]="item.media.title">
+          <ion-label>{{ item.media.title }}</ion-label>
+          <ion-checkbox slot="end"
+                        [checked]="item.isSelected"
+                        (ionChange)="$event.stopPropagation()">
+          </ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" (click)="apply()">
+      Appliquer ({{ selectedCount }}/{{ totalCount }})
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
