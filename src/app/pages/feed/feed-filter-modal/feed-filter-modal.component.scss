@@ -78,8 +78,8 @@ ion-list {
 
 ion-footer {
   ion-toolbar {
-    --background: transparent;
-    padding: 8px 16px 16px;
+    --background: linear-gradient(to right, #485563, #29323c);
+    padding: 8px 16px calc(16px + env(safe-area-inset-bottom));
 
     ion-button {
       --background: var(--ion-color-primary);

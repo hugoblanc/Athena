@@ -84,8 +84,6 @@ export class FeedPage implements OnInit {
   async openFilterModal() {
     const modal = await this.modalController.create({
       component: FeedFilterModalComponent,
-      breakpoints: [0, 0.9],
-      initialBreakpoint: 0.9,
     });
 
     await modal.present();
