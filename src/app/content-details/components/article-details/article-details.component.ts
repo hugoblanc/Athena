@@ -4,6 +4,7 @@ import { mergeMap, filter } from 'rxjs/operators';
 import { Post } from "../../../models/content/wordpress/post";
 import { AudioContentService, AudioContentUrl } from '../../../provider/content/audio-content.service';
 import { MixedContentService, AthenaId } from '../../../provider/content/mixed-content.service';
+import { LinkService } from '../../../provider/helper/link.service';
 import { MetaMediaService } from '../../../provider/meta-media/meta-media.service';
 import { isNotNullOrUndefined } from '../../../utils/is-not-null-or-undefined/operator';
 
@@ -26,7 +27,14 @@ export class ArticleDetailsComponent implements OnInit {
   isAudioPlaying = false;
   constructor(private readonly audioContentService: AudioContentService,
     private readonly mixedContentService: MixedContentService,
-    private readonly metaMediaService: MetaMediaService) { }
+    private readonly metaMediaService: MetaMediaService,
+    private readonly linkService: LinkService) { }
+
+  openOriginalArticle(): void {
+    if (this.post?.link) {
+      this.linkService.launchInAppBrowser(this.post.link);
+    }
+  }
 
   ngOnInit(): void {
     this.audio$ = this.mixedContentService.getIdFromContentIdAndMediaKey(this.key, this.post.contentId + '')
