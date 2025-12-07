@@ -13,7 +13,9 @@
 
   ath-reading-progress {
     position: fixed;
-    bottom: 0.5rem;
-    width: 100%;
+    bottom: calc(0.5rem + env(safe-area-inset-bottom));
+    left: 0;
+    right: 0;
+    z-index: 10;
   }
 }
