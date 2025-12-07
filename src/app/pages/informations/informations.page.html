@@ -1,34 +1,39 @@
 <ion-content>
 
-
-  <div class="quote-bloc">
-    <div class="quote-text">
-      Athéna est la déesse de la sagesse. En tant que
-      protectrice d'Athènes elle est associée à la liberté et la démocratie.
-    </div>
-    <div class="quote-source">Wikipedia</div>
+  <div class="header">
+    <img src="assets/icon/favicon.png" class="logo" alt="Athena" />
+    <h1>Athena</h1>
+    <p class="tagline">Les médias indépendants, réunis.</p>
   </div>
 
-
-
-  <div class="text">
-    Athena regroupe les contenues essentiels des médias indépendants.
-    <br>
-    Mais sa raison d'être réside en son pilotage par les usagers.
+  <div class="quote">
+    <p>« Athéna est la déesse de la sagesse. En tant que protectrice d'Athènes, elle est associée à la liberté et la démocratie. »</p>
   </div>
-  <img src="assets/info1.svg" />
 
-  Toute personne voulant contribuer directement (dev, designer, ...)
-  rendez-vous ici: <a href="https://athena-app.xyz/"> athena-app</a>
+  <ion-list lines="full">
+    <ion-item button (click)="openLink('https://athena-app.xyz')">
+      <ion-icon slot="start" name="desktop-outline"></ion-icon>
+      <ion-label>Version web</ion-label>
+      <ion-icon slot="end" name="open-outline" color="medium"></ion-icon>
+    </ion-item>
 
-  <br>
-  <br>
-  Pour les autres, vos idées sont bienvenues, postez-les 😉
+    <ion-item button (click)="openLink('https://github.com/hugoblanc/Athena')">
+      <ion-icon slot="start" name="logo-github"></ion-icon>
+      <ion-label>Code source</ion-label>
+      <ion-icon slot="end" name="open-outline" color="medium"></ion-icon>
+    </ion-item>
 
-  <br>
-  <br>
-  L'application mobile a été réalisée avec Ionic/Angular et la partie serveur fonctionne avec NestJS.
+    <ion-item button (click)="openLink('https://github.com/hugoblanc/Athena/issues')">
+      <ion-icon slot="start" name="bulb-outline"></ion-icon>
+      <ion-label>Proposer une idée</ion-label>
+      <ion-icon slot="end" name="open-outline" color="medium"></ion-icon>
+    </ion-item>
 
-  <a href="https://athena-app.xyz/privacy"> Politique de confidentialité </a>
+    <ion-item button (click)="openLink('https://athena-app.xyz/privacy')">
+      <ion-icon slot="start" name="shield-checkmark-outline"></ion-icon>
+      <ion-label>Politique de confidentialité</ion-label>
+      <ion-icon slot="end" name="open-outline" color="medium"></ion-icon>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
