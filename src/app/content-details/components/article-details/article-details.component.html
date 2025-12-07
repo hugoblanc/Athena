@@ -21,7 +21,7 @@
 
   <div class="article-metadata">
     <span class="published-date">Publié le {{ post.publishedAt | date: "dd/MM/y" }}</span>
-    <span *ngIf="post.embedded?.author?.length" class="author">par {{ post.embedded.author[0].name }}</span>
+    <span *ngIf="mediaName" class="author"> par {{ mediaName }}</span>
   </div>
 
   <div class="article-content" [innerHTML]="post.content.rendered"></div>

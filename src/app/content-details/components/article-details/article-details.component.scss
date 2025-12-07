@@ -1,18 +1,25 @@
 #full-article {
   margin: 1rem;
-  font-family: RobotoBlack;
-
+  font-family: RobotoRegular;
 
   .action-menu {
     display: flex;
     justify-content: space-between;
   }
 
+  // Titre principal de l'article
+  > h2 {
+    font-family: RobotoMedium;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
   .article-metadata {
     color: var(--ion-color-medium);
     font-size: 0.9rem;
-    margin-bottom: 1rem;
-    font-family: Roboto, sans-serif;
+    margin-bottom: 1.5rem;
+    font-family: RobotoRegular, sans-serif;
   }
 
 }
