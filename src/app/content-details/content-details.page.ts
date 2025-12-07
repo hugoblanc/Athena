@@ -70,6 +70,8 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
       this.content.id = this.id;
       // Enable hyperlinks after content is loaded
       this.linkService.enableDynamicHyperlinks(this.element);
+      // Recalculate max height after content is loaded
+      this.updateMaxHeight();
     });
 
     this.markContentAsRead(this.key);
@@ -84,10 +86,15 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
   }
 
   async ngAfterViewInit(): Promise<void> {
+    this.updateMaxHeight();
+  }
+
+  private async updateMaxHeight(): Promise<void> {
+    // Wait for content to render
     setTimeout(async () => {
       const scrollElement = await this.ionContent.getScrollElement();
       this.maxHeight = scrollElement.scrollHeight;
-    }, 100);
+    }, 500);
   }
   /**
    * Quand il quitte la page il faut rétablir dans le sens inverse si besoin
