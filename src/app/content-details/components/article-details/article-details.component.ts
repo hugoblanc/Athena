@@ -4,6 +4,7 @@ import { mergeMap, filter } from 'rxjs/operators';
 import { Post } from "../../../models/content/wordpress/post";
 import { AudioContentService, AudioContentUrl } from '../../../provider/content/audio-content.service';
 import { MixedContentService, AthenaId } from '../../../provider/content/mixed-content.service';
+import { MetaMediaService } from '../../../provider/meta-media/meta-media.service';
 import { isNotNullOrUndefined } from '../../../utils/is-not-null-or-undefined/operator';
 
 @Component({
@@ -18,12 +19,14 @@ export class ArticleDetailsComponent implements OnInit {
 
   audio$!: Observable<AudioContentUrl | undefined>;
 
-
-
+  get mediaName(): string {
+    return this.metaMediaService.currentMetaMedia?.title ?? '';
+  }
 
   isAudioPlaying = false;
   constructor(private readonly audioContentService: AudioContentService,
-    private readonly mixedContentService: MixedContentService) { }
+    private readonly mixedContentService: MixedContentService,
+    private readonly metaMediaService: MetaMediaService) { }
 
   ngOnInit(): void {
     this.audio$ = this.mixedContentService.getIdFromContentIdAndMediaKey(this.key, this.post.contentId + '')
