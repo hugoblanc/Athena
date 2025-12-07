@@ -61,6 +61,27 @@ export class FeedPage implements OnInit {
       });
   }
 
+  doRefresh(event: any) {
+    this.page = 1;
+    this.contents = [];
+    if (this.infiniteScroll?.disabled === true) {
+      this.infiniteScroll.disabled = false;
+    }
+
+    const mediaKeysParam = this.mediaKeys.length > 0 ? this.mediaKeys.join(',') : undefined;
+
+    this.mixedContentService
+      .getLastFeedContent(this.page, this.size, this.terms, mediaKeysParam)
+      .subscribe((pageResult) => {
+        this.contents = pageResult.objects;
+        this.page = pageResult.next;
+        event.target.complete();
+        if (pageResult.next === undefined) {
+          this.infiniteScroll.disabled = true;
+        }
+      });
+  }
+
   private initSearch() {
     this.page = 1;
     this.contents = [];

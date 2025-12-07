@@ -66,6 +66,21 @@ export class MediaPage implements OnInit {
       });
   }
 
+  doRefresh(event: any) {
+    this.loading = true;
+    this.contentService.getContents()
+      .subscribe((page: Page<IContent>) => {
+        this.page = page;
+        this.loading = false;
+        event.target.complete();
+      }, (error) => {
+        console.error("error media page refresh");
+        console.error(error);
+        this.loading = false;
+        event.target.complete();
+      });
+  }
+
   /**
    * Cette methode est déclanché quand l'utilisateur scroll tout en bas de son téléphone
    * @param event l'event javascript
