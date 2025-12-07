@@ -1,0 +1,87 @@
+<ion-content>
+  <ath-section title="Propositions de loi"></ath-section>
+  <!-- Filters -->
+  <div class="filters-section">
+    <ion-item lines="none">
+      <ion-select
+        [(ngModel)]="selectedGroupePolitique"
+        (ionChange)="onFilterChange()"
+        placeholder="Groupe politique"
+        interface="action-sheet"
+      >
+        <ion-select-option value="">Tous les groupes</ion-select-option>
+        <ion-select-option *ngFor="let group of politicalGroups" [value]="group.code">
+          {{ group.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-select
+        [(ngModel)]="selectedStatus"
+        (ionChange)="onFilterChange()"
+        placeholder="Statut"
+        interface="action-sheet"
+      >
+        <ion-select-option value="">Tous les statuts</ion-select-option>
+        <ion-select-option *ngFor="let status of simplificationStatuses" [value]="status.value">
+          {{ status.label }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button
+      *ngIf="selectedGroupePolitique || selectedType || selectedStatus"
+      fill="clear"
+      size="small"
+      (click)="clearFilters()"
+    >
+      <ion-icon name="close-outline" slot="start"></ion-icon>
+      Effacer
+    </ion-button>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <!-- Proposals List -->
+  <ion-list *ngIf="!isLoading" lines="none">
+    <ion-item
+      *ngFor="let proposal of proposals"
+      class="proposal-item"
+      (click)="viewProposal(proposal.numero)"
+      button
+      detail
+    >
+      <ion-avatar slot="start" *ngIf="proposal.auteur.photoUrl">
+        <img [src]="proposal.auteur.photoUrl" [alt]="proposal.auteur.nom" />
+      </ion-avatar>
+      <ion-label>
+        <p class="proposal-meta">
+          <ion-badge
+            class="political-badge"
+            [style.background-color]="getPoliticalGroupColor(proposal.auteur.groupePolitiqueCode)"
+          >{{ proposal.auteur.groupePolitiqueCode }}</ion-badge>
+          <span>N° {{ proposal.numero }}</span>
+          <span>{{ formatDate(proposal.dateMiseEnLigne) }}</span>
+        </p>
+        <h2>{{ proposal.titre }}</h2>
+        <p class="author-name">{{ proposal.auteur.nom }}</p>
+      </ion-label>
+    </ion-item>
+
+    <!-- Empty state -->
+    <div *ngIf="proposals.length === 0" class="empty-state">
+      <ion-icon name="document-text-outline"></ion-icon>
+      <p>Aucune proposition trouvée</p>
+    </div>
+  </ion-list>
+
+  <!-- Infinite Scroll -->
+  <ion-infinite-scroll threshold="300px" (ionInfinite)="loadProposals($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Chargement...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

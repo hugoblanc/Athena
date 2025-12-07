@@ -1,0 +1,140 @@
+#title {
+  --background: transparent;
+
+  h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: white;
+  }
+}
+
+.inline-back-button {
+  display: block;
+  margin-right: 0;
+}
+
+ion-back-button {
+  --padding-bottom: 0.35rem;
+  --padding-top: 0.65rem;
+  --padding-end: 0.8rem;
+  --padding-start: 0.8rem;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  padding: 60px;
+}
+
+.header-section {
+  padding: 16px;
+
+  .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+
+    ion-badge {
+      color: white;
+      font-size: 11px;
+    }
+
+    .date {
+      font-size: 13px;
+      color: var(--ion-color-medium);
+    }
+  }
+
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 16px 0;
+    color: white;
+  }
+
+  .author-item {
+    --background: rgba(255, 255, 255, 0.1);
+    --padding-start: 12px;
+    --padding-end: 12px;
+    --inner-padding-end: 12px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+
+    ion-avatar {
+      width: 44px;
+      height: 44px;
+    }
+
+    h2 {
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+    }
+
+    p {
+      font-size: 13px;
+      color: var(--ion-color-medium);
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 8px;
+  }
+}
+
+ion-segment {
+  margin: 0 16px 16px;
+}
+
+.section {
+  padding: 0 16px 16px;
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: white;
+  }
+}
+
+.key-points-list {
+  margin: 0;
+  padding-left: 20px;
+  color: white;
+
+  li {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+}
+
+.accordion-content {
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.section-text {
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  margin: 0 0 16px 0;
+  color: white;
+}
+
+ion-accordion-group {
+  ion-item {
+    --background: transparent;
+    --color: white;
+  }
+
+  ion-accordion {
+    background: transparent;
+  }
+}

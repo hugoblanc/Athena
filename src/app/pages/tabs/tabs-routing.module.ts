@@ -16,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('../feed/feed.module').then(m => m.FeedPageModule)
       },
       {
+        path: 'propositions',
+        loadChildren: () => import('../propositions/propositions.module').then(m => m.PropositionsPageModule)
+      },
+      {
         path: 'construction',
         loadChildren: () => import('../construction/construction.module').then(m => m.ConstructionPageModule)
       },

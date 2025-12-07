@@ -1,0 +1,118 @@
+<ion-content>
+  <ion-item id="title" lines="none">
+    <ion-back-button slot="start" class="inline-back-button" [text]="''" defaultHref="tabs/propositions"></ion-back-button>
+    <h2>Proposition n° {{ proposal?.numero }}</h2>
+  </ion-item>
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <div *ngIf="proposal && !isLoading">
+    <!-- Header -->
+    <div class="header-section">
+      <div class="meta-row">
+        <ion-badge
+          [style.background-color]="getPoliticalGroupColor(proposal.auteur.groupePolitiqueCode)"
+        >{{ proposal.auteur.groupePolitiqueCode }}</ion-badge>
+        <span class="date">{{ formatDate(proposal.dateMiseEnLigne) }}</span>
+      </div>
+
+      <h1>{{ proposal.titre }}</h1>
+
+      <ion-item lines="none" class="author-item" (click)="openDeputeProfile(proposal.auteur.urlDepute)" [button]="!!proposal.auteur.urlDepute" [detail]="!!proposal.auteur.urlDepute">
+        <ion-avatar slot="start" *ngIf="proposal.auteur.photoUrl">
+          <img [src]="proposal.auteur.photoUrl" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ proposal.auteur.nom }}</h2>
+          <p>{{ getPoliticalGroupName(proposal.auteur.groupePolitiqueCode) }}</p>
+        </ion-label>
+      </ion-item>
+
+      <div class="action-buttons">
+        <ion-button fill="outline" size="small" (click)="openDocument()">
+          <ion-icon name="document-outline" slot="start"></ion-icon>
+          PDF
+        </ion-button>
+        <ion-button fill="outline" size="small" (click)="openDossier()" *ngIf="proposal.urlDossierLegislatif">
+          <ion-icon name="folder-outline" slot="start"></ion-icon>
+          Dossier
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Segment -->
+    <ion-segment [(ngModel)]="selectedSegment" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="simplified" [disabled]="!proposal.simplified || proposal.simplified.status !== 'completed'">
+        <ion-label>Simplifié</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="official">
+        <ion-label>Officiel</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <!-- Simplified Version -->
+    <ng-container *ngIf="selectedSegment === 'simplified' && proposal.simplified && proposal.simplified.status === 'completed'">
+      <!-- Key Points -->
+      <div class="section" *ngIf="proposal.simplified.keyPoints && proposal.simplified.keyPoints.length > 0">
+        <h3>Points clés</h3>
+        <ul class="key-points-list">
+          <li *ngFor="let point of proposal.simplified.keyPoints">{{ point }}</li>
+        </ul>
+      </div>
+
+      <!-- Exposé des motifs simplifié -->
+      <div class="section" *ngIf="proposal.simplified.exposeMotifs && proposal.simplified.exposeMotifs.length > 0">
+        <h3>Exposé des motifs</h3>
+        <ion-accordion-group>
+          <ion-accordion *ngFor="let motif of proposal.simplified.exposeMotifs">
+            <ion-item slot="header" lines="none">
+              <ion-label>{{ motif.titre }}</ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              {{ motif.texte }}
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
+
+      <!-- Articles simplifiés -->
+      <div class="section" *ngIf="proposal.simplified.articles && proposal.simplified.articles.length > 0">
+        <h3>Résumé des articles</h3>
+        <ion-accordion-group>
+          <ion-accordion *ngFor="let article of proposal.simplified.articles">
+            <ion-item slot="header" lines="none">
+              <ion-label>Article {{ article.numero }}</ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              {{ article.resume }}
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
+    </ng-container>
+
+    <!-- Official Version -->
+    <ng-container *ngIf="selectedSegment === 'official'">
+      <div class="section" *ngFor="let section of proposal.sections">
+        <h3>{{ getSectionTypeLabel(section.type) }}</h3>
+        <p class="section-text" *ngIf="section.texte">{{ section.texte }}</p>
+
+        <ion-accordion-group *ngIf="section.articles && section.articles.length > 0">
+          <ion-accordion *ngFor="let article of section.articles">
+            <ion-item slot="header" lines="none">
+              <ion-label>
+                Article {{ article.numero }}
+                <span *ngIf="article.titre"> - {{ article.titre }}</span>
+              </ion-label>
+            </ion-item>
+            <div class="accordion-content" slot="content">
+              {{ article.texte }}
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
+    </ng-container>
+  </div>
+</ion-content>

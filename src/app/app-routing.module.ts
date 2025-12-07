@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./content-details/content-details.module').then(m => m.ContentDetailsPageModule)
   },
   {
+    path: 'proposition/:numero',
+    loadChildren: () => import('./pages/proposition-detail/proposition-detail.module').then(m => m.PropositionDetailPageModule)
+  },
+  {
     path: '',
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
     canLoad: [CheckFirstGuard]
