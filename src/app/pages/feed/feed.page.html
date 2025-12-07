@@ -1,5 +1,12 @@
 <ion-content>
-  <ion-searchbar debounce="500" animated mode="ios" (ionChange)="searchTermsChanged($any($event))"></ion-searchbar>
+  <div class="search-row">
+    <ion-searchbar debounce="500" animated mode="ios" (ionChange)="searchTermsChanged($any($event))"></ion-searchbar>
+    <ion-button fill="clear" (click)="openFilterModal()" class="filter-button">
+      <ion-icon slot="icon-only" [name]="hasActiveFilter ? 'funnel' : 'funnel-outline'"></ion-icon>
+      <span *ngIf="hasActiveFilter" class="filter-badge"></span>
+    </ion-button>
+  </div>
+
   <div *ngFor="let content of contents; let first = first;">
     <hr *ngIf="!first">
     <ath-article-preview [mixedContent]="content"></ath-article-preview>

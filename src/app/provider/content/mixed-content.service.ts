@@ -16,12 +16,16 @@ export class MixedContentService {
   getLastFeedContent(
     page: number,
     size: number,
-    terms: string
+    terms: string,
+    mediaKeys?: string
   ): Observable<Page<MixedContent>> {
+    let url = `${MixedContentService.BASE_URL}content/last?page=${page}&size=${size}&terms=${terms}`;
+    if (mediaKeys) {
+      url += `&mediaKeys=${mediaKeys}`;
+    }
+
     return this.http
-      .get<Page<MixedContent>>(
-        `${MixedContentService.BASE_URL}content/last?page=${page}&size=${size}&terms=${terms}`
-      )
+      .get<Page<MixedContent>>(url)
       .pipe(
         map((page) => {
           page.objects = page.objects.map(

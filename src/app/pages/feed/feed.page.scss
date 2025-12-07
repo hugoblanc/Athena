@@ -1,0 +1,34 @@
+.search-row {
+  display: flex;
+  align-items: center;
+  padding-right: 8px;
+
+  ion-searchbar {
+    flex: 1;
+  }
+
+  .filter-button {
+    position: relative;
+    --padding-start: 8px;
+    --padding-end: 8px;
+
+    ion-icon {
+      font-size: 1.4rem;
+      color: var(--ion-color-medium);
+    }
+
+    &:has(.filter-badge) ion-icon {
+      color: var(--ion-color-primary);
+    }
+
+    .filter-badge {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 8px;
+      height: 8px;
+      background: var(--ion-color-primary);
+      border-radius: 50%;
+    }
+  }
+}
