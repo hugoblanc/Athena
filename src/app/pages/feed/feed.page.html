@@ -1,4 +1,10 @@
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingText="Tirer pour rafraîchir" refreshingSpinner="circles"
+      refreshingText="Chargement...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <div class="search-row">
     <ion-searchbar debounce="500" animated mode="ios" (ionChange)="searchTermsChanged($any($event))"></ion-searchbar>
     <ion-button fill="clear" (click)="openFilterModal()" class="filter-button">
