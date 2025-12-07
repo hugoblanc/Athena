@@ -68,6 +68,8 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
     this.contentService.getContentById(this.id).subscribe((content) => {
       this.content = content;
       this.content.id = this.id;
+      // Enable hyperlinks after content is loaded
+      this.linkService.enableDynamicHyperlinks(this.element);
     });
 
     this.markContentAsRead(this.key);
@@ -79,7 +81,6 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
    */
   ngOnInit() {
     this.styleService.initPage();
-    this.linkService.enableDynamicHyperlinks(this.element);
   }
 
   async ngAfterViewInit(): Promise<void> {

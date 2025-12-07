@@ -23,14 +23,15 @@ export class LinkService {
       urls.forEach((url: any) => {
         // Listen for a click event on each hyperlink found
         url.addEventListener('click', (event: any) => {
-          // Retrieve the href value from the selected hyperlink
+          // Retrieve the href value from the <a> element itself, not event.target
+          // (event.target could be a child element like <span>)
           event.preventDefault();
-          const link = event.target.href;
+          const link = url.href;
 
           // Log values to the console and open the link within the InAppBrowser plugin
-          console.log('Name is: ' + event.target.innerText);
+          console.log('Name is: ' + url.innerText);
           console.log('Link is: ' + link);
-          if (link != null) {
+          if (link != null && link !== 'undefined' && link !== '') {
             this.launchInAppBrowser(link);
           }
         }, false);
