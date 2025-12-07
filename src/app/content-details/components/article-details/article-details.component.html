@@ -25,4 +25,11 @@
   </div>
 
   <div class="article-content" [innerHTML]="post.content.rendered"></div>
+
+  <div class="original-article-link" *ngIf="post?.link">
+    <ion-button expand="block" fill="outline" (click)="openOriginalArticle()">
+      <ion-icon slot="start" name="open-outline"></ion-icon>
+      Voir l'article original
+    </ion-button>
+  </div>
 </div>
