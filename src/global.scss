@@ -16,8 +16,7 @@
 
 body {
   --background: #0F2027;
-  --ion-background-color: linear-gradient(to right, #2C5364, #203A43, #0F2027);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  --ion-background-color: radial-gradient(ellipse at top left, #1a3a4a 0%, #152a35 40%, #0F2027 100%);
   --ion-text-color: white;
 
   --primaryColor: #000000;
@@ -184,7 +183,7 @@ ion-modal {
 
 
 .ath-alert {
-  --background: linear-gradient(to right, #485563, #29323c);
+  --background: #152a35;
 }
 
 
