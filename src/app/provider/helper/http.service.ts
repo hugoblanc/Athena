@@ -5,6 +5,7 @@ import { HTTP, HTTPResponse } from "@ionic-native/http/ngx";
 import { from, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { runInZone } from "../../utils/run-in-zone.operator";
+import { FirebaseAuthService } from "../auth/firebase-auth.service";
 
 @Injectable({
   providedIn: "root",
@@ -15,7 +16,8 @@ export class HttpService {
   constructor(
     private readonly nativeHttp: HTTP,
     private readonly developHttp: HttpClient,
-    private readonly zone: NgZone
+    private readonly zone: NgZone,
+    private readonly authService: FirebaseAuthService
   ) {
     this.develop = !Capacitor.isNativePlatform();
   }
@@ -56,6 +58,13 @@ export class HttpService {
       "Content-Type": "application/json",
     };
     headers["Accept"] = "application/json";
+
+    // Ajouter le token d'authentification si disponible
+    const token = this.authService.getCachedToken();
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+
     return from(this.nativeHttp.get(url, {}, headers)).pipe(
       runInZone(this.zone),
       map((data: HTTPResponse) => {
@@ -77,7 +86,17 @@ export class HttpService {
    * @param body le body a poster
    */
   private nativePost(url: string, body?: any) {
-    return from(this.nativeHttp.post(url, body, {})).pipe(
+    const headers: any = {
+      "Content-Type": "application/json",
+    };
+
+    // Ajouter le token d'authentification si disponible
+    const token = this.authService.getCachedToken();
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+
+    return from(this.nativeHttp.post(url, body, headers)).pipe(
       runInZone(this.zone),
       map((data: HTTPResponse) => JSON.parse(data.data))
     );

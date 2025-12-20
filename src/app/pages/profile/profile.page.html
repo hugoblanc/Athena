@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mon Profil</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/feed"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="profile-container" *ngIf="!loading">
+    <!-- User Info Card -->
+    <ion-card *ngIf="user$ | async as user">
+      <ion-card-content>
+        <div class="user-header">
+          <ion-avatar *ngIf="user.photoUrl">
+            <img [src]="user.photoUrl" alt="Photo de profil">
+          </ion-avatar>
+          <ion-avatar *ngIf="!user.photoUrl" class="default-avatar">
+            <ion-icon name="person"></ion-icon>
+          </ion-avatar>
+          <div class="user-info">
+            <h2>{{ user.displayName || 'Utilisateur' }}</h2>
+            <p>{{ user.email }}</p>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Account Details -->
+    <ion-card *ngIf="profile">
+      <ion-card-header>
+        <ion-card-title>Détails du compte</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-icon name="shield-checkmark" slot="start" color="primary"></ion-icon>
+            <ion-label>
+              <h3>Méthode de connexion</h3>
+              <p>{{ getProviderName(profile.provider) }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="calendar" slot="start" color="primary"></ion-icon>
+            <ion-label>
+              <h3>Membre depuis</h3>
+              <p>{{ formatDate(profile.createdAt) }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="time" slot="start" color="primary"></ion-icon>
+            <ion-label>
+              <h3>Dernière connexion</h3>
+              <p>{{ formatDate(profile.lastLoginAt) }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Actions -->
+    <ion-button expand="block" color="danger" (click)="signOut()" class="sign-out-button">
+      <ion-icon name="log-out" slot="start"></ion-icon>
+      Se déconnecter
+    </ion-button>
+  </div>
+
+  <div class="loading-container" *ngIf="loading">
+    <ion-spinner></ion-spinner>
+    <p>Chargement du profil...</p>
+  </div>
+</ion-content>

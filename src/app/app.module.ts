@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { APP_INITIALIZER, LOCALE_ID, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouteReuseStrategy } from "@angular/router";
@@ -14,6 +14,7 @@ import { Drivers } from "@ionic/storage";
 import { MetaMediaService } from "./provider/meta-media/meta-media.service";
 import { initializeAppFactory } from "./core/initializer/media.initializer";
 import { Media } from "@awesome-cordova-plugins/media/ngx";
+import { AuthInterceptor } from "./core/interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +39,11 @@ import { Media } from "@awesome-cordova-plugins/media/ngx";
       provide: APP_INITIALIZER,
       useFactory: initializeAppFactory,
       deps: [MetaMediaService],
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true,
     },
     Media,

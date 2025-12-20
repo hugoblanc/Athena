@@ -13,7 +13,16 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": " copyfiles --flat .githooks/* .git/hooks/",
-    "release": "standard-version"
+    "release": "standard-version",
+    "cap:sync": "npx cap sync",
+    "cap:sync:android": "npx cap sync android",
+    "cap:sync:ios": "npx cap sync ios",
+    "cap:run:android": "npx cap run android",
+    "cap:run:ios": "npx cap run ios",
+    "cap:open:android": "npx cap open android",
+    "cap:open:ios": "npx cap open ios",
+    "android": "npm run build && npx cap sync android && npx cap run android",
+    "ios": "npm run build && npx cap sync ios && npx cap open ios"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +33,7 @@
     "@angular/platform-browser-dynamic": "~13.3.11",
     "@angular/router": "~13.3.11",
     "@awesome-cordova-plugins/media": "^6.1.0",
+    "@capacitor-firebase/authentication": "^6.3.1",
     "@capacitor-firebase/messaging": "^6.2.0",
     "@capacitor/android": "^6.0.0",
     "@capacitor/app": "^6.0.0",

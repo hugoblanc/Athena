@@ -2,8 +2,22 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { CheckFirstGuard } from './core/check-first.guard';
 import { CurrentMetaMediaGuard } from './core/current-meta-media.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
+  },
+  {
+    path: 'profile',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule)
+  },
   {
     path: 'tuto',
     loadChildren: () => import('./pages/tuto/tuto.module').then(m => m.TutoPageModule)

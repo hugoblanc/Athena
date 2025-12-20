@@ -3,7 +3,7 @@
     "project_number": "468962553465",
     "firebase_url": "https://open-athena.firebaseio.com",
     "project_id": "open-athena",
-    "storage_bucket": "open-athena.appspot.com"
+    "storage_bucket": "open-athena.firebasestorage.app"
   },
   "client": [
     {

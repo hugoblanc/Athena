@@ -1,0 +1,72 @@
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 40px;
+
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 14px;
+  }
+}
+
+.google-button {
+  margin-bottom: 24px;
+  --border-color: var(--ion-color-medium);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 24px 0;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--ion-color-light-shade);
+  }
+
+  span {
+    padding: 0 16px;
+    color: var(--ion-color-medium);
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+ion-item {
+  margin-bottom: 16px;
+}
+
+.submit-button {
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.register-section {
+  text-align: center;
+  margin-top: 32px;
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+}
+
+.skip-button {
+  margin-top: 16px;
+  color: var(--ion-color-medium);
+}

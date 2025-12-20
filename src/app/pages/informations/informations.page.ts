@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Media, MediaObject } from '@awesome-cordova-plugins/media/ngx';
+import { Observable } from 'rxjs';
+import { User } from '@capacitor-firebase/authentication';
 
 import { LinkService } from '../../provider/helper/link.service';
+import { FirebaseAuthService } from '../../provider/auth/firebase-auth.service';
 
 /**
  * Cette page permet d'afficher quelque informations supplémentaire sur l'application
@@ -15,10 +19,25 @@ import { LinkService } from '../../provider/helper/link.service';
 })
 export class InformationsPage {
   curr_playing_file!: MediaObject;
-  constructor(private linkService: LinkService) { }
+  user$: Observable<User | null>;
 
+  constructor(
+    private linkService: LinkService,
+    private authService: FirebaseAuthService,
+    private router: Router
+  ) {
+    this.user$ = this.authService.getCurrentUser();
+  }
 
   openLink(link: string) {
     this.linkService.launchInAppBrowser(link);
+  }
+
+  navigateToAuth() {
+    this.router.navigateByUrl('/login');
+  }
+
+  navigateToProfile() {
+    this.router.navigateByUrl('/profile');
   }
 }

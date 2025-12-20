@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Créer un compte</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="register-container">
+    <div class="logo-section">
+      <h1>Rejoignez Athena</h1>
+      <p>Créez votre compte en quelques secondes</p>
+    </div>
+
+    <!-- Email/Password Form -->
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email" autocomplete="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Mot de passe</ion-label>
+      <ion-input type="password" [(ngModel)]="password" autocomplete="new-password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Confirmer le mot de passe</ion-label>
+      <ion-input type="password" [(ngModel)]="confirmPassword" autocomplete="new-password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="registerWithEmail()" color="primary" class="submit-button">
+      Créer mon compte
+    </ion-button>
+
+    <div class="login-section">
+      <p>Vous avez déjà un compte?</p>
+      <ion-button expand="block" fill="clear" (click)="navigateToLogin()">
+        Se connecter
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Connexion</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/feed"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="login-container">
+    <div class="logo-section">
+      <h1>Bienvenue sur Athena</h1>
+      <p>Connectez-vous pour accéder à toutes les fonctionnalités</p>
+    </div>
+
+    <!-- Google Sign In Button -->
+    <ion-button expand="block" (click)="signInWithGoogle()" fill="outline" class="google-button">
+      <ion-icon slot="start" name="logo-google"></ion-icon>
+      Continuer avec Google
+    </ion-button>
+
+    <div class="divider">
+      <span>OU</span>
+    </div>
+
+    <!-- Email/Password Form -->
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email" autocomplete="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Mot de passe</ion-label>
+      <ion-input type="password" [(ngModel)]="password" autocomplete="current-password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="signInWithEmail()" color="primary" class="submit-button">
+      Se connecter
+    </ion-button>
+
+    <ion-button expand="block" fill="clear" (click)="forgotPassword()" size="small">
+      Mot de passe oublié?
+    </ion-button>
+
+    <div class="register-section">
+      <p>Pas encore de compte?</p>
+      <ion-button expand="block" fill="clear" (click)="navigateToRegister()">
+        Créer un compte
+      </ion-button>
+    </div>
+
+    <ion-button expand="block" fill="clear" routerLink="/tabs/feed" class="skip-button">
+      Continuer sans compte
+    </ion-button>
+  </div>
+</ion-content>

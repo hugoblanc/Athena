@@ -1,0 +1,41 @@
+.register-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 40px;
+
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 14px;
+  }
+}
+
+ion-item {
+  margin-bottom: 16px;
+}
+
+.submit-button {
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.login-section {
+  text-align: center;
+  margin-top: 32px;
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+}

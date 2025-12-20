@@ -25,27 +25,75 @@ $ cd Athena
 
 ## Running the app
 
+### Développement dans le navigateur
+
 ```bash
 # démarrage dans le navigateur avec livereload
 $ ionic serve
+```
 
-# création d'un apk (android) ou d'un projet xcode en fonction de la plateforme ciblée
-$ ionic cordova build android
-ou/et
-$ ionic cordova build ios
+### Déploiement sur appareil Android
 
+**⚠️ Important**: L'application utilise maintenant Capacitor au lieu de Cordova. La commande `ionic capacitor run` est en beta et n'effectue PAS de déploiement direct sur l'appareil - elle ouvre seulement Android Studio.
 
-# Démarrer l'application sur le téléphone
-$ ionic cordova run android
-# Pour ios il faut build comme à l'étape précédente puis aller dans platforms/ios/ et ouvrir le workspace Athena
+**Commandes recommandées** (utilisant Capacitor CLI directement):
 
-# Démarrer l'application sur le téléphone en mode debug
-$ ionic cordova run android -l
-# Compliqué sur ios
+```bash
+# Workflow complet : build + sync + run sur appareil Android
+$ npm run android
 
-# En mode production
-$ ionic cordova run android --prod --release
+# Ou étape par étape :
+$ npm run build              # Build l'application web (génère le dossier www/)
+$ npm run cap:sync:android   # Synchronise les assets web vers Android
+$ npm run cap:run:android    # Lance l'app sur l'appareil Android connecté
 
+# Ouvrir Android Studio pour build manuel
+$ npm run cap:open:android
+```
+
+### Déploiement sur appareil iOS
+
+```bash
+# Workflow complet : build + sync + ouvre Xcode
+$ npm run ios
+
+# Ou étape par étape :
+$ npm run build            # Build l'application web
+$ npm run cap:sync:ios     # Synchronise les assets web vers iOS
+$ npm run cap:open:ios     # Ouvre Xcode
+
+# Puis dans Xcode : ouvrir ios/App/App.xcworkspace et lancer sur appareil
+```
+
+### Commandes Capacitor disponibles
+
+```bash
+# Synchronisation
+$ npm run cap:sync           # Sync tous les platforms
+$ npm run cap:sync:android   # Sync Android uniquement
+$ npm run cap:sync:ios       # Sync iOS uniquement
+
+# Exécution directe
+$ npm run cap:run:android    # Run sur Android (sans rebuild)
+$ npm run cap:run:ios        # Run sur iOS (sans rebuild)
+
+# Ouvrir les IDE natifs
+$ npm run cap:open:android   # Ouvre Android Studio
+$ npm run cap:open:ios       # Ouvre Xcode
+```
+
+### Troubleshooting
+
+**Problème : `ionic capacitor run android` ouvre Android Studio au lieu de déployer**
+- C'est le comportement normal de la commande Ionic CLI (en beta)
+- **Solution** : Utiliser `npm run android` ou `npx cap run android` à la place
+
+**Problème : Erreur "www directory not found"**
+- **Solution** : Lancer `npm run build` avant toute commande Capacitor
+
+**Vérifier la connexion de l'appareil Android**
+```bash
+$ adb devices
 ```
 
 ## Règle de commit

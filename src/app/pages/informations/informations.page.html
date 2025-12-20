@@ -11,6 +11,22 @@
   </div>
 
   <ion-list lines="full">
+    <!-- Bouton de connexion/profil -->
+    <ion-item button (click)="navigateToAuth()" *ngIf="!(user$ | async)">
+      <ion-icon slot="start" name="log-in-outline" color="primary"></ion-icon>
+      <ion-label color="primary">Se connecter</ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline" color="medium"></ion-icon>
+    </ion-item>
+
+    <ion-item button (click)="navigateToProfile()" *ngIf="user$ | async as user">
+      <ion-icon slot="start" name="person-outline" color="primary"></ion-icon>
+      <ion-label>
+        <h2>Mon profil</h2>
+        <p>{{ user.email }}</p>
+      </ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline" color="medium"></ion-icon>
+    </ion-item>
+
     <ion-item button (click)="openLink('https://athena-app.xyz')">
       <ion-icon slot="start" name="desktop-outline"></ion-icon>
       <ion-label>Version web</ion-label>
