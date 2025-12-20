@@ -47,7 +47,7 @@
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-file": "^6.0.1",
     "cordova-plugin-media": "^6.1.0",
-    "cordova-sqlite-storage": "^6.0.0",
+    "cordova-sqlite-storage": "^7.0.0",
     "core-js": "^2.5.4",
     "firebase": "^10.14.1",
     "localforage-cordovasqlitedriver": "^1.8.0",
