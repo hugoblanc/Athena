@@ -8,7 +8,7 @@ import { HttpService } from '../helper/http.service';
   providedIn: 'root'
 })
 export class PodcastService {
-  private static readonly BASE_URL = environment.apiUrl + '/podcast';
+  private static readonly BASE_URL = environment.apiUrl + 'podcast';
 
   constructor(private readonly http: HttpService) {}
 
