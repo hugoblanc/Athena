@@ -1,4 +1,11 @@
 <ion-content athDblclick (athDblclick)="scrollTop()" [scrollEvents]="true" (ionScroll)="onScroll($any($event))">
+  <div *ngIf="hasPodcast" class="podcast-cta">
+    <ion-button expand="block" color="primary" (click)="navigateToPodcast()">
+      <ion-icon name="headset-outline" slot="start"></ion-icon>
+      Écouter le podcast
+    </ion-button>
+  </div>
+
   <span *ngIf="content?.contentType" [ngSwitch]="content.contentType">
     <p *ngSwitchCase="'YOUTUBE'">
       <ath-video-details [video]="$any(content)"></ath-video-details>

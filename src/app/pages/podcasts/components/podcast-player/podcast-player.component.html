@@ -1,0 +1,46 @@
+<div class="podcast-player-container">
+  <div class="gradient-background"></div>
+
+  <!-- Header: back + share -->
+  <div class="player-header">
+    <ion-button fill="clear" (click)="onClose()">
+      <ion-icon name="chevron-down-outline"></ion-icon>
+    </ion-button>
+    <ion-button fill="clear" (click)="sharePodcast()">
+      <ion-icon name="share-social-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+  <!-- Grande cover artwork (280x280px) -->
+  <div class="artwork-container">
+    <img [src]="podcast.content.meta_media.logo" class="podcast-artwork" [alt]="podcast.content.title">
+  </div>
+
+  <!-- Info podcast -->
+  <div class="podcast-info">
+    <h1 class="podcast-title">{{ podcast.content.title }}</h1>
+    <p class="podcast-source">{{ podcast.content.meta_media.title }}</p>
+  </div>
+
+  <!-- Progress bar custom -->
+  <div class="progress-container">
+    <input type="range"
+           [min]="0"
+           [max]="duration"
+           [value]="currentTime"
+           (input)="onSeek($event)"
+           class="progress-slider">
+    <div class="time-labels">
+      <span>{{ currentTime | formatTime }}</span>
+      <span>{{ duration | formatTime }}</span>
+    </div>
+  </div>
+
+  <!-- Gros bouton play/pause central (80px) -->
+  <div class="playback-controls">
+    <ion-button class="play-pause-button" (click)="togglePlayPause()" [disabled]="isLoading">
+      <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+      <ion-icon *ngIf="!isLoading" [name]="isPlaying ? 'pause' : 'play'"></ion-icon>
+    </ion-button>
+  </div>
+</div>

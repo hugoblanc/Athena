@@ -1,0 +1,20 @@
+<div class="podcast-list-item">
+  <div class="podcast-thumbnail">
+    <img [src]="podcast.content.meta_media.logo" [alt]="podcast.content.title">
+    <div class="play-overlay">
+      <ion-icon name="play-circle"></ion-icon>
+    </div>
+  </div>
+
+  <div class="podcast-details">
+    <h3 class="podcast-title">{{ podcast.content.title }}</h3>
+    <p class="podcast-source">{{ podcast.content.meta_media.title }}</p>
+    <div class="podcast-meta">
+      <span class="duration" *ngIf="podcast.duration">
+        <ion-icon name="time-outline"></ion-icon>
+        {{ podcast.duration | formatTime }}
+      </span>
+      <span class="date">{{ podcast.createdAt | date:'shortDate' }}</span>
+    </div>
+  </div>
+</div>

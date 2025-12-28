@@ -32,6 +32,28 @@ export class AudioPlayerService {
     this.audio?.pause();
   }
 
+  public seekTo(position: number): void {
+    if (!this.audio) {
+      console.warn('No audio to seek');
+      return;
+    }
+    console.log(`Seeking to position ${position}`);
+    this.audio.seekTo(position * 1000); // Convert seconds to milliseconds
+  }
+
+  public async getCurrentPosition(): Promise<number> {
+    if (!this.audio) {
+      return 0;
+    }
+    return this.audio.getCurrentPosition();
+  }
+
+  public getDuration(): number {
+    if (!this.audio) {
+      return 0;
+    }
+    return this.audio.getDuration();
+  }
 
   private releaseAudioPlayer(): void {
     if (!this.audio) {

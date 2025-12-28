@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Podcasts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="podcasts-container">
+    <app-podcast-list-item
+      *ngFor="let podcast of podcasts"
+      [podcast]="podcast"
+      (click)="onPodcastClick(podcast)">
+    </app-podcast-list-item>
+  </div>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Chargement...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <app-podcast-player
+    *ngIf="selectedPodcast"
+    [podcast]="selectedPodcast"
+    (close)="onPlayerClose()">
+  </app-podcast-player>
+</ion-content>

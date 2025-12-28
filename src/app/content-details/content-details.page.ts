@@ -4,7 +4,7 @@ import {
   OnInit,
   ViewChild
 } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { IonContent } from "@ionic/angular";
 import { ScrollDetail } from "@ionic/core/dist/types/components/content/content-interface";
 import { Helpable } from "../core/interfaces/helpable.interface";
@@ -15,6 +15,7 @@ import { HelpService } from "../provider/helper/help.service";
 import { LinkService } from "../provider/helper/link.service";
 import { StorageService } from "../provider/helper/storage.service";
 import { StyleService } from "../provider/style.service";
+import { PodcastService } from "../provider/podcast/podcast.service";
 import { shareContent } from './utils/shareable-content.utils';
 
 /**
@@ -37,12 +38,14 @@ import { shareContent } from './utils/shareable-content.utils';
 export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     public contentService: ContentService<IContent>,
     public styleService: StyleService,
     public linkService: LinkService,
     public helpService: HelpService,
     public element: ElementRef,
-    private readonly storage: StorageService
+    private readonly storage: StorageService,
+    private readonly podcastService: PodcastService
   ) { }
 
   private static scrollDeltaY = -500;
@@ -56,6 +59,7 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
   PAGE_CODE = "content-details";
   private maxHeight!: number;
   readingProgress = 0;
+  hasPodcast = false;
 
   ionViewWillEnter() {
     // Quand on arrive sur cette page, on récupère l'id dans l'url
@@ -72,6 +76,17 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
       this.linkService.enableDynamicHyperlinks(this.element);
       // Recalculate max height after content is loaded
       this.updateMaxHeight();
+    });
+
+    // Check if podcast exists for this content
+    this.podcastService.getPodcastByContentId(this.id).subscribe({
+      next: (podcast) => {
+        this.hasPodcast = !!podcast;
+      },
+      error: (error) => {
+        console.error('Error checking podcast:', error);
+        this.hasPodcast = false;
+      }
     });
 
     this.markContentAsRead(this.key);
@@ -140,5 +155,9 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
         this.storage.set(key + this.content.contentId, true);
       }
     }, 15000);
+  }
+
+  navigateToPodcast() {
+    this.router.navigate(['/tabs/podcasts'], { queryParams: { contentId: this.id } });
   }
 }

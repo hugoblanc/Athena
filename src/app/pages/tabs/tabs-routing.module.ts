@@ -24,12 +24,16 @@ const routes: Routes = [
         loadChildren: () => import('../construction/construction.module').then(m => m.ConstructionPageModule)
       },
       {
+        path: 'podcasts',
+        loadChildren: () => import('../podcasts/podcasts.module').then(m => m.PodcastsPageModule)
+      },
+      {
         path: 'informations',
         loadChildren: () => import('../informations/informations.module').then(m => m.InformationsPageModule)
       },
       {
         path: '',
-        redirectTo: 'feed',
+        redirectTo: 'podcasts',
         pathMatch: 'full'
       }
     ]
