@@ -1,20 +1,17 @@
-.podcast-player-container {
+.podcast-player-content {
+  --background: transparent;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
+  z-index: 10000; // Very high to cover everything including tab bar
+  --overflow: hidden; // Disable scroll
 }
 
 .gradient-background {
   background: linear-gradient(180deg, #2C5364 0%, #0F2027 100%);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -22,37 +19,105 @@
   z-index: -1;
 }
 
-.player-header {
-  width: 100%;
+.player-inner-container {
+  min-height: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  justify-content: flex-start;
+  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 80px); // Extra space for fab button
+  gap: 20px;
+}
 
-  ion-button {
-    --color: white;
-    font-size: 24px;
+#player-header {
+  --background: transparent;
+  --inner-padding-start: 0.5rem;
+  --inner-padding-end: 0.5rem;
+  --padding-start: 0;
+  --padding-end: 0.5rem;
+  --padding-top: env(safe-area-inset-top);
+  --padding-bottom: 0;
+  margin-left: 0px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  h2 {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
   }
 
-  ion-icon {
-    font-size: 28px;
+  ion-back-button {
+    --color: white;
+    --padding-bottom: 0.35rem;
+    --padding-top: 0.65rem;
+    --padding-end: 0.8rem;
+    --padding-start: 0.8rem;
+  }
+
+  .inline-back-button {
+    display: block;
+    margin-right: 0px;
   }
 }
 
 .artwork-container {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 40px 0;
+  margin: 0;
+}
+
+.artwork-link {
+  position: relative;
+  display: block;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.link-indicator {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(8px);
+
+  .link-icon {
+    font-size: 18px;
+    color: white;
+  }
+
+  .link-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+    white-space: nowrap;
+  }
 }
 
 .podcast-artwork {
-  width: 280px;
-  height: 280px;
+  max-width: 280px;
+  width: 100%;
+  max-height: 280px;
+  height: auto;
   border-radius: 12px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  object-fit: cover;
+  display: block;
+  object-fit: contain;
   animation: scaleIn 0.4s ease;
 }
 
@@ -69,7 +134,7 @@
 
 .podcast-info {
   text-align: center;
-  margin-bottom: 40px;
+  margin: 0;
   width: 100%;
 }
 
@@ -89,55 +154,74 @@
 
 .progress-container {
   width: 100%;
-  margin-bottom: 30px;
+  margin: 0;
 }
 
-.progress-slider {
+.progress-track {
+  position: relative;
   width: 100%;
   height: 4px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 2px;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+.progress-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: transparent;
   outline: none;
   -webkit-appearance: none;
   appearance: none;
-  margin-bottom: 8px;
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 16px;
     height: 16px;
-    background: #FC743A;
+    background: white;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(252, 116, 58, 0.5);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+    margin-top: -6px; // (16px - 4px) / 2 to center on track
   }
 
   &::-moz-range-thumb {
     width: 16px;
     height: 16px;
-    background: #FC743A;
+    background: white;
     border-radius: 50%;
     cursor: pointer;
     border: none;
-    box-shadow: 0 2px 8px rgba(252, 116, 58, 0.5);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
   }
 
   &::-webkit-slider-runnable-track {
+    width: 100%;
     height: 4px;
-    background: linear-gradient(to right, #FC743A 0%, #FC743A var(--progress, 0%), rgba(255, 255, 255, 0.2) var(--progress, 0%));
+    background: transparent;
     border-radius: 2px;
   }
 
   &::-moz-range-track {
+    width: 100%;
     height: 4px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
-  }
-
-  &::-moz-range-progress {
-    height: 4px;
-    background: #FC743A;
+    background: transparent;
     border-radius: 2px;
   }
 }
@@ -153,15 +237,41 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+}
+
+.control-button {
+  width: 56px;
+  height: 56px;
+  --background: rgba(255, 255, 255, 0.15);
+  --border-radius: 50%;
+  --box-shadow: none;
+  backdrop-filter: blur(10px);
+
+  ion-icon {
+    font-size: 24px;
+    color: white;
+  }
+
+  &:active:not(.disabled) {
+    transform: scale(0.95);
+  }
+
+  &.disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
 }
 
 .play-pause-button {
   width: 80px;
   height: 80px;
-  --background: #FC743A;
+  --background: rgba(255, 255, 255, 0.15);
   --border-radius: 50%;
-  --box-shadow: 0 8px 24px rgba(252, 116, 58, 0.4);
+  --box-shadow: none;
+  backdrop-filter: blur(10px);
 
   ion-icon {
     font-size: 40px;

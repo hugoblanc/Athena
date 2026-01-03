@@ -1,46 +1,68 @@
-<div class="podcast-player-container">
+<ion-content class="podcast-player-content">
   <div class="gradient-background"></div>
 
-  <!-- Header: back + share -->
-  <div class="player-header">
-    <ion-button fill="clear" (click)="onClose()">
-      <ion-icon name="chevron-down-outline"></ion-icon>
-    </ion-button>
-    <ion-button fill="clear" (click)="sharePodcast()">
-      <ion-icon name="share-social-outline"></ion-icon>
-    </ion-button>
-  </div>
+  <!-- Header: back button + title -->
+  <ion-item id="player-header" lines="none">
+    <ion-back-button slot="start" class="inline-back-button" [text]="''" (click)="onClose()"></ion-back-button>
+    <h2>{{ podcast.content.meta_media.title | decodeHtml }}</h2>
+  </ion-item>
 
-  <!-- Grande cover artwork (280x280px) -->
-  <div class="artwork-container">
-    <img [src]="podcast.content.meta_media.logo" class="podcast-artwork" [alt]="podcast.content.title">
-  </div>
+  <div class="player-inner-container">
+    <!-- Grande cover artwork (280x280px) -->
+    <div class="artwork-container">
+      <div class="artwork-link" (click)="navigateToArticle()">
+        <img [src]="getPodcastImage()" class="podcast-artwork" [alt]="podcast.content.title">
+        <div class="link-indicator">
+          <ion-icon name="link-outline" class="link-icon"></ion-icon>
+          <span class="link-text">Voir l'article</span>
+        </div>
+      </div>
+    </div>
 
-  <!-- Info podcast -->
-  <div class="podcast-info">
-    <h1 class="podcast-title">{{ podcast.content.title }}</h1>
-    <p class="podcast-source">{{ podcast.content.meta_media.title }}</p>
-  </div>
+    <!-- Info podcast -->
+    <div class="podcast-info">
+      <h1 class="podcast-title">{{ podcast.content.title | decodeHtml }}</h1>
+      <p class="podcast-source">{{ podcast.content.meta_media.title | decodeHtml }}</p>
+    </div>
 
-  <!-- Progress bar custom -->
-  <div class="progress-container">
-    <input type="range"
-           [min]="0"
-           [max]="duration"
-           [value]="currentTime"
-           (input)="onSeek($event)"
-           class="progress-slider">
-    <div class="time-labels">
-      <span>{{ currentTime | formatTime }}</span>
-      <span>{{ duration | formatTime }}</span>
+    <!-- Progress bar custom -->
+    <div class="progress-container">
+      <div class="progress-track">
+        <div class="progress-fill" [style.width.%]="getProgressPercentage()"></div>
+        <input type="range"
+               [min]="0"
+               [max]="duration"
+               [value]="currentTime"
+               (input)="onSeek($event)"
+               class="progress-slider">
+      </div>
+      <div class="time-labels">
+        <span>{{ currentTime | formatTime }}</span>
+        <span>{{ duration | formatTime }}</span>
+      </div>
+    </div>
+
+    <!-- Contrôles de lecture (Previous, Play/Pause, Next) -->
+    <div class="playback-controls">
+      <ion-button class="control-button" (click)="goToPreviousPodcast()" [disabled]="!previousPodcast" [class.disabled]="!previousPodcast">
+        <ion-icon name="play-skip-back"></ion-icon>
+      </ion-button>
+
+      <ion-button class="play-pause-button" (click)="togglePlayPause()" [disabled]="isLoading">
+        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+        <ion-icon *ngIf="!isLoading" [name]="isPlaying ? 'pause' : 'play'"></ion-icon>
+      </ion-button>
+
+      <ion-button class="control-button" (click)="goToNextPodcast()" [disabled]="!nextPodcast" [class.disabled]="!nextPodcast">
+        <ion-icon name="play-skip-forward"></ion-icon>
+      </ion-button>
     </div>
   </div>
 
-  <!-- Gros bouton play/pause central (80px) -->
-  <div class="playback-controls">
-    <ion-button class="play-pause-button" (click)="togglePlayPause()" [disabled]="isLoading">
-      <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
-      <ion-icon *ngIf="!isLoading" [name]="isPlaying ? 'pause' : 'play'"></ion-icon>
-    </ion-button>
-  </div>
-</div>
+  <!-- Floating share button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" color="primary" (click)="sharePodcast()">
+      <ion-icon name="share-social-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

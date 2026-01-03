@@ -7,6 +7,7 @@ import { PodcastsPage } from './podcasts.page';
 import { PodcastPlayerComponent } from './components/podcast-player/podcast-player.component';
 import { PodcastListItemComponent } from './components/podcast-list-item/podcast-list-item.component';
 import { FormatTimePipe } from './pipes/format-time.pipe';
+import { DecodeHtmlPipe } from '../../core/pipes/decode-html.pipe';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { FormatTimePipe } from './pipes/format-time.pipe';
     PodcastsPage,
     PodcastPlayerComponent,
     PodcastListItemComponent,
-    FormatTimePipe
+    FormatTimePipe,
+    DecodeHtmlPipe
   ]
 })
 export class PodcastsPageModule {}

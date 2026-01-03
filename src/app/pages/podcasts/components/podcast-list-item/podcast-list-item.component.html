@@ -1,14 +1,15 @@
 <div class="podcast-list-item">
   <div class="podcast-thumbnail">
-    <img [src]="podcast.content.meta_media.logo" [alt]="podcast.content.title">
+    <img [src]="getPodcastImage()" [alt]="podcast.content.title">
     <div class="play-overlay">
       <ion-icon name="play-circle"></ion-icon>
     </div>
+    <img [src]="podcast.content.meta_media.logo" [alt]="podcast.content.meta_media.title" class="media-badge">
   </div>
 
   <div class="podcast-details">
-    <h3 class="podcast-title">{{ podcast.content.title }}</h3>
-    <p class="podcast-source">{{ podcast.content.meta_media.title }}</p>
+    <h3 class="podcast-title">{{ podcast.content.title | decodeHtml }}</h3>
+    <p class="podcast-source">{{ podcast.content.meta_media.title | decodeHtml }}</p>
     <div class="podcast-meta">
       <span class="duration" *ngIf="podcast.duration">
         <ion-icon name="time-outline"></ion-icon>

@@ -27,4 +27,12 @@ export class PodcastService {
   getPodcastById(id: number): Observable<Podcast> {
     return this.http.get<Podcast>(`${PodcastService.BASE_URL}/${id}`);
   }
+
+  getNextPodcast(currentPodcastId: number): Observable<Podcast | null> {
+    return this.http.get<Podcast | null>(`${PodcastService.BASE_URL}/${currentPodcastId}/next`);
+  }
+
+  getPreviousPodcast(currentPodcastId: number): Observable<Podcast | null> {
+    return this.http.get<Podcast | null>(`${PodcastService.BASE_URL}/${currentPodcastId}/previous`);
+  }
 }

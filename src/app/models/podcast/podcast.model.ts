@@ -8,12 +8,19 @@ export interface Podcast {
   createdAt: Date;
   content: {
     id: number;
+    contentId: string;
     title: string;
     meta_media: {
       id: number;
       key: string;
       title: string;
       logo: string;
+    };
+    image?: {
+      id: number;
+      url: string;
+      width: number;
+      height: number;
     };
   };
 }

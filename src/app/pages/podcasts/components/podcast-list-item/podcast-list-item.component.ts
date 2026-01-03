@@ -8,4 +8,8 @@ import { Podcast } from '../../../../models/podcast/podcast.model';
 })
 export class PodcastListItemComponent {
   @Input() podcast!: Podcast;
+
+  getPodcastImage(): string {
+    return this.podcast.content.image?.url || this.podcast.content.meta_media.logo;
+  }
 }
