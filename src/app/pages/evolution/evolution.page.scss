@@ -1,0 +1,221 @@
+:host {
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 8px 20px 40px;
+  }
+
+  .kicker {
+    margin: 4px 0 0;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ion-color-primary);
+  }
+
+  .title {
+    margin: 16px 0 0;
+    font-size: 27px;
+    font-weight: 800;
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    color: var(--ion-text-color, #fff);
+  }
+
+  .subtitle {
+    margin: 12px 0 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .hero-img {
+    margin-top: 22px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+  }
+
+  // Titre et corps partagent la même couleur ; on ne différencie que par la
+  // taille/graisse → lecture uniforme et reposante.
+  .letter {
+    margin-top: 24px;
+    font-size: 16.5px;
+    line-height: 1.75;
+
+    p {
+      margin: 16px 0;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    strong {
+      color: var(--ion-text-color, #fff);
+      font-weight: 600;
+    }
+
+    h2 {
+      margin: 32px 0 4px;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ion-text-color, #fff);
+    }
+  }
+
+  .free-note {
+    margin-top: 24px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(var(--ion-color-primary-rgb), 0.1);
+    border: 1px solid rgba(var(--ion-color-primary-rgb), 0.3);
+
+    strong {
+      color: #fff;
+      font-weight: 700;
+    }
+  }
+
+  .keep {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .keep-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+
+      ion-icon {
+        font-size: 22px;
+        color: var(--ion-color-primary);
+        flex: 0 0 auto;
+        margin-top: 2px;
+      }
+
+      strong {
+        display: block;
+        font-size: 14.5px;
+        color: var(--ion-text-color, #fff);
+      }
+
+      span {
+        display: block;
+        margin-top: 2px;
+        font-size: 13px;
+        color: var(--ion-color-medium);
+      }
+    }
+  }
+
+  .cta-card {
+    margin-top: 28px;
+    padding: 20px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    h2 {
+      margin: 0;
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--ion-text-color, #fff);
+    }
+
+    p {
+      margin: 8px 0 16px;
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--ion-color-medium);
+    }
+
+    ion-button {
+      --border-radius: 12px;
+      margin: 0;
+    }
+  }
+
+  .steps {
+    list-style: none;
+    margin: 16px 0 18px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .num {
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ion-color-primary);
+      background: rgba(var(--ion-color-primary-rgb), 0.15);
+    }
+
+    strong {
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+
+  .sign {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    .sign-photo {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      flex: 0 0 auto;
+    }
+
+    .sign-text {
+      display: flex;
+      flex-direction: column;
+
+      strong {
+        font-size: 16px;
+        color: var(--ion-text-color, #fff);
+      }
+
+      span {
+        margin-top: 2px;
+        font-size: 13px;
+        color: var(--ion-color-medium);
+      }
+    }
+  }
+}

@@ -17,31 +17,10 @@
       </div>
     </div>
 
-    <p class="why" *ngIf="showWhy">
-      Athena passe à une <strong>version web unique</strong>, installable sur
-      votre écran d'accueil comme une app. Une seule version à maintenir, des
-      mises à jour instantanées, et <strong>vos identifiants restent les
-      mêmes</strong>. L'app actuelle continuera de fonctionner le temps de la
-      transition.
-    </p>
-
     <div class="actions">
-      <ion-button
-        size="small"
-        fill="solid"
-        color="primary"
-        (click)="openPwa(banner.ctaUrl)"
-      >
+      <ion-button size="small" fill="solid" color="primary" (click)="discover()">
         {{ banner.ctaLabel }}
-        <ion-icon slot="end" name="open-outline"></ion-icon>
-      </ion-button>
-      <ion-button
-        size="small"
-        fill="clear"
-        color="medium"
-        (click)="toggleWhy()"
-      >
-        {{ showWhy ? 'Masquer' : 'Pourquoi ?' }}
+        <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
       </ion-button>
     </div>
   </div>

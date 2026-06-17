@@ -1,0 +1,154 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="wrap">
+    <!-- Hero -->
+    <p class="kicker">Athena évolue</p>
+    <h1 class="title">Athena entre dans une nouvelle ère</h1>
+
+    <div class="hero-img">
+      <img src="assets/evolution-hero.jpg" alt="Athena entre dans une nouvelle ère" />
+    </div>
+
+    <!-- Lettre -->
+    <div class="letter">
+      <p>Bonjour,</p>
+      <p>
+        Si vous lisez ça, c'est que vous utilisez Athena sur votre téléphone.
+        Alors merci. Cette appli n'existerait pas sans vous, et je tenais à vous
+        expliquer moi-même, simplement, où on va.
+      </p>
+
+      <h2>Reprendre un peu de liberté</h2>
+      <p>
+        Pour mettre une appli sur votre téléphone, il faut passer par les
+        magasins d'Apple et de Google. Ce sont eux qui décident, qui valident,
+        qui prennent leur commission. Pour un projet indépendant comme Athena,
+        qui rassemble des médias libres, ça finissait par coincer.
+        <strong>J'avais envie de m'en affranchir.</strong>
+      </p>
+
+      <h2>Aujourd'hui, le web suffit</h2>
+      <p>
+        Pendant longtemps, un site web faisait déjà beaucoup. Mais pour
+        certaines choses, comme recevoir des notifications, une appli installée
+        sur le téléphone restait plus pratique. C'est pour ça qu'Athena en était
+        une. Aujourd'hui, ce détour n'est plus nécessaire : un site peut
+        <strong>s'ajouter à votre écran d'accueil comme une vraie appli</strong>,
+        envoyer des notifications, lire un podcast en arrière-plan, et continuer
+        à marcher même quand le réseau faiblit.
+      </p>
+
+      <h2>Une seule version d'Athena</h2>
+      <p>
+        Jusqu'ici je faisais tourner trois versions en même temps : Android,
+        iPhone et le site. Seul, bénévolement, sur mon temps libre. C'était
+        devenu ingérable, et ça freinait le reste. En ne gardant qu'une seule
+        version web, je peux enfin <strong>remettre vraiment de l'énergie dans
+        Athena</strong>, et m'occuper de le faire grandir plutôt que de le
+        rafistoler.
+      </p>
+
+      <h2>Ce qui change pour vous</h2>
+      <p>
+        La version que vous avez là est la
+        <strong>dernière que je mettrai sur les stores</strong>. Ensuite, tout
+        se passe sur le site, que vous pourrez installer comme une appli. Vous
+        n'y perdez rien. C'est même là que les prochaines nouveautés vont
+        arriver.
+      </p>
+    </div>
+
+    <!-- Rappel : toujours gratuit -->
+    <div class="free-note">
+      Et ça reste <strong>100 % gratuit</strong>. Sans pub, sans traçage, sans
+      revente de vos données. Comme avant, en mieux.
+    </div>
+
+    <!-- Ce que vous gardez -->
+    <div class="keep">
+      <div class="keep-item">
+        <ion-icon name="headset-outline"></ion-icon>
+        <div>
+          <strong>L'écoute audio</strong>
+          <span>Articles lus et podcasts, en arrière-plan.</span>
+        </div>
+      </div>
+      <div class="keep-item">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <div>
+          <strong>Les notifications</strong>
+          <span>Les alertes des médias que vous suivez.</span>
+        </div>
+      </div>
+      <div class="keep-item">
+        <ion-icon name="sparkles-outline"></ion-icon>
+        <div>
+          <strong>Et bien plus</strong>
+          <span>Les nouveautés ne sortiront plus que là.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA + guide d'installation adaptatif -->
+    <div class="cta-card">
+      <h2>Installer Athena, en 30 secondes</h2>
+      <p>
+        On ouvre le site dans votre navigateur, puis vous l'ajoutez à votre
+        écran d'accueil. Vous gardez la même icône, vos identifiants, l'audio et
+        les notifications.
+      </p>
+
+      <ol class="steps" *ngIf="isIos">
+        <li>
+          <span class="num">1</span>
+          <span>Une fois sur le site dans Safari, touchez l'icône
+            <strong>Partager</strong> en bas de l'écran.</span>
+        </li>
+        <li>
+          <span class="num">2</span>
+          <span>Choisissez <strong>« Sur l'écran d'accueil »</strong>.</span>
+        </li>
+        <li>
+          <span class="num">3</span>
+          <span>Touchez <strong>« Ajouter »</strong>. C'est fait.</span>
+        </li>
+      </ol>
+
+      <ol class="steps" *ngIf="!isIos">
+        <li>
+          <span class="num">1</span>
+          <span>Une fois sur le site, touchez <strong>« Installer Athena »</strong>
+            quand Chrome le propose (ou le menu <strong>⋮</strong>).</span>
+        </li>
+        <li>
+          <span class="num">2</span>
+          <span>Choisissez <strong>« Installer l'application »</strong>.</span>
+        </li>
+        <li>
+          <span class="num">3</span>
+          <span>Confirmez. L'icône s'ajoute à votre écran d'accueil.</span>
+        </li>
+      </ol>
+
+      <ion-button expand="block" color="primary" (click)="openWeb()">
+        Ouvrir le site et installer
+        <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <div class="sign">
+      <img src="assets/hugo.jpg" alt="Hugo Blanc" class="sign-photo" />
+      <div class="sign-text">
+        <strong>Hugo Blanc</strong>
+        <span>Je développe Athena seul, bénévolement.</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

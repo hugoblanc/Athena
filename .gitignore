@@ -13,6 +13,9 @@ log.txt
 npm-debug.log*
 build.json
 athena.keystore
+*.jks
+*.keystore
+keystore.properties
 
 .idea/
 .ionic/
