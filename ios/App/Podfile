@@ -25,12 +25,36 @@ target 'App' do
   capacitor_pods
 end
 
+# Xcode 16/26 : AFNetworking (embarqué par cordova-plugin-advanced-http) importe
+# le header système PRIVÉ <netinet6/in6.h>, désormais rejeté à la compilation.
+# On retire cet import ; <netinet/in.h> (juste au-dessus) fournit déjà les types
+# IPv6. Idempotent et ré-appliqué à chaque pod install (donc après cap sync).
+def patch_afnetworking_private_header
+  sources = File.expand_path('../capacitor-cordova-ios-plugins/sources', __dir__)
+  return unless Dir.exist?(sources)
+  Dir.glob(File.join(sources, '**', '*.{m,h}')).each do |path|
+    content = File.read(path)
+    next unless content.include?('#import <netinet6/in6.h>')
+    File.write(path, content.gsub(/^[ \t]*#import <netinet6\/in6\.h>[ \t]*\r?\n/, ''))
+  end
+end
+
 post_install do |installer|
   assertDeploymentTarget(installer)
+  patch_afnetworking_private_header
 
   # Fix Xcode 15 DT_TOOLCHAIN_DIR issue
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
+      # Xcode 16/26 : le Module Verifier compile chaque module de framework à
+      # part pour le vérifier, ce qui fait échouer AFNetworking (embarqué par
+      # cordova-plugin-advanced-http) sur le header système privé
+      # `netinet6/in6.h`. On désactive le verifier + on autorise les includes
+      # non modulaires. Cf. doc Apple "framework module issues".
+      config.build_settings['ENABLE_MODULE_VERIFIER'] = 'NO'
+      config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+
+      # Fix Xcode 15 DT_TOOLCHAIN_DIR issue
       xcconfig_path = config.base_configuration_reference.real_path
       xcconfig = File.read(xcconfig_path)
       xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
