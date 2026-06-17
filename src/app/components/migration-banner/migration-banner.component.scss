@@ -1,0 +1,104 @@
+.migration-banner {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  // Au-dessus de la tab-bar (icônes seules ≈ 50px) + safe-area iOS.
+  bottom: calc(58px + env(safe-area-inset-bottom, 0px));
+  z-index: 100;
+
+  padding: 14px 14px 12px;
+  border-radius: 16px;
+  background: var(--ion-card-background, var(--ion-background-color, #1c1c1e));
+  border: 1px solid var(--ion-color-step-150, rgba(255, 255, 255, 0.12));
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+
+  animation: banner-rise 0.28s ease-out both;
+}
+
+@keyframes banner-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dismiss {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  color: var(--ion-color-medium, #8e8e93);
+  font-size: 20px;
+}
+
+.content {
+  padding-right: 24px; // place pour le bouton fermer
+}
+
+.headline {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.lead-icon {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  font-size: 22px;
+  color: var(--ion-color-primary, #fc743a);
+}
+
+.texts {
+  min-width: 0;
+}
+
+.title {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ion-text-color, #fff);
+}
+
+.message {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ion-color-medium, #aeaeb2);
+}
+
+.why {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ion-color-medium, #aeaeb2);
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--ion-color-step-100, rgba(255, 255, 255, 0.06));
+
+  strong {
+    color: var(--ion-text-color, #fff);
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+
+  ion-button {
+    margin: 0;
+    --border-radius: 10px;
+  }
+}

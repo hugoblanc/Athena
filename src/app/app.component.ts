@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { ListMetaMedias } from './models/meta-media/list-meta-medias';
 import { MetaMediaService } from './provider/meta-media/meta-media.service';
 import { NotificationService } from './provider/notification.service';
+import { AppConfigService } from './provider/app-config.service';
 import { StatusBar, Style } from '@capacitor/status-bar';
 
 /**
@@ -26,6 +27,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private metaMediaService: MetaMediaService,
     private notificationService: NotificationService,
+    private appConfigService: AppConfigService,
   ) {
     this.initializeApp();
   }
@@ -34,6 +36,9 @@ export class AppComponent {
 
   initializeApp() {
     StatusBar.setOverlaysWebView({ overlay: true })
+
+    // Config distante (bannière de migration vers la PWA) — non bloquant.
+    this.appConfigService.init();
 
     this.metaMediaService.listMetaMedia$
       .subscribe(async () => {

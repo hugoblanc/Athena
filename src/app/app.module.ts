@@ -15,9 +15,10 @@ import { MetaMediaService } from "./provider/meta-media/meta-media.service";
 import { initializeAppFactory } from "./core/initializer/media.initializer";
 import { Media } from "@awesome-cordova-plugins/media/ngx";
 import { AuthInterceptor } from "./core/interceptors/auth.interceptor";
+import { MigrationBannerComponent } from "./components/migration-banner/migration-banner.component";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MigrationBannerComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
