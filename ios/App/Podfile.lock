@@ -4,6 +4,13 @@ PODS:
   - CapacitorApp (6.0.2):
     - Capacitor
   - CapacitorCordova (6.2.0)
+  - CapacitorFirebaseAuthentication (6.3.1):
+    - Capacitor
+    - CapacitorFirebaseAuthentication/Lite (= 6.3.1)
+    - FirebaseAuth (~> 11.0)
+  - CapacitorFirebaseAuthentication/Lite (6.3.1):
+    - Capacitor
+    - FirebaseAuth (~> 11.0)
   - CapacitorFirebaseMessaging (6.2.0):
     - Capacitor
     - FirebaseMessaging (~> 11.0)
@@ -17,10 +24,23 @@ PODS:
     - Capacitor
   - CordovaPlugins (6.2.0):
     - CapacitorCordova
+  - FirebaseAppCheckInterop (11.15.0)
+  - FirebaseAuth (11.15.0):
+    - FirebaseAppCheckInterop (~> 11.0)
+    - FirebaseAuthInterop (~> 11.0)
+    - FirebaseCore (~> 11.15.0)
+    - FirebaseCoreExtension (~> 11.15.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.1)
+    - GoogleUtilities/Environment (~> 8.1)
+    - GTMSessionFetcher/Core (< 5.0, >= 3.4)
+    - RecaptchaInterop (~> 101.0)
+  - FirebaseAuthInterop (11.15.0)
   - FirebaseCore (11.15.0):
     - FirebaseCoreInternal (~> 11.15.0)
     - GoogleUtilities/Environment (~> 8.1)
     - GoogleUtilities/Logger (~> 8.1)
+  - FirebaseCoreExtension (11.15.0):
+    - FirebaseCore (~> 11.15.0)
   - FirebaseCoreInternal (11.15.0):
     - "GoogleUtilities/NSData+zlib (~> 8.1)"
   - FirebaseInstallations (11.15.0):
@@ -64,17 +84,20 @@ PODS:
   - GoogleUtilities/UserDefaults (8.1.0):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
+  - GTMSessionFetcher/Core (4.5.0)
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
     - nanopb/encode (= 3.30910.0)
   - nanopb/decode (3.30910.0)
   - nanopb/encode (3.30910.0)
   - PromisesObjC (2.4.0)
+  - RecaptchaInterop (101.0.0)
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorFirebaseAuthentication (from `../../node_modules/@capacitor-firebase/authentication`)"
   - "CapacitorFirebaseMessaging (from `../../node_modules/@capacitor-firebase/messaging`)"
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
@@ -84,14 +107,20 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - FirebaseAppCheckInterop
+    - FirebaseAuth
+    - FirebaseAuthInterop
     - FirebaseCore
+    - FirebaseCoreExtension
     - FirebaseCoreInternal
     - FirebaseInstallations
     - FirebaseMessaging
     - GoogleDataTransport
     - GoogleUtilities
+    - GTMSessionFetcher
     - nanopb
     - PromisesObjC
+    - RecaptchaInterop
 
 EXTERNAL SOURCES:
   Capacitor:
@@ -100,6 +129,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/app"
   CapacitorCordova:
     :path: "../../node_modules/@capacitor/ios"
+  CapacitorFirebaseAuthentication:
+    :path: "../../node_modules/@capacitor-firebase/authentication"
   CapacitorFirebaseMessaging:
     :path: "../../node_modules/@capacitor-firebase/messaging"
   CapacitorHaptics:
@@ -117,21 +148,28 @@ SPEC CHECKSUMS:
   Capacitor: 05d35014f4425b0740fc8776481f6a369ad071bf
   CapacitorApp: e1e6b7d05e444d593ca16fd6d76f2b7c48b5aea7
   CapacitorCordova: b33e7f4aa4ed105dd43283acdd940964374a87d9
+  CapacitorFirebaseAuthentication: 2c43a65f88e30842dbf83f38dfb25d8076dce529
   CapacitorFirebaseMessaging: 4aad37add1730f4c9ce069666a9550ea4a08abaf
   CapacitorHaptics: 4fc15afe22b123d093e6ace24d95e8e3b1f261b9
   CapacitorKeyboard: e89189ad398b815b6ff7e52271f0fb4f911a0a0a
   CapacitorShare: d2a742baec21c8f3b92b361a2fbd2401cdd8288e
   CapacitorStatusBar: b16799a26320ffa52f6c8b01737d5a95bbb8f3eb
   CordovaPlugins: 656fdd2788f3a1b774f2d30ab621153497830101
+  FirebaseAppCheckInterop: 06fe5a3799278ae4667e6c432edd86b1030fa3df
+  FirebaseAuth: a6575e5fbf46b046c58dc211a28a5fbdd8d4c83b
+  FirebaseAuthInterop: 7087d7a4ee4bc4de019b2d0c240974ed5d89e2fd
   FirebaseCore: efb3893e5b94f32b86e331e3bd6dadf18b66568e
+  FirebaseCoreExtension: edbd30474b5ccf04e5f001470bdf6ea616af2435
   FirebaseCoreInternal: 9afa45b1159304c963da48addb78275ef701c6b4
   FirebaseInstallations: 317270fec08a5d418fdbc8429282238cab3ac843
   FirebaseMessaging: 3b26e2cee503815e01c3701236b020aa9b576f09
   GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
+  GTMSessionFetcher: fc75fc972958dceedee61cb662ae1da7a83a91cf
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
+  RecaptchaInterop: 11e0b637842dfb48308d242afc3f448062325aba
 
-PODFILE CHECKSUM: 34eccc2ade6ec754a99091788c8ee8b2963709eb
+PODFILE CHECKSUM: c9d02944c5dd72b6df7189f1edf83b7527508e7a
 
 COCOAPODS: 1.16.2
