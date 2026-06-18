@@ -11,20 +11,23 @@ import { map } from 'rxjs/operators';
 })
 export class GithubService {
   public static BASE_ATHENA_URL = environment.apiUrl;
-  private static BASE_GITHUB_URL = "https://api.github.com/repos/";
-  private static ATHENA = "hugoblanc/Athena/";
   private static ISSUE = "issues";
   private static CLAP = "/clap";
 
-  private static FULL_GITHUB_URL =
-    GithubService.BASE_GITHUB_URL + GithubService.ATHENA + GithubService.ISSUE;
+  /**
+   * Source des idées : API Athena (BDD) — migration depuis les GitHub issues.
+   * On ne tape plus l'API GitHub en direct ; la liste, le détail et le vote
+   * passent tous par l'API Athena (cf. athena_api/src/idea).
+   */
+  private static FULL_ATHENA_ISSUE_URL =
+    GithubService.BASE_ATHENA_URL + GithubService.ISSUE;
 
   constructor(private readonly http: HttpService, private readonly storage: StorageService) { }
 
   getIssuesByLabel(label: string): Observable<Issue[]> {
 
     return forkJoin([
-      this.http.get<Issue[]>(GithubService.FULL_GITHUB_URL + `?labels=${label}&per_page=100`),
+      this.http.get<Issue[]>(GithubService.FULL_ATHENA_ISSUE_URL + `?labels=${label}`),
       this.storage.get<number[]>(StorageService.CLAPPED_ISSUE)
     ]).pipe(
       map(([issues, alreadyClappedIssuesId]) => {
@@ -39,7 +42,7 @@ export class GithubService {
   }
 
   getIssueByNumber(issueNumber: number): Observable<Issue> {
-    return this.http.get(GithubService.FULL_GITHUB_URL + "/" + issueNumber);
+    return this.http.get(GithubService.FULL_ATHENA_ISSUE_URL + "/" + issueNumber);
   }
 
   postIssue(issue: Issue): Observable<Issue> {
