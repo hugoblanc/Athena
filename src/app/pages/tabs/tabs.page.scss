@@ -1,9 +1,12 @@
 ion-tabs {
-  background-color: #DDDDDD;
+  background-color: transparent;
 }
 
 ion-tab-bar {
-  --background: var(--ion-color-dark-glass);
+  --background: rgba(15, 32, 39, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   margin: 1.5%;
   padding: 0;
