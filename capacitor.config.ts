@@ -4,7 +4,6 @@ const config: CapacitorConfig = {
   appId: "com.open.athena",
   appName: "athena",
   webDir: "www",
-  bundledWebRuntime: false,
   cordova: {
     preferences: {
       ScrollEnabled: "true",
@@ -32,11 +31,6 @@ const config: CapacitorConfig = {
     FirebaseAuthentication: {
       skipNativeAuth: false,
       providers: ["google.com"],
-      android: {
-        googleAuthOptions: {
-          serverClientId: "468962553465-11ubko5h3umsvsf6dme4sa7nbsali9hv.apps.googleusercontent.com",
-        },
-      },
     },
   },
 };

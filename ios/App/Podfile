@@ -18,6 +18,7 @@ def capacitor_pods
   pod 'CapacitorKeyboard', :path => '../../node_modules/@capacitor/keyboard'
   pod 'CapacitorShare', :path => '../../node_modules/@capacitor/share'
   pod 'CapacitorStatusBar', :path => '../../node_modules/@capacitor/status-bar'
+  pod 'MediagridCapacitorNativeAudio', :path => '../../node_modules/@mediagrid/capacitor-native-audio'
   pod 'CordovaPlugins', :path => '../capacitor-cordova-ios-plugins'
 end
 
