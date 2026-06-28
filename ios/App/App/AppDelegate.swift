@@ -1,7 +1,6 @@
 import UIKit
 import Capacitor
 import FirebaseCore
-import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -11,15 +10,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
 
-        // Permet à l'audio HTML5 (<audio> + MediaSession) de continuer en
-        // arrière-plan / écran verrouillé. Couplé à UIBackgroundModes "audio"
-        // dans Info.plist. Remplace ce que faisait l'ancien plugin Cordova media.
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            print("Failed to configure AVAudioSession: \(error)")
-        }
+        // L'AVAudioSession (catégorie .playback, mode .spokenAudio, activation
+        // par play/pause et gestion des interruptions) est gérée par le plugin
+        // @mediagrid/capacitor-native-audio. La configurer ici entrerait en
+        // conflit avec le plugin. Le background audio repose sur la clé
+        // UIBackgroundModes "audio" d'Info.plist.
 
         return true
     }
