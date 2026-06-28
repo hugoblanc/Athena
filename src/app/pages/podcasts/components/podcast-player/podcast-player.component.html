@@ -61,8 +61,9 @@
 
   <!-- Floating share button -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button size="small" color="primary" (click)="sharePodcast()">
-      <ion-icon name="share-social-outline"></ion-icon>
-    </ion-fab-button>
+    <ion-button class="share-fab" shape="round" color="primary" (click)="sharePodcast()">
+      <ion-icon name="share-social-outline" slot="start"></ion-icon>
+      Partager
+    </ion-button>
   </ion-fab>
 </ion-content>

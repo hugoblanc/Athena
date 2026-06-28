@@ -243,3 +243,17 @@ hr{
   background-color: rgba(106, 106, 106, 0.295);
   height: 2px;
 }
+
+// === Bouton de partage flottant (FAB étiqueté) ===
+// Pilule « Partager » avec icône, plus explicite qu'une icône seule. Partagée
+// par content-details et le player podcast (cf. <ion-fab>).
+.share-fab {
+  --border-radius: 999px;
+  --box-shadow: 0 4px 14px rgba(252, 116, 58, 0.4);
+  --padding-start: 16px;
+  --padding-end: 18px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  height: 44px;
+}
