@@ -3,102 +3,55 @@ ion-tabs {
 }
 
 ion-tab-bar {
-  // === Liquid glass (vraie réfraction) ===
-  // Le verre est TRANSPARENT (--background: transparent). L'effet vient de deux
-  // pseudo-éléments :
-  //   ::after  → réfraction : capture le fond (backdrop-filter) puis le déforme
-  //              avec le filtre SVG #liquid-glass (feDisplacementMap). Chromium
-  //              uniquement → sur iOS/WebKit, il ne reste que le rebord.
-  //   ::before → rebord spéculaire (inset box-shadows blancs) : la lumière qui
-  //              accroche le verre. Fonctionne partout.
-  --background: transparent;
+  // === Barre flottante solide ===
+  // Plus de verre/réfraction SVG : ça ne marche pas sur iOS/WebKit (le
+  // feDisplacementMap n'y déforme pas le backdrop). On part sur une dalle
+  // opaque, simple et identique partout : surface Signal + bordure fine +
+  // ombre portée pour la faire flotter au-dessus du contenu.
+  --background: var(--ath-surface);
   --border: 0;
-  background: transparent;
-  border: 0;
-  border-radius: 28px;
+  background: var(--ath-surface);
+  border: 1px solid var(--ath-border);
+  border-radius: 22px;
   margin: 0 12px;
-  padding: 7px 4px 6px;
+  padding: 6px 4px;
   position: fixed;
   left: 0;
   right: 0;
   bottom: calc(10px + env(safe-area-inset-bottom));
-  height: 68px;
+  height: 64px;
   overflow: visible;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
-
-  // Réfraction du contenu derrière la barre + verre légèrement fumé
-  // (teinte sombre) pour la lisibilité des icônes.
-  &::after {
-    content: "";
-    position: absolute;
-    // on déborde de 10px puis on rogne à la zone visible : les bords déformés
-    // (déchirés par le displacement) tombent hors du clip → bord net.
-    inset: -10px;
-    z-index: -1;
-    border-radius: 38px;
-    // Pas de teinte sombre ici : sur le calque déformé, son bord se distord et
-    // « bugge » en haut. La lisibilité passe par l'ombre forte des icônes.
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
-    filter: url("#liquid-glass");
-    clip-path: inset(10px round 28px);
-    isolation: isolate;
-    pointer-events: none;
-  }
-
-  // Rebord spéculaire (le « verre » qui accroche la lumière)
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    border-radius: 28px;
-    pointer-events: none;
-    box-shadow:
-      inset 2px 2px 0 -1px rgba(255, 255, 255, 0.7),
-      inset -2px -2px 0 -1px rgba(255, 255, 255, 0.45),
-      inset 0 0 4px 1px rgba(255, 255, 255, 0.35);
-  }
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.45),
+    0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 ion-tab-button {
-  // Sur le verre, les inactifs sont clairs (pas dim) pour rester lisibles ;
-  // l'ombre portée garantit le contraste quel que soit le contenu derrière.
-  --color: rgba(255, 255, 255, 0.72);
+  // Fond solide → plus besoin d'ombres : contraste simple, inactif en gris
+  // dim, actif en orange (--color-selected).
+  --color: var(--ath-text-dim);
   --color-selected: var(--ath-primary);
   --background: transparent;
   --background-focused: transparent;
-  --ripple-color: transparent;
+  --ripple-color: var(--ath-primary);
   position: relative;
   background: transparent;
 
   ion-icon {
     font-size: 23px;
-    margin-bottom: 4px;
-    transition: transform .15s ease;
-    // ombre forte (halo sombre) : seule garante de la lisibilité puisque le
-    // verre n'est plus assombri → tient sur un fond clair comme sombre.
-    filter:
-      drop-shadow(0 1px 2px rgba(0, 0, 0, 1))
-      drop-shadow(0 0 4px rgba(0, 0, 0, 1))
-      drop-shadow(0 0 8px rgba(0, 0, 0, 0.85))
-      drop-shadow(0 0 14px rgba(0, 0, 0, 0.6));
+    margin-bottom: 3px;
+    transition: transform .15s ease, color .15s ease;
   }
 
   ion-label {
     font-family: var(--ath-font-ui);
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: .01em;
     margin: 0;
-    text-shadow:
-      0 1px 2px rgba(0, 0, 0, 1),
-      0 0 4px rgba(0, 0, 0, 1),
-      0 0 8px rgba(0, 0, 0, 0.85),
-      0 0 14px rgba(0, 0, 0, 0.6);
   }
 
-  // Actif : icône + label en orange (via --color-selected), label en gras.
+  // Actif : icône + label en orange (via --color-selected), petit lift + gras.
   &.tab-selected ion-icon {
     transform: translateY(-1px);
   }
