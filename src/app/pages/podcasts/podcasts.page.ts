@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Podcast } from '../../models/podcast/podcast.model';
 import { PodcastService } from '../../provider/podcast/podcast.service';
+
+/** Classe posée sur <body> quand le player plein écran est ouvert : masque la
+ *  tab bar (qui vit dans le shell parent) pour un vrai Now Playing plein écran. */
+const PLAYER_OPEN_CLASS = 'podcast-player-open';
 
 @Component({
   selector: 'app-podcasts',
   templateUrl: './podcasts.page.html',
   styleUrls: ['./podcasts.page.scss'],
 })
-export class PodcastsPage implements OnInit {
+export class PodcastsPage implements OnInit, OnDestroy {
   podcasts: Podcast[] = [];
   isLoading = false;
   currentPage = 1;
@@ -58,11 +62,17 @@ export class PodcastsPage implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    // Filet de sécurité : ne jamais laisser la tab bar masquée si on quitte la page.
+    this.setPlayerOpen(false);
+  }
+
   loadPodcastByContentId(contentId: number) {
     this.podcastService.getPodcastByContentId(contentId).subscribe({
       next: (podcast) => {
         if (podcast) {
           this.selectedPodcast = podcast;
+          this.setPlayerOpen(true);
         }
       },
       error: (error) => {
@@ -73,10 +83,16 @@ export class PodcastsPage implements OnInit {
 
   onPodcastClick(podcast: Podcast) {
     this.selectedPodcast = podcast;
+    this.setPlayerOpen(true);
   }
 
   onPlayerClose() {
     this.selectedPodcast = null;
+    this.setPlayerOpen(false);
+  }
+
+  private setPlayerOpen(open: boolean) {
+    document.body.classList.toggle(PLAYER_OPEN_CLASS, open);
   }
 
   loadMore(event: any) {

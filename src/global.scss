@@ -33,6 +33,15 @@ a {
   color: var(--ath-primary);
 }
 
+// Player podcast plein écran : on masque la tab bar du shell (sinon elle flotte
+// par-dessus les contrôles et le bouton partage).
+body.podcast-player-open ion-tab-bar {
+  transform: translateY(160%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
 .masonry-item {
   margin: 10px;
 }
