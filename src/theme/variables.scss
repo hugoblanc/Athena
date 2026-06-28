@@ -45,7 +45,9 @@
   // Layout
   --ion-padding: 16px;
   --ath-gutter: 20px;
-  --ath-top-padding: 8px;
+  // Inclut la safe-area (barre de notif Android/iOS) : la status bar overlay la
+  // WebView (edge-to-edge), donc le contenu doit se décaler dessous.
+  --ath-top-padding: calc(env(safe-area-inset-top) + 8px);
   --ath-bottom-padding: 120px; // place pour la tab bar flottante + player
 
   // ---------------------------------------------------------------------------

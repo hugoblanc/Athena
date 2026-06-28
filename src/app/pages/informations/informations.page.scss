@@ -1,6 +1,6 @@
 :host {
   ion-content {
-    --padding-top: 2rem;
+    --padding-top: calc(2rem + env(safe-area-inset-top));
 
     .header {
       text-align: center;

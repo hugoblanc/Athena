@@ -3,7 +3,7 @@
     display: none;
   }
   ion-content {
-    --padding-top: 50px;
+    --padding-top: calc(50px + env(safe-area-inset-top));
     --color: white;
   }
 }
