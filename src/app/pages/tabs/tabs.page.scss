@@ -28,39 +28,23 @@ ion-tab-button {
   background: transparent;
 
   ion-icon {
-    font-size: 22px;
-    z-index: 1;
-    margin-bottom: 3px;
+    font-size: 23px;
+    margin-bottom: 4px;
     transition: transform .15s ease;
   }
 
   ion-label {
     font-family: var(--ath-font-ui);
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: .01em;
-    z-index: 1;
     margin: 0;
   }
 
-  // Pastille orange douce (carré arrondi) derrière l'icône active
-  &::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 5px;
-    width: 40px;
-    height: 34px;
-    border-radius: 11px;
-    background: var(--ath-primary);
-    opacity: 0;
-    transform: translateX(-50%) scale(.7);
-    transition: opacity .18s ease, transform .18s ease;
-  }
-
-  &.tab-selected::before {
-    opacity: .15;
-    transform: translateX(-50%) scale(1);
+  // Actif : icône + label en orange (via --color-selected), label en gras.
+  // Pas de pastille (trop fragile à aligner avec l'icône + le label).
+  &.tab-selected ion-icon {
+    transform: translateY(-1px);
   }
 
   &.tab-selected ion-label {
