@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Podcast } from '../../models/podcast/podcast.model';
 import { PodcastService } from '../../provider/podcast/podcast.service';
+import { SecondaryMenuService } from '../../provider/secondary-menu.service';
 
 /** Classe posée sur <body> quand le player plein écran est ouvert : masque la
  *  tab bar (qui vit dans le shell parent) pour un vrai Now Playing plein écran. */
@@ -22,8 +23,13 @@ export class PodcastsPage implements OnInit, OnDestroy {
 
   constructor(
     private readonly podcastService: PodcastService,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly secondaryMenu: SecondaryMenuService
   ) {}
+
+  openMoreMenu() {
+    this.secondaryMenu.open();
+  }
 
   ngOnInit() {
     this.loadPodcasts();

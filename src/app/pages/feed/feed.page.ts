@@ -5,6 +5,7 @@ import { StorageService } from "../../provider/helper/storage.service";
 import { MixedContent } from "../../provider/content/mixed-content";
 import { MixedContentService } from "../../provider/content/mixed-content.service";
 import { FeedFilterModalComponent } from "./feed-filter-modal/feed-filter-modal.component";
+import { SecondaryMenuService } from "../../provider/secondary-menu.service";
 
 @Component({
   selector: "app-feed",
@@ -27,8 +28,13 @@ export class FeedPage implements OnInit {
   constructor(
     public mixedContentService: MixedContentService,
     private modalController: ModalController,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private secondaryMenu: SecondaryMenuService
   ) { }
+
+  openMoreMenu() {
+    this.secondaryMenu.open();
+  }
 
   ngOnInit(): void {
     this.loadFilterPreferences();

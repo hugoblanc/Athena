@@ -4,6 +4,7 @@ import { Issue } from '../../models/github/github';
 import { GithubService } from '../../provider/github.service';
 import { IssueModalPage } from './components/issue/issue.modal';
 import { StorageService } from '../../provider/helper/storage.service';
+import { SecondaryMenuService } from '../../provider/secondary-menu.service';
 import { tap, mergeMap } from 'rxjs/operators';
 
 @Component({
@@ -21,8 +22,13 @@ export class ConstructionPage implements OnInit {
   constructor(
     private readonly githubService: GithubService,
     private readonly modalController: ModalController,
-    private readonly storage: StorageService
+    private readonly storage: StorageService,
+    private readonly secondaryMenu: SecondaryMenuService
   ) { }
+
+  openMoreMenu() {
+    this.secondaryMenu.open();
+  }
 
   ngOnInit() {
     this.initIssuesByType(this.issueType);

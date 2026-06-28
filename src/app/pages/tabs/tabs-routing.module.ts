@@ -33,7 +33,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'podcasts',
+        redirectTo: 'feed',
         pathMatch: 'full'
       }
     ]

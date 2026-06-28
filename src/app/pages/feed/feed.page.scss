@@ -42,4 +42,15 @@
       border: 2px solid var(--ath-bg);
     }
   }
+
+  .more-button {
+    height: 44px;
+    --padding-start: 8px;
+    --padding-end: 8px;
+
+    ion-icon {
+      font-size: 1.35rem;
+      color: var(--ath-text-dim);
+    }
+  }
 }

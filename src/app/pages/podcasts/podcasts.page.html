@@ -1,6 +1,11 @@
 <ion-header *ngIf="!selectedPodcast">
   <ion-toolbar>
     <ion-title>Podcasts</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openMoreMenu()" aria-label="Plus">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

@@ -6,14 +6,14 @@ ion-tab-bar {
   --background: var(--ath-surface);
   --border: 0;
   border: 1px solid var(--ath-border);
-  border-radius: 22px;
+  border-radius: 24px;
   margin: 0 12px;
-  padding: 4px;
+  padding: 7px 4px 6px;
   position: fixed;
   left: 0;
   right: 0;
   bottom: calc(10px + env(safe-area-inset-bottom));
-  height: 62px;
+  height: 68px;
   box-shadow: var(--ath-elev-2);
   overflow: visible;
 }
@@ -28,32 +28,42 @@ ion-tab-button {
   background: transparent;
 
   ion-icon {
-    font-size: 23px;
+    font-size: 22px;
     z-index: 1;
+    margin-bottom: 3px;
     transition: transform .15s ease;
   }
 
-  // Pastille orange douce derrière l'onglet actif (carré arrondi)
+  ion-label {
+    font-family: var(--ath-font-ui);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: .01em;
+    z-index: 1;
+    margin: 0;
+  }
+
+  // Pastille orange douce (carré arrondi) derrière l'icône active
   &::before {
     content: "";
     position: absolute;
-    top: 50%;
     left: 50%;
-    width: 42px;
-    height: 42px;
-    border-radius: 13px;
+    top: 5px;
+    width: 40px;
+    height: 34px;
+    border-radius: 11px;
     background: var(--ath-primary);
     opacity: 0;
-    transform: translate(-50%, -50%) scale(.7);
+    transform: translateX(-50%) scale(.7);
     transition: opacity .18s ease, transform .18s ease;
   }
 
   &.tab-selected::before {
     opacity: .15;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translateX(-50%) scale(1);
   }
 
-  &.tab-selected ion-icon {
-    transform: translateY(-1px);
+  &.tab-selected ion-label {
+    font-weight: 700;
   }
 }

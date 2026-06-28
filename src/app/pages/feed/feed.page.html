@@ -11,6 +11,9 @@
       <ion-icon slot="icon-only" [name]="hasActiveFilter ? 'funnel' : 'funnel-outline'"></ion-icon>
       <span *ngIf="hasActiveFilter" class="filter-badge"></span>
     </ion-button>
+    <ion-button fill="clear" (click)="openMoreMenu()" class="more-button" aria-label="Plus">
+      <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+    </ion-button>
   </div>
 
   <div *ngFor="let content of contents;">

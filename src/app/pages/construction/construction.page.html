@@ -1,6 +1,11 @@
 <ion-content>
 
-  <ath-section title="Améliorations"></ath-section>
+  <div class="page-top">
+    <ath-section title="Améliorations"></ath-section>
+    <ion-button fill="clear" (click)="openMoreMenu()" class="more-button" aria-label="Plus">
+      <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+    </ion-button>
+  </div>
 
 
   <ion-segment [value]="issueType" mode="md" (ionChange)="issueTypeChanged($event)">
