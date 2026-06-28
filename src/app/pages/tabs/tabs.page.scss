@@ -1,25 +1,59 @@
 ion-tabs {
-  background-color: #DDDDDD;
+  background: var(--ath-bg);
 }
 
 ion-tab-bar {
-  --background: var(--ion-color-dark-glass);
-  border-radius: 16px;
-  margin: 1.5%;
-  padding: 0;
+  --background: var(--ath-surface);
+  --border: 0;
+  border: 1px solid var(--ath-border);
+  border-radius: 22px;
+  margin: 0 12px;
+  padding: 4px;
   position: fixed;
-  bottom: 0px;
-  width: 97%;
-  height: 10vh;
-  overflow: hidden;
+  left: 0;
+  right: 0;
+  bottom: calc(10px + env(safe-area-inset-bottom));
+  height: 62px;
+  box-shadow: var(--ath-elev-2);
+  overflow: visible;
+}
 
-  &.ios {
-    border-bottom-left-radius: 35px;
-    border-bottom-right-radius: 35px;
+ion-tab-button {
+  --color: var(--ath-text-dim);
+  --color-selected: var(--ath-primary);
+  --background: transparent;
+  --background-focused: transparent;
+  --ripple-color: transparent;
+  position: relative;
+  background: transparent;
+
+  ion-icon {
+    font-size: 23px;
+    z-index: 1;
+    transition: transform .15s ease;
   }
 
-  ion-label {
-    font-size: 0, 8rem;
-    font-family: RobotoBlack;
+  // Pastille orange douce derrière l'onglet actif
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 46px;
+    height: 34px;
+    border-radius: 12px;
+    background: var(--ath-primary);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.7);
+    transition: opacity .18s ease, transform .18s ease;
+  }
+
+  &.tab-selected::before {
+    opacity: .15;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &.tab-selected ion-icon {
+    transform: translateY(-1px);
   }
 }
