@@ -43,6 +43,7 @@ export class AppComponent {
     this.metaMediaService.listMetaMedia$
       .subscribe(async () => {
         await this.notificationService.initOpenNotification();
+        await this.notificationService.initForegroundNotification();
         this.notificationService.initData()
           .subscribe((datas) => {
             console.log(datas);

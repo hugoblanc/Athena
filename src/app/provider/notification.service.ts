@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { FirebaseMessaging, NotificationActionPerformedEvent, PermissionStatus } from '@capacitor-firebase/messaging';
+import { ToastController } from "@ionic/angular";
+import { FirebaseMessaging, NotificationActionPerformedEvent, NotificationReceivedEvent, PermissionStatus } from '@capacitor-firebase/messaging';
 import { concat, from, Observable, of } from "rxjs";
 import { filter, map, mergeMap, tap } from "rxjs/operators";
 import { ICategories } from "../models/categories/icategories";
@@ -42,7 +43,8 @@ export class NotificationService {
   constructor(
     private ss: StorageService,
     private metaMediaService: MetaMediaService,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController
   ) {
     // Au démarrage on récupère les catégorie que l'utilisateur a expressement désactivé
     const notifTopics$ = this.ss.get<any[]>(
@@ -82,6 +84,40 @@ export class NotificationService {
         console.error('JSON.stringify(error)');
         console.error(JSON.stringify(error));
       })
+  }
+
+  /**
+   * Quand une notification arrive alors que l'app est au PREMIER PLAN, FCM ne
+   * l'affiche pas dans la barre système. On la présente nous-mêmes via un toast
+   * Ionic (titre + body), tappable pour ouvrir le contenu. Non bloquant.
+   */
+  public async initForegroundNotification(): Promise<void> {
+    await FirebaseMessaging.addListener('notificationReceived',
+      async (event: NotificationReceivedEvent) => {
+        const notif = event.notification;
+        const payload = notif?.data as NotificationPayload | undefined;
+        const canOpen = !!(payload?.key && payload?.id);
+
+        const toast = await this.toastController.create({
+          header: notif?.title ?? 'Athena',
+          message: notif?.body ?? '',
+          duration: 5000,
+          position: 'top',
+          color: 'dark',
+          buttons: canOpen
+            ? [{
+                text: 'Voir',
+                handler: () => {
+                  this.router.navigateByUrl(`/media/${payload!.key}/details/${payload!.id}`);
+                },
+              }]
+            : undefined,
+        });
+        await toast.present();
+      }).catch((error) => {
+        console.error('notificationReceived listener error');
+        console.error(JSON.stringify(error));
+      });
   }
 
   public initData(): Observable<any[]> {
