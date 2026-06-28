@@ -6,7 +6,7 @@ import { ComponentsModule } from '../../../../components/components.module';
 import { IssueModalPage } from './issue.modal';
 
 /**
- * Ce module regroupe les élements qui se liée à la gestions des issues github
+ * Ce module regroupe les élements qui se liée à la gestion des idées (API Athena)
  *
  */
 @NgModule({

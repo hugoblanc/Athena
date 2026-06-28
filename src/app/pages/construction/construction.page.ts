@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Issue } from '../../models/github/github';
-import { GithubService } from '../../provider/github.service';
+import { Issue } from '../../models/idea/idea';
+import { IdeaService } from '../../provider/idea.service';
 import { IssueModalPage } from './components/issue/issue.modal';
 import { StorageService } from '../../provider/helper/storage.service';
 import { SecondaryMenuService } from '../../provider/secondary-menu.service';
@@ -20,7 +20,7 @@ export class ConstructionPage implements OnInit {
 
 
   constructor(
-    private readonly githubService: GithubService,
+    private readonly ideaService: IdeaService,
     private readonly modalController: ModalController,
     private readonly storage: StorageService,
     private readonly secondaryMenu: SecondaryMenuService
@@ -42,7 +42,7 @@ export class ConstructionPage implements OnInit {
 
 
   clap(issue: Issue) {
-    this.githubService.postClapComment(issue)
+    this.ideaService.postClapComment(issue)
       .pipe(
         mergeMap(() => this.storage.addToArray(StorageService.CLAPPED_ISSUE, issue.id))
       )
@@ -66,7 +66,7 @@ export class ConstructionPage implements OnInit {
   }
 
   private initIssuesByType(type: string) {
-    this.githubService.getIssuesByLabel(type)
+    this.ideaService.getIssuesByLabel(type)
       .subscribe((issues: Issue[]) => {
         this.issues = issues;
         this.loading = false;
@@ -82,7 +82,7 @@ export class ConstructionPage implements OnInit {
   }
 
   private sendIssue(issue: Issue) {
-    this.githubService.postIssue(issue)
+    this.ideaService.postIssue(issue)
       .subscribe((issueCreated: Issue) => {
         this.issues.push(issueCreated);
       });

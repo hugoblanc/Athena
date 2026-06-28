@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Issue } from './../../../../models/github/github';
+import { Issue } from './../../../../models/idea/idea';
 
 @Component({
   selector: 'ath-issues-list',

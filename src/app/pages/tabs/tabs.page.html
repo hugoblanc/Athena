@@ -1,12 +1,16 @@
 <ion-tabs>
 
-  <!-- Tab bar épurée : 3 onglets essentiels. Propositions de loi et Infos
-       restent accessibles via le menu « ··· » en tête des pages (cf.
-       SecondaryMenuService). Home est remplacé par le Feed. -->
+  <!-- Tab bar : 4 onglets. Infos reste accessible via le menu « ··· » en tête
+       des pages (cf. SecondaryMenuService). Home est remplacé par le Feed. -->
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="feed">
       <ion-icon name="newspaper-outline"></ion-icon>
       <ion-label>Actu</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="propositions">
+      <ion-icon name="document-text-outline"></ion-icon>
+      <ion-label>Lois</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="construction">

@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { GithubService } from './github.service';
+import { IdeaService } from './idea.service';
 import { HttpService } from './helper/http.service';
 
 
-describe('GithubService', () => {
+describe('IdeaService', () => {
   let httpSpy;
   httpSpy = jasmine.createSpyObj('HttpService', ['get']);
   beforeEach(() => TestBed.configureTestingModule({
@@ -11,7 +11,7 @@ describe('GithubService', () => {
   }));
 
   it('should be created', () => {
-    const service: GithubService = TestBed.get(GithubService);
+    const service: IdeaService = TestBed.get(IdeaService);
     expect(service).toBeTruthy();
   });
 });

@@ -7,19 +7,19 @@ import { IssuesListComponent } from './components/issues-list/issues-list.compon
 import { IssueModule } from './components/issue/issue.module';
 import { RouterLinkDirectiveStub } from '../../../testing/router-link-directive-stub';
 import { of } from 'rxjs';
-import { GithubService } from '../../provider/github.service';
-import { issuesMock } from '../../../testing/issuesMock';
+import { IdeaService } from '../../provider/idea.service';
+import { ideasMock } from '../../../testing/ideasMock';
 
 
 describe('ConstructionPage', () => {
   let component: ConstructionPage;
   let fixture: ComponentFixture<ConstructionPage>;
-  const mockGithubService = {getIssueByLabel: () => of(issuesMock)};
+  const mockIdeaService = {getIssueByLabel: () => of(ideasMock)};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ConstructionPage, IssuesListComponent, RouterLinkDirectiveStub ],
-      providers: [ ModalController, {provide: GithubService, useValue: mockGithubService}],
+      providers: [ ModalController, {provide: IdeaService, useValue: mockIdeaService}],
       imports: [IonicModule.forRoot(), ComponentsModule, IssueModule, RouterTestingModule],
     }).compileComponents();
 

@@ -17,11 +17,12 @@
 
   </div>
 
+  <ath-media-link></ath-media-link>
+
   <h2 [innerHTML]="post.title"></h2>
 
   <div class="article-metadata">
     <span class="published-date">Publié le {{ post.publishedAt | date: "dd/MM/y" }}</span>
-    <span *ngIf="mediaName" class="author"> par {{ mediaName }}</span>
   </div>
 
   <div class="article-content" [innerHTML]="post.content.rendered"></div>

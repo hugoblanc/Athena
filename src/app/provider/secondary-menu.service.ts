@@ -3,9 +3,9 @@ import { ActionSheetController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 /**
- * Menu secondaire « moins visible » : regroupe les pages qui ne sont plus dans
- * la tab bar (Propositions de loi, Infos) derrière un bouton « ··· » présent en
- * tête des pages principales. Ouvre un action sheet natif.
+ * Menu secondaire « moins visible » : regroupe les pages qui ne sont pas dans
+ * la tab bar (Infos) derrière un bouton « ··· » présent en tête des pages
+ * principales. Ouvre un action sheet natif.
  */
 @Injectable({ providedIn: 'root' })
 export class SecondaryMenuService {
@@ -18,13 +18,6 @@ export class SecondaryMenuService {
     const sheet = await this.actionSheetController.create({
       cssClass: 'secondary-menu-sheet',
       buttons: [
-        {
-          text: 'Propositions de loi',
-          icon: 'document-text-outline',
-          handler: () => {
-            this.router.navigateByUrl('/tabs/propositions');
-          },
-        },
         {
           text: 'Infos & à propos',
           icon: 'information-circle-outline',

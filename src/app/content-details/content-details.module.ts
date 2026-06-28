@@ -7,6 +7,7 @@ import { ComponentsModule } from "../components/components.module";
 import { DirectivesModule } from "../directives/directives.module";
 import { ArticleAudioReaderComponent } from './components/article-audio-reader/article-audio-reader.component';
 import { ArticleDetailsComponent } from "./components/article-details/article-details.component";
+import { MediaLinkComponent } from "./components/media-link/media-link.component";
 import { MoonModeComponent } from "./components/moon-mode/moon-mode.component";
 import { ReadingProgressComponent } from "./components/reading-progress/reading-progress.component";
 import { VideoDetailsComponent } from "./components/video-details/video-details.component";
@@ -42,6 +43,7 @@ const routes: Routes = [
     MoonModeComponent,
     ReadingProgressComponent,
     ArticleAudioReaderComponent,
+    MediaLinkComponent,
   ],
   exports: [ArticleDetailsComponent, VideoDetailsComponent],
 })

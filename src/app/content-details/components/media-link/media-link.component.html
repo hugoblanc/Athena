@@ -1,0 +1,8 @@
+<button *ngIf="media" class="media-link" type="button" (click)="goToMedia()">
+  <img *ngIf="media.logo" class="media-link__logo" [src]="media.logo" alt="">
+  <span class="media-link__texts">
+    <span class="media-link__kicker">Publié par</span>
+    <span class="media-link__name">{{ media.title }}</span>
+  </span>
+  <ion-icon class="media-link__chevron" name="chevron-forward"></ion-icon>
+</button>

@@ -3,19 +3,19 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { IssueDetailsPage } from './issue-details.page';
 import { of } from 'rxjs';
-import { issuesMock } from '../../../../testing/issuesMock';
-import { GithubService } from '../../../provider/github.service';
+import { ideasMock } from '../../../../testing/ideasMock';
+import { IdeaService } from '../../../provider/idea.service';
 
 
 describe('IssueDetailsPage', () => {
   let component: IssueDetailsPage;
   let fixture: ComponentFixture<IssueDetailsPage>;
-  const mockGithubService = {getIssueByNumber: () => of(issuesMock[0])};
+  const mockIdeaService = {getIssueByNumber: () => of(ideasMock[0])};
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ IssueDetailsPage ],
-      providers: [{provide: GithubService, useValue: mockGithubService}],
+      providers: [{provide: IdeaService, useValue: mockIdeaService}],
       imports: [IonicModule.forRoot(), RouterTestingModule]
     }).compileComponents();
 

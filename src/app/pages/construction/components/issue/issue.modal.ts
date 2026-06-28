@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavParams } from '@ionic/angular';
-import { Issue } from '../../../../models/github/github';
+import { Issue } from '../../../../models/idea/idea';
 
 
 @Component({

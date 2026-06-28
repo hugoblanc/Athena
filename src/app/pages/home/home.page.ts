@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Issue } from '../../models/github/github';
+import { Issue } from '../../models/idea/idea';
 import { ListMetaMedias } from '../../models/meta-media/list-meta-medias';
 import { MetaMediaService } from '../../provider/meta-media/meta-media.service';
 
