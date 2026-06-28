@@ -3,22 +3,18 @@ ion-tabs {
 }
 
 ion-tab-bar {
-  // === Liquid glass ===
-  // Verre translucide : on floute/sature/éclaircit le contenu qui défile
-  // derrière (backdrop-filter, supporté iOS WebKit + Android Chromium). On
-  // évite la réfraction SVG (feDisplacementMap) qui casse sur WebKit/iOS.
-  // Ce qui fait le « verre » (vs simple flou) : le biseau spéculaire, un
-  // empilement d'inset box-shadows qui simule la lumière piégée dans la masse
-  // de verre (rebord haut très lumineux, halo bas-droit, liseré complet).
-  // Verre assez sombre + on ASSOMBRIT le contenu derrière (brightness < 1) :
-  // sinon, sur une image claire, les icônes claires se noient. C'est ce que
-  // fait la tab bar liquid glass d'iOS en mode sombre.
-  --background: rgba(12, 12, 18, 0.62);
+  // === Liquid glass (vraie réfraction) ===
+  // Le verre est TRANSPARENT (--background: transparent). L'effet vient de deux
+  // pseudo-éléments :
+  //   ::after  → réfraction : capture le fond (backdrop-filter) puis le déforme
+  //              avec le filtre SVG #liquid-glass (feDisplacementMap). Chromium
+  //              uniquement → sur iOS/WebKit, il ne reste que le rebord.
+  //   ::before → rebord spéculaire (inset box-shadows blancs) : la lumière qui
+  //              accroche le verre. Fonctionne partout.
+  --background: transparent;
   --border: 0;
-  backdrop-filter: blur(20px) saturate(150%) brightness(0.78);
-  -webkit-backdrop-filter: blur(20px) saturate(150%) brightness(0.78);
-
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  border: 0;
   border-radius: 28px;
   margin: 0 12px;
   padding: 7px 4px 6px;
@@ -27,21 +23,36 @@ ion-tab-bar {
   right: 0;
   bottom: calc(10px + env(safe-area-inset-bottom));
   height: 68px;
-
-  box-shadow:
-    // ombre portée
-    0 12px 36px rgba(0, 0, 0, 0.5),
-    // rebord supérieur lumineux (la lumière accroche le haut du verre)
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.45),
-    // halo intérieur bas-droit, façon lentille
-    inset -10px -10px 18px -12px rgba(255, 255, 255, 0.6),
-    // contre-lumière haut-gauche, plus douce
-    inset 10px 10px 18px -14px rgba(255, 255, 255, 0.3),
-    // liseré bas qui « ramasse » la lumière
-    inset 0 -7px 12px -8px rgba(255, 255, 255, 0.4),
-    // glow interne très léger pour la profondeur
-    inset 0 0 22px rgba(255, 255, 255, 0.05);
   overflow: visible;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+
+  // Réfraction du contenu derrière la barre
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 28px;
+    backdrop-filter: blur(2px) saturate(140%);
+    -webkit-backdrop-filter: blur(2px) saturate(140%);
+    filter: url("#liquid-glass");
+    isolation: isolate;
+    pointer-events: none;
+  }
+
+  // Rebord spéculaire (le « verre » qui accroche la lumière)
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: 28px;
+    pointer-events: none;
+    box-shadow:
+      inset 2px 2px 0 -1px rgba(255, 255, 255, 0.7),
+      inset -2px -2px 0 -1px rgba(255, 255, 255, 0.45),
+      inset 0 0 4px 1px rgba(255, 255, 255, 0.35);
+  }
 }
 
 ion-tab-button {
@@ -59,16 +70,17 @@ ion-tab-button {
     font-size: 23px;
     margin-bottom: 4px;
     transition: transform .15s ease;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55));
+    // double ombre pour rester net sur un fond clair comme sombre
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
   }
 
   ion-label {
     font-family: var(--ath-font-ui);
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: .01em;
     margin: 0;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.6);
   }
 
   // Actif : icône + label en orange (via --color-selected), label en gras.

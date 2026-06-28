@@ -25,3 +25,15 @@
   </ion-tab-bar>
 
 </ion-tabs>
+
+<!-- Filtre SVG de réfraction « liquid glass » : un bruit fractal sert de carte
+     de déplacement qui déforme le contenu derrière la barre (façon lentille).
+     Ne fonctionne que sur Chromium (Android WebView + Chrome) ; sur iOS/WebKit,
+     seul le rebord spéculaire (::before) s'applique → dégradation propre. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="liquid-glass" x="0%" y="0%" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.008" numOctaves="2" seed="92" result="noise" />
+    <feGaussianBlur in="noise" stdDeviation="0.02" result="blur" />
+    <feDisplacementMap in="SourceGraphic" in2="blur" scale="45" xChannelSelector="R" yChannelSelector="G" />
+  </filter>
+</svg>
