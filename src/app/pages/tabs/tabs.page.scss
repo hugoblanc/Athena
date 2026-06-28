@@ -10,10 +10,13 @@ ion-tab-bar {
   // Ce qui fait le « verre » (vs simple flou) : le biseau spéculaire, un
   // empilement d'inset box-shadows qui simule la lumière piégée dans la masse
   // de verre (rebord haut très lumineux, halo bas-droit, liseré complet).
-  --background: rgba(22, 22, 30, 0.45);
+  // Verre assez sombre + on ASSOMBRIT le contenu derrière (brightness < 1) :
+  // sinon, sur une image claire, les icônes claires se noient. C'est ce que
+  // fait la tab bar liquid glass d'iOS en mode sombre.
+  --background: rgba(12, 12, 18, 0.62);
   --border: 0;
-  backdrop-filter: blur(18px) saturate(200%) brightness(1.15);
-  -webkit-backdrop-filter: blur(18px) saturate(200%) brightness(1.15);
+  backdrop-filter: blur(20px) saturate(150%) brightness(0.78);
+  -webkit-backdrop-filter: blur(20px) saturate(150%) brightness(0.78);
 
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 28px;
@@ -42,7 +45,9 @@ ion-tab-bar {
 }
 
 ion-tab-button {
-  --color: var(--ath-text-dim);
+  // Sur le verre, les inactifs sont clairs (pas dim) pour rester lisibles ;
+  // l'ombre portée garantit le contraste quel que soit le contenu derrière.
+  --color: rgba(255, 255, 255, 0.72);
   --color-selected: var(--ath-primary);
   --background: transparent;
   --background-focused: transparent;
@@ -54,6 +59,7 @@ ion-tab-button {
     font-size: 23px;
     margin-bottom: 4px;
     transition: transform .15s ease;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55));
   }
 
   ion-label {
@@ -62,6 +68,7 @@ ion-tab-button {
     font-weight: 600;
     letter-spacing: .01em;
     margin: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
   }
 
   // Actif : icône + label en orange (via --color-selected), label en gras.
