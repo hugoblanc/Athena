@@ -14,14 +14,17 @@
       }
 
       h1 {
-        font-family: RobotoMedium;
+        font-family: var(--ath-font-display);
+        font-weight: 700;
+        letter-spacing: -.015em;
         font-size: 1.8rem;
         margin: 0;
       }
 
       .tagline {
+        font-family: var(--ath-font-ui);
         font-size: 1rem;
-        color: var(--ion-color-medium);
+        color: var(--ath-text-dim);
         margin: 0.5rem 0 0;
       }
     }
@@ -29,15 +32,16 @@
     .quote {
       padding: 1rem 1.5rem;
       margin: 0 1rem 1.5rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
-      border-left: 3px solid var(--ion-color-primary);
+      background: var(--ath-surface);
+      border: 1px solid var(--ath-border);
+      border-radius: var(--ath-radius);
+      border-left: 3px solid var(--ath-primary);
 
       p {
-        font-family: RobotoRegular;
+        font-family: var(--ath-font-ui);
         font-size: 0.95rem;
         font-style: italic;
-        color: var(--ion-color-medium);
+        color: var(--ath-text-dim);
         margin: 0;
         line-height: 1.5;
       }

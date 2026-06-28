@@ -134,7 +134,9 @@ ion-back-button {
 }
 
 h2 {
-  font-family: "RobotoBlack";
+  font-family: var(--ath-font-display);
+  font-weight: 700;
+  letter-spacing: -.015em;
   // margin-left: 0.5rem;
 }
 
@@ -147,10 +149,11 @@ h2 {
 }
 
 .article-content {
-  font-family: RobotoRegular;
+  font-family: var(--ath-font-ui);
   text-align: left;
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 1.02rem;
+  line-height: 1.72;
+  color: var(--ath-text);
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
@@ -165,7 +168,10 @@ h2 {
 
   // Normaliser les titres dans le contenu WordPress
   h1, h2, h3, h4, h5, h6 {
-    font-family: RobotoMedium;
+    font-family: var(--ath-font-display);
+    font-weight: 700;
+    letter-spacing: -.01em;
+    color: var(--ath-text);
     line-height: 1.3;
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;

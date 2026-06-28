@@ -2,8 +2,9 @@
   display: flex;
   gap: 16px;
   padding: 12px;
-  border-radius: 8px;
-  background: var(--ion-color-step-50);
+  border-radius: var(--ath-radius);
+  background: var(--ath-surface);
+  border: 1px solid var(--ath-border);
   margin-bottom: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -73,9 +74,11 @@
 }
 
 .podcast-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--ion-text-color);
+  font-family: var(--ath-font-display);
+  font-size: 15.5px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: var(--ath-text);
   margin: 0 0 4px 0;
   overflow: hidden;
   text-overflow: ellipsis;

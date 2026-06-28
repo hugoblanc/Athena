@@ -10,7 +10,9 @@
 }
 
 .gradient-background {
-  background: linear-gradient(180deg, #2C5364 0%, #0F2027 100%);
+  background:
+    radial-gradient(120% 60% at 50% 0%, rgba(252, 116, 58, .12) 0%, rgba(252, 116, 58, 0) 55%),
+    linear-gradient(180deg, #1c1c26 0%, #0a0a0f 70%);
   position: fixed;
   top: 0;
   left: 0;
@@ -171,7 +173,7 @@
   top: 0;
   left: 0;
   height: 100%;
-  background: white;
+  background: var(--ath-primary);
   border-radius: 2px;
   transition: width 0.1s linear;
   pointer-events: none;
@@ -194,7 +196,7 @@
     appearance: none;
     width: 16px;
     height: 16px;
-    background: white;
+    background: var(--ath-primary);
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
@@ -204,7 +206,7 @@
   &::-moz-range-thumb {
     width: 16px;
     height: 16px;
-    background: white;
+    background: var(--ath-primary);
     border-radius: 50%;
     cursor: pointer;
     border: none;
@@ -268,14 +270,14 @@
 .play-pause-button {
   width: 80px;
   height: 80px;
-  --background: rgba(255, 255, 255, 0.15);
+  --background: var(--ath-primary);
+  --background-activated: var(--ath-primary-hover);
   --border-radius: 50%;
-  --box-shadow: none;
-  backdrop-filter: blur(10px);
+  --box-shadow: 0 12px 30px rgba(252, 116, 58, .4);
 
   ion-icon {
     font-size: 40px;
-    color: white;
+    color: var(--ath-on-primary);
   }
 
   ion-spinner {

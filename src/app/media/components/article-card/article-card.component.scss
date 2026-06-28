@@ -1,18 +1,65 @@
-ion-card {
-  border-radius: 10px;
-  --background: white;
+ion-card.masonry-item {
+  margin: 0;
+  background: var(--ath-surface);
+  --background: var(--ath-surface);
+  border: 1px solid var(--ath-border);
+  border-radius: var(--ath-radius);
+  box-shadow: var(--ath-elev-1);
+  overflow: hidden;
+}
+
+ath-img,
+img {
+  display: block;
+  width: 100%;
+}
+
+ion-card-header {
+  padding: 12px 12px 14px;
 }
 
 ion-card-title {
-  font-size: 0.85rem;
-  color: black;
-  margin-bottom: 0.5rem;
-  font-family: RobotoBlack;
+  font-family: var(--ath-font-display);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.26;
+  letter-spacing: -.01em;
+  color: var(--ath-text);
   text-align: left;
+  margin-bottom: 8px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+ion-card-subtitle {
+  font-family: var(--ath-font-ui);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ath-text-dim);
+  margin: 0;
 }
 
 .info {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
+}
+
+ion-badge {
+  font-family: var(--ath-font-ui);
+  font-weight: 600;
+  font-size: 9.5px;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  border-radius: var(--ath-radius-full);
+  --padding-top: 4px;
+  --padding-bottom: 4px;
+  --padding-start: 8px;
+  --padding-end: 8px;
 }

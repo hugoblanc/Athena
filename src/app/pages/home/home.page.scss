@@ -5,7 +5,9 @@
     #header-item{
       --padding-start: 0px;
       #main-title{
-        font-family: RobotoBlack;
+        font-family: var(--ath-font-display);
+        font-weight: 700;
+        letter-spacing: -.02em;
         font-size: 2rem;
       }
     }

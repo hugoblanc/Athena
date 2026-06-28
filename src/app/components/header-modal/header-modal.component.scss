@@ -11,7 +11,10 @@
   @media screen and (max-width: 450px) {
     #title {
       font-size: 1.5rem;
-      --ion-font-family: RobotoBlack;
+      font-family: var(--ath-font-display);
+      font-weight: 700;
+      letter-spacing: -.015em;
+      --ion-font-family: var(--ath-font-display);
     }
   }
 

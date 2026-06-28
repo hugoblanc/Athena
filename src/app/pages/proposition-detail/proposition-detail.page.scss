@@ -47,19 +47,22 @@ ion-back-button {
   }
 
   h1 {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.3;
+    font-family: var(--ath-font-display);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -.015em;
+    line-height: 1.24;
     margin: 0 0 16px 0;
-    color: white;
+    color: var(--ath-text);
   }
 
   .author-item {
-    --background: rgba(255, 255, 255, 0.1);
+    --background: var(--ath-surface);
     --padding-start: 12px;
     --padding-end: 12px;
     --inner-padding-end: 12px;
-    border-radius: 8px;
+    border: 1px solid var(--ath-border);
+    border-radius: var(--ath-radius);
     margin-bottom: 16px;
 
     ion-avatar {
@@ -116,8 +119,9 @@ ion-segment {
   padding: 16px;
   font-size: 14px;
   line-height: 1.6;
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
+  background: var(--ath-surface);
+  border-radius: var(--ath-radius);
+  color: var(--ath-text);
 }
 
 .section-text {

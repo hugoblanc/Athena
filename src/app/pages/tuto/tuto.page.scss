@@ -44,11 +44,14 @@ ion-content {
       }
 
       h1 {
-        font-family: "RobotoBlack";
+        font-family: var(--ath-font-display);
+        font-weight: 700;
+        letter-spacing: -.02em;
       }
 
       p {
-        font-family: "RobotoRegular";
+        font-family: var(--ath-font-ui);
+        color: var(--ath-text-dim);
       }
     }
 
