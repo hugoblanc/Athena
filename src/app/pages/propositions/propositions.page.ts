@@ -16,20 +16,6 @@ import { LawProposalsService } from '../../provider/law-proposals/law-proposals.
 export class PropositionsPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll!: IonInfiniteScroll;
 
-  /**
-   * Les photos des députés viennent de assemblee-nationale.fr, qui bloque les
-   * requêtes <img> du navigateur (hotlink/WAF) → les visages ne chargeaient
-   * pas. On passe par le proxy d'image weserv.nl (fetch côté serveur, CORS ok,
-   * redimensionné) pour les afficher de façon fiable sur tous les appareils.
-   */
-  photoProxy(url: string | undefined): string {
-    if (!url) {
-      return '';
-    }
-    const stripped = url.replace(/^https?:\/\//, '');
-    return `https://images.weserv.nl/?url=${encodeURIComponent(stripped)}&w=140&h=140&fit=cover&output=webp`;
-  }
-
   proposals: LawProposalSummary[] = [];
   isLoading = false;
   hasMoreData = true;

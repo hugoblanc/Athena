@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { ComponentsModule } from '../../components/components.module';
+import { ImageProxyPipe } from '../../core/pipes/image-proxy.pipe';
 import { PropositionsPage } from './propositions.page';
 
 @NgModule({
@@ -19,6 +20,6 @@ import { PropositionsPage } from './propositions.page';
       },
     ]),
   ],
-  declarations: [PropositionsPage],
+  declarations: [PropositionsPage, ImageProxyPipe],
 })
 export class PropositionsPageModule {}
