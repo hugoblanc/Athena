@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Media, MediaObject } from '@awesome-cordova-plugins/media/ngx';
 import { Observable } from 'rxjs';
 import { User } from '@capacitor-firebase/authentication';
 
@@ -18,7 +17,6 @@ import { FirebaseAuthService } from '../../provider/auth/firebase-auth.service';
   styleUrls: ['./informations.page.scss'],
 })
 export class InformationsPage {
-  curr_playing_file!: MediaObject;
   user$: Observable<User | null>;
 
   constructor(

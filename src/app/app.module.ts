@@ -13,7 +13,6 @@ import * as CordovaSQLiteDriver from "localforage-cordovasqlitedriver";
 import { Drivers } from "@ionic/storage";
 import { MetaMediaService } from "./provider/meta-media/meta-media.service";
 import { initializeAppFactory } from "./core/initializer/media.initializer";
-import { Media } from "@awesome-cordova-plugins/media/ngx";
 import { AuthInterceptor } from "./core/interceptors/auth.interceptor";
 import { MigrationBannerComponent } from "./components/migration-banner/migration-banner.component";
 
@@ -47,7 +46,6 @@ import { MigrationBannerComponent } from "./components/migration-banner/migratio
       useClass: AuthInterceptor,
       multi: true,
     },
-    Media,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: LOCALE_ID, useValue: "fr" },
   ],

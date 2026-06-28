@@ -1,6 +1,7 @@
 import UIKit
 import Capacitor
 import FirebaseCore
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -9,6 +10,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+
+        // Permet à l'audio HTML5 (<audio> + MediaSession) de continuer en
+        // arrière-plan / écran verrouillé. Couplé à UIBackgroundModes "audio"
+        // dans Info.plist. Remplace ce que faisait l'ancien plugin Cordova media.
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Failed to configure AVAudioSession: \(error)")
+        }
+
         return true
     }
 

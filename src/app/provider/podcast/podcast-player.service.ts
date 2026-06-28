@@ -35,7 +35,11 @@ export class PodcastPlayerService {
     this.currentPodcastSubject.next(podcast);
 
     try {
-      this.audioPlayer.playAudio(podcast.audioUrl);
+      this.audioPlayer.playAudio(podcast.audioUrl, {
+        title: podcast.content?.title,
+        artist: podcast.content?.meta_media?.title,
+        artwork: podcast.content?.image?.url,
+      });
       this.playerStateSubject.next(PlayerState.PLAYING);
 
       // Wait a bit for audio to load and get duration
