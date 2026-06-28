@@ -56,8 +56,7 @@
       detail
     >
       <ion-avatar slot="start" *ngIf="proposal.auteur.photoUrl">
-        <img #depPhoto [src]="proposal.auteur.photoUrl" [alt]="proposal.auteur.nom"
-             referrerpolicy="no-referrer"
+        <img #depPhoto [src]="photoProxy(proposal.auteur.photoUrl)" [alt]="proposal.auteur.nom"
              (error)="depPhoto.style.display='none'"
              (load)="depPhoto.style.display='block'" />
       </ion-avatar>

@@ -24,7 +24,7 @@ export class IssueModalPage implements OnInit {
   validateForm!: FormGroup;
 
 
-  issueType!: 'feature' | 'bug';
+  issueType!: 'feature' | 'bug' | 'media';
 
   constructor(private formBuilder: FormBuilder,
     private modalController: ModalController,
