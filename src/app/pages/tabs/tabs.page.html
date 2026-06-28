@@ -32,10 +32,10 @@
      seul le rebord spéculaire (::before) s'applique → dégradation propre. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <filter id="liquid-glass" x="-10%" y="-10%" width="120%" height="120%">
-    <!-- bruit très basse fréquence + fort flou = déformation douce et régulière
-         (au lieu de vaguelettes aléatoires) → rendu « verre » plus propre -->
-    <feTurbulence type="fractalNoise" baseFrequency="0.003 0.006" numOctaves="1" seed="14" result="noise" />
-    <feGaussianBlur in="noise" stdDeviation="3" result="map" />
-    <feDisplacementMap in="SourceGraphic" in2="map" scale="26" xChannelSelector="R" yChannelSelector="G" />
+    <!-- entre-deux : réfraction vivante mais pas chaotique. Un léger flou sur la
+         carte de déplacement adoucit les vaguelettes sans tout aplatir. -->
+    <feTurbulence type="fractalNoise" baseFrequency="0.006 0.006" numOctaves="2" seed="14" result="noise" />
+    <feGaussianBlur in="noise" stdDeviation="0.5" result="map" />
+    <feDisplacementMap in="SourceGraphic" in2="map" scale="38" xChannelSelector="R" yChannelSelector="G" />
   </filter>
 </svg>
