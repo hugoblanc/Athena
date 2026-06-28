@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { EMPTY, Observable } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, tap } from 'rxjs/operators';
 import { Issue } from '../../models/idea/idea';
 import { FirebaseAuthService } from '../../provider/auth/firebase-auth.service';
 import { IdeaService } from '../../provider/idea.service';
@@ -55,8 +55,11 @@ export class ConstructionPage implements OnInit {
   clap(issue: Issue) {
     if (issue.hasBeenClapped) {
       this.ideaService.deleteClap(issue)
-        .pipe(mergeMap(() => this.storage.removeFromArray(StorageService.CLAPPED_ISSUE, issue.id)))
-        .subscribe((updated) => this.applyVoteResult(issue, updated, { clapped: false }));
+        .pipe(
+          tap((updated) => this.applyVoteResult(issue, updated, { clapped: false })),
+          mergeMap(() => this.storage.removeFromArray(StorageService.CLAPPED_ISSUE, issue.id))
+        )
+        .subscribe();
       return;
     }
 
@@ -70,8 +73,11 @@ export class ConstructionPage implements OnInit {
         issue.hasBeenDownvoted = false;
       }
       this.ideaService.postClapComment(issue)
-        .pipe(mergeMap(() => this.storage.addToArray(StorageService.CLAPPED_ISSUE, issue.id)))
-        .subscribe((updated) => this.applyVoteResult(issue, updated, { clapped: true }));
+        .pipe(
+          tap((updated) => this.applyVoteResult(issue, updated, { clapped: true })),
+          mergeMap(() => this.storage.addToArray(StorageService.CLAPPED_ISSUE, issue.id))
+        )
+        .subscribe();
     });
   }
 
@@ -88,8 +94,11 @@ export class ConstructionPage implements OnInit {
 
     if (issue.hasBeenDownvoted) {
       this.ideaService.deleteDownvote(issue)
-        .pipe(mergeMap(() => this.storage.removeFromArray(StorageService.DOWNVOTED_ISSUE, issue.id)))
-        .subscribe((updated) => this.applyVoteResult(issue, updated, { downvoted: false }));
+        .pipe(
+          tap((updated) => this.applyVoteResult(issue, updated, { downvoted: false })),
+          mergeMap(() => this.storage.removeFromArray(StorageService.DOWNVOTED_ISSUE, issue.id))
+        )
+        .subscribe();
       return;
     }
 
@@ -103,8 +112,11 @@ export class ConstructionPage implements OnInit {
         issue.hasBeenClapped = false;
       }
       this.ideaService.postDownvote(issue)
-        .pipe(mergeMap(() => this.storage.addToArray(StorageService.DOWNVOTED_ISSUE, issue.id)))
-        .subscribe((updated) => this.applyVoteResult(issue, updated, { downvoted: true }));
+        .pipe(
+          tap((updated) => this.applyVoteResult(issue, updated, { downvoted: true })),
+          mergeMap(() => this.storage.addToArray(StorageService.DOWNVOTED_ISSUE, issue.id))
+        )
+        .subscribe();
     });
   }
 
