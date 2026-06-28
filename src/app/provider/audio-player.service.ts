@@ -1,28 +1,198 @@
 import { Injectable } from '@angular/core';
+import { Capacitor } from '@capacitor/core';
+import { AudioPlayer } from '@mediagrid/capacitor-native-audio';
 
-/** Métadonnées optionnelles affichées sur l'écran verrouillé (MediaSession). */
+/** Métadonnées optionnelles affichées sur l'écran verrouillé (notif / MediaSession). */
 export interface AudioMetadata {
   title?: string;
   artist?: string;
   artwork?: string;
 }
 
+/** API commune aux deux backends de lecture (web HTML5 et natif Capacitor). */
+interface AudioPlayerStrategy {
+  playAudio(mediaUrl: string, metadata?: AudioMetadata): void;
+  resumeAudio(): void;
+  pauseAudio(): void;
+  seekTo(position: number): void;
+  getCurrentPosition(): Promise<number>;
+  getDuration(): number;
+}
+
 /**
- * Lecteur audio basé sur l'élément HTML5 `<audio>` + l'API MediaSession.
+ * Lecteur audio podcast.
  *
- * Remplace l'ancien plugin Cordova `media` (fragile, cassé à chaque montée de
- * version native). Aucune dépendance native : le même code tourne en PWA et
- * dans le shell Capacitor. Les contrôles écran verrouillé / casque passent par
- * MediaSession ; la lecture en arrière-plan iOS exige `UIBackgroundModes: audio`
- * (Info.plist) + l'activation de l'`AVAudioSession` en mode lecture (AppDelegate).
+ * Sélectionne le backend selon la plateforme :
+ * - natif (Android/iOS via Capacitor) → plugin `@mediagrid/capacitor-native-audio`,
+ *   qui gère le streaming d'une URL distante, la lecture en arrière-plan et la
+ *   notification / écran verrouillé.
+ * - web / PWA → élément HTML5 `<audio>` + API MediaSession.
+ *
+ * L'API publique est strictement identique pour les deux backends : les appelants
+ * (`PodcastPlayerService`, `ArticleAudioReaderComponent`) ne savent pas lequel
+ * tourne.
  */
 @Injectable({
   providedIn: 'root'
 })
-export class AudioPlayerService {
+export class AudioPlayerService implements AudioPlayerStrategy {
+  private readonly strategy: AudioPlayerStrategy = Capacitor.isNativePlatform()
+    ? new NativeAudioPlayer()
+    : new WebAudioPlayer();
+
+  public playAudio(mediaUrl: string, metadata?: AudioMetadata): void {
+    this.strategy.playAudio(mediaUrl, metadata);
+  }
+
+  public resumeAudio(): void {
+    this.strategy.resumeAudio();
+  }
+
+  public pauseAudio(): void {
+    this.strategy.pauseAudio();
+  }
+
+  public seekTo(position: number): void {
+    this.strategy.seekTo(position);
+  }
+
+  public getCurrentPosition(): Promise<number> {
+    return this.strategy.getCurrentPosition();
+  }
+
+  public getDuration(): number {
+    return this.strategy.getDuration();
+  }
+}
+
+/**
+ * Backend natif basé sur `@mediagrid/capacitor-native-audio`.
+ *
+ * Le plugin est asynchrone et orienté évènements : on `create` la source, on
+ * attend `onAudioReady` avant de lire et de connaître la durée. On préserve
+ * l'API publique synchrone en mémorisant la durée et en lançant les appels
+ * natifs en fire-and-forget.
+ *
+ * La lecture en arrière-plan et les contrôles écran verrouillé exigent
+ * `useForNotification: true` (config faite ci-dessous) et, côté natif,
+ * `UIBackgroundModes: audio` (iOS) + le foreground service audio (Android),
+ * qui relèvent des projets natifs.
+ */
+class NativeAudioPlayer implements AudioPlayerStrategy {
+  private audioId?: string;
+  private duration = 0;
+
+  public playAudio(mediaUrl: string, metadata?: AudioMetadata): void {
+    void this.start(mediaUrl, metadata);
+  }
+
+  public resumeAudio(): void {
+    if (!this.audioId) {
+      console.warn('No audio currently paused');
+      return;
+    }
+    AudioPlayer.play({ audioId: this.audioId }).catch((error) =>
+      console.error('Audio resume failed', error)
+    );
+  }
+
+  public pauseAudio(): void {
+    if (!this.audioId) {
+      return;
+    }
+    AudioPlayer.pause({ audioId: this.audioId }).catch((error) =>
+      console.error('Audio pause failed', error)
+    );
+  }
+
+  public seekTo(position: number): void {
+    if (!this.audioId) {
+      console.warn('No audio to seek');
+      return;
+    }
+    AudioPlayer.seek({ audioId: this.audioId, timeInSeconds: position }).catch((error) =>
+      console.error('Audio seek failed', error)
+    );
+  }
+
+  public async getCurrentPosition(): Promise<number> {
+    if (!this.audioId) {
+      return 0;
+    }
+    try {
+      const { currentTime } = await AudioPlayer.getCurrentTime({ audioId: this.audioId });
+      return currentTime;
+    } catch (error) {
+      console.error('Audio getCurrentTime failed', error);
+      return 0;
+    }
+  }
+
+  public getDuration(): number {
+    return this.duration;
+  }
+
+  private async start(mediaUrl: string, metadata?: AudioMetadata): Promise<void> {
+    await this.release();
+
+    const audioId = `athena-audio-${Date.now()}`;
+    this.audioId = audioId;
+    this.duration = 0;
+
+    try {
+      await AudioPlayer.create({
+        audioId,
+        audioSource: mediaUrl,
+        friendlyTitle: metadata?.title ?? 'Athena',
+        albumTitle: metadata?.artist,
+        artistName: metadata?.artist,
+        artworkSource: metadata?.artwork,
+        useForNotification: true,
+      });
+
+      await AudioPlayer.onAudioReady({ audioId }, () => {
+        AudioPlayer.getDuration({ audioId })
+          .then(({ duration }) => {
+            this.duration = duration;
+          })
+          .catch((error) => console.error('Audio getDuration failed', error));
+        AudioPlayer.play({ audioId }).catch((error) =>
+          console.error('Audio play failed', error)
+        );
+      });
+
+      console.log('Starting to play ' + mediaUrl);
+      await AudioPlayer.initialize({ audioId });
+    } catch (error) {
+      console.error('Native audio setup failed', error);
+    }
+  }
+
+  private async release(): Promise<void> {
+    if (!this.audioId) {
+      return;
+    }
+    const previousId = this.audioId;
+    this.audioId = undefined;
+    this.duration = 0;
+    try {
+      await AudioPlayer.destroy({ audioId: previousId });
+    } catch (error) {
+      console.error('Audio destroy failed', error);
+    }
+  }
+}
+
+/**
+ * Backend web basé sur l'élément HTML5 `<audio>` + l'API MediaSession.
+ *
+ * Aucune dépendance native : tourne en PWA et en fallback navigateur. Les
+ * contrôles écran verrouillé / casque passent par MediaSession.
+ */
+class WebAudioPlayer implements AudioPlayerStrategy {
   private audio?: HTMLAudioElement;
 
-  public playAudio(mediaUrl: string, metadata?: AudioMetadata) {
+  public playAudio(mediaUrl: string, metadata?: AudioMetadata): void {
     this.releaseAudioPlayer();
 
     const audio = new Audio(mediaUrl);
@@ -35,7 +205,7 @@ export class AudioPlayerService {
     audio.play().catch((error) => console.error('Audio play failed', error));
   }
 
-  public resumeAudio() {
+  public resumeAudio(): void {
     if (!this.audio) {
       console.warn('No audio currently paused');
       return;
@@ -44,7 +214,7 @@ export class AudioPlayerService {
     this.audio.play().catch((error) => console.error('Audio resume failed', error));
   }
 
-  public pauseAudio() {
+  public pauseAudio(): void {
     console.log('Playing paused');
     this.audio?.pause();
   }
