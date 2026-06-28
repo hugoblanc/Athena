@@ -36,9 +36,10 @@ ion-tab-bar {
     inset: -10px;
     z-index: -1;
     border-radius: 38px;
-    background: rgba(7, 7, 11, 0.5);
-    backdrop-filter: blur(1px) brightness(0.78);
-    -webkit-backdrop-filter: blur(1px) brightness(0.78);
+    // Pas de teinte sombre ici : sur le calque déformé, son bord se distord et
+    // « bugge » en haut. La lisibilité passe par l'ombre forte des icônes.
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
     filter: url("#liquid-glass");
     clip-path: inset(10px round 28px);
     isolation: isolate;
@@ -75,8 +76,12 @@ ion-tab-button {
     font-size: 23px;
     margin-bottom: 4px;
     transition: transform .15s ease;
-    // double ombre pour rester net sur un fond clair comme sombre
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+    // ombre forte (halo sombre) : seule garante de la lisibilité puisque le
+    // verre n'est plus assombri → tient sur un fond clair comme sombre.
+    filter:
+      drop-shadow(0 1px 2px rgba(0, 0, 0, 0.95))
+      drop-shadow(0 0 3px rgba(0, 0, 0, 0.8))
+      drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));
   }
 
   ion-label {
@@ -85,38 +90,18 @@ ion-tab-button {
     font-weight: 700;
     letter-spacing: .01em;
     margin: 0;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.6);
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.95),
+      0 0 3px rgba(0, 0, 0, 0.85),
+      0 0 6px rgba(0, 0, 0, 0.55);
   }
 
-  // Actif : icône + label en orange (via --color-selected), label en gras,
-  // + une « bulle de verre » qui distord fortement le fond derrière l'icône
-  // (lentille plus puissante que la barre, comme le bouton de la démo).
+  // Actif : icône + label en orange (via --color-selected), label en gras.
   &.tab-selected ion-icon {
     transform: translateY(-1px);
   }
 
   &.tab-selected ion-label {
     font-weight: 700;
-  }
-
-  &.tab-selected::before {
-    content: "";
-    position: absolute;
-    top: 2px;
-    left: 50%;
-    width: 52px;
-    height: 52px;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    z-index: -1;
-    backdrop-filter: blur(0.5px);
-    -webkit-backdrop-filter: blur(0.5px);
-    filter: url("#liquid-lens");
-    clip-path: circle(25px at 50% 50%);
-    box-shadow:
-      inset 1.5px 1.5px 0 -1px rgba(255, 255, 255, 0.7),
-      inset -2px -2px 0 -1px rgba(255, 255, 255, 0.4),
-      0 2px 8px rgba(0, 0, 0, 0.25);
-    pointer-events: none;
   }
 }
