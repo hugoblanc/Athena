@@ -3,10 +3,20 @@ ion-tabs {
 }
 
 ion-tab-bar {
-  --background: var(--ath-surface);
+  // === Liquid glass ===
+  // Verre translucide : on floute/sature/éclaircit le contenu qui défile
+  // derrière (backdrop-filter, supporté iOS WebKit + Android Chromium). On
+  // évite la réfraction SVG (feDisplacementMap) qui casse sur WebKit/iOS.
+  // Ce qui fait le « verre » (vs simple flou) : le biseau spéculaire, un
+  // empilement d'inset box-shadows qui simule la lumière piégée dans la masse
+  // de verre (rebord haut très lumineux, halo bas-droit, liseré complet).
+  --background: rgba(22, 22, 30, 0.45);
   --border: 0;
-  border: 1px solid var(--ath-border);
-  border-radius: 24px;
+  backdrop-filter: blur(18px) saturate(200%) brightness(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(200%) brightness(1.15);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
   margin: 0 12px;
   padding: 7px 4px 6px;
   position: fixed;
@@ -14,7 +24,20 @@ ion-tab-bar {
   right: 0;
   bottom: calc(10px + env(safe-area-inset-bottom));
   height: 68px;
-  box-shadow: var(--ath-elev-2);
+
+  box-shadow:
+    // ombre portée
+    0 12px 36px rgba(0, 0, 0, 0.5),
+    // rebord supérieur lumineux (la lumière accroche le haut du verre)
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.45),
+    // halo intérieur bas-droit, façon lentille
+    inset -10px -10px 18px -12px rgba(255, 255, 255, 0.6),
+    // contre-lumière haut-gauche, plus douce
+    inset 10px 10px 18px -14px rgba(255, 255, 255, 0.3),
+    // liseré bas qui « ramasse » la lumière
+    inset 0 -7px 12px -8px rgba(255, 255, 255, 0.4),
+    // glow interne très léger pour la profondeur
+    inset 0 0 22px rgba(255, 255, 255, 0.05);
   overflow: visible;
 }
 
