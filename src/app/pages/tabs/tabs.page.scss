@@ -31,13 +31,16 @@ ion-tab-bar {
   &::after {
     content: "";
     position: absolute;
-    inset: 0;
+    // on déborde de 10px puis on rogne à la zone visible : les bords déformés
+    // (déchirés par le displacement) tombent hors du clip → bord net.
+    inset: -10px;
     z-index: -1;
-    border-radius: 28px;
+    border-radius: 38px;
     background: rgba(7, 7, 11, 0.5);
     backdrop-filter: blur(1px) brightness(0.72);
     -webkit-backdrop-filter: blur(1px) brightness(0.72);
     filter: url("#liquid-glass");
+    clip-path: inset(10px round 28px);
     isolation: isolate;
     pointer-events: none;
   }
