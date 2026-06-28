@@ -1,3 +1,15 @@
-ion-list{
-  display: inline;
+:host {
+  display: block;
+}
+
+ion-list {
+  display: block;
+  background: transparent;
+  padding: 0 var(--ath-gutter) var(--ath-gutter);
+}
+
+// Chaque carte est enveloppée dans un <p> (ngSwitch) : on retire les marges
+// par défaut du <p> et on espace régulièrement les cartes.
+p {
+  margin: 0 0 14px 0;
 }

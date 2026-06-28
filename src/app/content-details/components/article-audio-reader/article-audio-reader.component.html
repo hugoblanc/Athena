@@ -1,10 +1,12 @@
-<ion-button *ngIf="playerState === 'stop'" fill="clear" (click)="playAudio()">
+<ion-button *ngIf="playerState === 'stop'" class="audio-btn" fill="clear" (click)="playAudio()">
+  <ion-icon slot="start" name="play-circle"></ion-icon>
   Version audio
-  <ion-icon slot="start" name="play-circle-outline"></ion-icon>
 </ion-button>
-<ion-button *ngIf="playerState === 'playing'" slot="icon-only" fill="clear" (click)="pauseAudio()">
-  <ion-icon name="pause-circle-outline"></ion-icon>
+<ion-button *ngIf="playerState === 'playing'" class="audio-btn" fill="clear" (click)="pauseAudio()">
+  <ion-icon slot="start" name="pause-circle"></ion-icon>
+  Pause
 </ion-button>
-<ion-button *ngIf="playerState === 'paused'" slot="icon-only" fill="clear" (click)="resumeAudio()">
-  <ion-icon name="play-outline"></ion-icon>
+<ion-button *ngIf="playerState === 'paused'" class="audio-btn" fill="clear" (click)="resumeAudio()">
+  <ion-icon slot="start" name="play-circle"></ion-icon>
+  Reprendre
 </ion-button>

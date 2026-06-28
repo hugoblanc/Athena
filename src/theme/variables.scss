@@ -174,3 +174,37 @@
   --ion-color-transparent-shade: #00000030;
   --ion-color-transparent-tint: #00000020;
 }
+
+// =============================================================================
+// Mode lecture CLAIR (bouton lune sur les articles) — palette claire Signal.
+// On surcharge les tokens --ath-* ET les variables Ionic ; tout ce qui est basé
+// dessus (fond, surfaces, texte, chips, cartes) bascule en clair d'un coup.
+// =============================================================================
+body[data-reading="light"] {
+  --ath-bg:         #fafafb;
+  --ath-surface:    #ffffff;
+  --ath-surface-2:  #f3f3f6;
+  --ath-border:     #e6e6ec;
+  --ath-text:       #14141c;
+  --ath-text-dim:   #6b6b78;
+  --ath-text-faint: #a0a0ac;
+  --ath-tag-bg:     #f1f1f5;
+  --ath-tag-text:   #4a4a57;
+
+  --ath-elev-1: 0 2px 14px rgba(20, 20, 28, .06);
+  --ath-elev-2: 0 10px 30px rgba(20, 20, 28, .12);
+
+  // Variables Ionic (pour les composants natifs : items, cartes, toolbars…)
+  --ion-background-color:     #fafafb;
+  --ion-background-color-rgb: 250, 250, 251;
+  --ion-text-color:           #14141c;
+  --ion-text-color-rgb:       20, 20, 28;
+
+  --ion-item-background:     #ffffff;
+  --ion-card-background:     #ffffff;
+  --ion-toolbar-background:  #fafafb;
+  --ion-border-color:        #e6e6ec;
+
+  // L'orange en texte sur fond clair manque de contraste → on assombrit le tint.
+  --ion-color-primary-tint:  #c2410c;
+}

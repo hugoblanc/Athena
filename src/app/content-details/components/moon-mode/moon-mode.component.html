@@ -1,4 +1,4 @@
-<ion-button slot="icon-only" fill="clear" color="{{!styleService.isLight ? 'light' : 'medium'}}"
-  (click)="switchNightMode()">
-  <ion-icon name="moon"></ion-icon>
+<ion-button class="moon-btn" fill="clear" (click)="switchNightMode()"
+  [attr.aria-label]="styleService.isLight ? 'Passer en lecture sombre' : 'Passer en lecture claire'">
+  <ion-icon slot="icon-only" [name]="styleService.isLight ? 'sunny-outline' : 'moon-outline'"></ion-icon>
 </ion-button>

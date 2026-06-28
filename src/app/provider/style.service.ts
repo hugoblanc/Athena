@@ -1,63 +1,42 @@
 import { Injectable } from '@angular/core';
 
+/**
+ * Gère le mode lecture clair/sombre des articles (bouton lune).
+ *
+ * On bascule un attribut `data-reading="light"` sur <body> : le CSS surcharge
+ * alors toute la palette Signal (tokens --ath-*) avec les valeurs claires (cf.
+ * global.scss). Ainsi fond, surfaces, texte, chips… passent tous en clair d'un
+ * coup, au lieu de bricoler quelques variables Ionic à la main.
+ *
+ * Le mode est scopé à la lecture : `initPage()` l'applique en entrant sur un
+ * article, `leavePage()` le retire en sortant. La préférence (`isLight`)
+ * persiste d'un article à l'autre.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class StyleService {
 
-  ionBackgroundColor!: string;
-  ionTextColor!: string;
-
   public isLight = false;
-  constructor() {
-    const themeWrapper = document.querySelector('body');
-    if (themeWrapper) {
-      this.ionBackgroundColor = themeWrapper?.style.getPropertyValue('--ion-background-color');
-      this.ionTextColor = themeWrapper?.style.getPropertyValue('--ion-text-color');
-    }
+
+  public initPage(): void {
+    this.apply();
   }
 
-
-  public initPage() {
-    if (!this.isLight) {
-      this.setDark();
-    } else {
-      this.setLight();
-    }
+  public leavePage(): void {
+    document.body.removeAttribute('data-reading');
   }
 
-  public leavePage() {
-    this.setDark();
+  public switchNightMode(): void {
+    this.isLight = !this.isLight;
+    this.apply();
   }
 
-  public switchNightMode() {
+  private apply(): void {
     if (this.isLight) {
-      this.setDarkAndChangeInd();
+      document.body.setAttribute('data-reading', 'light');
     } else {
-      this.setLightAndChangeInd();
+      document.body.removeAttribute('data-reading');
     }
   }
-
-  private setDarkAndChangeInd() {
-    this.isLight = false;
-    this.setDark();
-  }
-  private setLightAndChangeInd() {
-    this.isLight = true;
-    this.setLight();
-  }
-
-  private setDark() {
-    const themeWrapper = document.querySelector('body');
-    themeWrapper?.style.setProperty('--ion-background-color', this.ionBackgroundColor);
-    themeWrapper?.style.setProperty('--ion-text-color', this.ionTextColor);
-    themeWrapper?.style.setProperty('--color', this.ionTextColor);
-  }
-  private setLight() {
-    const themeWrapper = document.querySelector('body');
-    themeWrapper?.style.setProperty('--ion-background-color', '#FFFFFF');
-    themeWrapper?.style.setProperty('--ion-text-color', '#000000');
-    themeWrapper?.style.setProperty('--color', '#000000');
-  }
-
 }

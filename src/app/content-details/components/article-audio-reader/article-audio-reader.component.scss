@@ -1,0 +1,26 @@
+:host {
+  display: inline-flex;
+}
+
+.audio-btn {
+  --background: var(--ath-surface-2);
+  --background-activated: var(--ath-border);
+  --background-hover: var(--ath-border);
+  --color: var(--ath-primary);
+  --border-radius: 999px;
+  --box-shadow: none;
+  --padding-start: 14px;
+  --padding-end: 16px;
+  height: 38px;
+  margin: 0;
+  font-family: var(--ath-font-ui);
+  font-weight: 600;
+  font-size: 13.5px;
+  text-transform: none;
+  letter-spacing: 0;
+
+  ion-icon {
+    font-size: 18px;
+    margin-right: 2px;
+  }
+}
