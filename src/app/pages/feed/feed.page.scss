@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 4px var(--ath-gutter) 6px 8px;
+  // gouttière identique à gauche et à droite → la barre s'aligne sur les cartes
+  padding: 4px var(--ath-gutter) 6px var(--ath-gutter);
 
   ion-searchbar {
     flex: 1;

@@ -31,11 +31,13 @@
      Ne fonctionne que sur Chromium (Android WebView + Chrome) ; sur iOS/WebKit,
      seul le rebord spéculaire (::before) s'applique → dégradation propre. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <filter id="liquid-glass" x="-10%" y="-10%" width="120%" height="120%">
+  <filter id="liquid-glass" x="-30%" y="-30%" width="160%" height="160%">
     <!-- entre-deux : réfraction vivante mais pas chaotique. Un léger flou sur la
-         carte de déplacement adoucit les vaguelettes sans tout aplatir. -->
+         carte de déplacement adoucit les vaguelettes sans tout aplatir.
+         Zone du filtre élargie + scale modéré pour éviter la déchirure du bord
+         haut (le displacement qui tire des pixels hors zone). -->
     <feTurbulence type="fractalNoise" baseFrequency="0.006 0.006" numOctaves="2" seed="14" result="noise" />
     <feGaussianBlur in="noise" stdDeviation="0.5" result="map" />
-    <feDisplacementMap in="SourceGraphic" in2="map" scale="38" xChannelSelector="R" yChannelSelector="G" />
+    <feDisplacementMap in="SourceGraphic" in2="map" scale="26" xChannelSelector="R" yChannelSelector="G" />
   </filter>
 </svg>
