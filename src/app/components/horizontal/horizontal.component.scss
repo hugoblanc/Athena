@@ -1,14 +1,23 @@
 :host {
-  height: 7rem;
+  display: block;
   width: 100%;
+
   .section {
-    margin: 0;
-    margin-left: 0.5rem;
-    margin-top: 1rem;
+    margin: 1rem 0 0.5rem var(--ath-gutter);
   }
 
-  .card-container{
+  .card-container {
+    display: flex;
+    align-items: stretch;
     white-space: nowrap;
-    overflow-x: scroll;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 calc(var(--ath-gutter) - 8px) 6px; // ath-card a une marge de 0.5rem
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }

@@ -2,10 +2,9 @@
   <!-- TITRE DU TYPE DE LISTE  -->
   <ath-section [title]="listMetaMedia.title" ></ath-section>
 
-  <!-- LISTE DE META-MEDIA -->
-  <ath-slides3d *ngIf="!isIOS" [metaMedias]="listMetaMedia.metaMedias"></ath-slides3d>
-
-  <div *ngIf="isIOS" class="card-container">
+  <!-- LISTE DE META-MEDIA : carrousel horizontal de cartes média,
+       identique iOS/Android (on abandonne le slides3d basé sur ion-slides déprécié). -->
+  <div class="card-container">
     <ath-card *ngFor="let metaMedia of listMetaMedia.metaMedias" [media]="metaMedia" [routerLink]="'/media/'+metaMedia.key" ></ath-card>
   </div>
 </div>
