@@ -24,7 +24,7 @@ ion-tab-bar {
   bottom: calc(10px + env(safe-area-inset-bottom));
   height: 68px;
   overflow: visible;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
 
   // Réfraction du contenu derrière la barre + verre légèrement fumé
   // (teinte sombre) pour la lisibilité des icônes.
