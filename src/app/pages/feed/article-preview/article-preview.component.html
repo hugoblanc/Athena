@@ -1,16 +1,18 @@
-<div class="article">
-  <div *ngIf="mixedContent?.image?.url" class="img-container"
-    [style.background-image]="'url('+mixedContent.image.url+')'"></div>
-  <div class="title" [innerHTML]="mixedContent.title">
+<article class="sig-card">
+  <div class="sig-card__media" *ngIf="mixedContent?.image?.url">
+    <img class="sig-card__img" [src]="imageUrl" (error)="onImgError()" alt="" loading="lazy">
+    <span class="sig-card__play" *ngIf="isVideo" aria-hidden="true">
+      <ion-icon name="play"></ion-icon>
+    </span>
   </div>
 
-  <ion-chip>
-    <ion-avatar>
-      <img [src]="mixedContent.metaMedia.logo">
-    </ion-avatar>
-    <ion-label>{{mixedContent.metaMedia.title}}</ion-label>
-  </ion-chip>
-  <ion-chip *ngIf="mixedContent.publishedAt">
-    <ion-label>{{mixedContent.publishedAt | date}}</ion-label>
-  </ion-chip>
-</div>
+  <div class="sig-card__body">
+    <div class="sig-card__kicker">
+      <img class="sig-card__logo" [src]="mixedContent.metaMedia.logo" alt="">
+      <span class="sig-card__source">{{mixedContent.metaMedia.title}}</span>
+      <span class="sig-card__sep" *ngIf="mixedContent.publishedAt">·</span>
+      <span class="sig-card__date" *ngIf="mixedContent.publishedAt">{{mixedContent.publishedAt | date:'d MMM yyyy'}}</span>
+    </div>
+    <h3 class="sig-card__title" [innerHTML]="mixedContent.title"></h3>
+  </div>
+</article>

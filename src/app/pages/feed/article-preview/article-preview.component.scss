@@ -1,30 +1,119 @@
 :host {
   display: block;
-  padding: 1rem;
+  padding: 6px var(--ath-gutter) 10px;
+  cursor: pointer;
+}
 
-  .img-container {
-    border-radius: 1rem;
-    width: 100%;
-    height: 25vh;
+.sig-card {
+  display: block;
+  background: var(--ath-surface);
+  border: 1px solid var(--ath-border);
+  border-radius: var(--ath-radius);
+  overflow: hidden;
+  box-shadow: var(--ath-elev-1);
+  transition: border-color .15s ease, transform .15s ease;
 
-    background-repeat: no-repeat;
-    background-position: center;
-
-    background-size: cover;
-    margin-bottom: 1rem;
+  &:active {
+    transform: scale(.985);
+    border-color: var(--ath-primary);
   }
+}
 
-  .title {
-    font-size: 1.2rem;
+.sig-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--ath-surface-2);
+}
+
+.sig-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sig-card__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(10, 10, 15, .55);
+  backdrop-filter: blur(4px);
+  border: 1.5px solid rgba(255, 255, 255, .9);
+
+  ion-icon {
+    font-size: 24px;
     color: #fff;
-    font-family: RobotoMedium;
-    text-align: left;
+    margin-left: 2px;
   }
+}
 
-  ion-chip {
-    margin: 0;
-    margin-top: 1rem;
-    --background: transparent;
-    --color: rgb(191, 191, 191);
-  }
+.sig-card__body {
+  padding: 14px 16px 16px;
+}
+
+.sig-card__kicker {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 9px;
+  min-width: 0;
+}
+
+.sig-card__logo {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--ath-surface-2);
+}
+
+.sig-card__source {
+  font-family: var(--ath-font-ui);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .02em;
+  color: var(--ath-text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sig-card__sep {
+  font-size: 12px;
+  color: var(--ath-text-faint);
+  flex-shrink: 0;
+}
+
+.sig-card__date {
+  font-family: var(--ath-font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--ath-text-dim);
+  flex-shrink: 0;
+}
+
+.sig-card__title {
+  margin: 0;
+  font-family: var(--ath-font-display);
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1.28;
+  letter-spacing: -.01em;
+  color: var(--ath-text);
+  text-align: left;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

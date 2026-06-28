@@ -13,8 +13,7 @@
     </ion-button>
   </div>
 
-  <div *ngFor="let content of contents; let first = first;">
-    <hr *ngIf="!first">
+  <div *ngFor="let content of contents;">
     <ath-article-preview [mixedContent]="content"></ath-article-preview>
   </div>
 

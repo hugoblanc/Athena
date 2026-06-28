@@ -15,32 +15,22 @@
 }
 
 body {
-  --background: #0F2027;
-  --ion-background-color: linear-gradient(to right, #2C5364, #203A43, #0F2027);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  --ion-text-color: white;
-
-  --primaryColor: #000000;
-  --primaryLightColor: #cfe8fa;
-  --primaryDarkColor: #0b4872;
-  --primaryTextColor: #ffffff;
-  --primaryLightTextColor: #000000;
-  --primaryDarkTextColor: #ffffff;
-
-  --accentColor: #647985;
-  --accentLightColor: #f3f5f6;
-  --accentDarkColor: #7f939e;
-  --accentTextColor: #ffffff;
-  --accentLightTextColor: #000000;
-  --accentDarkTextColor: #ffffff;
-  --warnColor: #b00020;
-  --warnTextColor: #ffffff;
-  --color: white !important;
+  --background: var(--ath-bg);
+  background: var(--ath-bg);
+  --ion-text-color: var(--ath-text);
+  --color: var(--ath-text);
+  font-family: var(--ath-font-ui);
 }
 
 ion-content {
+  --background: var(--ath-bg);
   --padding-top: var(--ath-top-padding);
   --padding-bottom: var(--ath-bottom-padding);
+}
+
+// Tape l'orange sur les liens/boutons par défaut sans tout casser
+a {
+  color: var(--ath-primary);
 }
 
 .masonry-item {
@@ -71,6 +61,50 @@ ion-back-button {
       }
     }
   }
+}
+
+// === Signal — Inter (UI) + Space Grotesk (display), self-hosted woff2 ===
+@font-face {
+  font-family: "Inter";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("./assets/fonts/signal/inter-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("./assets/fonts/signal/inter-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("./assets/fonts/signal/inter-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("./assets/fonts/signal/inter-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Space Grotesk";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("./assets/fonts/signal/space-grotesk-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Space Grotesk";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("./assets/fonts/signal/space-grotesk-700.woff2") format("woff2");
 }
 
 @font-face {
