@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { ComponentsModule } from '../../components/components.module';
+import { PipesModule } from '../../core/pipes/pipes.module';
 import { PropositionDetailPage } from './proposition-detail.page';
 
 @NgModule({
@@ -11,6 +12,7 @@ import { PropositionDetailPage } from './proposition-detail.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    PipesModule,
     ComponentsModule,
     RouterModule.forChild([
       {

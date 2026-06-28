@@ -22,7 +22,9 @@
 
       <ion-item lines="none" class="author-item" (click)="openDeputeProfile(proposal.auteur.urlDepute)" [button]="!!proposal.auteur.urlDepute" [detail]="!!proposal.auteur.urlDepute">
         <ion-avatar slot="start" *ngIf="proposal.auteur.photoUrl">
-          <img [src]="proposal.auteur.photoUrl" />
+          <img #depPhoto [src]="proposal.auteur.photoUrl | imageProxy" [alt]="proposal.auteur.nom"
+               (error)="depPhoto.style.display='none'"
+               (load)="depPhoto.style.display='block'" />
         </ion-avatar>
         <ion-label>
           <h2>{{ proposal.auteur.nom }}</h2>
