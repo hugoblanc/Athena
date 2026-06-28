@@ -12,6 +12,10 @@ export class StorageService {
   public static COUNT_KEY = 'COUNT_KEY';
   public static INSTALLATION_DATE = 'INSTALLATION_DATE';
   public static CLAPPED_ISSUE = 'CLAPPED_ISSUE';
+  public static DOWNVOTED_ISSUE = 'DOWNVOTED_ISSUE';
+  public static ANON_KEY = 'ANON_KEY';
+  public static SAVED_ARTICLES = 'SAVED_ARTICLES';
+  public static NOTIFICATIONS_MASTER_ENABLED = 'NOTIFICATIONS_MASTER_ENABLED';
   private static FIRST_LAUNCH = 'FIRST_LAUNCH';
 
 
@@ -65,6 +69,22 @@ export class StorageService {
       }
       array.push(value);
       this.set(key, array);
+    }));
+  }
+
+
+  /**
+   * Cette methode retire un element d'un tableau contenu dans le storage
+   * @param key la clé qui définie le tableau dans le localstorage
+   * @param value la valeur a retirer du tableau
+   */
+  public removeFromArray(key: string, value: any): Observable<any> {
+    return this.get<any[]>(key).pipe(tap((array: any[]) => {
+      if (array == null || !Array.isArray(array)) {
+        return;
+      }
+      const filtered = array.filter((item) => item !== value);
+      this.set(key, filtered);
     }));
   }
 

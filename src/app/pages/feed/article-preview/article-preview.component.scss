@@ -102,6 +102,33 @@
   flex-shrink: 0;
 }
 
+.sig-card__save {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--ath-text-dim);
+  cursor: pointer;
+
+  ion-icon {
+    font-size: 19px;
+  }
+
+  &:active ion-icon {
+    color: var(--ath-primary);
+  }
+
+  &.is-saved {
+    color: var(--ath-primary);
+  }
+}
+
 .sig-card__title {
   margin: 0;
   font-family: var(--ath-font-display);

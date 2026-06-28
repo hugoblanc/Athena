@@ -26,23 +26,31 @@ ion-item {
     color: var(--ath-text);
   }
 
-  ion-button {
-    --color: var(--ath-text-dim);
-    --background: var(--ath-surface-2);
-    --border-radius: var(--ath-radius-full);
-    --padding-start: 10px;
-    --padding-end: 12px;
-    height: 34px;
-    margin: 0;
+  .vote-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .vote-count {
+    min-width: 22px;
+    text-align: center;
     font-family: var(--ath-font-ui);
     font-weight: 700;
     font-size: 13px;
-    letter-spacing: .01em;
+    color: var(--ath-text);
+  }
+
+  ion-button {
+    --background: transparent;
+    --border-radius: var(--ath-radius-full);
+    --padding-start: 8px;
+    --padding-end: 8px;
+    height: 34px;
+    margin: 0;
 
     ion-icon {
-      color: var(--ath-primary);
-      margin-right: 4px;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     &[disabled] {

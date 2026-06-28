@@ -32,6 +32,10 @@ const routes: Routes = [
         loadChildren: () => import('../informations/informations.module').then(m => m.InformationsPageModule)
       },
       {
+        path: 'saved',
+        loadChildren: () => import('../saved/saved.module').then(m => m.SavedPageModule)
+      },
+      {
         path: '',
         redirectTo: 'feed',
         pathMatch: 'full'

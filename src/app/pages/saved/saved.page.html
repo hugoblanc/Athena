@@ -1,0 +1,35 @@
+<ion-content>
+
+  <div class="page-top">
+    <ath-section title="Enregistrés"></ath-section>
+  </div>
+
+  <ng-container *ngIf="(favorites$ | async) as favorites">
+    <div *ngIf="favorites.length === 0" class="empty-state">
+      <ion-icon name="bookmark-outline"></ion-icon>
+      <p>Aucun article enregistré pour l'instant.</p>
+      <p class="empty-hint">Touchez l'icône <ion-icon name="bookmark-outline"></ion-icon> sur un article pour le retrouver ici.</p>
+    </div>
+
+    <div class="saved-list">
+      <article class="saved-card" *ngFor="let article of favorites" (click)="open(article)">
+        <div class="saved-card__thumb" *ngIf="article.imageUrl">
+          <img [src]="article.imageUrl" alt="" loading="lazy">
+        </div>
+        <div class="saved-card__body">
+          <div class="saved-card__kicker">
+            <img class="saved-card__logo" *ngIf="article.mediaLogo" [src]="article.mediaLogo" alt="">
+            <span class="saved-card__source">{{article.mediaTitle}}</span>
+            <span class="saved-card__sep" *ngIf="article.publishedAt">·</span>
+            <span class="saved-card__date" *ngIf="article.publishedAt">{{article.publishedAt | date:'d MMM yyyy'}}</span>
+          </div>
+          <h3 class="saved-card__title" [innerHTML]="article.title"></h3>
+        </div>
+        <button class="saved-card__remove" type="button" aria-label="Retirer" (click)="remove($event, article)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </button>
+      </article>
+    </div>
+  </ng-container>
+
+</ion-content>

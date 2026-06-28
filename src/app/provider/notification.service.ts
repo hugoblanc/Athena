@@ -142,6 +142,41 @@ export class NotificationService {
     return makeDiff$;
   }
 
+  /**
+   * État du « master switch » des notifications. true par défaut (opt-out).
+   */
+  public isNotificationsMasterEnabled(): Observable<boolean> {
+    return this.ss
+      .get<boolean>(StorageService.NOTIFICATIONS_MASTER_ENABLED)
+      .pipe(map((val) => (val == null ? true : val)));
+  }
+
+  /**
+   * Active ou coupe d'un coup toutes les notifications : (dés)abonne tous les
+   * métamédias connus et persiste l'état global. Évite à l'utilisateur de le
+   * faire média par média (#90).
+   */
+  public setAllNotifications(enabled: boolean): Observable<any> {
+    this.ss.set(StorageService.NOTIFICATIONS_MASTER_ENABLED, enabled);
+    const keys = this.collectAllMetaMediaKeys();
+    if (keys.length === 0) {
+      return of([]);
+    }
+    return enabled
+      ? this.subscribeAllMetaMedia(keys)
+      : this.unsubscribeAllMetaMedia(keys);
+  }
+
+  private collectAllMetaMediaKeys(): string[] {
+    const keys: string[] = [];
+    for (const list of this.metaMediaService.listMetaMedia) {
+      for (const metaMedia of list.metaMedias) {
+        keys.push(metaMedia.key);
+      }
+    }
+    return keys;
+  }
+
   public isCategoryActivated(key: string, id: number) {
     const unsubCategories = this.notificationTopicsCategories[key];
     if (!unsubCategories || unsubCategories.length === 0) {
@@ -333,11 +368,11 @@ export class NotificationService {
     return concat(...subAll$);
   }
 
-  // Si jamais un jour on veut faire une options pour couper toutes les notifications
-  // private unsubscribeAllMetaMedia(topics: string[]): Observable<any[]> {
-  //   const unsubAll$ = topics.map((topic) => this.unsubscribeMetaMedia(topic));
-  //   return concat(...unsubAll$);
-  // }
+  private unsubscribeAllMetaMedia(topics: string[]): Observable<any[]> {
+    this.checkNullOrEmpty(topics);
+    const unsubAll$ = topics.map((topic) => this.unsubscribeMetaMedia(topic));
+    return concat(...unsubAll$);
+  }
 
   private subscribeMetaMedia(topic: string): Observable<any> {
     return this.subscribeTopic(topic).pipe(

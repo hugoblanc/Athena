@@ -39,14 +39,24 @@ export class HttpService {
     return get$;
   }
 
-  post<T>(url: string, body?: any, ignoreCors?: boolean): Observable<T> {
+  post<T>(url: string, body?: any, ignoreCors?: boolean, customHeaders?: Record<string, string>): Observable<T> {
     let post$;
     if (this.develop || !ignoreCors) {
-      post$ = this.developPost(url, body);
+      post$ = this.developPost(url, body, customHeaders);
     } else {
-      post$ = this.nativePost(url, body);
+      post$ = this.nativePost(url, body, customHeaders);
     }
     return post$;
+  }
+
+  delete<T>(url: string, ignoreCors?: boolean, customHeaders?: Record<string, string>): Observable<T> {
+    let delete$;
+    if (this.develop || !ignoreCors) {
+      delete$ = this.developDelete(url, customHeaders);
+    } else {
+      delete$ = this.nativeDelete(url, customHeaders);
+    }
+    return delete$;
   }
 
   /**
@@ -84,17 +94,10 @@ export class HttpService {
    * La methode qui post en natif
    * @param url L'url a post
    * @param body le body a poster
+   * @param customHeaders entêtes additionnels (ex: X-Anon-Key)
    */
-  private nativePost(url: string, body?: any) {
-    const headers: any = {
-      "Content-Type": "application/json",
-    };
-
-    // Ajouter le token d'authentification si disponible
-    const token = this.authService.getCachedToken();
-    if (token) {
-      headers["Authorization"] = `Bearer ${token}`;
-    }
+  private nativePost(url: string, body?: any, customHeaders?: Record<string, string>) {
+    const headers = this.buildNativeHeaders(customHeaders);
 
     return from(this.nativeHttp.post(url, body, headers)).pipe(
       runInZone(this.zone),
@@ -105,8 +108,53 @@ export class HttpService {
    * La methode qui call en broswer
    * @param url l'url a get
    * @param body le body a poster
+   * @param customHeaders entêtes additionnels (ex: X-Anon-Key)
    */
-  private developPost(url: string, body?: any) {
-    return this.developHttp.post(url, body);
+  private developPost(url: string, body?: any, customHeaders?: Record<string, string>) {
+    return this.developHttp.post(url, body, customHeaders ? { headers: customHeaders } : {});
+  }
+
+  /**
+   * La methode qui delete en natif
+   * @param url L'url a delete
+   * @param customHeaders entêtes additionnels (ex: X-Anon-Key)
+   */
+  private nativeDelete(url: string, customHeaders?: Record<string, string>) {
+    const headers = this.buildNativeHeaders(customHeaders);
+
+    return from(this.nativeHttp.delete(url, {}, headers)).pipe(
+      runInZone(this.zone),
+      map((data: HTTPResponse) => JSON.parse(data.data || 'null'))
+    );
+  }
+  /**
+   * La methode qui delete en browser
+   * @param url l'url a delete
+   * @param customHeaders entêtes additionnels (ex: X-Anon-Key)
+   */
+  private developDelete(url: string, customHeaders?: Record<string, string>) {
+    return this.developHttp.delete(url, customHeaders ? { headers: customHeaders } : {});
+  }
+
+  /**
+   * Construit les entêtes pour les appels natifs : JSON + Bearer Firebase si
+   * disponible + entêtes additionnels éventuels.
+   */
+  private buildNativeHeaders(customHeaders?: Record<string, string>): any {
+    const headers: any = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    };
+
+    const token = this.authService.getCachedToken();
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+
+    if (customHeaders) {
+      Object.assign(headers, customHeaders);
+    }
+
+    return headers;
   }
 }
