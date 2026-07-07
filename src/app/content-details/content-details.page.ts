@@ -16,6 +16,9 @@ import { LinkService } from "../provider/helper/link.service";
 import { StorageService } from "../provider/helper/storage.service";
 import { StyleService } from "../provider/style.service";
 import { PodcastService } from "../provider/podcast/podcast.service";
+import { FavoritesService } from "../provider/favorites.service";
+import { MetaMediaService } from "../provider/meta-media/meta-media.service";
+import { buildFavoriteKey, SavedArticle } from "../models/favorite/saved-article";
 import { shareContent } from './utils/shareable-content.utils';
 
 /**
@@ -45,7 +48,9 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
     public helpService: HelpService,
     public element: ElementRef,
     private readonly storage: StorageService,
-    private readonly podcastService: PodcastService
+    private readonly podcastService: PodcastService,
+    private readonly favoritesService: FavoritesService,
+    private readonly metaMediaService: MetaMediaService
   ) { }
 
   private static scrollDeltaY = -500;
@@ -143,6 +148,31 @@ export class ContentDetailsPage implements OnInit, OnDestroy, Helpable {
 
   async shareContent() {
     await shareContent(this.key, this.id, "Regarde ce que j'ai trouvé")
+  }
+
+  /** Vrai si l'article courant est dans les favoris. */
+  get isSaved(): boolean {
+    return this.favoritesService.isSaved(buildFavoriteKey(this.key, this.id));
+  }
+
+  /** Bascule l'article courant dans/hors des favoris (stockage local). */
+  toggleFavorite(): void {
+    const meta = this.metaMediaService.currentMetaMedia;
+    const article: SavedArticle = {
+      key: buildFavoriteKey(this.key, this.id),
+      resourceId: this.id,
+      mediaKey: this.key,
+      title: this.content?.title ?? '',
+      publishedAt: this.content?.publishedAt
+        ? new Date(this.content.publishedAt).toISOString()
+        : '',
+      imageUrl: this.content?.image?.url,
+      mediaTitle: meta?.title ?? '',
+      mediaLogo: meta?.logo,
+      mediaType: (meta?.type as string) ?? '',
+      savedAt: new Date().toISOString(),
+    };
+    this.favoritesService.toggleArticle(article);
   }
 
   async scrollTop() {

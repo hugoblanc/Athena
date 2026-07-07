@@ -3,8 +3,17 @@
     {{issue?.title}}
   </ion-label>
 
-  <ion-button shape="round" fill="clear" [disabled]="issue.hasBeenClapped" (click)="clapIssue($event, issue); false">
-    <ion-icon slot="icon-only" src="assets/clap.svg"></ion-icon>
-    {{issue?.comments}}
-  </ion-button>
+  <div class="vote-actions" slot="end">
+    <ion-button shape="round" fill="clear" [color]="issue.hasBeenClapped ? 'primary' : 'medium'"
+      (click)="clapIssue($event, issue); false">
+      <ion-icon slot="icon-only" src="assets/clap.svg"></ion-icon>
+    </ion-button>
+
+    <span class="vote-count">{{issue?.comments}}</span>
+
+    <ion-button shape="round" fill="clear" [color]="issue.hasBeenDownvoted ? 'danger' : 'medium'"
+      (click)="downvoteIssue($event, issue); false">
+      <ion-icon slot="icon-only" [name]="issue.hasBeenDownvoted ? 'thumbs-down' : 'thumbs-down-outline'"></ion-icon>
+    </ion-button>
+  </div>
 </ion-item>

@@ -17,6 +17,13 @@
 
   <ath-reading-progress [progress]="readingProgress"></ath-reading-progress>
 
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button color="dark" (click)="toggleFavorite()"
+      [attr.aria-label]="isSaved ? 'Retirer des enregistrés' : 'Enregistrer'">
+      <ion-icon [name]="isSaved ? 'bookmark' : 'bookmark-outline'"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-button class="share-fab" shape="round" color="primary" (click)="shareContent()">
       <ion-icon name="share-social-outline" slot="start"></ion-icon>

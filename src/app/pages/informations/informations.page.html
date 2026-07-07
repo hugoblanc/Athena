@@ -11,6 +11,19 @@
   </div>
 
   <ion-list lines="full">
+    <!-- Master switch des notifications (#90) -->
+    <ion-item>
+      <ion-icon slot="start" name="notifications-outline" color="primary"></ion-icon>
+      <ion-label>
+        <h2>Notifications</h2>
+        <p>Activer ou couper toutes les notifications</p>
+      </ion-label>
+      <ion-toggle slot="end" [checked]="notificationsEnabled"
+        (ionChange)="onNotificationsToggle($any($event))"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-list lines="full">
     <!-- Bouton de connexion/profil -->
     <ion-item button (click)="navigateToAuth()" *ngIf="!(user$ | async)">
       <ion-icon slot="start" name="log-in-outline" color="primary"></ion-icon>

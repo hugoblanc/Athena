@@ -23,6 +23,7 @@ export interface Issue {
   author_association?: string;
   body?: string;
   hasBeenClapped?: boolean;
+  hasBeenDownvoted?: boolean;
 }
 
 export interface Label {

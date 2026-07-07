@@ -1,7 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Host, HostListener } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, HostListener, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { MixedContent } from '../../../provider/content/mixed-content';
 import { MetaMediaType } from '../../../models/meta-media/meta-media-type.enum';
+import { FavoritesService } from '../../../provider/favorites.service';
+import { buildFavoriteKey } from '../../../models/favorite/saved-article';
 
 @Component({
   selector: 'ath-article-preview',
@@ -15,6 +17,22 @@ export class ArticlePreviewComponent {
 
   /** Passe à true si la version haute résolution YouTube n'existe pas. */
   imgFailed = false;
+
+  get isSaved(): boolean {
+    if (!this.mixedContent) {
+      return false;
+    }
+    return this.favoritesService.isSaved(
+      buildFavoriteKey(this.mixedContent.metaMedia.key, this.mixedContent.resourceId)
+    );
+  }
+
+  /** Bascule le favori sans déclencher la navigation de la carte. */
+  toggleFavorite(event: Event): void {
+    event.stopPropagation();
+    this.favoritesService.toggle(this.mixedContent);
+    this.cdr.markForCheck();
+  }
 
   get isVideo(): boolean {
     const type = this.mixedContent?.metaMedia?.type;
@@ -49,7 +67,11 @@ export class ArticlePreviewComponent {
     this.goToContentDetails();
   }
 
-  constructor(private readonly router: Router) { }
+  constructor(
+    private readonly router: Router,
+    private readonly favoritesService: FavoritesService,
+    private readonly cdr: ChangeDetectorRef
+  ) { }
 
   private goToContentDetails() {
     this.router.navigate(['/', 'media', this.mixedContent.metaMedia.key, 'details', this.mixedContent.resourceId]);

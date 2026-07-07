@@ -19,6 +19,13 @@ export class SecondaryMenuService {
       cssClass: 'secondary-menu-sheet',
       buttons: [
         {
+          text: 'Enregistrés',
+          icon: 'bookmark-outline',
+          handler: () => {
+            this.router.navigateByUrl('/tabs/saved');
+          },
+        },
+        {
           text: 'Infos & à propos',
           icon: 'information-circle-outline',
           handler: () => {

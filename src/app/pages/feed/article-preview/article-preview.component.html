@@ -12,6 +12,11 @@
       <span class="sig-card__source">{{mixedContent.metaMedia.title}}</span>
       <span class="sig-card__sep" *ngIf="mixedContent.publishedAt">·</span>
       <span class="sig-card__date" *ngIf="mixedContent.publishedAt">{{mixedContent.publishedAt | date:'d MMM yyyy'}}</span>
+      <button class="sig-card__save" type="button" [class.is-saved]="isSaved"
+        [attr.aria-label]="isSaved ? 'Retirer des enregistrés' : 'Enregistrer'"
+        (click)="toggleFavorite($event)">
+        <ion-icon [name]="isSaved ? 'bookmark' : 'bookmark-outline'"></ion-icon>
+      </button>
     </div>
     <h3 class="sig-card__title" [innerHTML]="mixedContent.title"></h3>
   </div>
